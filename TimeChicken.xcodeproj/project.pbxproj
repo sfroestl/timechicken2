@@ -25,6 +25,8 @@
 		39685E9B16A54FC500FE52A1 /* TaskListViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 39685E9916A54FC500FE52A1 /* TaskListViewController.xib */; };
 		39685EAB16A55FF200FE52A1 /* TCDatePicker.m in Sources */ = {isa = PBXBuildFile; fileRef = 39685EA716A55FF200FE52A1 /* TCDatePicker.m */; };
 		9E03A5BF16A587A300EA3CBD /* icon-os.png in Resources */ = {isa = PBXBuildFile; fileRef = 9E03A5BE16A587A300EA3CBD /* icon-os.png */; };
+		9E03A5C416A58BF000EA3CBD /* WebserviceDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9E03A5C216A58BF000EA3CBD /* WebserviceDetailViewController.m */; };
+		9E03A5C516A58BF000EA3CBD /* WebserviceDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9E03A5C316A58BF000EA3CBD /* WebserviceDetailViewController.xib */; };
 		9E1ED39216A5669700DF3049 /* TCOneSparkRestClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 9E1ED39116A5669700DF3049 /* TCOneSparkRestClient.m */; };
 		9E1ED39516A5671100DF3049 /* TCJiraRestClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 9E1ED39416A5671100DF3049 /* TCJiraRestClient.m */; };
 		9E1ED3A416A569D100DF3049 /* TCTask.m in Sources */ = {isa = PBXBuildFile; fileRef = 9E1ED39B16A569D100DF3049 /* TCTask.m */; };
@@ -61,6 +63,9 @@
 		39685EA616A55FF200FE52A1 /* TCDatePicker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TCDatePicker.h; sourceTree = "<group>"; };
 		39685EA716A55FF200FE52A1 /* TCDatePicker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TCDatePicker.m; sourceTree = "<group>"; };
 		9E03A5BE16A587A300EA3CBD /* icon-os.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon-os.png"; sourceTree = "<group>"; };
+		9E03A5C116A58BF000EA3CBD /* WebserviceDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WebserviceDetailViewController.h; sourceTree = "<group>"; };
+		9E03A5C216A58BF000EA3CBD /* WebserviceDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WebserviceDetailViewController.m; sourceTree = "<group>"; };
+		9E03A5C316A58BF000EA3CBD /* WebserviceDetailViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = WebserviceDetailViewController.xib; sourceTree = "<group>"; };
 		9E1ED39016A5669700DF3049 /* TCOneSparkRestClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TCOneSparkRestClient.h; sourceTree = "<group>"; };
 		9E1ED39116A5669700DF3049 /* TCOneSparkRestClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TCOneSparkRestClient.m; sourceTree = "<group>"; };
 		9E1ED39316A5671100DF3049 /* TCJiraRestClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TCJiraRestClient.h; sourceTree = "<group>"; };
@@ -132,6 +137,9 @@
 				39685E8C16A54FC500FE52A1 /* TaskListViewController.m */,
 				39685E9216A54FC500FE52A1 /* WebserviceListViewController.h */,
 				39685E9316A54FC500FE52A1 /* WebserviceListViewController.m */,
+				9E03A5C116A58BF000EA3CBD /* WebserviceDetailViewController.h */,
+				9E03A5C216A58BF000EA3CBD /* WebserviceDetailViewController.m */,
+				9E03A5C316A58BF000EA3CBD /* WebserviceDetailViewController.xib */,
 				39685E9916A54FC500FE52A1 /* TaskListViewController.xib */,
 				9E1ED3B216A56D3200DF3049 /* WebserviceListViewController.xib */,
 				39685E7A16A54FC500FE52A1 /* Supporting Files */,
@@ -264,6 +272,7 @@
 				39685E9B16A54FC500FE52A1 /* TaskListViewController.xib in Resources */,
 				9E1ED3B416A56D3200DF3049 /* WebserviceListViewController.xib in Resources */,
 				9E03A5BF16A587A300EA3CBD /* icon-os.png in Resources */,
+				9E03A5C516A58BF000EA3CBD /* WebserviceDetailViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -286,6 +295,7 @@
 				9E1ED3A716A569D100DF3049 /* TCWebserviceStore.m in Sources */,
 				9E1ED3A816A569D100DF3049 /* TCWSOneSpark.m in Sources */,
 				9E1ED3B116A56C4600DF3049 /* TCWebservice.m in Sources */,
+				9E03A5C416A58BF000EA3CBD /* WebserviceDetailViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
