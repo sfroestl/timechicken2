@@ -9,6 +9,7 @@
 #import "WebserviceDetailViewController.h"
 #import "TCWebservice.h"
 #import "TCWSOneSpark.h"
+#import "TCRestClient.h"
 
 @interface WebserviceDetailViewController ()
 
@@ -21,8 +22,7 @@
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
-    if (self) {
-        // Custom initialization
+    if (self) {        
     }
     return self;
 }
@@ -43,6 +43,11 @@
     [super viewWillAppear:animated];
     
     if(detailItem) {
+        NSLog(@"Selected: %@", self.detailItem.title);
+        if ([self.detailItem isKindOfClass: [TCWSOneSpark class]]) {
+            NSLog(@"init TCOneSparkRestClient");
+            restClient = [[TCRestClient alloc] initOneSparkRestClient];
+        }
         [titleField setText:detailItem.title];        
     }
 }
@@ -55,4 +60,13 @@
     [detailItem setTitle: [titleField text]];
 }
 
+
+- (void)fetchTasks {    
+    NSLog(@"%@",restClient);
+    [restClient getUserTaskList];
+}
+
+- (IBAction)fetchTaskButtonPressed:(id)sender {
+    [self fetchTasks];
+}
 @end

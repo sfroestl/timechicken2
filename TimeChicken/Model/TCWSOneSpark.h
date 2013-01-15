@@ -7,6 +7,7 @@
 //
 
 #import "TCWebservice.h"
+#import "TCTask.h"
 
 @interface TCWSOneSpark : TCWebservice
 

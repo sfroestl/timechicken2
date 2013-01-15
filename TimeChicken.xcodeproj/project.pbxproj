@@ -27,14 +27,12 @@
 		9E03A5BF16A587A300EA3CBD /* icon-os.png in Resources */ = {isa = PBXBuildFile; fileRef = 9E03A5BE16A587A300EA3CBD /* icon-os.png */; };
 		9E03A5C416A58BF000EA3CBD /* WebserviceDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9E03A5C216A58BF000EA3CBD /* WebserviceDetailViewController.m */; };
 		9E03A5C516A58BF000EA3CBD /* WebserviceDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9E03A5C316A58BF000EA3CBD /* WebserviceDetailViewController.xib */; };
-		9E1ED39216A5669700DF3049 /* TCOneSparkRestClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 9E1ED39116A5669700DF3049 /* TCOneSparkRestClient.m */; };
-		9E1ED39516A5671100DF3049 /* TCJiraRestClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 9E1ED39416A5671100DF3049 /* TCJiraRestClient.m */; };
+		9E0E0A5B16A5B33C00C97B68 /* TCRestClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 9E0E0A5716A5B33C00C97B68 /* TCRestClient.m */; };
 		9E1ED3A416A569D100DF3049 /* TCTask.m in Sources */ = {isa = PBXBuildFile; fileRef = 9E1ED39B16A569D100DF3049 /* TCTask.m */; };
 		9E1ED3A516A569D100DF3049 /* TCTaskStore.m in Sources */ = {isa = PBXBuildFile; fileRef = 9E1ED39D16A569D100DF3049 /* TCTaskStore.m */; };
 		9E1ED3A716A569D100DF3049 /* TCWebserviceStore.m in Sources */ = {isa = PBXBuildFile; fileRef = 9E1ED3A116A569D100DF3049 /* TCWebserviceStore.m */; };
 		9E1ED3A816A569D100DF3049 /* TCWSOneSpark.m in Sources */ = {isa = PBXBuildFile; fileRef = 9E1ED3A316A569D100DF3049 /* TCWSOneSpark.m */; };
 		9E1ED3B116A56C4600DF3049 /* TCWebservice.m in Sources */ = {isa = PBXBuildFile; fileRef = 9E1ED3B016A56C4600DF3049 /* TCWebservice.m */; };
-		9E1ED3B416A56D3200DF3049 /* WebserviceListViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9E1ED3B216A56D3200DF3049 /* WebserviceListViewController.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -66,10 +64,8 @@
 		9E03A5C116A58BF000EA3CBD /* WebserviceDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WebserviceDetailViewController.h; sourceTree = "<group>"; };
 		9E03A5C216A58BF000EA3CBD /* WebserviceDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WebserviceDetailViewController.m; sourceTree = "<group>"; };
 		9E03A5C316A58BF000EA3CBD /* WebserviceDetailViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = WebserviceDetailViewController.xib; sourceTree = "<group>"; };
-		9E1ED39016A5669700DF3049 /* TCOneSparkRestClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TCOneSparkRestClient.h; sourceTree = "<group>"; };
-		9E1ED39116A5669700DF3049 /* TCOneSparkRestClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TCOneSparkRestClient.m; sourceTree = "<group>"; };
-		9E1ED39316A5671100DF3049 /* TCJiraRestClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TCJiraRestClient.h; sourceTree = "<group>"; };
-		9E1ED39416A5671100DF3049 /* TCJiraRestClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TCJiraRestClient.m; sourceTree = "<group>"; };
+		9E0E0A5716A5B33C00C97B68 /* TCRestClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TCRestClient.m; sourceTree = "<group>"; };
+		9E0E0A5816A5B33C00C97B68 /* TCRestClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TCRestClient.h; sourceTree = "<group>"; };
 		9E1ED39A16A569D100DF3049 /* TCTask.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TCTask.h; sourceTree = "<group>"; };
 		9E1ED39B16A569D100DF3049 /* TCTask.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TCTask.m; sourceTree = "<group>"; };
 		9E1ED39C16A569D100DF3049 /* TCTaskStore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TCTaskStore.h; sourceTree = "<group>"; };
@@ -80,7 +76,6 @@
 		9E1ED3A316A569D100DF3049 /* TCWSOneSpark.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TCWSOneSpark.m; sourceTree = "<group>"; };
 		9E1ED3AF16A56C4600DF3049 /* TCWebservice.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TCWebservice.h; sourceTree = "<group>"; };
 		9E1ED3B016A56C4600DF3049 /* TCWebservice.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TCWebservice.m; sourceTree = "<group>"; };
-		9E1ED3B316A56D3200DF3049 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/WebserviceListViewController.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -127,8 +122,8 @@
 		39685E7916A54FC500FE52A1 /* TimeChicken */ = {
 			isa = PBXGroup;
 			children = (
+				9E0E0A5316A5B33C00C97B68 /* Service */,
 				9E1ED39916A569D100DF3049 /* Model */,
-				9E1ED38F16A5669700DF3049 /* Service */,
 				39685EA516A55FF200FE52A1 /* Helpers */,
 				39685E8216A54FC500FE52A1 /* AppDelegate.h */,
 				39685E8316A54FC500FE52A1 /* AppDelegate.m */,
@@ -141,7 +136,6 @@
 				9E03A5C216A58BF000EA3CBD /* WebserviceDetailViewController.m */,
 				9E03A5C316A58BF000EA3CBD /* WebserviceDetailViewController.xib */,
 				39685E9916A54FC500FE52A1 /* TaskListViewController.xib */,
-				9E1ED3B216A56D3200DF3049 /* WebserviceListViewController.xib */,
 				39685E7A16A54FC500FE52A1 /* Supporting Files */,
 			);
 			path = TimeChicken;
@@ -182,13 +176,11 @@
 			name = images;
 			sourceTree = "<group>";
 		};
-		9E1ED38F16A5669700DF3049 /* Service */ = {
+		9E0E0A5316A5B33C00C97B68 /* Service */ = {
 			isa = PBXGroup;
 			children = (
-				9E1ED39016A5669700DF3049 /* TCOneSparkRestClient.h */,
-				9E1ED39116A5669700DF3049 /* TCOneSparkRestClient.m */,
-				9E1ED39316A5671100DF3049 /* TCJiraRestClient.h */,
-				9E1ED39416A5671100DF3049 /* TCJiraRestClient.m */,
+				9E0E0A5816A5B33C00C97B68 /* TCRestClient.h */,
+				9E0E0A5716A5B33C00C97B68 /* TCRestClient.m */,
 			);
 			path = Service;
 			sourceTree = "<group>";
@@ -270,7 +262,6 @@
 				39685E9616A54FC500FE52A1 /* second.png in Resources */,
 				39685E9816A54FC500FE52A1 /* second@2x.png in Resources */,
 				39685E9B16A54FC500FE52A1 /* TaskListViewController.xib in Resources */,
-				9E1ED3B416A56D3200DF3049 /* WebserviceListViewController.xib in Resources */,
 				9E03A5BF16A587A300EA3CBD /* icon-os.png in Resources */,
 				9E03A5C516A58BF000EA3CBD /* WebserviceDetailViewController.xib in Resources */,
 			);
@@ -288,14 +279,13 @@
 				39685E8D16A54FC500FE52A1 /* TaskListViewController.m in Sources */,
 				39685E9416A54FC500FE52A1 /* WebserviceListViewController.m in Sources */,
 				39685EAB16A55FF200FE52A1 /* TCDatePicker.m in Sources */,
-				9E1ED39216A5669700DF3049 /* TCOneSparkRestClient.m in Sources */,
-				9E1ED39516A5671100DF3049 /* TCJiraRestClient.m in Sources */,
 				9E1ED3A416A569D100DF3049 /* TCTask.m in Sources */,
 				9E1ED3A516A569D100DF3049 /* TCTaskStore.m in Sources */,
 				9E1ED3A716A569D100DF3049 /* TCWebserviceStore.m in Sources */,
 				9E1ED3A816A569D100DF3049 /* TCWSOneSpark.m in Sources */,
 				9E1ED3B116A56C4600DF3049 /* TCWebservice.m in Sources */,
 				9E03A5C416A58BF000EA3CBD /* WebserviceDetailViewController.m in Sources */,
+				9E0E0A5B16A5B33C00C97B68 /* TCRestClient.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -316,14 +306,6 @@
 				39685E9A16A54FC500FE52A1 /* en */,
 			);
 			name = TaskListViewController.xib;
-			sourceTree = "<group>";
-		};
-		9E1ED3B216A56D3200DF3049 /* WebserviceListViewController.xib */ = {
-			isa = PBXVariantGroup;
-			children = (
-				9E1ED3B316A56D3200DF3049 /* en */,
-			);
-			name = WebserviceListViewController.xib;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */

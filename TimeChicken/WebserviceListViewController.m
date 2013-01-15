@@ -36,7 +36,7 @@
     // Dispose of any resources that can be recreated.
 }
 
-- (id) init
+- (id)init
 {
     //call the superclass's designated initializer
     self = [super initWithStyle:UITableViewStyleGrouped];
@@ -50,6 +50,10 @@
         [[self navigationItem] setLeftBarButtonItem:[self editButtonItem]];
     }
     return self;
+}
+
+- (id)initWithStyle:(UITableViewStyle)style {
+    return [self init];
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
@@ -78,14 +82,13 @@
     
     // transition to DetailController
     WebserviceDetailViewController *detailVC = [[WebserviceDetailViewController alloc] init];
-    [detailVC setDetailItem:selectedWS];
-    
-    [self.navigationController pushViewController:detailVC animated:YES];
-    
+    detailVC.detailItem = selectedWS;
     if ([selectedWS isKindOfClass:[TCWSOneSpark class]]) {
         NSLog(@"Webservice is TCWSOneSpark!");
     }
+    [self.navigationController pushViewController:detailVC animated:YES];
 }
+
 - (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath {
     [[TCWebserviceStore webservices] moveItemAtIndex:[fromIndexPath row]toIndex:[toIndexPath row]];
 }
@@ -114,5 +117,6 @@
         [tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationFade];
     }
 }
+
 
 @end

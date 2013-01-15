@@ -9,8 +9,10 @@
 #import <UIKit/UIKit.h>
 
 @class TCWebservice;
+@class TCRestClient;
 
 @interface WebserviceDetailViewController : UIViewController {
+    TCRestClient *restClient;
     
     __weak IBOutlet UITextField *titleField;
     __weak IBOutlet UITextField *usernameField;
@@ -18,5 +20,7 @@
     __weak IBOutlet UILabel *lastSyncLabel;
 }
 @property (strong, nonatomic) TCWebservice *detailItem;
+
+- (IBAction)fetchTaskButtonPressed:(id)sender;
 
 @end
