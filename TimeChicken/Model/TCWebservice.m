@@ -10,16 +10,7 @@
 
 @implementation TCWebservice
 
-@synthesize baseUrl = _baseUrl;
 @synthesize title = _title;
-
-- (id) initWithBaseUrl:(NSURL *)baseUrl andTitle: (NSString *)title{
-    if((self = [super init])){
-        self.title = title;
-        self.baseUrl = baseUrl;
-    }
-    return self;
-}
 
 - (id) initWithTitle:(NSString *)title{
     if((self = [super init])){

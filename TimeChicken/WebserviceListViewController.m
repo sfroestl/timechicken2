@@ -90,6 +90,19 @@
     [[self tableView] insertRowsAtIndexPaths:[NSArray arrayWithObject:ip ] withRowAnimation:UITableViewRowAnimationRight];
 }
 
+- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
+    // If the table view is asking to commit a delete command...
+    if (editingStyle == UITableViewCellEditingStyleDelete) {
+        TCWebserviceStore *wsStore = [TCWebserviceStore webservices];
+        NSArray *wsList = [wsStore allWebservices];
+        TCWebservice *ws = [wsList objectAtIndex:[indexPath row]];
+        [wsStore removeWebservice:ws];
+        
+        // We also remove that row from the table view with an animation
+        [tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationFade];
+    }
+}
+
 - (void)fetchTasksForWebservice: (TCWebservice *) webservice {
     
 }

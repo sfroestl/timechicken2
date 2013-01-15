@@ -10,7 +10,15 @@
 
 @implementation TCWSOneSpark
 
+@synthesize baseUrl = _baseUrl;
 @synthesize username = _username;
 @synthesize password = _password;
 
+- (id) initWithBaseUrl:(NSURL *)baseUrl andTitle: (NSString *)title{
+    if((self = [super init])){
+        self.title = title;
+        self.baseUrl = baseUrl;
+    }
+    return self;
+}
 @end

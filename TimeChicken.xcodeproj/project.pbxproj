@@ -177,16 +177,16 @@
 		9E1ED39916A569D100DF3049 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				9E1ED3AF16A56C4600DF3049 /* TCWebservice.h */,
-				9E1ED3B016A56C4600DF3049 /* TCWebservice.m */,
 				9E1ED39A16A569D100DF3049 /* TCTask.h */,
 				9E1ED39B16A569D100DF3049 /* TCTask.m */,
 				9E1ED39C16A569D100DF3049 /* TCTaskStore.h */,
 				9E1ED39D16A569D100DF3049 /* TCTaskStore.m */,
-				9E1ED3A016A569D100DF3049 /* TCWebserviceStore.h */,
-				9E1ED3A116A569D100DF3049 /* TCWebserviceStore.m */,
+				9E1ED3AF16A56C4600DF3049 /* TCWebservice.h */,
+				9E1ED3B016A56C4600DF3049 /* TCWebservice.m */,
 				9E1ED3A216A569D100DF3049 /* TCWSOneSpark.h */,
 				9E1ED3A316A569D100DF3049 /* TCWSOneSpark.m */,
+				9E1ED3A016A569D100DF3049 /* TCWebserviceStore.h */,
+				9E1ED3A116A569D100DF3049 /* TCWebserviceStore.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
