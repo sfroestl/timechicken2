@@ -16,13 +16,13 @@
 		39685E8616A54FC500FE52A1 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 39685E8516A54FC500FE52A1 /* Default.png */; };
 		39685E8816A54FC500FE52A1 /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 39685E8716A54FC500FE52A1 /* Default@2x.png */; };
 		39685E8A16A54FC500FE52A1 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 39685E8916A54FC500FE52A1 /* Default-568h@2x.png */; };
-		39685E8D16A54FC500FE52A1 /* FirstViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 39685E8C16A54FC500FE52A1 /* FirstViewController.m */; };
+		39685E8D16A54FC500FE52A1 /* TaskListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 39685E8C16A54FC500FE52A1 /* TaskListViewController.m */; };
 		39685E8F16A54FC500FE52A1 /* first.png in Resources */ = {isa = PBXBuildFile; fileRef = 39685E8E16A54FC500FE52A1 /* first.png */; };
 		39685E9116A54FC500FE52A1 /* first@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 39685E9016A54FC500FE52A1 /* first@2x.png */; };
 		39685E9416A54FC500FE52A1 /* SecondViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 39685E9316A54FC500FE52A1 /* SecondViewController.m */; };
 		39685E9616A54FC500FE52A1 /* second.png in Resources */ = {isa = PBXBuildFile; fileRef = 39685E9516A54FC500FE52A1 /* second.png */; };
 		39685E9816A54FC500FE52A1 /* second@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 39685E9716A54FC500FE52A1 /* second@2x.png */; };
-		39685E9B16A54FC500FE52A1 /* FirstViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 39685E9916A54FC500FE52A1 /* FirstViewController.xib */; };
+		39685E9B16A54FC500FE52A1 /* TaskListViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 39685E9916A54FC500FE52A1 /* TaskListViewController.xib */; };
 		39685E9E16A54FC500FE52A1 /* SecondViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 39685E9C16A54FC500FE52A1 /* SecondViewController.xib */; };
 /* End PBXBuildFile section */
 
@@ -40,15 +40,15 @@
 		39685E8516A54FC500FE52A1 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
 		39685E8716A54FC500FE52A1 /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
 		39685E8916A54FC500FE52A1 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
-		39685E8B16A54FC500FE52A1 /* FirstViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FirstViewController.h; sourceTree = "<group>"; };
-		39685E8C16A54FC500FE52A1 /* FirstViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FirstViewController.m; sourceTree = "<group>"; };
+		39685E8B16A54FC500FE52A1 /* TaskListViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TaskListViewController.h; sourceTree = "<group>"; };
+		39685E8C16A54FC500FE52A1 /* TaskListViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TaskListViewController.m; sourceTree = "<group>"; };
 		39685E8E16A54FC500FE52A1 /* first.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = first.png; sourceTree = "<group>"; };
 		39685E9016A54FC500FE52A1 /* first@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "first@2x.png"; sourceTree = "<group>"; };
 		39685E9216A54FC500FE52A1 /* SecondViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SecondViewController.h; sourceTree = "<group>"; };
 		39685E9316A54FC500FE52A1 /* SecondViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SecondViewController.m; sourceTree = "<group>"; };
 		39685E9516A54FC500FE52A1 /* second.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = second.png; sourceTree = "<group>"; };
 		39685E9716A54FC500FE52A1 /* second@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "second@2x.png"; sourceTree = "<group>"; };
-		39685E9A16A54FC500FE52A1 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/FirstViewController.xib; sourceTree = "<group>"; };
+		39685E9A16A54FC500FE52A1 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/TaskListViewController.xib; sourceTree = "<group>"; };
 		39685E9D16A54FC500FE52A1 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/SecondViewController.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -98,15 +98,15 @@
 			children = (
 				39685E8216A54FC500FE52A1 /* AppDelegate.h */,
 				39685E8316A54FC500FE52A1 /* AppDelegate.m */,
-				39685E8B16A54FC500FE52A1 /* FirstViewController.h */,
-				39685E8C16A54FC500FE52A1 /* FirstViewController.m */,
+				39685E8B16A54FC500FE52A1 /* TaskListViewController.h */,
+				39685E8C16A54FC500FE52A1 /* TaskListViewController.m */,
 				39685E8E16A54FC500FE52A1 /* first.png */,
 				39685E9016A54FC500FE52A1 /* first@2x.png */,
 				39685E9216A54FC500FE52A1 /* SecondViewController.h */,
 				39685E9316A54FC500FE52A1 /* SecondViewController.m */,
 				39685E9516A54FC500FE52A1 /* second.png */,
 				39685E9716A54FC500FE52A1 /* second@2x.png */,
-				39685E9916A54FC500FE52A1 /* FirstViewController.xib */,
+				39685E9916A54FC500FE52A1 /* TaskListViewController.xib */,
 				39685E9C16A54FC500FE52A1 /* SecondViewController.xib */,
 				39685E7A16A54FC500FE52A1 /* Supporting Files */,
 			);
@@ -186,7 +186,7 @@
 				39685E9116A54FC500FE52A1 /* first@2x.png in Resources */,
 				39685E9616A54FC500FE52A1 /* second.png in Resources */,
 				39685E9816A54FC500FE52A1 /* second@2x.png in Resources */,
-				39685E9B16A54FC500FE52A1 /* FirstViewController.xib in Resources */,
+				39685E9B16A54FC500FE52A1 /* TaskListViewController.xib in Resources */,
 				39685E9E16A54FC500FE52A1 /* SecondViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -200,7 +200,7 @@
 			files = (
 				39685E8016A54FC500FE52A1 /* main.m in Sources */,
 				39685E8416A54FC500FE52A1 /* AppDelegate.m in Sources */,
-				39685E8D16A54FC500FE52A1 /* FirstViewController.m in Sources */,
+				39685E8D16A54FC500FE52A1 /* TaskListViewController.m in Sources */,
 				39685E9416A54FC500FE52A1 /* SecondViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -216,12 +216,12 @@
 			name = InfoPlist.strings;
 			sourceTree = "<group>";
 		};
-		39685E9916A54FC500FE52A1 /* FirstViewController.xib */ = {
+		39685E9916A54FC500FE52A1 /* TaskListViewController.xib */ = {
 			isa = PBXVariantGroup;
 			children = (
 				39685E9A16A54FC500FE52A1 /* en */,
 			);
-			name = FirstViewController.xib;
+			name = TaskListViewController.xib;
 			sourceTree = "<group>";
 		};
 		39685E9C16A54FC500FE52A1 /* SecondViewController.xib */ = {
