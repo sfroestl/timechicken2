@@ -19,9 +19,12 @@
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     // Override point for customization after application launch.
     UIViewController *taskListViewController = [[TaskListViewController alloc] init];
-    UIViewController *viewController2 = [[WebserviceListViewController alloc] init];
+    UIViewController *webserviceVC = [[WebserviceListViewController alloc] init];
+    
+    UINavigationController *webserviceNavC = [[UINavigationController alloc] initWithRootViewController:webserviceVC];
+    
     self.tabBarController = [[UITabBarController alloc] init];
-    self.tabBarController.viewControllers = @[taskListViewController, viewController2];
+    self.tabBarController.viewControllers = @[taskListViewController, webserviceNavC];
     self.window.rootViewController = self.tabBarController;
     [self.window makeKeyAndVisible];
     return YES;

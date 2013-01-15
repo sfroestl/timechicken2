@@ -12,8 +12,6 @@
 
 @synthesize baseUrl = _baseUrl;
 @synthesize title = _title;
-@synthesize username = _username;
-@synthesize password = _password;
 
 - (id) initWithBaseUrl:(NSURL *)baseUrl andTitle: (NSString *)title{
     if((self = [super init])){
