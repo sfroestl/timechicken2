@@ -7,6 +7,7 @@
 //
 
 #import "WebserviceListViewController.h"
+#import "WebserviceDetailViewController.h"
 #import "TCWebserviceStore.h"
 #import "TCWebservice.h"
 #import "TCWSOneSpark.h"
@@ -22,6 +23,11 @@
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view, typically from a nib.
+}
+
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    [self.tableView reloadData];
 }
 
 - (void)didReceiveMemoryWarning
@@ -60,7 +66,7 @@
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"WebserviceCell"];
     }
     TCWebservice *ws = [[[TCWebserviceStore webservices] allWebservices] objectAtIndex:[indexPath row]];
-    
+    [cell.imageView setImage:ws.image];
     [cell.textLabel setText: ws.title];
     
     return cell;
@@ -69,6 +75,12 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     NSLog(@"Selected Webservice");
     TCWebservice *selectedWS = [[[TCWebserviceStore webservices] allWebservices] objectAtIndex:[indexPath row]];
+    
+    // transition to DetailController
+    WebserviceDetailViewController *detailVC = [[WebserviceDetailViewController alloc] init];
+    [detailVC setDetailItem:selectedWS];
+    
+    [self.navigationController pushViewController:detailVC animated:YES];
     
     if ([selectedWS isKindOfClass:[TCWSOneSpark class]]) {
         NSLog(@"Webservice is TCWSOneSpark!");
@@ -101,10 +113,6 @@
         // We also remove that row from the table view with an animation
         [tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationFade];
     }
-}
-
-- (void)fetchTasksForWebservice: (TCWebservice *) webservice {
-    
 }
 
 @end

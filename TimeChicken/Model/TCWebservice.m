@@ -11,6 +11,7 @@
 @implementation TCWebservice
 
 @synthesize title = _title;
+@synthesize image = _image;
 
 - (id) initWithTitle:(NSString *)title{
     if((self = [super init])){
