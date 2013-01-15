@@ -16,7 +16,6 @@
 		39685E8616A54FC500FE52A1 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 39685E8516A54FC500FE52A1 /* Default.png */; };
 		39685E8816A54FC500FE52A1 /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 39685E8716A54FC500FE52A1 /* Default@2x.png */; };
 		39685E8A16A54FC500FE52A1 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 39685E8916A54FC500FE52A1 /* Default-568h@2x.png */; };
-		39685E8D16A54FC500FE52A1 /* TaskListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 39685E8C16A54FC500FE52A1 /* TaskListViewController.m */; };
 		39685E8F16A54FC500FE52A1 /* first.png in Resources */ = {isa = PBXBuildFile; fileRef = 39685E8E16A54FC500FE52A1 /* first.png */; };
 		39685E9116A54FC500FE52A1 /* first@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 39685E9016A54FC500FE52A1 /* first@2x.png */; };
 		39685E9416A54FC500FE52A1 /* WebserviceListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 39685E9316A54FC500FE52A1 /* WebserviceListViewController.m */; };
@@ -54,8 +53,6 @@
 		39685E8516A54FC500FE52A1 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
 		39685E8716A54FC500FE52A1 /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
 		39685E8916A54FC500FE52A1 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
-		39685E8B16A54FC500FE52A1 /* TaskListViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TaskListViewController.h; sourceTree = "<group>"; };
-		39685E8C16A54FC500FE52A1 /* TaskListViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TaskListViewController.m; sourceTree = "<group>"; };
 		39685E8E16A54FC500FE52A1 /* first.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = first.png; sourceTree = "<group>"; };
 		39685E9016A54FC500FE52A1 /* first@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "first@2x.png"; sourceTree = "<group>"; };
 		39685E9216A54FC500FE52A1 /* WebserviceListViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WebserviceListViewController.h; sourceTree = "<group>"; };
@@ -141,8 +138,6 @@
 				39685E8216A54FC500FE52A1 /* AppDelegate.h */,
 				39685E8316A54FC500FE52A1 /* AppDelegate.m */,
 				9E03A5C016A587B000EA3CBD /* images */,
-				39685E8B16A54FC500FE52A1 /* TaskListViewController.h */,
-				39685E8C16A54FC500FE52A1 /* TaskListViewController.m */,
 				39685E9216A54FC500FE52A1 /* WebserviceListViewController.h */,
 				39685E9316A54FC500FE52A1 /* WebserviceListViewController.m */,
 				9E03A5C116A58BF000EA3CBD /* WebserviceDetailViewController.h */,
@@ -299,7 +294,6 @@
 			files = (
 				39685E8016A54FC500FE52A1 /* main.m in Sources */,
 				39685E8416A54FC500FE52A1 /* AppDelegate.m in Sources */,
-				39685E8D16A54FC500FE52A1 /* TaskListViewController.m in Sources */,
 				39685E9416A54FC500FE52A1 /* WebserviceListViewController.m in Sources */,
 				39685EAB16A55FF200FE52A1 /* TCDatePicker.m in Sources */,
 				9E1ED39216A5669700DF3049 /* TCOneSparkRestClient.m in Sources */,
