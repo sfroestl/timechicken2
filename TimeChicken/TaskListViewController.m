@@ -54,8 +54,41 @@
     // Dispose of any resources that can be recreated.
 }
 
+- (NSInteger) numberOfSectionsInTableView:(UITableView *)tableView{
+    return 2;
+}
+
+typedef enum { SectionHeader, SectionMiddle, SectionDetail } Sections;
+
 - (NSInteger) tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    return [[[TCTaskStore taskStore] openTasks] count];
+    switch (section) {
+        case 0: return [[[TCTaskStore taskStore] openTasks] count];
+        case 1: return [[[TCTaskStore taskStore] completedTasks] count];
+        default: return [[[TCTaskStore taskStore] openTasks] count];
+    }
+}
+
+//- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+//    // snip
+//    switch (indexPath.section) {
+//        case SectionHeader:
+//            // snip
+//            break;
+//        case SectionMiddle:
+//            // snip
+//            break;
+//        case SectionDetail:
+//            // snip
+//            break;
+//    }
+//}
+
+- (NSString *) tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section{
+    switch (section) {
+        case 0: return @"Open Tasks";
+        case 1: return @"Completed Tasks";
+        default: return @"Tasks";
+    }
 }
 
 - (UITableViewCell *) tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
