@@ -24,6 +24,8 @@
 		39685E9816A54FC500FE52A1 /* second@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 39685E9716A54FC500FE52A1 /* second@2x.png */; };
 		39685E9B16A54FC500FE52A1 /* TaskListViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 39685E9916A54FC500FE52A1 /* TaskListViewController.xib */; };
 		39685E9E16A54FC500FE52A1 /* SecondViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 39685E9C16A54FC500FE52A1 /* SecondViewController.xib */; };
+		39685EAB16A55FF200FE52A1 /* TCDatePicker.m in Sources */ = {isa = PBXBuildFile; fileRef = 39685EA716A55FF200FE52A1 /* TCDatePicker.m */; };
+		39685EAC16A55FF200FE52A1 /* TCTask.m in Sources */ = {isa = PBXBuildFile; fileRef = 39685EAA16A55FF200FE52A1 /* TCTask.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -50,6 +52,10 @@
 		39685E9716A54FC500FE52A1 /* second@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "second@2x.png"; sourceTree = "<group>"; };
 		39685E9A16A54FC500FE52A1 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/TaskListViewController.xib; sourceTree = "<group>"; };
 		39685E9D16A54FC500FE52A1 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/SecondViewController.xib; sourceTree = "<group>"; };
+		39685EA616A55FF200FE52A1 /* TCDatePicker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TCDatePicker.h; sourceTree = "<group>"; };
+		39685EA716A55FF200FE52A1 /* TCDatePicker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TCDatePicker.m; sourceTree = "<group>"; };
+		39685EA916A55FF200FE52A1 /* TCTask.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TCTask.h; sourceTree = "<group>"; };
+		39685EAA16A55FF200FE52A1 /* TCTask.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TCTask.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -96,6 +102,8 @@
 		39685E7916A54FC500FE52A1 /* TimeChicken */ = {
 			isa = PBXGroup;
 			children = (
+				39685EA516A55FF200FE52A1 /* Helpers */,
+				39685EA816A55FF200FE52A1 /* Model */,
 				39685E8216A54FC500FE52A1 /* AppDelegate.h */,
 				39685E8316A54FC500FE52A1 /* AppDelegate.m */,
 				39685E8B16A54FC500FE52A1 /* TaskListViewController.h */,
@@ -125,6 +133,24 @@
 				39685E8916A54FC500FE52A1 /* Default-568h@2x.png */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		39685EA516A55FF200FE52A1 /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				39685EA616A55FF200FE52A1 /* TCDatePicker.h */,
+				39685EA716A55FF200FE52A1 /* TCDatePicker.m */,
+			);
+			path = Helpers;
+			sourceTree = "<group>";
+		};
+		39685EA816A55FF200FE52A1 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				39685EA916A55FF200FE52A1 /* TCTask.h */,
+				39685EAA16A55FF200FE52A1 /* TCTask.m */,
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -202,6 +228,8 @@
 				39685E8416A54FC500FE52A1 /* AppDelegate.m in Sources */,
 				39685E8D16A54FC500FE52A1 /* TaskListViewController.m in Sources */,
 				39685E9416A54FC500FE52A1 /* SecondViewController.m in Sources */,
+				39685EAB16A55FF200FE52A1 /* TCDatePicker.m in Sources */,
+				39685EAC16A55FF200FE52A1 /* TCTask.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
