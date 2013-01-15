@@ -14,6 +14,14 @@
 @synthesize username = _username;
 @synthesize password = _password;
 
+- (id) initWithTitle:(NSString *)title{
+    if((self = [super init])){
+        self.title = title;
+        self.image = [UIImage imageNamed:@"icon-os.png"];
+    }
+    return self;
+}
+
 - (id) initWithBaseUrl:(NSURL *)baseUrl andTitle: (NSString *)title{
     if((self = [super init])){
         self.title = title;
@@ -21,4 +29,5 @@
     }
     return self;
 }
+
 @end

@@ -60,7 +60,7 @@
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"WebserviceCell"];
     }
     TCWebservice *ws = [[[TCWebserviceStore webservices] allWebservices] objectAtIndex:[indexPath row]];
-    
+    [cell.imageView setImage:ws.image];
     [cell.textLabel setText: ws.title];
     
     return cell;
@@ -70,6 +70,7 @@
     NSLog(@"Selected Webservice");
     TCWebservice *selectedWS = [[[TCWebserviceStore webservices] allWebservices] objectAtIndex:[indexPath row]];
     
+    // transition to DetailController
     if ([selectedWS isKindOfClass:[TCWSOneSpark class]]) {
         NSLog(@"Webservice is TCWSOneSpark!");
     }
