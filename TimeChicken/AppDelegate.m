@@ -8,7 +8,8 @@
 
 #import "AppDelegate.h"
 
-#import "TaskListViewController.h"
+//#import "TaskListViewController.h"
+#import "TaskListVC.h"
 
 #import "WebserviceListViewController.h"
 
@@ -18,7 +19,7 @@
 {
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     // Override point for customization after application launch.
-    UIViewController *taskListViewController = [[TaskListViewController alloc] init];
+    UIViewController *taskListViewController = [[TaskListVC alloc] init];
     UIViewController *webserviceVC = [[WebserviceListViewController alloc] init];
     
     UINavigationController *taskListNavC = [[UINavigationController alloc] initWithRootViewController:taskListViewController];
