@@ -18,7 +18,7 @@
     //call the superclass's designated initializer
     self = [super initWithStyle:UITableViewStyleGrouped];
     if(self){
-        
+        self.title = @"Tasks";
     }
     return self;
 }
