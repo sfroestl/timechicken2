@@ -7,6 +7,8 @@
 //
 
 #import "TCWebserviceStore.h"
+#import "TCWebservice.h"
+#import "TCWSOneSpark.h"
 
 @implementation TCWebserviceStore
 
@@ -34,12 +36,27 @@
     return webservices;
 }
 
+- (TCWebservice *)createNewWebservice {
+    TCWebservice *newWS = [[TCWSOneSpark alloc] initWithTitle:@"New Webservice"];
+    [webservices addObject:newWS];
+    return newWS;
+}
+
 - (void) addWebservice:(TCWebservice *)webservice {
     [webservices addObject:webservices];
 }
 - (void) removeWebservice:(TCWebservice *)webservice {
     [webservices removeObjectIdenticalTo:webservice];
-    
+}
+- (void)moveItemAtIndex:(int)from toIndex:(int)to {
+    if (from == to){
+        return;
+    }
+    TCWebservice *ws = [webservices objectAtIndex:from];    
+    // Remove item from array
+    [webservices removeObjectAtIndex:from];
+    // Insert item in array at new location
+    [webservices insertObject:ws atIndex:to];
 }
 
 @end

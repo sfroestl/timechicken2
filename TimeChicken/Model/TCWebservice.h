@@ -14,4 +14,5 @@
 @property (strong, nonatomic) NSString *title;
 
 - (id) initWithBaseUrl:(NSURL *)baseUrl andTitle: (NSString *)title;
+- (id) initWithTitle:(NSString *)title;
 @end

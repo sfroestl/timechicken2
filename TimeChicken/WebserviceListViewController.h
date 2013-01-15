@@ -8,6 +8,12 @@
 
 #import <UIKit/UIKit.h>
 
-@interface WebserviceListViewController : UITableViewController
+@class TCWebservice;
+
+@interface WebserviceListViewController : UITableViewController {
+    NSURLConnection *restClient;
+}
+- (IBAction)addNewWebservice:(id)sender;
+- (void)fetchTasksForWebservice: (TCWebservice *) webservice;
 
 @end
