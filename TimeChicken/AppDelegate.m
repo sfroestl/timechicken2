@@ -10,7 +10,7 @@
 
 #import "TaskListViewController.h"
 
-#import "SecondViewController.h"
+#import "WebserviceListViewController.h"
 
 @implementation AppDelegate
 
@@ -19,7 +19,7 @@
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     // Override point for customization after application launch.
     UIViewController *taskListViewController = [[TaskListViewController alloc] init];
-    UIViewController *viewController2 = [[SecondViewController alloc] initWithNibName:@"SecondViewController" bundle:nil];
+    UIViewController *viewController2 = [[WebserviceListViewController alloc] init];
     self.tabBarController = [[UITabBarController alloc] init];
     self.tabBarController.viewControllers = @[taskListViewController, viewController2];
     self.window.rootViewController = self.tabBarController;

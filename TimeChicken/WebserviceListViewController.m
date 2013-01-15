@@ -6,23 +6,14 @@
 //  Copyright (c) 2013 Christian Schäfer. All rights reserved.
 //
 
-#import "SecondViewController.h"
+#import "WebserviceListViewController.h"
 
-@interface SecondViewController ()
+@interface WebserviceListViewController ()
 
 @end
 
-@implementation SecondViewController
+@implementation WebserviceListViewController
 
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
-{
-    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
-    if (self) {
-        self.title = NSLocalizedString(@"Second", @"Second");
-        self.tabBarItem.image = [UIImage imageNamed:@"second"];
-    }
-    return self;
-}
 							
 - (void)viewDidLoad
 {
@@ -34,6 +25,16 @@
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+- (id) init
+{
+    //call the superclass's designated initializer
+    self = [super initWithStyle:UITableViewStyleGrouped];
+    if(self){
+        self.title = @"Webservice";
+    }
+    return self;
 }
 
 @end

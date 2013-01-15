@@ -17,7 +17,7 @@
 @synthesize workedTime = _workedTime;
 @synthesize completed = _completed;
 
--(id)initWithTitle:(NSString *)title desc:(NSString *)desc project:(NSString *)project dueDate:(NSDate *)dueDate{
+-(id)initWithAttributes:(NSString *)title desc:(NSString *)desc project:(NSString *)project dueDate:(NSDate *)dueDate{
     if((self = [super init])){
         self.title = title;
         self.desc = desc;
@@ -27,5 +27,16 @@
     }
     return self;
 }
+
+-(id)initWithTitle:(NSString *)title {
+    if((self = [super init])){
+        self.title = title;
+    }
+    return self;
+}
+- (NSString *)description {
+    return [NSString stringWithFormat:@"{Task: {title:%@, due:%@, completed: %@, desc: %@}}", self.title, self.dueDate, self.completed ? @"YES":@"NO", self.desc];
+}
+
 
 @end
