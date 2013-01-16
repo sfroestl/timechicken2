@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "TaskCell.h"
 
 @interface TaskListVC : UITableViewController{
     NSMutableArray *dataArray;

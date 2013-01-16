@@ -49,6 +49,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+
     //initialize the dataArray
     dataArray = [[NSMutableArray alloc]init];
     
@@ -60,11 +61,19 @@
     NSDictionary *completedTasksArrayDict = [NSDictionary dictionaryWithObject:[[TCTaskStore taskStore] completedTasks] forKey:@"data"];
     [dataArray addObject:completedTasksArrayDict];
     
+    
+    //Load the NIB-File for Custom Task-TableCell
+    UINib *nib = [UINib nibWithNibName:@"TaskCell" bundle:nil];
+    
+    //Register this NIB which contains the cell
+    [[self tableView] registerNib:nib forCellReuseIdentifier:@"TaskCell"];
+    
+    
 
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
 
-    self.navigationItem.rightBarButtonItem = self.editButtonItem;
+    self.navigationItem.leftBarButtonItem = self.editButtonItem;
 }
 
 - (void)didReceiveMemoryWarning
@@ -95,18 +104,19 @@
 }
 
 - (UITableViewCell *) tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
-    static NSString *CellIdentifier = @"Cell";
-
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
-    //If there is no reusable cell of this type, create a new one
-    if(!cell){
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
-    }
-    
     NSDictionary *dictionary = [dataArray objectAtIndex:indexPath.section];
     NSArray *array = [dictionary objectForKey:@"data"];
-    TCTask *cellValue = [array objectAtIndex:indexPath.row];
-    cell.textLabel.text = cellValue.title;
+    TCTask *task =  [array objectAtIndex:indexPath.row];
+    
+    TaskCell *cell = [tableView dequeueReusableCellWithIdentifier:@"TaskCell"];
+    
+
+    [[cell titleLabel] setText:[task title]];
+    NSDateFormatter *dateFormat = [[NSDateFormatter alloc] init];
+    [dateFormat setDateFormat:@"EEEE MMMM d, YYYY"];
+    [[cell subtitleLabel] setText:[NSString stringWithFormat:@"dueDate: %@", [dateFormat stringFromDate:[task dueDate]]]];
+    NSString *timeString = @"00:15:28";
+    [[cell timeButton]  setTitle:timeString forState:nil];
     
     return cell;
 }
