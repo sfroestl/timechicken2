@@ -67,6 +67,11 @@
 }
 
 - (IBAction)fetchTaskButtonPressed:(id)sender {
+    UITableViewController *wsResultCtrl = [[UITableViewController alloc] init];
+    
+    [self.navigationController pushViewController:wsResultCtrl animated:YES];
+
     [self fetchTasks];
+    
 }
 @end

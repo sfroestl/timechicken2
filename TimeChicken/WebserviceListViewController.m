@@ -39,7 +39,7 @@
 - (id)init
 {
     //call the superclass's designated initializer
-    self = [super initWithStyle:UITableViewStyleGrouped];
+    self = [super initWithStyle:UITableViewStylePlain ];
     if(self){
         self.title = @"Webservice";
         UIBarButtonItem *bbi = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(addNewWebservice:)];
