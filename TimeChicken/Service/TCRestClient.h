@@ -8,6 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
+@class Base64;
 @class TCTask;
 
 @interface TCRestClient : NSObject{    
@@ -22,6 +23,5 @@
 
 - (NSArray *) getUserTaskList;
 - (NSArray *) getTimeSessionsOfTask:(TCTask *)task;
-+ (NSString *)base64String:(NSString *)str;
 
 @end

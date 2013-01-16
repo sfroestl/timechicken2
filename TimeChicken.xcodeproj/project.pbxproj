@@ -27,6 +27,7 @@
 		9E03A5BF16A587A300EA3CBD /* icon-os.png in Resources */ = {isa = PBXBuildFile; fileRef = 9E03A5BE16A587A300EA3CBD /* icon-os.png */; };
 		9E03A5C416A58BF000EA3CBD /* WebserviceDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9E03A5C216A58BF000EA3CBD /* WebserviceDetailViewController.m */; };
 		9E03A5C516A58BF000EA3CBD /* WebserviceDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9E03A5C316A58BF000EA3CBD /* WebserviceDetailViewController.xib */; };
+		9E0780B416A69A920045161B /* Base64.m in Sources */ = {isa = PBXBuildFile; fileRef = 9E0780B316A69A920045161B /* Base64.m */; };
 		9E0E0A5B16A5B33C00C97B68 /* TCRestClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 9E0E0A5716A5B33C00C97B68 /* TCRestClient.m */; };
 		9E1ED3A416A569D100DF3049 /* TCTask.m in Sources */ = {isa = PBXBuildFile; fileRef = 9E1ED39B16A569D100DF3049 /* TCTask.m */; };
 		9E1ED3A516A569D100DF3049 /* TCTaskStore.m in Sources */ = {isa = PBXBuildFile; fileRef = 9E1ED39D16A569D100DF3049 /* TCTaskStore.m */; };
@@ -64,6 +65,8 @@
 		9E03A5C116A58BF000EA3CBD /* WebserviceDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WebserviceDetailViewController.h; sourceTree = "<group>"; };
 		9E03A5C216A58BF000EA3CBD /* WebserviceDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WebserviceDetailViewController.m; sourceTree = "<group>"; };
 		9E03A5C316A58BF000EA3CBD /* WebserviceDetailViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = WebserviceDetailViewController.xib; sourceTree = "<group>"; };
+		9E0780B216A69A920045161B /* Base64.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Base64.h; sourceTree = "<group>"; };
+		9E0780B316A69A920045161B /* Base64.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Base64.m; sourceTree = "<group>"; };
 		9E0E0A5716A5B33C00C97B68 /* TCRestClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TCRestClient.m; sourceTree = "<group>"; };
 		9E0E0A5816A5B33C00C97B68 /* TCRestClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TCRestClient.h; sourceTree = "<group>"; };
 		9E1ED39A16A569D100DF3049 /* TCTask.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TCTask.h; sourceTree = "<group>"; };
@@ -158,6 +161,8 @@
 		39685EA516A55FF200FE52A1 /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
+				9E0780B216A69A920045161B /* Base64.h */,
+				9E0780B316A69A920045161B /* Base64.m */,
 				39685EA616A55FF200FE52A1 /* TCDatePicker.h */,
 				39685EA716A55FF200FE52A1 /* TCDatePicker.m */,
 			);
@@ -286,6 +291,7 @@
 				9E1ED3B116A56C4600DF3049 /* TCWebservice.m in Sources */,
 				9E03A5C416A58BF000EA3CBD /* WebserviceDetailViewController.m in Sources */,
 				9E0E0A5B16A5B33C00C97B68 /* TCRestClient.m in Sources */,
+				9E0780B416A69A920045161B /* Base64.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
