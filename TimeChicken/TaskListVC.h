@@ -1,5 +1,5 @@
 //
-//  FirstViewController.h
+//  TaskListVC.h
 //  TimeChicken
 //
 //  Created by Christian Schäfer on 15.01.13.
@@ -8,6 +8,10 @@
 
 #import <UIKit/UIKit.h>
 
-@interface TaskListViewController : UITableViewController
+@interface TaskListVC : UITableViewController{
+    NSMutableArray *dataArray;
+}
+
+
 
 @end

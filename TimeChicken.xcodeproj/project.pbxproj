@@ -16,7 +16,6 @@
 		39685E8616A54FC500FE52A1 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 39685E8516A54FC500FE52A1 /* Default.png */; };
 		39685E8816A54FC500FE52A1 /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 39685E8716A54FC500FE52A1 /* Default@2x.png */; };
 		39685E8A16A54FC500FE52A1 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 39685E8916A54FC500FE52A1 /* Default-568h@2x.png */; };
-		39685E8D16A54FC500FE52A1 /* TaskListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 39685E8C16A54FC500FE52A1 /* TaskListViewController.m */; };
 		39685E8F16A54FC500FE52A1 /* first.png in Resources */ = {isa = PBXBuildFile; fileRef = 39685E8E16A54FC500FE52A1 /* first.png */; };
 		39685E9116A54FC500FE52A1 /* first@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 39685E9016A54FC500FE52A1 /* first@2x.png */; };
 		39685E9416A54FC500FE52A1 /* WebserviceListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 39685E9316A54FC500FE52A1 /* WebserviceListViewController.m */; };
@@ -24,6 +23,10 @@
 		39685E9816A54FC500FE52A1 /* second@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 39685E9716A54FC500FE52A1 /* second@2x.png */; };
 		39685E9B16A54FC500FE52A1 /* TaskListViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 39685E9916A54FC500FE52A1 /* TaskListViewController.xib */; };
 		39685EAB16A55FF200FE52A1 /* TCDatePicker.m in Sources */ = {isa = PBXBuildFile; fileRef = 39685EA716A55FF200FE52A1 /* TCDatePicker.m */; };
+		39E3763416A6C9F70048DC19 /* TaskDetailVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 39E3762F16A6C9F70048DC19 /* TaskDetailVC.m */; };
+		39E3763516A6C9F70048DC19 /* TaskDetailVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 39E3763016A6C9F70048DC19 /* TaskDetailVC.xib */; };
+		39E3763616A6C9F70048DC19 /* TaskListVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 39E3763216A6C9F70048DC19 /* TaskListVC.m */; };
+		39E3763716A6C9F70048DC19 /* TaskListVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 39E3763316A6C9F70048DC19 /* TaskListVC.xib */; };
 		9E03A5BF16A587A300EA3CBD /* icon-os.png in Resources */ = {isa = PBXBuildFile; fileRef = 9E03A5BE16A587A300EA3CBD /* icon-os.png */; };
 		9E03A5C416A58BF000EA3CBD /* WebserviceDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9E03A5C216A58BF000EA3CBD /* WebserviceDetailViewController.m */; };
 		9E03A5C516A58BF000EA3CBD /* WebserviceDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9E03A5C316A58BF000EA3CBD /* WebserviceDetailViewController.xib */; };
@@ -50,8 +53,6 @@
 		39685E8516A54FC500FE52A1 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
 		39685E8716A54FC500FE52A1 /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
 		39685E8916A54FC500FE52A1 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
-		39685E8B16A54FC500FE52A1 /* TaskListViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TaskListViewController.h; sourceTree = "<group>"; };
-		39685E8C16A54FC500FE52A1 /* TaskListViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TaskListViewController.m; sourceTree = "<group>"; };
 		39685E8E16A54FC500FE52A1 /* first.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = first.png; sourceTree = "<group>"; };
 		39685E9016A54FC500FE52A1 /* first@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "first@2x.png"; sourceTree = "<group>"; };
 		39685E9216A54FC500FE52A1 /* WebserviceListViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WebserviceListViewController.h; sourceTree = "<group>"; };
@@ -61,6 +62,12 @@
 		39685E9A16A54FC500FE52A1 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/TaskListViewController.xib; sourceTree = "<group>"; };
 		39685EA616A55FF200FE52A1 /* TCDatePicker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TCDatePicker.h; sourceTree = "<group>"; };
 		39685EA716A55FF200FE52A1 /* TCDatePicker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TCDatePicker.m; sourceTree = "<group>"; };
+		39E3762E16A6C9F70048DC19 /* TaskDetailVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TaskDetailVC.h; sourceTree = "<group>"; };
+		39E3762F16A6C9F70048DC19 /* TaskDetailVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TaskDetailVC.m; sourceTree = "<group>"; };
+		39E3763016A6C9F70048DC19 /* TaskDetailVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TaskDetailVC.xib; sourceTree = "<group>"; };
+		39E3763116A6C9F70048DC19 /* TaskListVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TaskListVC.h; sourceTree = "<group>"; };
+		39E3763216A6C9F70048DC19 /* TaskListVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TaskListVC.m; sourceTree = "<group>"; };
+		39E3763316A6C9F70048DC19 /* TaskListVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TaskListVC.xib; sourceTree = "<group>"; };
 		9E03A5BE16A587A300EA3CBD /* icon-os.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon-os.png"; sourceTree = "<group>"; };
 		9E03A5C116A58BF000EA3CBD /* WebserviceDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WebserviceDetailViewController.h; sourceTree = "<group>"; };
 		9E03A5C216A58BF000EA3CBD /* WebserviceDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WebserviceDetailViewController.m; sourceTree = "<group>"; };
@@ -125,14 +132,18 @@
 		39685E7916A54FC500FE52A1 /* TimeChicken */ = {
 			isa = PBXGroup;
 			children = (
+				39E3762E16A6C9F70048DC19 /* TaskDetailVC.h */,
+				39E3762F16A6C9F70048DC19 /* TaskDetailVC.m */,
+				39E3763016A6C9F70048DC19 /* TaskDetailVC.xib */,
+				39E3763116A6C9F70048DC19 /* TaskListVC.h */,
+				39E3763216A6C9F70048DC19 /* TaskListVC.m */,
+				39E3763316A6C9F70048DC19 /* TaskListVC.xib */,
 				9E0E0A5316A5B33C00C97B68 /* Service */,
 				9E1ED39916A569D100DF3049 /* Model */,
 				39685EA516A55FF200FE52A1 /* Helpers */,
 				39685E8216A54FC500FE52A1 /* AppDelegate.h */,
 				39685E8316A54FC500FE52A1 /* AppDelegate.m */,
 				9E03A5C016A587B000EA3CBD /* images */,
-				39685E8B16A54FC500FE52A1 /* TaskListViewController.h */,
-				39685E8C16A54FC500FE52A1 /* TaskListViewController.m */,
 				39685E9216A54FC500FE52A1 /* WebserviceListViewController.h */,
 				39685E9316A54FC500FE52A1 /* WebserviceListViewController.m */,
 				9E03A5C116A58BF000EA3CBD /* WebserviceDetailViewController.h */,
@@ -269,6 +280,8 @@
 				39685E9B16A54FC500FE52A1 /* TaskListViewController.xib in Resources */,
 				9E03A5BF16A587A300EA3CBD /* icon-os.png in Resources */,
 				9E03A5C516A58BF000EA3CBD /* WebserviceDetailViewController.xib in Resources */,
+				39E3763516A6C9F70048DC19 /* TaskDetailVC.xib in Resources */,
+				39E3763716A6C9F70048DC19 /* TaskListVC.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -281,7 +294,6 @@
 			files = (
 				39685E8016A54FC500FE52A1 /* main.m in Sources */,
 				39685E8416A54FC500FE52A1 /* AppDelegate.m in Sources */,
-				39685E8D16A54FC500FE52A1 /* TaskListViewController.m in Sources */,
 				39685E9416A54FC500FE52A1 /* WebserviceListViewController.m in Sources */,
 				39685EAB16A55FF200FE52A1 /* TCDatePicker.m in Sources */,
 				9E1ED3A416A569D100DF3049 /* TCTask.m in Sources */,
@@ -292,6 +304,8 @@
 				9E03A5C416A58BF000EA3CBD /* WebserviceDetailViewController.m in Sources */,
 				9E0E0A5B16A5B33C00C97B68 /* TCRestClient.m in Sources */,
 				9E0780B416A69A920045161B /* Base64.m in Sources */,
+				39E3763416A6C9F70048DC19 /* TaskDetailVC.m in Sources */,
+				39E3763616A6C9F70048DC19 /* TaskListVC.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
