@@ -46,7 +46,7 @@
         NSLog(@"Selected: %@", self.detailItem.title);
         if ([self.detailItem isKindOfClass: [TCWSOneSpark class]]) {
             NSLog(@"init TCOneSparkRestClient");
-            restClient = [[TCRestClient alloc] initOneSparkRestClient];
+            restClient = [[TCRestClient alloc] initOneSparkRestClientwithDelegate:self];
         }
         [titleField setText:detailItem.title];        
     }
@@ -63,15 +63,23 @@
 
 - (void)fetchTasks {    
     NSLog(@"%@",restClient);
-    [restClient getUserTaskList];
+    [restClient fetchUserTaskList];
 }
 
-- (IBAction)fetchTaskButtonPressed:(id)sender {
-    UITableViewController *wsResultCtrl = [[UITableViewController alloc] init];
-    
-    [self.navigationController pushViewController:wsResultCtrl animated:YES];
-
+- (IBAction)fetchTaskButtonPressed:(id)sender {    
     [self fetchTasks];
+}
+
+- (void) resetClientFinished:(TCRestClient*)client{
+    NSLog(@"--> RestClientDelegate called");
+    NSLog(@"%@", [client jsonResponse]);
+        
+    UITableViewController *wsResultCtrl = [[UITableViewController alloc] init];
+    //    wsResultCtrl
+    [self.navigationController pushViewController:wsResultCtrl animated:YES];
+    
+}
+- (void) restClient:(TCRestClient*)restClient failedWithError:(NSError*)error{
     
 }
 @end

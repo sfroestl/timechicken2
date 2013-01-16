@@ -10,18 +10,32 @@
 
 @class Base64;
 @class TCTask;
+@class TCRestClient;
 
-@interface TCRestClient : NSObject{    
+@protocol TCRestClientDelegate <NSObject>
+@required
+- (void) resetClientFinished:(TCRestClient*)restClient;
+- (void) restClient:(TCRestClient*)restClient failedWithError:(NSError*)error;
+@end
+
+@interface TCRestClient : NSObject{
     NSMutableData *urlData;
     NSURLConnection *connection;
     NSString *projectsUrl;
     NSURL *tasksUrl;
-    NSString *timesessionUrl;
+    NSString *timesessionUrl;    
+    NSArray *taskList;
+    __weak id <TCRestClientDelegate> restClientDelegate;
 }
+@property (nonatomic, weak) id <TCRestClientDelegate> restClientDelegate;
+@property (nonatomic, strong) NSJSONSerialization *jsonResponse;
 
-- (id)initOneSparkRestClient;
 
-- (NSArray *) getUserTaskList;
-- (NSArray *) getTimeSessionsOfTask:(TCTask *)task;
+
+- (id)initOneSparkRestClientwithDelegate:(id<TCRestClientDelegate>) delegate;
+
+
+- (void) fetchUserTaskList;
 
 @end
+

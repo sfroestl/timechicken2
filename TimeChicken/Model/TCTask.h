@@ -8,12 +8,16 @@
 
 #import <Foundation/Foundation.h>
 
+enum WS_TYPES {local, onespark, jira};
+
 @interface TCTask : NSObject
+
 @property (strong, nonatomic) NSString *title;
 @property (strong, nonatomic) NSString *desc;
 @property (strong, nonatomic) NSString *project;
 @property (strong, nonatomic) NSDate *dueDate;
 @property (assign, nonatomic) int workedTime;
+@property (assign, nonatomic) int wsType;
 @property (assign, nonatomic) BOOL completed;
 
 - (id)initWithAttributes:(NSString*)title desc:(NSString*)desc project:(NSString*)project dueDate:(NSDate*)dueDate;

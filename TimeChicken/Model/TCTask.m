@@ -16,6 +16,7 @@
 @synthesize dueDate = _dueDate;
 @synthesize workedTime = _workedTime;
 @synthesize completed = _completed;
+@synthesize wsType = _wsType;
 
 -(id)initWithAttributes:(NSString *)title desc:(NSString *)desc project:(NSString *)project dueDate:(NSDate *)dueDate{
     if((self = [super init])){

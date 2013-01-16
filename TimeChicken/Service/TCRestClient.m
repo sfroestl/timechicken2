@@ -13,13 +13,21 @@
 
 @implementation TCRestClient
 
-- (id)initOneSparkRestClient {
+@synthesize restClientDelegate;
+@synthesize jsonResponse = _jsonResponse;
+
+- (id)initOneSparkRestClientwithDelegate:(id<TCRestClientDelegate>) delegate
+{
     self = [super init];
-    tasksUrl = [[NSURL alloc] initWithString:@"http://api.onespark.de/api/v1/tasks"];
+    if (self) {
+        self.restClientDelegate = delegate;
+        tasksUrl = [[NSURL alloc] initWithString:@"http://api.onespark.de/api/v1/tasks"];
+    }
     return self;
 }
 
-- (NSArray *) getUserTaskList{
+- (void) fetchUserTaskList
+{
     NSString *authStr = [NSString stringWithFormat:@"%@:%@", @"sfroestl", @"asdasd"];
     NSString *authValue = [NSString stringWithFormat:@"Basic %@", [Base64 base64String:authStr]];
     NSLog(@"Basic64: %@", authValue);
@@ -28,14 +36,15 @@
     [request setValue:authValue forHTTPHeaderField:@"Authorization"];
     
     connection = [[NSURLConnection alloc] initWithRequest:request delegate:self startImmediately:YES];
-    return [[NSArray alloc] init];
 }
 
-- (BOOL) updateTask{
+- (BOOL) updateTask
+{
     return YES;
 }
 
-- (NSArray *) getTimeSessionsOfTask:(TCTask *)task{
+- (NSArray *) getTimeSessionsOfTask:(TCTask *)task
+{
     return [[NSArray alloc] init];
 }
 
@@ -43,7 +52,8 @@
     return [NSString stringWithFormat:@"One Spark Rest Client"];
 }
 
-- (void)connection:(NSURLConnection *)connection didReceiveResponse:(NSURLResponse *)response {
+- (void)connection:(NSURLConnection *)connection didReceiveResponse:(NSURLResponse *)response
+{
     NSHTTPURLResponse* httpResponse = (NSHTTPURLResponse*)response;
     int code = [httpResponse statusCode];
     NSLog(@"Response Received! Status:  %u", code);
@@ -52,11 +62,13 @@
 
 }
 
-- (void)connection:(NSURLConnection *)connection didReceiveData:(NSData *)data {
+- (void)connection:(NSURLConnection *)connection didReceiveData:(NSData *)data
+{
     [urlData appendData:data];
 }
 
-- (void)connectionDidFinishLoading:(NSURLConnection *)connection {
+- (void)connectionDidFinishLoading:(NSURLConnection *)connection
+{
     NSError *jsonParsingError = nil;
     id object = [NSJSONSerialization JSONObjectWithData:urlData options:0 error:&jsonParsingError];
     
@@ -65,6 +77,8 @@
     } else {
         NSLog(@"OBJECT: %@", object);
     }
+    self.jsonResponse = object;
+    [self.restClientDelegate resetClientFinished:self];
 }
 
 
