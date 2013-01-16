@@ -104,6 +104,7 @@
     NSObject *cellvalue = [array objectAtIndex:indexPath.row];
     if ([cellvalue isKindOfClass:[NSString class]]) {
         cell.textLabel.text = cellvalue;
+        cell.detailTextLabel.text = @"bla";
     }
     if([cellvalue isKindOfClass:[NSDate class]]){
         cell.textLabel.text = @"%d",cellvalue;
