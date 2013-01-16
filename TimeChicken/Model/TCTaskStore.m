@@ -27,7 +27,7 @@
     self = [super init];
     if(self) {
         openTasks = [[NSMutableArray alloc] init];
-        TCTask *firstTask = [[TCTask alloc] initWithAttributes:@"Test Taks" desc:@"testdesc" project:@"testproject" dueDate:nil];
+        TCTask *firstTask = [[TCTask alloc] initWithAttributes:@"Test Task" desc:@"testdesc" project:@"testproject" dueDate:nil];
         [openTasks addObject:firstTask];
         completedTasks = [[NSMutableArray alloc] init];
         archivedTasks = [[NSMutableArray alloc] init];
