@@ -9,7 +9,6 @@
 #import <UIKit/UIKit.h>
 
 @class TCTask;
-
 @interface TaskDetailVC : UITableViewController{
     NSMutableArray *taskDetailsArray;
 }

@@ -53,9 +53,11 @@
 }
 
 - (void) addTaskToOpenTasks:(TCTask *)task {
+    
     [openTasks addObject:task];
 }
 - (void) addTaskToCompletedTasks:(TCTask *)task {
+    //extend with check, if task is in other arrays and remove it there, if it is added to completedTasks
     [completedTasks addObject:task];
 }
 - (void) addTaskToArchivedTasks:(TCTask *)task {

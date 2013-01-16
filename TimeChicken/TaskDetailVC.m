@@ -27,7 +27,6 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    
     //initialize the dataArray
     taskDetailsArray = [[NSMutableArray alloc]init];
     
@@ -40,9 +39,6 @@
     }
     
     //TODO: Implement TimeSessionArray
-    
-    
-    
 
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
@@ -109,7 +105,6 @@
     if([cellvalue isKindOfClass:[NSDate class]]){
         cell.textLabel.text = @"%d",cellvalue;
     }
-    
     return cell;
 }
 
