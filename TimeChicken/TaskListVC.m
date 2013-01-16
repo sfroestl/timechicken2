@@ -110,13 +110,16 @@
     
     TaskCell *cell = [tableView dequeueReusableCellWithIdentifier:@"TaskCell"];
     
-
+    //Connect TimerButton of TaskCell to this TaskListViewController and asign table
+    [cell setController:self];
+    [cell setTableView:tableView];
+    
     [[cell titleLabel] setText:[task title]];
     NSDateFormatter *dateFormat = [[NSDateFormatter alloc] init];
     [dateFormat setDateFormat:@"EEEE MMMM d, YYYY"];
     [[cell subtitleLabel] setText:[NSString stringWithFormat:@"dueDate: %@", [dateFormat stringFromDate:[task dueDate]]]];
     NSString *timeString = @"00:15:28";
-    [[cell timeButton]  setTitle:timeString forState:nil];
+//    [[cell timeButton]  setTitle:timeString forState:nil];
     
     return cell;
 }
@@ -139,6 +142,10 @@
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     [self.tableView reloadData];
+}
+
+- (void)startStopTimer:(id)sender atIndexPath:(NSIndexPath *)ip{
+    NSLog(@"Going to start/stop the Timer for %@", ip);
 }
 
 /*
