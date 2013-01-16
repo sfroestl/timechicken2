@@ -10,7 +10,9 @@
 
 @class TCTask;
 
-@interface TaskDetailVC : UITableViewController
+@interface TaskDetailVC : UITableViewController{
+    NSMutableArray *taskDetailsArray;
+}
 
 @property (strong, nonatomic) TCTask *detailItem;
 

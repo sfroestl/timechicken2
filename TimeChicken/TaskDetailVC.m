@@ -7,6 +7,7 @@
 //
 
 #import "TaskDetailVC.h"
+#import "TCTask.h"
 
 @interface TaskDetailVC ()
 
@@ -26,6 +27,22 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    //initialize the dataArray
+    taskDetailsArray = [[NSMutableArray alloc]init];
+    
+    
+    
+    if(self.detailItem) {
+        NSArray *detailsArray = [[NSArray alloc] initWithObjects: self.detailItem.title, self.detailItem.project, self.detailItem.workedTime, self.detailItem.desc, self.detailItem.dueDate, nil];
+        NSDictionary *detailsArrayDict = [NSDictionary dictionaryWithObject:detailsArray forKey:@"data"];
+        [taskDetailsArray addObject:detailsArrayDict];
+    }
+    
+    //TODO: Implement TimeSessionArray
+    
+    
+    
 
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
@@ -44,27 +61,53 @@
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-#warning Potentially incomplete method implementation.
     // Return the number of sections.
-    return 0;
+    return [taskDetailsArray count];
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-#warning Incomplete method implementation.
-    // Return the number of rows in the section.
-    return 0;
+    //Number of rows it should expect should be based on sections
+    NSDictionary *dictinary = [taskDetailsArray objectAtIndex:section];
+    NSArray *array = [dictinary objectForKey:@"data"];
+    return [array count];
+}
+
+- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section{
+    if(section==0) return self.detailItem.title;
+    else return @"Time Sessions";
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
+//    static NSString *CellIdentifier = @"Cell";
+//    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+//    if (cell == nil) {
+//        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
+//    }
+//    
+//    // Configure the cell...
+//    
+//    return cell;
+    
     static NSString *CellIdentifier = @"Cell";
+    
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
-    if (cell == nil) {
+//    UITableViewCell *cell = [tableView dequ]
+    //If there is no reusable cell of this type, create a new one
+    if(!cell){
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
     }
     
-    // Configure the cell...
+    NSDictionary *dictionary = [taskDetailsArray objectAtIndex:indexPath.section];
+    NSArray *array = [dictionary objectForKey:@"data"];
+    NSObject *cellvalue = [array objectAtIndex:indexPath.row];
+    if ([cellvalue isKindOfClass:[NSString class]]) {
+        cell.textLabel.text = cellvalue;
+    }
+    if([cellvalue isKindOfClass:[NSDate class]]){
+        cell.textLabel.text = @"%d",cellvalue;
+    }
     
     return cell;
 }
@@ -110,15 +153,15 @@
 
 #pragma mark - Table view delegate
 
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    // Navigation logic may go here. Create and push another view controller.
-    /*
-     <#DetailViewController#> *detailViewController = [[<#DetailViewController#> alloc] initWithNibName:@"<#Nib name#>" bundle:nil];
-     // ...
-     // Pass the selected object to the new view controller.
-     [self.navigationController pushViewController:detailViewController animated:YES];
-     */
-}
+//- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+//{
+//    // Navigation logic may go here. Create and push another view controller.
+//    /*
+//     <#DetailViewController#> *detailViewController = [[<#DetailViewController#> alloc] initWithNibName:@"<#Nib name#>" bundle:nil];
+//     // ...
+//     // Pass the selected object to the new view controller.
+//     [self.navigationController pushViewController:detailViewController animated:YES];
+//     */
+//}
 
 @end
