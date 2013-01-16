@@ -28,7 +28,7 @@
     __weak id <TCRestClientDelegate> restClientDelegate;
 }
 @property (nonatomic, weak) id <TCRestClientDelegate> restClientDelegate;
-@property (nonatomic, strong) NSJSONSerialization *jsonResponse;
+@property (nonatomic, strong)  NSDictionary *jsonResponse;
 
 
 

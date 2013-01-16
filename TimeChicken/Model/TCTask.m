@@ -18,13 +18,14 @@
 @synthesize completed = _completed;
 @synthesize wsType = _wsType;
 
--(id)initWithAttributes:(NSString *)title desc:(NSString *)desc project:(NSString *)project dueDate:(NSDate *)dueDate{
+-(id)initWithTitle:(NSString *)title desc:(NSString *)desc project:(NSString *)project dueDate:(NSDate *)dueDate url:(NSString *)url completed:(BOOL)completed {
     if((self = [super init])){
         self.title = title;
         self.desc = desc;
         self.project = project;
         self.dueDate = dueDate;
-        self.completed = NO;
+        self.url = url;
+        self.completed = completed;
     }
     return self;
 }

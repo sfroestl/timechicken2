@@ -10,6 +10,7 @@
 #import "TCWebservice.h"
 #import "TCWSOneSpark.h"
 #import "TCRestClient.h"
+#import "TCTaskStore.h"
 
 @interface WebserviceDetailViewController ()
 
@@ -72,7 +73,23 @@
 
 - (void) resetClientFinished:(TCRestClient*)client{
     NSLog(@"--> RestClientDelegate called");
-    NSLog(@"%@", [client jsonResponse]);
+    NSDictionary *jsonData = [client jsonResponse];
+    for (NSMutableArray *taskJson in [jsonData valueForKey:@"tasks"]) {
+        NSLog(@"Task: %@", taskJson);
+//        NSDateFormatter *dateFormat = [[NSDateFormatter alloc] init];
+//        NSString *due_date_string = [taskJson valueForKey:@"due_date"];
+//        if (due_date_string) {
+//            NSDate *dueDate = [dateFormat dateFromString:[taskJson valueForKey:@"due_date"]];
+//        }
+        TCTask *task = [[TCTask alloc] initWithTitle:[taskJson valueForKey:@"title"]];
+//        TCTask *task = [[TCTask alloc] initWithTitle:[taskJson valueForKey:@"title"]
+//                                                desc:[taskJson valueForKey:@"desc"]
+//                                             project:[taskJson valueForKey:@"project"]
+//                                             dueDate:nil
+//                                                 url:[NSString stringWithFormat:@"http://api.onespark.de/api/v1/tasks/%@",[taskJson valueForKey:@"id"]]
+//                                           completed:NO];
+        [[TCTaskStore taskStore] addTaskToOpenTasks: task];
+    }
         
     UITableViewController *wsResultCtrl = [[UITableViewController alloc] init];
     //    wsResultCtrl

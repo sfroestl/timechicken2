@@ -58,8 +58,6 @@
     int code = [httpResponse statusCode];
     NSLog(@"Response Received! Status:  %u", code);
     urlData = [[NSMutableData alloc] init];
-    NSLog(@"%@", urlData);
-
 }
 
 - (void)connection:(NSURLConnection *)connection didReceiveData:(NSData *)data
@@ -75,7 +73,7 @@
     if (jsonParsingError) {
         NSLog(@"JSON ERROR: %@", [jsonParsingError localizedDescription]);
     } else {
-        NSLog(@"OBJECT: %@", object);
+        NSLog(@"OBJECT LOADED!");
     }
     self.jsonResponse = object;
     [self.restClientDelegate resetClientFinished:self];
