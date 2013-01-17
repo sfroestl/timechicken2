@@ -25,6 +25,8 @@
 		39A9B36516A8053200C9E8CC /* TaskCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 39A9B36316A8053200C9E8CC /* TaskCell.m */; };
 		39A9B36616A8053200C9E8CC /* TaskCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 39A9B36416A8053200C9E8CC /* TaskCell.xib */; };
 		39A9B36816A814C900C9E8CC /* onesparkThumb.png in Resources */ = {isa = PBXBuildFile; fileRef = 39A9B36716A814C900C9E8CC /* onesparkThumb.png */; };
+		39A9B36B16A824AE00C9E8CC /* TaskDetailEditCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 39A9B36A16A824AE00C9E8CC /* TaskDetailEditCell.m */; };
+		39A9B36E16A8254E00C9E8CC /* TaskDetailEditCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 39A9B36D16A8254E00C9E8CC /* TaskDetailEditCell.xib */; };
 		39E3763416A6C9F70048DC19 /* TaskDetailVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 39E3762F16A6C9F70048DC19 /* TaskDetailVC.m */; };
 		39E3763616A6C9F70048DC19 /* TaskListVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 39E3763216A6C9F70048DC19 /* TaskListVC.m */; };
 		9E03A5BF16A587A300EA3CBD /* icon-os.png in Resources */ = {isa = PBXBuildFile; fileRef = 9E03A5BE16A587A300EA3CBD /* icon-os.png */; };
@@ -65,6 +67,9 @@
 		39A9B36316A8053200C9E8CC /* TaskCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TaskCell.m; sourceTree = "<group>"; };
 		39A9B36416A8053200C9E8CC /* TaskCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TaskCell.xib; sourceTree = "<group>"; };
 		39A9B36716A814C900C9E8CC /* onesparkThumb.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = onesparkThumb.png; path = Images/onesparkThumb.png; sourceTree = "<group>"; };
+		39A9B36916A824AD00C9E8CC /* TaskDetailEditCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TaskDetailEditCell.h; path = TableCells/TaskDetailEditCell.h; sourceTree = "<group>"; };
+		39A9B36A16A824AE00C9E8CC /* TaskDetailEditCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TaskDetailEditCell.m; path = TableCells/TaskDetailEditCell.m; sourceTree = "<group>"; };
+		39A9B36D16A8254E00C9E8CC /* TaskDetailEditCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = TaskDetailEditCell.xib; path = TableCells/TaskDetailEditCell.xib; sourceTree = "<group>"; };
 		39E3762E16A6C9F70048DC19 /* TaskDetailVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TaskDetailVC.h; sourceTree = "<group>"; };
 		39E3762F16A6C9F70048DC19 /* TaskDetailVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TaskDetailVC.m; sourceTree = "<group>"; };
 		39E3763116A6C9F70048DC19 /* TaskListVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TaskListVC.h; sourceTree = "<group>"; };
@@ -133,9 +138,7 @@
 		39685E7916A54FC500FE52A1 /* TimeChicken */ = {
 			isa = PBXGroup;
 			children = (
-				39A9B36216A8053200C9E8CC /* TaskCell.h */,
-				39A9B36316A8053200C9E8CC /* TaskCell.m */,
-				39A9B36416A8053200C9E8CC /* TaskCell.xib */,
+				39A9B36C16A824D800C9E8CC /* TableCells */,
 				39E3762E16A6C9F70048DC19 /* TaskDetailVC.h */,
 				39E3762F16A6C9F70048DC19 /* TaskDetailVC.m */,
 				39E3763116A6C9F70048DC19 /* TaskListVC.h */,
@@ -179,6 +182,19 @@
 				39685EA716A55FF200FE52A1 /* TCDatePicker.m */,
 			);
 			path = Helpers;
+			sourceTree = "<group>";
+		};
+		39A9B36C16A824D800C9E8CC /* TableCells */ = {
+			isa = PBXGroup;
+			children = (
+				39A9B36916A824AD00C9E8CC /* TaskDetailEditCell.h */,
+				39A9B36A16A824AE00C9E8CC /* TaskDetailEditCell.m */,
+				39A9B36416A8053200C9E8CC /* TaskCell.xib */,
+				39A9B36216A8053200C9E8CC /* TaskCell.h */,
+				39A9B36316A8053200C9E8CC /* TaskCell.m */,
+				39A9B36D16A8254E00C9E8CC /* TaskDetailEditCell.xib */,
+			);
+			name = TableCells;
 			sourceTree = "<group>";
 		};
 		9E03A5C016A587B000EA3CBD /* images */ = {
@@ -283,6 +299,7 @@
 				9E03A5C516A58BF000EA3CBD /* WebserviceDetailViewController.xib in Resources */,
 				39A9B36616A8053200C9E8CC /* TaskCell.xib in Resources */,
 				39A9B36816A814C900C9E8CC /* onesparkThumb.png in Resources */,
+				39A9B36E16A8254E00C9E8CC /* TaskDetailEditCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -308,6 +325,7 @@
 				39E3763416A6C9F70048DC19 /* TaskDetailVC.m in Sources */,
 				39E3763616A6C9F70048DC19 /* TaskListVC.m in Sources */,
 				39A9B36516A8053200C9E8CC /* TaskCell.m in Sources */,
+				39A9B36B16A824AE00C9E8CC /* TaskDetailEditCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

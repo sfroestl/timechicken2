@@ -129,8 +129,8 @@
     
     [[cell titleLabel] setText:[task title]];
     NSDateFormatter *dateFormat = [[NSDateFormatter alloc] init];
-    [dateFormat setDateFormat:@"EEE YYYY.MM.dd"];
-    [[cell subtitleLabel] setText:[NSString stringWithFormat:@"dueDate: %@", [dateFormat stringFromDate:[task dueDate]]]];
+    [dateFormat setDateFormat:@"YYYY.MM.dd"];
+    [[cell subtitleLabel] setText:[NSString stringWithFormat:@"due: %@", [dateFormat stringFromDate:[task dueDate]]]];
     NSString *timeString = @"00:15:28";
     [[cell timeButton] setTitle:timeString forState:nil];    
     return cell;
