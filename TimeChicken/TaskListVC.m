@@ -35,6 +35,10 @@
     self = [super initWithStyle:UITableViewStyleGrouped];
     if(self){
         self.title = @"Tasks";
+        NSDate *date = [[NSDate alloc] init];
+        TCTask *taskWithImage = [[TCTask alloc] initWithTitle:@"ImageTask" desc:@"shows image and date" project:@"TC-App-Dev" dueDate:date url:nil completed:NO wsType:1];
+        [[TCTaskStore taskStore] addTaskToOpenTasks:taskWithImage];
+        
         for (int i=0; i<5; i++){
             [[TCTaskStore taskStore] createNewTask];
         }
@@ -114,13 +118,17 @@
     [cell setController:self];
     [cell setTableView:tableView];
     
+    //if tasktyp is onespark, show image
+    if(task.wsType==1){
+        [[cell thumbnailView] setImage:[UIImage imageNamed:@"onesparkThumb.png"]];
+    }
+    
     [[cell titleLabel] setText:[task title]];
     NSDateFormatter *dateFormat = [[NSDateFormatter alloc] init];
-    [dateFormat setDateFormat:@"EEEE MMMM d, YYYY"];
+    [dateFormat setDateFormat:@"EEE YYYY.MM.dd"];
     [[cell subtitleLabel] setText:[NSString stringWithFormat:@"dueDate: %@", [dateFormat stringFromDate:[task dueDate]]]];
     NSString *timeString = @"00:15:28";
-//    [[cell timeButton]  setTitle:timeString forState:nil];
-    
+    [[cell timeButton] setTitle:timeString forState:nil];    
     return cell;
 }
 
