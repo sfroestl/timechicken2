@@ -77,6 +77,10 @@
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
 
+    UIBarButtonItem *addButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(addNewTask:)];
+    [[self navigationItem] setRightBarButtonItem:addButton];
+    
+
     self.navigationItem.leftBarButtonItem = self.editButtonItem;
 }
 
@@ -151,6 +155,37 @@
     [super viewWillAppear:animated];
     [self.tableView reloadData];
 }
+
+- (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath {
+    [[TCTaskStore taskStore] moveTaskAtIndexInOpenTasks:[fromIndexPath row] toIndex:[toIndexPath row]];
+}
+
+- (IBAction)addNewTask:(id)sender {
+    // Create a new Task and add it to the store
+    TCTask *newTask = [[TCTaskStore taskStore] createNewTask];
+    
+    // Figure out where that item is in the openTasks array
+    int lastRow = [[[TCTaskStore taskStore] openTasks] indexOfObject:newTask];
+    NSIndexPath *ip = [NSIndexPath indexPathForRow:lastRow inSection:0];
+    
+    // insert new row into table
+    [[self tableView] insertRowsAtIndexPaths:[NSArray arrayWithObject:ip ] withRowAnimation:UITableViewRowAnimationRight];
+}
+
+- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
+    // If the table view is asking to commit a delete command...
+    if (editingStyle == UITableViewCellEditingStyleDelete) {
+        
+        TCTaskStore *taskStore = [TCTaskStore   taskStore];
+        NSArray *taskList = [taskStore openTasks];
+        TCTask *task = [taskList objectAtIndex:[indexPath row]];
+        [taskStore removeTaskFromOpenTasks:task];
+        
+        // We also remove that row from the table view with an animation
+        [tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationFade];
+    }
+}
+
 
 - (void)startStopTimer:(id)sender atIndexPath:(NSIndexPath *)ip{
     NSLog(@"Going to start/stop the Timer for %@", ip);
