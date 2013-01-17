@@ -8,6 +8,7 @@
 
 #import "TaskDetailVC.h"
 #import "TCTask.h"
+#import "TaskDetailEditCell.h"
 
 @interface TaskDetailVC ()
 
@@ -27,16 +28,28 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    self.title = @"TaskDetails";
+    
+    //Load the NIB-File for Custom Task-TableCell
+    UINib *nib = [UINib nibWithNibName:@"TaskDetailEditCell" bundle:nil];
+    
+    //Register this NIB which contains the cell
+    [[self tableView] registerNib:nib forCellReuseIdentifier:@"TaskDetailEditCell"];
+    
+    
+    
+    
     //initialize the dataArray
-    taskDetailsArray = [[NSMutableArray alloc]init];
-    
-    
-    
-    if(self.detailItem) {
-        NSArray *detailsArray = [[NSArray alloc] initWithObjects: self.detailItem.title, self.detailItem.project, self.detailItem.workedTime, self.detailItem.desc, self.detailItem.dueDate, nil];
-        NSDictionary *detailsArrayDict = [NSDictionary dictionaryWithObject:detailsArray forKey:@"data"];
-        [taskDetailsArray addObject:detailsArrayDict];
-    }
+//    taskDetailsArray = [[NSMutableArray alloc]init];
+//    
+//    
+//    
+//    if(self.detailItem) {
+//        NSArray *detailsArray = [[NSArray alloc] initWithObjects: self.detailItem.title, self.detailItem.project, self.detailItem.workedTime, self.detailItem.desc, self.detailItem.dueDate, nil];
+//        NSDictionary *detailsArrayDict = [NSDictionary dictionaryWithObject:detailsArray forKey:@"data"];
+//        [taskDetailsArray addObject:detailsArrayDict];
+//    }
     
     //TODO: Implement TimeSessionArray
 
@@ -58,54 +71,105 @@
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
     // Return the number of sections.
-    return [taskDetailsArray count];
+//    return [taskDetailsArray count];
+    
+    return 2;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    //Number of rows it should expect should be based on sections
-    NSDictionary *dictinary = [taskDetailsArray objectAtIndex:section];
-    NSArray *array = [dictinary objectForKey:@"data"];
-    return [array count];
+    switch(section)
+    {
+        case 0: return 5;
+        case 1: return [self.detailItem.timeSessions count];
+    }
+
+    return -1;
 }
 
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section{
-    if(section==0) return self.detailItem.title;
-    else return @"Time Sessions";
+    switch(section)
+    {
+        case 0: return nil;
+        case 1: return @"Time Sessions";
+    }
+    return nil;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    if (indexPath.section==0) {
+        TaskDetailEditCell *cell = [tableView dequeueReusableCellWithIdentifier:@"TaskDetailEditCell"];
+        
+        switch(indexPath.row)
+        {
+            case 0:{
+                [[cell keyLabel] setText:@"Title"];
+                [[cell valueTextfield] setText:self.detailItem.title];
+                return cell;
+            }
+            case 1:{
+                [[cell keyLabel] setText:@"Project"];
+                [[cell valueTextfield] setText:self.detailItem.project];
+                return cell;
+            }
+            case 2:{
+                [[cell keyLabel] setText:@"Description"];
+                [[cell valueTextfield] setText:self.detailItem.desc];
+                return cell;
+            }
+            case 3:{
+                [[cell keyLabel] setText:@"Due Date"];
+                NSDateFormatter *dateFormat = [[NSDateFormatter alloc] init];
+                [dateFormat setDateFormat:@"YYYY.MM.dd"];                
+                [[cell valueTextfield] setText:[dateFormat stringFromDate:self.detailItem.dueDate]];
+                return cell;
+            }
+            case 4:{
+                [[cell keyLabel] setText:@"worked Time"];
+                [[cell valueTextfield] setText:[NSString stringWithFormat:@"%d", self.detailItem.workedTime]];
+                return cell;
+            }
+        }
+
+    }
+    
+    if(indexPath.section == 1){
+        static NSString *CellIdentifier = @"Cell";
+        UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+        if (cell == nil) {
+            cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
+        }
+        
+        cell.textLabel.text = @"bla";
+        return cell;
+    }
+    
+    return [[UITableViewCell alloc]init];
+    
+    
+//
+//
 //    static NSString *CellIdentifier = @"Cell";
+//    
 //    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
-//    if (cell == nil) {
+////    UITableViewCell *cell = [tableView dequ]
+//    //If there is no reusable cell of this type, create a new one
+//    if(!cell){
 //        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
 //    }
 //    
-//    // Configure the cell...
-//    
+//    NSDictionary *dictionary = [taskDetailsArray objectAtIndex:indexPath.section];
+//    NSArray *array = [dictionary objectForKey:@"data"];
+//    NSObject *cellvalue = [array objectAtIndex:indexPath.row];
+//    if ([cellvalue isKindOfClass:[NSString class]]) {
+//        cell.textLabel.text = cellvalue;
+//        cell.detailTextLabel.text = @"bla";
+//    }
+//    if([cellvalue isKindOfClass:[NSDate class]]){
+//        cell.textLabel.text = @"%d",cellvalue;
+//    }
 //    return cell;
-    
-    static NSString *CellIdentifier = @"Cell";
-    
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
-//    UITableViewCell *cell = [tableView dequ]
-    //If there is no reusable cell of this type, create a new one
-    if(!cell){
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
-    }
-    
-    NSDictionary *dictionary = [taskDetailsArray objectAtIndex:indexPath.section];
-    NSArray *array = [dictionary objectForKey:@"data"];
-    NSObject *cellvalue = [array objectAtIndex:indexPath.row];
-    if ([cellvalue isKindOfClass:[NSString class]]) {
-        cell.textLabel.text = cellvalue;
-        cell.detailTextLabel.text = @"bla";
-    }
-    if([cellvalue isKindOfClass:[NSDate class]]){
-        cell.textLabel.text = @"%d",cellvalue;
-    }
-    return cell;
 }
 
 /*

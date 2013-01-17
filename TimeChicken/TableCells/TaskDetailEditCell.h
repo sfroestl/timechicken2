@@ -9,5 +9,7 @@
 #import <Foundation/Foundation.h>
 
 @interface TaskDetailEditCell : UITableViewCell
+@property (weak, nonatomic) IBOutlet UILabel *keyLabel;
+@property (weak, nonatomic) IBOutlet UITextField *valueTextfield;
 
 @end

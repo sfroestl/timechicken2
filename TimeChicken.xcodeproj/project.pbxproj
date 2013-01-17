@@ -189,10 +189,10 @@
 			children = (
 				39A9B36916A824AD00C9E8CC /* TaskDetailEditCell.h */,
 				39A9B36A16A824AE00C9E8CC /* TaskDetailEditCell.m */,
+				39A9B36D16A8254E00C9E8CC /* TaskDetailEditCell.xib */,
 				39A9B36416A8053200C9E8CC /* TaskCell.xib */,
 				39A9B36216A8053200C9E8CC /* TaskCell.h */,
 				39A9B36316A8053200C9E8CC /* TaskCell.m */,
-				39A9B36D16A8254E00C9E8CC /* TaskDetailEditCell.xib */,
 			);
 			name = TableCells;
 			sourceTree = "<group>";

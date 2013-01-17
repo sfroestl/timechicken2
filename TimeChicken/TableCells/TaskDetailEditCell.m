@@ -10,4 +10,7 @@
 
 @implementation TaskDetailEditCell
 
+@synthesize keyLabel;
+@synthesize valueTextfield;
+
 @end
