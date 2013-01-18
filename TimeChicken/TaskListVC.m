@@ -25,10 +25,6 @@
         NSDate *date = [[NSDate alloc] init];
         TCTask *taskWithImage = [[TCTask alloc] initWithTitle:@"ImageTask" desc:@"shows image and date" project:@"TC-App-Dev" dueDate:date url:nil completed:YES wsType:0];
         [[TCTaskStore taskStore] addTask:taskWithImage];
-//        
-//        for (int i=0; i<5; i++){
-//            [[TCTaskStore taskStore] createNewTask];
-//        }
     }
     return self;
 }
@@ -73,7 +69,6 @@
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    //2 sections for open and completed tasks
     return 2;
 }
 
@@ -82,14 +77,10 @@
     switch(section)
     {
         case 0:{
-            //returns number of open tasks
-            NSPredicate *conditionFalse = [NSPredicate predicateWithFormat:@"(completed == NO) OR (completed == nil)"];
-           return [[[[TCTaskStore taskStore] tasks] filteredArrayUsingPredicate:conditionFalse] count];
+           return [[[TCTaskStore taskStore] getOpenTasks] count];
         }
         case 1:{
-            //returns number of closed tasks
-            NSPredicate *conditionTrue = [NSPredicate predicateWithFormat:@"completed == YES"];
-            return [[[[TCTaskStore taskStore] tasks] filteredArrayUsingPredicate:conditionTrue] count];
+            return [[[TCTaskStore taskStore] getCompletedTasks] count];
         }
     }
     
@@ -104,22 +95,14 @@
     return nil;
 }
 
-- (UITableViewCell *) tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
-    TCTask *currentTask;
-    
-    NSPredicate *conditionFalse = [NSPredicate predicateWithFormat:@"(completed == NO) OR (completed == nil)"];
-    NSArray *openTasks = [[[TCTaskStore taskStore] tasks] filteredArrayUsingPredicate:conditionFalse];
-    
-    NSPredicate *conditionTrue = [NSPredicate predicateWithFormat:@"completed == YES"];
-    NSArray *completedTasks = [[[TCTaskStore taskStore] tasks] filteredArrayUsingPredicate:conditionTrue];
-    
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
     TaskCell *cell = [tableView dequeueReusableCellWithIdentifier:@"TaskCell"];
     
-    //Connect TimerButton of TaskCell to this TaskListViewController and asign table
-    [cell setController:self];
-    [cell setTableView:tableView];
+    TCTask *currentTask;
     
     if(indexPath.section==0){
+        NSArray *openTasks = [[TCTaskStore taskStore] getOpenTasks];
         currentTask = [openTasks objectAtIndex:indexPath.row];
         
         //set Backend-Thumbnails
@@ -157,6 +140,7 @@
     }
     
     if(indexPath.section==1){
+        NSArray *completedTasks = [[TCTaskStore taskStore] getCompletedTasks];
         currentTask = [completedTasks objectAtIndex:indexPath.row];
         
         //set Backend-Thumbnails
@@ -194,16 +178,14 @@
     }
     return nil;
 
+
 }
 
 - (void) tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     TCTask *selectedTask = nil;
     
-    NSPredicate *conditionFalse = [NSPredicate predicateWithFormat:@"(completed == NO) OR (completed == nil)"];
-    NSArray *openTasks = [[[TCTaskStore taskStore] tasks] filteredArrayUsingPredicate:conditionFalse];
-    
-    NSPredicate *conditionTrue = [NSPredicate predicateWithFormat:@"completed == YES"];
-    NSArray *completedTasks = [[[TCTaskStore taskStore] tasks] filteredArrayUsingPredicate:conditionTrue];
+    NSArray *completedTasks = [[TCTaskStore taskStore] getCompletedTasks];
+    NSArray *openTasks = [[TCTaskStore taskStore] getOpenTasks];
     
     switch (indexPath.section) {
         case 0:{
@@ -232,10 +214,10 @@
     TCTask *newTask = [[TCTaskStore taskStore] createNewTask];
     
     // Figure out where that item is in the opentasks array
-    NSPredicate *conditionFalse = [NSPredicate predicateWithFormat:@"(completed == NO) OR (completed == nil)"];
-    NSArray *openTasks = [[[TCTaskStore taskStore] tasks] filteredArrayUsingPredicate:conditionFalse];
+    NSArray *openTasks = [[TCTaskStore taskStore] getOpenTasks];
     
     int lastRow = [openTasks indexOfObject:newTask];
+  
     NSIndexPath *ip = [NSIndexPath indexPathForRow:lastRow inSection:0];
     
     // insert new row into table
