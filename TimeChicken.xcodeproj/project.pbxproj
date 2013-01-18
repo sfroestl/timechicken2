@@ -22,10 +22,13 @@
 		39685E9616A54FC500FE52A1 /* second.png in Resources */ = {isa = PBXBuildFile; fileRef = 39685E9516A54FC500FE52A1 /* second.png */; };
 		39685E9816A54FC500FE52A1 /* second@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 39685E9716A54FC500FE52A1 /* second@2x.png */; };
 		39685EAB16A55FF200FE52A1 /* TCDatePicker.m in Sources */ = {isa = PBXBuildFile; fileRef = 39685EA716A55FF200FE52A1 /* TCDatePicker.m */; };
+		39A9B36516A8053200C9E8CC /* TaskCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 39A9B36316A8053200C9E8CC /* TaskCell.m */; };
+		39A9B36616A8053200C9E8CC /* TaskCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 39A9B36416A8053200C9E8CC /* TaskCell.xib */; };
+		39A9B36816A814C900C9E8CC /* onesparkThumb.png in Resources */ = {isa = PBXBuildFile; fileRef = 39A9B36716A814C900C9E8CC /* onesparkThumb.png */; };
+		39A9B36B16A824AE00C9E8CC /* TaskDetailEditCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 39A9B36A16A824AE00C9E8CC /* TaskDetailEditCell.m */; };
+		39A9B36E16A8254E00C9E8CC /* TaskDetailEditCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 39A9B36D16A8254E00C9E8CC /* TaskDetailEditCell.xib */; };
 		39E3763416A6C9F70048DC19 /* TaskDetailVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 39E3762F16A6C9F70048DC19 /* TaskDetailVC.m */; };
 		39E3763616A6C9F70048DC19 /* TaskListVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 39E3763216A6C9F70048DC19 /* TaskListVC.m */; };
-		39EDE62A16A6FD0A0034299D /* TaskCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 39EDE62916A6FD0A0034299D /* TaskCell.m */; };
-		39EDE62D16A6FD8A0034299D /* TaskCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 39EDE62C16A6FD8A0034299D /* TaskCell.xib */; };
 		9E03A5BF16A587A300EA3CBD /* icon-os.png in Resources */ = {isa = PBXBuildFile; fileRef = 9E03A5BE16A587A300EA3CBD /* icon-os.png */; };
 		9E03A5C416A58BF000EA3CBD /* WebserviceDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9E03A5C216A58BF000EA3CBD /* WebserviceDetailViewController.m */; };
 		9E03A5C516A58BF000EA3CBD /* WebserviceDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9E03A5C316A58BF000EA3CBD /* WebserviceDetailViewController.xib */; };
@@ -61,13 +64,17 @@
 		39685E9716A54FC500FE52A1 /* second@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "second@2x.png"; sourceTree = "<group>"; };
 		39685EA616A55FF200FE52A1 /* TCDatePicker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TCDatePicker.h; sourceTree = "<group>"; };
 		39685EA716A55FF200FE52A1 /* TCDatePicker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TCDatePicker.m; sourceTree = "<group>"; };
+		39A9B36216A8053200C9E8CC /* TaskCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TaskCell.h; sourceTree = "<group>"; };
+		39A9B36316A8053200C9E8CC /* TaskCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TaskCell.m; sourceTree = "<group>"; };
+		39A9B36416A8053200C9E8CC /* TaskCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TaskCell.xib; sourceTree = "<group>"; };
+		39A9B36716A814C900C9E8CC /* onesparkThumb.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = onesparkThumb.png; path = Images/onesparkThumb.png; sourceTree = "<group>"; };
+		39A9B36916A824AD00C9E8CC /* TaskDetailEditCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TaskDetailEditCell.h; path = TableCells/TaskDetailEditCell.h; sourceTree = "<group>"; };
+		39A9B36A16A824AE00C9E8CC /* TaskDetailEditCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TaskDetailEditCell.m; path = TableCells/TaskDetailEditCell.m; sourceTree = "<group>"; };
+		39A9B36D16A8254E00C9E8CC /* TaskDetailEditCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = TaskDetailEditCell.xib; path = TableCells/TaskDetailEditCell.xib; sourceTree = "<group>"; };
 		39E3762E16A6C9F70048DC19 /* TaskDetailVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TaskDetailVC.h; sourceTree = "<group>"; };
 		39E3762F16A6C9F70048DC19 /* TaskDetailVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TaskDetailVC.m; sourceTree = "<group>"; };
 		39E3763116A6C9F70048DC19 /* TaskListVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TaskListVC.h; sourceTree = "<group>"; };
 		39E3763216A6C9F70048DC19 /* TaskListVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TaskListVC.m; sourceTree = "<group>"; };
-		39EDE62816A6FD0A0034299D /* TaskCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TaskCell.h; sourceTree = "<group>"; };
-		39EDE62916A6FD0A0034299D /* TaskCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TaskCell.m; sourceTree = "<group>"; };
-		39EDE62C16A6FD8A0034299D /* TaskCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TaskCell.xib; sourceTree = "<group>"; };
 		9E03A5BE16A587A300EA3CBD /* icon-os.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon-os.png"; sourceTree = "<group>"; };
 		9E03A5C116A58BF000EA3CBD /* WebserviceDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WebserviceDetailViewController.h; sourceTree = "<group>"; };
 		9E03A5C216A58BF000EA3CBD /* WebserviceDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WebserviceDetailViewController.m; sourceTree = "<group>"; };
@@ -107,9 +114,6 @@
 		39685E6416A54FC400FE52A1 = {
 			isa = PBXGroup;
 			children = (
-				39EDE62816A6FD0A0034299D /* TaskCell.h */,
-				39EDE62C16A6FD8A0034299D /* TaskCell.xib */,
-				39EDE62916A6FD0A0034299D /* TaskCell.m */,
 				39685E7916A54FC500FE52A1 /* TimeChicken */,
 				39685E7216A54FC500FE52A1 /* Frameworks */,
 				39685E7016A54FC500FE52A1 /* Products */,
@@ -137,6 +141,7 @@
 		39685E7916A54FC500FE52A1 /* TimeChicken */ = {
 			isa = PBXGroup;
 			children = (
+				39A9B36C16A824D800C9E8CC /* TableCells */,
 				39E3762E16A6C9F70048DC19 /* TaskDetailVC.h */,
 				39E3762F16A6C9F70048DC19 /* TaskDetailVC.m */,
 				39E3763116A6C9F70048DC19 /* TaskListVC.h */,
@@ -184,9 +189,23 @@
 			path = Helpers;
 			sourceTree = "<group>";
 		};
+		39A9B36C16A824D800C9E8CC /* TableCells */ = {
+			isa = PBXGroup;
+			children = (
+				39A9B36916A824AD00C9E8CC /* TaskDetailEditCell.h */,
+				39A9B36A16A824AE00C9E8CC /* TaskDetailEditCell.m */,
+				39A9B36D16A8254E00C9E8CC /* TaskDetailEditCell.xib */,
+				39A9B36416A8053200C9E8CC /* TaskCell.xib */,
+				39A9B36216A8053200C9E8CC /* TaskCell.h */,
+				39A9B36316A8053200C9E8CC /* TaskCell.m */,
+			);
+			name = TableCells;
+			sourceTree = "<group>";
+		};
 		9E03A5C016A587B000EA3CBD /* images */ = {
 			isa = PBXGroup;
 			children = (
+				39A9B36716A814C900C9E8CC /* onesparkThumb.png */,
 				9E03A5BE16A587A300EA3CBD /* icon-os.png */,
 				39685E8E16A54FC500FE52A1 /* first.png */,
 				39685E9016A54FC500FE52A1 /* first@2x.png */,
@@ -283,7 +302,9 @@
 				39685E9816A54FC500FE52A1 /* second@2x.png in Resources */,
 				9E03A5BF16A587A300EA3CBD /* icon-os.png in Resources */,
 				9E03A5C516A58BF000EA3CBD /* WebserviceDetailViewController.xib in Resources */,
-				39EDE62D16A6FD8A0034299D /* TaskCell.xib in Resources */,
+				39A9B36616A8053200C9E8CC /* TaskCell.xib in Resources */,
+				39A9B36816A814C900C9E8CC /* onesparkThumb.png in Resources */,
+				39A9B36E16A8254E00C9E8CC /* TaskDetailEditCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -35,6 +35,10 @@
     self = [super initWithStyle:UITableViewStyleGrouped];
     if(self){
         self.title = @"Tasks";
+        NSDate *date = [[NSDate alloc] init];
+        TCTask *taskWithImage = [[TCTask alloc] initWithTitle:@"ImageTask" desc:@"shows image and date" project:@"TC-App-Dev" dueDate:date url:nil completed:NO wsType:1];
+        [[TCTaskStore taskStore] addTaskToOpenTasks:taskWithImage];
+        
         for (int i=0; i<5; i++){
             [[TCTaskStore taskStore] createNewTask];
         }
@@ -49,6 +53,9 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    self.tableView.backgroundView = nil;
+    self.tableView.backgroundColor = [UIColor colorWithRed:230.0f/255.0f green:230.0f/255.0f blue:230.0f/255.0f alpha:1.0f];
 
     //initialize the dataArray
     dataArray = [[NSMutableArray alloc]init];
@@ -73,8 +80,14 @@
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
 
+    UIBarButtonItem *addButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(addNewTask:)];
+    [[self navigationItem] setRightBarButtonItem:addButton];
+    
+
     self.navigationItem.leftBarButtonItem = self.editButtonItem;
 }
+
+
 
 - (void)didReceiveMemoryWarning
 {
@@ -114,13 +127,17 @@
     [cell setController:self];
     [cell setTableView:tableView];
     
+    //if tasktyp is onespark, show image
+    if(task.wsType==1){
+        [[cell thumbnailView] setImage:[UIImage imageNamed:@"onesparkThumb.png"]];
+    }
+    
     [[cell titleLabel] setText:[task title]];
     NSDateFormatter *dateFormat = [[NSDateFormatter alloc] init];
-    [dateFormat setDateFormat:@"EEEE MMMM d, YYYY"];
-    [[cell subtitleLabel] setText:[NSString stringWithFormat:@"dueDate: %@", [dateFormat stringFromDate:[task dueDate]]]];
+    [dateFormat setDateFormat:@"YYYY.MM.dd"];
+    [[cell subtitleLabel] setText:[NSString stringWithFormat:@"due: %@", [dateFormat stringFromDate:[task dueDate]]]];
     NSString *timeString = @"00:15:28";
-//    [[cell timeButton]  setTitle:timeString forState:nil];
-    
+    [[cell timeButton] setTitle:timeString forState:nil];    
     return cell;
 }
 
@@ -143,6 +160,37 @@
     [super viewWillAppear:animated];
     [self.tableView reloadData];
 }
+
+- (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath {
+    [[TCTaskStore taskStore] moveTaskAtIndexInOpenTasks:[fromIndexPath row] toIndex:[toIndexPath row]];
+}
+
+- (IBAction)addNewTask:(id)sender {
+    // Create a new Task and add it to the store
+    TCTask *newTask = [[TCTaskStore taskStore] createNewTask];
+    
+    // Figure out where that item is in the openTasks array
+    int lastRow = [[[TCTaskStore taskStore] openTasks] indexOfObject:newTask];
+    NSIndexPath *ip = [NSIndexPath indexPathForRow:lastRow inSection:0];
+    
+    // insert new row into table
+    [[self tableView] insertRowsAtIndexPaths:[NSArray arrayWithObject:ip ] withRowAnimation:UITableViewRowAnimationRight];
+}
+
+- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
+    // If the table view is asking to commit a delete command...
+    if (editingStyle == UITableViewCellEditingStyleDelete) {
+        
+        TCTaskStore *taskStore = [TCTaskStore   taskStore];
+        NSArray *taskList = [taskStore openTasks];
+        TCTask *task = [taskList objectAtIndex:[indexPath row]];
+        [taskStore removeTaskFromOpenTasks:task];
+        
+        // We also remove that row from the table view with an animation
+        [tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationFade];
+    }
+}
+
 
 - (void)startStopTimer:(id)sender atIndexPath:(NSIndexPath *)ip{
     NSLog(@"Going to start/stop the Timer for %@", ip);

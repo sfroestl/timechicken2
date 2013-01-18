@@ -8,8 +8,11 @@
 
 #import "TaskDetailVC.h"
 #import "TCTask.h"
+#import "TaskDetailEditCell.h"
+#import "TCDatePicker.h"
 
-@interface TaskDetailVC ()
+@interface TaskDetailVC ()<UITextFieldDelegate>
+@property (nonatomic,strong) TCDatePicker* datepicker;
 
 @end
 
@@ -27,22 +30,22 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    //initialize the dataArray
-    taskDetailsArray = [[NSMutableArray alloc]init];
+    
+    self.tableView.backgroundView = nil;
+    self.tableView.backgroundColor = [UIColor colorWithRed:230.0f/255.0f green:230.0f/255.0f blue:230.0f/255.0f alpha:1.0f];
+    
+    self.title = @"TaskDetails";
+    
+    //Load the NIB-File for Custom Task-TableCell
+    UINib *nib = [UINib nibWithNibName:@"TaskDetailEditCell" bundle:nil];
+    
+    //Register this NIB which contains the cell
+    [[self tableView] registerNib:nib forCellReuseIdentifier:@"TaskDetailEditCell"];
+    
+    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"complete" style:UIBarButtonItemStyleDone target:self action:@selector(closeTask:)];
     
     
     
-    if(self.detailItem) {
-        NSArray *detailsArray = [[NSArray alloc] initWithObjects: self.detailItem.title, self.detailItem.project, self.detailItem.workedTime, self.detailItem.desc, self.detailItem.dueDate, nil];
-        NSDictionary *detailsArrayDict = [NSDictionary dictionaryWithObject:detailsArray forKey:@"data"];
-        [taskDetailsArray addObject:detailsArrayDict];
-    }
-    
-    //TODO: Implement TimeSessionArray
-
-    // Uncomment the following line to preserve selection between presentations.
-    // self.clearsSelectionOnViewWillAppear = NO;
- 
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
 }
@@ -58,106 +61,127 @@
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
     // Return the number of sections.
-    return [taskDetailsArray count];
+    //    return [taskDetailsArray count];
+    
+    return 2;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    //Number of rows it should expect should be based on sections
-    NSDictionary *dictinary = [taskDetailsArray objectAtIndex:section];
-    NSArray *array = [dictinary objectForKey:@"data"];
-    return [array count];
+    switch(section)
+    {
+        case 0: return 5;
+        case 1: return [self.detailItem.timeSessions count];
+    }
+    
+    return -1;
 }
 
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section{
-    if(section==0) return self.detailItem.title;
-    else return @"Time Sessions";
+    switch(section)
+    {
+        case 0: return nil;
+        case 1: return @"Time Sessions";
+    }
+    return nil;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-//    static NSString *CellIdentifier = @"Cell";
-//    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
-//    if (cell == nil) {
-//        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
-//    }
-//    
-//    // Configure the cell...
-//    
-//    return cell;
-    
-    static NSString *CellIdentifier = @"Cell";
-    
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
-//    UITableViewCell *cell = [tableView dequ]
-    //If there is no reusable cell of this type, create a new one
-    if(!cell){
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
+    if (indexPath.section==0) {
+        TaskDetailEditCell *cell = [tableView dequeueReusableCellWithIdentifier:@"TaskDetailEditCell"];
+        
+        switch(indexPath.row)
+        {
+            case 0:{
+                [[cell keyLabel] setText:@"Title"];
+                [[cell valueTextfield] setText:self.detailItem.title];
+                [[cell valueTextfield] addTarget:self action:@selector(titleFieldChanged:) forControlEvents:UIControlEventEditingChanged];
+                cell.valueTextfield.delegate = self;
+                cell.selectionStyle = UITableViewCellSelectionStyleNone;
+                return cell;
+            }
+            case 1:{
+                [[cell keyLabel] setText:@"Project"];
+                [[cell valueTextfield] setText:self.detailItem.project];
+                [[cell valueTextfield] addTarget:self action:@selector(projectFieldChanged:) forControlEvents:UIControlEventEditingChanged];
+                cell.valueTextfield.delegate = self;
+                cell.selectionStyle = UITableViewCellSelectionStyleNone;
+                return cell;
+            }
+            case 2:{
+                [[cell keyLabel] setText:@"Description"];
+                [[cell valueTextfield] setText:self.detailItem.desc];
+                [[cell valueTextfield] addTarget:self action:@selector(descriptionFieldChanged:) forControlEvents:UIControlEventEditingChanged];
+                cell.valueTextfield.delegate = self;
+                cell.selectionStyle = UITableViewCellSelectionStyleNone;
+                return cell;
+            }
+            case 3:{
+                [[cell keyLabel] setText:@"Due Date"];
+                self.datepicker = [[TCDatePicker alloc] initWithDateFormatString:@"YYYY-MM-DD HH:mm" forTextField:[cell valueTextfield] withDatePickerMode:UIDatePickerModeDateAndTime];
+                cell.valueTextfield.inputView = self.datepicker;
+                if(self.detailItem.dueDate){
+                    self.datepicker.date = self.detailItem.dueDate;
+                }
+                [self.datepicker addTarget:self action:@selector(datePickerDateChanged:) forControlEvents:UIControlEventValueChanged];
+                cell.selectionStyle = UITableViewCellSelectionStyleNone;
+                return cell;
+            }
+            case 4:{
+                [[cell keyLabel] setText:@"worked Time"];
+                [[cell valueTextfield] setText:[NSString stringWithFormat:@"%d", self.detailItem.workedTime]];
+                [[cell valueTextfield] addTarget:self action:@selector(workedTimeFieldChanged:) forControlEvents:UIControlEventEditingChanged];
+                cell.valueTextfield.delegate = self;
+                cell.selectionStyle = UITableViewCellSelectionStyleNone;
+                return cell;
+            }
+        }
+        
     }
     
-    NSDictionary *dictionary = [taskDetailsArray objectAtIndex:indexPath.section];
-    NSArray *array = [dictionary objectForKey:@"data"];
-    NSObject *cellvalue = [array objectAtIndex:indexPath.row];
-    if ([cellvalue isKindOfClass:[NSString class]]) {
-        cell.textLabel.text = cellvalue;
-        cell.detailTextLabel.text = @"bla";
+    if(indexPath.section == 1){
+        static NSString *CellIdentifier = @"Cell";
+        UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+        if (cell == nil) {
+            cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
+        }
+        
+        cell.textLabel.text = @"bla";
+        return cell;
     }
-    if([cellvalue isKindOfClass:[NSDate class]]){
-        cell.textLabel.text = @"%d",cellvalue;
-    }
-    return cell;
+    
+    return [[UITableViewCell alloc]init];
 }
 
-/*
-// Override to support conditional editing of the table view.
-- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    // Return NO if you do not want the specified item to be editable.
+-(BOOL)textFieldShouldReturn:(UITextField *)textField{
+    //close keyboard if return is pressed (in textfield)
+    [textField resignFirstResponder];
     return YES;
 }
-*/
 
-/*
-// Override to support editing the table view.
-- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    if (editingStyle == UITableViewCellEditingStyleDelete) {
-        // Delete the row from the data source
-        [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
-    }   
-    else if (editingStyle == UITableViewCellEditingStyleInsert) {
-        // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-    }   
+-(IBAction)titleFieldChanged:(UITextField*)sender{
+    self.detailItem.title = sender.text;
 }
-*/
 
-/*
-// Override to support rearranging the table view.
-- (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath
-{
+-(IBAction)projectFieldChanged:(UITextField*)sender{
+    self.detailItem.project = sender.text;
 }
-*/
 
-/*
-// Override to support conditional rearranging of the table view.
-- (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    // Return NO if you do not want the item to be re-orderable.
-    return YES;
+-(IBAction)descriptionFieldChanged:(UITextField*)sender{
+    self.detailItem.desc = sender.text;
 }
-*/
 
-#pragma mark - Table view delegate
+-(IBAction)datePickerDateChanged:(UIDatePicker*)sender{
+    self.detailItem.dueDate = [sender date];
+}
 
-//- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
-//{
-//    // Navigation logic may go here. Create and push another view controller.
-//    /*
-//     <#DetailViewController#> *detailViewController = [[<#DetailViewController#> alloc] initWithNibName:@"<#Nib name#>" bundle:nil];
-//     // ...
-//     // Pass the selected object to the new view controller.
-//     [self.navigationController pushViewController:detailViewController animated:YES];
-//     */
-//}
+-(IBAction)workedTimeFieldChanged:(UITextField*)sender{
+    self.detailItem.workedTime = [sender.text intValue];
+}
+
+-(IBAction)closeTask:(UIBarButtonItem*)sender{
+    NSLog(@"completeTask was klicked");
+}
 
 @end
