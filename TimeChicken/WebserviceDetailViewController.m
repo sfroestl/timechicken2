@@ -96,6 +96,7 @@
                                                   url:[NSString stringWithFormat:@"http://api.onespark.de/api/v1/tasks/%@", [taskJson valueForKey:@"id"]]
                                             completed:completed
                                                wsType:0];
+        task.wsId = [[taskJson valueForKey:@"id"] integerValue];
         if ([self.detailItem isKindOfClass: [TCWSOneSpark class]]) {
             task.wsType = 1;
         }
@@ -108,6 +109,6 @@
     
 }
 - (void) restClient:(TCRestClient*)restClient failedWithError:(NSError*)error{
-    
+    NSLog(@"RestClient ERROR: %@", error);
 }
 @end

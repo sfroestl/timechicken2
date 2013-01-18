@@ -21,6 +21,7 @@ enum WS_TYPES {local, onespark, jira};
 @property (strong, nonatomic) NSDate *lastUpdate;
 @property (assign, nonatomic) int workedTime;
 @property (assign, nonatomic) int wsType;
+@property (assign, nonatomic) int wsId;
 @property (assign, nonatomic) BOOL completed;
 @property (strong, nonatomic) NSMutableArray *timeSessions;
 

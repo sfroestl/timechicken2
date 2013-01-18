@@ -12,6 +12,7 @@
     NSArray *wsTasks;
 }
 @property (nonatomic, strong) NSMutableArray *chosedTasksForImport;
+@property (nonatomic, strong) NSArray *alreadyImportedTasks;
 
 - (IBAction)importWSTasks:(id)sender;
 - (void) setWsTasks:(NSArray *)tasks;

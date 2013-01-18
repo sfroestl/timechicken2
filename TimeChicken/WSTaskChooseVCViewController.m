@@ -18,6 +18,7 @@
 @implementation WSTaskChooseVCViewController
 
 @synthesize chosedTasksForImport = _chosedTasksForImport;
+@synthesize alreadyImportedTasks = _alreadyImportedTasks;
 
 - (void) setWsTasks:(NSArray *) tasks{
     wsTasks = tasks;
@@ -41,27 +42,27 @@
 
 - (id)initWithStyle:(UITableViewStyle)style
 {
-    self = [super initWithStyle:style];
-    if (self) {
-        // Custom initialization
-    }
+    self = [self init];
     return self;
 }
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    // Uncomment the following line to preserve selection between presentations.
-    // self.clearsSelectionOnViewWillAppear = NO;
- 
-    // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-    // self.navigationItem.rightBarButtonItem = self.editButtonItem;
+    
 }
 
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
+    self.alreadyImportedTasks = [[TCTaskStore taskStore] findByWsType:1];
+    NSLog(@"Already Imported %@", self.alreadyImportedTasks);
     [[self tableView] reloadData];
+}
+
+- (void)viewWillDisappear:(BOOL)animated
+{
+    [self.navigationController popViewControllerAnimated:YES];
 }
 
 - (void)didReceiveMemoryWarning
@@ -74,26 +75,40 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    NSLog(@"WSChooseVC: Tasks count=%u", [wsTasks count]);
+    NSLog(@"WSChooseVC: Tasks count = %u", [wsTasks count]);
     return [wsTasks count];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"WSTaskCell"];
+    TCTask *wsTask = [wsTasks objectAtIndex:[indexPath row]];
+    NSArray *alreadyImportedTasks = [[TCTaskStore taskStore] findByWsId:wsTask.wsId andwsType:wsTask.wsType];
+    
+    UITableViewCell *cell;
+    if (alreadyImportedTasks.count != 0 ) {
+    }
+    cell = [tableView dequeueReusableCellWithIdentifier:@"WSTaskCell"];
+    // Ceck if Taks is already imported
     if (!cell) {
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"WSTaskCell"];
     }
-    TCTask *wsTask = [wsTasks objectAtIndex:[indexPath row]];
-//    [cell.imageView setImage:ws.image];
+    BOOL found = NO;
+    for (TCTask *task in alreadyImportedTasks){
+        if(task.wsId == wsTask.wsId){
+            found = YES;
+            break;
+        }
+    }
+    if (found) {
+        NSLog(@"true!!!");
+        cell.userInteractionEnabled = NO;
+        
+    }        
     [cell.textLabel setText: wsTask.title];
-    if ([self.chosedTasksForImport containsObject:indexPath])
-    {
+    if ([self.chosedTasksForImport containsObject:indexPath]) {
         cell.accessoryType = UITableViewCellAccessoryCheckmark;
     }
-    else
-    {
+    else {
         cell.accessoryType = UITableViewCellAccessoryNone;
     }
 
@@ -147,6 +162,11 @@
 
 - (void) importWSTasks:(id)sender {
     NSLog(@"Import %u tasks!", [self.chosedTasksForImport count]);
+    if ([self.chosedTasksForImport count] == 0) {
+        UIAlertView *noTasksSelectedAlert = [[UIAlertView alloc] initWithTitle:@"Ups..." message:@"Please select tasks for import!" delegate:nil cancelButtonTitle:@"Okay" otherButtonTitles:nil, nil];
+        [noTasksSelectedAlert show];
+        return;
+    }
     // Import tasks to TCTaskStore
     [[TCTaskStore taskStore] addTasks:self.chosedTasksForImport];
     [self.chosedTasksForImport removeAllObjects];

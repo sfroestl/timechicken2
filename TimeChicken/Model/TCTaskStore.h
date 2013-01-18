@@ -37,4 +37,7 @@
 - (NSArray *) getOpenTasks;
 - (NSArray *) getCompletedTasks;
 
+- (NSArray *) findByWsType:(int) wsType;
+- (NSArray *) findByWsId:(int) wsId andwsType:(int) wsType;
+
 @end

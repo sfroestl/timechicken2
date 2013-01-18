@@ -45,7 +45,7 @@
 }
 
 - (NSArray *) tasks {
-    NSLog(@"%@", tasks);
+//    NSLog(@"%@", tasks);
     return tasks;
 }
 - (NSArray *) archivedTasks {
@@ -101,6 +101,17 @@
     TCTask *task = [archivedTasks objectAtIndex:from];
     [archivedTasks removeObjectAtIndex:from];
     [archivedTasks insertObject:task atIndex:to];
+}
+
+- (NSArray *) findByWsId:(int) wsId andwsType:(int) wsType {
+    NSPredicate *condition = [NSPredicate predicateWithFormat:@"(wsId == %i) OR (wsType == %i)", wsId, wsType];
+    NSArray *foundTasks = [[[TCTaskStore taskStore] tasks] filteredArrayUsingPredicate:condition];
+    return foundTasks;
+}
+- (NSArray *) findByWsType:(int) wsType {
+    NSPredicate *condition = [NSPredicate predicateWithFormat:@"(wsType == %i)", wsType];
+    NSArray *foundTasks = [[[TCTaskStore taskStore] tasks] filteredArrayUsingPredicate:condition];
+    return foundTasks;
 }
 
 @end

@@ -17,6 +17,8 @@
 @synthesize workedTime = _workedTime;
 @synthesize completed = _completed;
 @synthesize wsType = _wsType;
+@synthesize wsId = _wsId;
+@synthesize lastUpdate = _lastUpdate;
 
 -(id)initWithTitle:(NSString *)title desc:(NSString *)desc project:(NSString *)project dueDate:(NSDate *)dueDate url:(NSString *)url completed:(BOOL)completed wsType:(int)wstype{
     if((self = [super init])){
@@ -38,7 +40,7 @@
     return self;
 }
 - (NSString *)description {
-    return [NSString stringWithFormat:@"{Task: {title:%@, due:%@, completed: %@, desc: %@}}", self.title, self.dueDate, self.completed ? @"YES":@"NO", self.desc];
+    return [NSString stringWithFormat:@"{Task: {title:%@, wsId:%i, completed: %@, desc: %@}}", self.title, self.wsId, self.completed ? @"YES":@"NO", self.desc];
 }
 
 
