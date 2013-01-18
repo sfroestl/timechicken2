@@ -85,6 +85,7 @@
 //            NSDate *dueDate = [dateFormat dateFromString:[taskJson valueForKey:@"due_date"]];
 //        }
         TCTask *task = [[TCTask alloc] initWithTitle:[taskJson valueForKey:@"title"]];
+        task.completed = NO;
 //        TCTask *task = [[TCTask alloc] initWithTitle:[taskJson valueForKey:@"title"]
 //                                                desc:[taskJson valueForKey:@"desc"]
 //                                             project:[taskJson valueForKey:@"project"]

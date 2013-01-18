@@ -36,12 +36,13 @@
     if(self){
         self.title = @"Tasks";
         NSDate *date = [[NSDate alloc] init];
-        TCTask *taskWithImage = [[TCTask alloc] initWithTitle:@"ImageTask" desc:@"shows image and date" project:@"TC-App-Dev" dueDate:date url:nil completed:NO wsType:1];
-        [[TCTaskStore taskStore] addTaskToOpenTasks:taskWithImage];
+        TCTask *taskWithImage = [[TCTask alloc] initWithTitle:@"ImageTask" desc:@"shows image and date" project:@"TC-App-Dev" dueDate:date url:nil completed:YES wsType:1];
+        [[TCTaskStore taskStore] addTask:taskWithImage];
         
         for (int i=0; i<5; i++){
             [[TCTaskStore taskStore] createNewTask];
         }
+        
     }
     return self;
 }
@@ -61,11 +62,15 @@
     dataArray = [[NSMutableArray alloc]init];
     
     //openTasks section data
-    NSDictionary *openTasksArrayDict = [NSDictionary dictionaryWithObject:[[TCTaskStore taskStore] openTasks] forKey:@"data"];
+    NSPredicate *condition = [NSPredicate predicateWithFormat:@"completed == NO"];
+    NSArray *openTasks = [[[TCTaskStore taskStore] tasks] filteredArrayUsingPredicate:condition];
+    NSDictionary *openTasksArrayDict = [NSDictionary dictionaryWithObject:openTasks forKey:@"data"];
     [dataArray addObject:openTasksArrayDict];
     
     //completedTasks section data
-    NSDictionary *completedTasksArrayDict = [NSDictionary dictionaryWithObject:[[TCTaskStore taskStore] completedTasks] forKey:@"data"];
+    condition = [NSPredicate predicateWithFormat:@"completed == YES"];
+    NSArray *completedTasks = [[[TCTaskStore taskStore] tasks] filteredArrayUsingPredicate:condition];
+    NSDictionary *completedTasksArrayDict = [NSDictionary dictionaryWithObject:completedTasks forKey:@"data"];
     [dataArray addObject:completedTasksArrayDict];
     
     
@@ -158,19 +163,19 @@
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
-    [self.tableView reloadData];
+    [[self tableView] reloadData];
 }
 
 - (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath {
-    [[TCTaskStore taskStore] moveTaskAtIndexInOpenTasks:[fromIndexPath row] toIndex:[toIndexPath row]];
+    [[TCTaskStore taskStore] moveTaskAtIndex:[fromIndexPath row] toIndex:[toIndexPath row]];
 }
 
 - (IBAction)addNewTask:(id)sender {
     // Create a new Task and add it to the store
     TCTask *newTask = [[TCTaskStore taskStore] createNewTask];
     
-    // Figure out where that item is in the openTasks array
-    int lastRow = [[[TCTaskStore taskStore] openTasks] indexOfObject:newTask];
+    // Figure out where that item is in the tasks array
+    int lastRow = [[[TCTaskStore taskStore] tasks] indexOfObject:newTask];
     NSIndexPath *ip = [NSIndexPath indexPathForRow:lastRow inSection:0];
     
     // insert new row into table
@@ -181,10 +186,13 @@
     // If the table view is asking to commit a delete command...
     if (editingStyle == UITableViewCellEditingStyleDelete) {
         
-        TCTaskStore *taskStore = [TCTaskStore   taskStore];
-        NSArray *taskList = [taskStore openTasks];
+        TCTaskStore *taskStore = [TCTaskStore  taskStore];
+        NSArray *taskList = [taskStore tasks];
         TCTask *task = [taskList objectAtIndex:[indexPath row]];
-        [taskStore removeTaskFromOpenTasks:task];
+        
+        [taskStore addTaskToArchivedTasks:task];
+        [taskStore removeTask:task];
+        
         
         // We also remove that row from the table view with an animation
         [tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationFade];
