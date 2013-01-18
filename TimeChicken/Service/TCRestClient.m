@@ -21,7 +21,7 @@
     self = [super init];
     if (self) {
         self.restClientDelegate = delegate;
-        tasksUrl = [[NSURL alloc] initWithString:@"http://api.onespark.de/api/v1/tasks"];
+        tasksUrl = [[NSURL alloc] initWithString:@"http://api.onespark.de:81/api/v1/tasks"];
     }
     return self;
 }

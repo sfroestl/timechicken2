@@ -58,6 +58,11 @@
     //extend with check, if task is in other arrays and remove it there, if it is added to completedTasks
     [completedTasks addObject:task];
 }
+- (void) addTasksToOpenTasks:(NSArray *)listOfTasks {
+    //extend with check, if task is in other arrays and remove it there, if it is added to completedTasks
+    [openTasks addObjectsFromArray:listOfTasks];
+}
+
 - (void) addTaskToArchivedTasks:(TCTask *)task {
     [archivedTasks addObject:task];
 }

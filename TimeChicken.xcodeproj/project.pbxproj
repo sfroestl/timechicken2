@@ -36,6 +36,7 @@
 		9E1ED3A716A569D100DF3049 /* TCWebserviceStore.m in Sources */ = {isa = PBXBuildFile; fileRef = 9E1ED3A116A569D100DF3049 /* TCWebserviceStore.m */; };
 		9E1ED3A816A569D100DF3049 /* TCWSOneSpark.m in Sources */ = {isa = PBXBuildFile; fileRef = 9E1ED3A316A569D100DF3049 /* TCWSOneSpark.m */; };
 		9E1ED3B116A56C4600DF3049 /* TCWebservice.m in Sources */ = {isa = PBXBuildFile; fileRef = 9E1ED3B016A56C4600DF3049 /* TCWebservice.m */; };
+		9EF416D216A93E6C0006E8A2 /* WSTaskChooseVCViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9EF416D116A93E6C0006E8A2 /* WSTaskChooseVCViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -85,6 +86,8 @@
 		9E1ED3A316A569D100DF3049 /* TCWSOneSpark.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TCWSOneSpark.m; sourceTree = "<group>"; };
 		9E1ED3AF16A56C4600DF3049 /* TCWebservice.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TCWebservice.h; sourceTree = "<group>"; };
 		9E1ED3B016A56C4600DF3049 /* TCWebservice.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TCWebservice.m; sourceTree = "<group>"; };
+		9EF416D016A93E6C0006E8A2 /* WSTaskChooseVCViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = WSTaskChooseVCViewController.h; path = TimeChicken/WSTaskChooseVCViewController.h; sourceTree = SOURCE_ROOT; };
+		9EF416D116A93E6C0006E8A2 /* WSTaskChooseVCViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = WSTaskChooseVCViewController.m; path = TimeChicken/WSTaskChooseVCViewController.m; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -149,6 +152,8 @@
 				9E03A5C116A58BF000EA3CBD /* WebserviceDetailViewController.h */,
 				9E03A5C216A58BF000EA3CBD /* WebserviceDetailViewController.m */,
 				9E03A5C316A58BF000EA3CBD /* WebserviceDetailViewController.xib */,
+				9EF416D016A93E6C0006E8A2 /* WSTaskChooseVCViewController.h */,
+				9EF416D116A93E6C0006E8A2 /* WSTaskChooseVCViewController.m */,
 				39685E7A16A54FC500FE52A1 /* Supporting Files */,
 			);
 			path = TimeChicken;
@@ -304,6 +309,7 @@
 				39E3763416A6C9F70048DC19 /* TaskDetailVC.m in Sources */,
 				39E3763616A6C9F70048DC19 /* TaskListVC.m in Sources */,
 				39EDE62A16A6FD0A0034299D /* TaskCell.m in Sources */,
+				9EF416D216A93E6C0006E8A2 /* WSTaskChooseVCViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

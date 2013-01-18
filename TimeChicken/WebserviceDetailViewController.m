@@ -7,6 +7,7 @@
 //
 
 #import "WebserviceDetailViewController.h"
+#import "WSTaskChooseVCViewController.h"
 #import "TCWebservice.h"
 #import "TCWSOneSpark.h"
 #import "TCRestClient.h"
@@ -73,6 +74,8 @@
 
 - (void) resetClientFinished:(TCRestClient*)client{
     NSLog(@"--> RestClientDelegate called");
+    NSMutableArray *fetchedTasks = [[NSMutableArray alloc] init];
+    
     NSDictionary *jsonData = [client jsonResponse];
     for (NSMutableArray *taskJson in [jsonData valueForKey:@"tasks"]) {
         NSLog(@"Task: %@", taskJson);
@@ -88,11 +91,11 @@
 //                                             dueDate:nil
 //                                                 url:[NSString stringWithFormat:@"http://api.onespark.de/api/v1/tasks/%@",[taskJson valueForKey:@"id"]]
 //                                           completed:NO];
-        [[TCTaskStore taskStore] addTaskToOpenTasks: task];
+        [fetchedTasks addObject:task];
     }
         
-    UITableViewController *wsResultCtrl = [[UITableViewController alloc] init];
-    //    wsResultCtrl
+    WSTaskChooseVCViewController *wsResultCtrl = [[WSTaskChooseVCViewController alloc] init];
+    [wsResultCtrl setWsTasks:fetchedTasks];
     [self.navigationController pushViewController:wsResultCtrl animated:YES];
     
 }

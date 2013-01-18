@@ -28,6 +28,8 @@
 - (void) addTaskToCompletedTasks:(TCTask *)task;
 - (void) addTaskToArchivedTasks:(TCTask *)task;
 
+- (void) addTasksToOpenTasks:(NSArray *)listOfTasks;
+
 - (void) removeTaskFromCompletedTasks:(TCTask *)task;
 - (void) removeTaskFromOpenTasks:(TCTask *)task;
 - (void) removeTaskFromArchivedTasks:(TCTask *)task;
