@@ -17,19 +17,6 @@
 
 @implementation TaskListVC
 
-//- (id)initWithStyle:(UITableViewStyle)style
-//{
-//    self = [super initWithStyle:style];
-//    if (self) {
-//        self.title = @"Tasks";
-//        for (int i=0; i<5; i++){
-//            [[TCTaskStore taskStore] createNewTask];
-//        }
-//        // Custom initialization
-//    }
-//    return self;
-//}
-
 - (id) init{
     //call the superclass's designated initializer
     self = [super initWithStyle:UITableViewStyleGrouped];
@@ -38,7 +25,7 @@
         NSDate *date = [[NSDate alloc] init];
         TCTask *taskWithImage = [[TCTask alloc] initWithTitle:@"ImageTask" desc:@"shows image and date" project:@"TC-App-Dev" dueDate:date url:nil completed:YES wsType:1];
         [[TCTaskStore taskStore] addTask:taskWithImage];
-        
+//        
 //        for (int i=0; i<5; i++){
 //            [[TCTaskStore taskStore] createNewTask];
 //        }
@@ -61,37 +48,15 @@
     
     self.tableView.backgroundView = nil;
     self.tableView.backgroundColor = [UIColor colorWithRed:230.0f/255.0f green:230.0f/255.0f blue:230.0f/255.0f alpha:1.0f];
-
-    //initialize the dataArray
-    dataArray = [[NSMutableArray alloc]init];
-    
-    //openTasks section data
-    NSPredicate *condition = [NSPredicate predicateWithFormat:@"completed == NO"];
-    NSArray *openTasks = [[[TCTaskStore taskStore] tasks] filteredArrayUsingPredicate:condition];
-    NSDictionary *openTasksArrayDict = [NSDictionary dictionaryWithObject:openTasks forKey:@"data"];
-    [dataArray addObject:openTasksArrayDict];
-    
-    //completedTasks section data
-    condition = [NSPredicate predicateWithFormat:@"completed == YES"];
-    NSArray *completedTasks = [[[TCTaskStore taskStore] tasks] filteredArrayUsingPredicate:condition];
-    NSDictionary *completedTasksArrayDict = [NSDictionary dictionaryWithObject:completedTasks forKey:@"data"];
-    [dataArray addObject:completedTasksArrayDict];
-    
-    
+   
     //Load the NIB-File for Custom Task-TableCell
     UINib *nib = [UINib nibWithNibName:@"TaskCell" bundle:nil];
     
     //Register this NIB which contains the cell
     [[self tableView] registerNib:nib forCellReuseIdentifier:@"TaskCell"];
-    
-    
-
-    // Uncomment the following line to preserve selection between presentations.
-    // self.clearsSelectionOnViewWillAppear = NO;
 
     UIBarButtonItem *addButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(addNewTask:)];
     [[self navigationItem] setRightBarButtonItem:addButton];
-    
 
     self.navigationItem.leftBarButtonItem = self.editButtonItem;
 }
@@ -108,27 +73,45 @@
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    // Return the number of sections.
-    return [dataArray count];
+    //2 sections for open and completed tasks
+    return 2;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    //Number of rows it should expect should be based on sections
-    NSDictionary *dictinary = [dataArray objectAtIndex:section];
-    NSArray *array = [dictinary objectForKey:@"data"];
-    return [array count];
+    switch(section)
+    {
+        case 0:{
+            //returns number of open tasks
+            NSPredicate *conditionFalse = [NSPredicate predicateWithFormat:@"(completed == NO) OR (completed == nil)"];
+           return [[[[TCTaskStore taskStore] tasks] filteredArrayUsingPredicate:conditionFalse] count];
+        }
+        case 1:{
+            //returns number of closed tasks
+            NSPredicate *conditionTrue = [NSPredicate predicateWithFormat:@"completed == YES"];
+            return [[[[TCTaskStore taskStore] tasks] filteredArrayUsingPredicate:conditionTrue] count];
+        }
+    }
+    
+    return -1;
 }
 
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section{
-    if(section==0) return @"Open Tasks";
-    else return @"Completed Tasks";
+    switch(section){
+        case 0: return @"Open Tasks";
+        case 1: return @"Completed Tasks";
+    }
+    return nil;
 }
 
 - (UITableViewCell *) tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
-    NSDictionary *dictionary = [dataArray objectAtIndex:indexPath.section];
-    NSArray *array = [dictionary objectForKey:@"data"];
-    TCTask *task =  [array objectAtIndex:indexPath.row];
+    TCTask *currentTask;
+    
+    NSPredicate *conditionFalse = [NSPredicate predicateWithFormat:@"(completed == NO) OR (completed == nil)"];
+    NSArray *openTasks = [[[TCTaskStore taskStore] tasks] filteredArrayUsingPredicate:conditionFalse];
+    
+    NSPredicate *conditionTrue = [NSPredicate predicateWithFormat:@"completed == YES"];
+    NSArray *completedTasks = [[[TCTaskStore taskStore] tasks] filteredArrayUsingPredicate:conditionTrue];
     
     TaskCell *cell = [tableView dequeueReusableCellWithIdentifier:@"TaskCell"];
     
@@ -136,37 +119,108 @@
     [cell setController:self];
     [cell setTableView:tableView];
     
-    //if tasktyp is onespark, show image
-    if(task.wsType <1){
-        [[cell thumbnailView] setImage:nil];
+    if(indexPath.section==0){
+        currentTask = [openTasks objectAtIndex:indexPath.row];
+        
+        //set Backend-Thumbnails
+        switch (currentTask.wsType) {
+//            case 0:{
+//                [[cell thumbnailView] setImage:nil];
+//                break;
+//            }
+            case 1:{
+                [[cell thumbnailView] setImage:[UIImage imageNamed:@"onesparkThumb.png"]];
+                break;
+            }
+            case 2:{
+                [[cell thumbnailView] setImage:[UIImage imageNamed:@"jiraThumb.png"]];
+                break;
+            }
+            default:{
+                [[cell thumbnailView] setImage:nil];
+                break;
+            }
+        }
+        
+        //set title
+        [[cell titleLabel] setText:[currentTask title]];
+        
+        //set subtitle
+        NSDateFormatter *dateFormat = [[NSDateFormatter alloc] init];
+        [dateFormat setDateFormat:@"YYYY.MM.dd"];
+        [[cell subtitleLabel] setText:[NSString stringWithFormat:@"due: %@", [dateFormat stringFromDate:[currentTask dueDate]]]];
+        
+        //set Time on Button
+         NSString *timeString = @"00:15:28";
+        [[cell timeButton] setTitle:timeString forState:nil];
+        return cell;
     }
     
-    if(task.wsType==1){
-        [[cell thumbnailView] setImage:[UIImage imageNamed:@"onesparkThumb.png"]];
+    if(indexPath.section==1){
+        currentTask = [completedTasks objectAtIndex:indexPath.row];
+        
+        //set Backend-Thumbnails
+        switch (currentTask.wsType) {
+                //            case 0:{
+                //                [[cell thumbnailView] setImage:nil];
+                //                break;
+                //            }
+            case 1:{
+                [[cell thumbnailView] setImage:[UIImage imageNamed:@"onesparkThumb.png"]];
+                break;
+            }
+            case 2:{
+                [[cell thumbnailView] setImage:[UIImage imageNamed:@"jiraThumb.png"]];
+                break;
+            }
+            default:{
+                [[cell thumbnailView] setImage:nil];
+                break;
+            }
+        }
+        
+        //set title
+        [[cell titleLabel] setText:[currentTask title]];
+        
+        //set subtitle
+        NSDateFormatter *dateFormat = [[NSDateFormatter alloc] init];
+        [dateFormat setDateFormat:@"YYYY.MM.dd"];
+        [[cell subtitleLabel] setText:[NSString stringWithFormat:@"due: %@", [dateFormat stringFromDate:[currentTask dueDate]]]];
+        
+        //set Time on Button
+        NSString *timeString = @"00:15:28";
+        [[cell timeButton] setTitle:timeString forState:nil];
+        return cell;
     }
-    
-    [[cell titleLabel] setText:[task title]];
-    NSDateFormatter *dateFormat = [[NSDateFormatter alloc] init];
-    [dateFormat setDateFormat:@"YYYY.MM.dd"];
-    [[cell subtitleLabel] setText:[NSString stringWithFormat:@"due: %@", [dateFormat stringFromDate:[task dueDate]]]];
-    NSString *timeString = @"00:15:28";
-    [[cell timeButton] setTitle:timeString forState:nil];    
-    return cell;
+    return nil;
+
 }
 
 - (void) tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-    //Get the selected Task
     TCTask *selectedTask = nil;
-    NSDictionary *dictionary = [dataArray objectAtIndex:indexPath.section];
-    NSArray *array = [dictionary objectForKey:@"data"];
-    selectedTask = [array objectAtIndex:indexPath.row];
     
-    // transition to TaskDetailController
+    NSPredicate *conditionFalse = [NSPredicate predicateWithFormat:@"(completed == NO) OR (completed == nil)"];
+    NSArray *openTasks = [[[TCTaskStore taskStore] tasks] filteredArrayUsingPredicate:conditionFalse];
+    
+    NSPredicate *conditionTrue = [NSPredicate predicateWithFormat:@"completed == YES"];
+    NSArray *completedTasks = [[[TCTaskStore taskStore] tasks] filteredArrayUsingPredicate:conditionTrue];
+    
+    switch (indexPath.section) {
+        case 0:{
+            selectedTask = [openTasks objectAtIndex:indexPath.row];
+            break;
+        }
+         
+        case 1:{
+            selectedTask = [completedTasks objectAtIndex:indexPath.row];
+            break;
+        }
+        default: selectedTask = nil;
+    }
+    
     TaskDetailVC *detailVC = [[TaskDetailVC alloc] init];
     [detailVC setDetailItem:selectedTask];
-    
     [self.navigationController pushViewController:detailVC animated:YES];
-//    NSlog(@"%@", selectedTask.title);
 }
 
 - (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath {
@@ -177,8 +231,11 @@
     // Create a new Task and add it to the store
     TCTask *newTask = [[TCTaskStore taskStore] createNewTask];
     
-    // Figure out where that item is in the tasks array
-    int lastRow = [[[TCTaskStore taskStore] tasks] indexOfObject:newTask];
+    // Figure out where that item is in the opentasks array
+    NSPredicate *conditionFalse = [NSPredicate predicateWithFormat:@"(completed == NO) OR (completed == nil)"];
+    NSArray *openTasks = [[[TCTaskStore taskStore] tasks] filteredArrayUsingPredicate:conditionFalse];
+    
+    int lastRow = [openTasks indexOfObject:newTask];
     NSIndexPath *ip = [NSIndexPath indexPathForRow:lastRow inSection:0];
     
     // insert new row into table

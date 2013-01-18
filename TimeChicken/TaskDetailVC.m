@@ -193,8 +193,8 @@
 
 -(IBAction)closeTask:(UIButton*)sender{
     self.detailItem.completed = YES;
-    [[TCTaskStore taskStore] addTaskToCompletedTasks:self.detailItem];
-    [[TCTaskStore taskStore] removeTaskFromOpenTasks:self.detailItem];
+//    [[TCTaskStore taskStore] addTaskToCompletedTasks:self.detailItem];
+//    [[TCTaskStore taskStore] removeTaskFromOpenTasks:self.detailItem];
     [[self navigationController] popViewControllerAnimated:YES];
     NSLog(@"completeTask was klicked");
 }
