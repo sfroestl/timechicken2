@@ -84,22 +84,21 @@
 //        if (due_date_string) {
 //            NSDate *dueDate = [dateFormat dateFromString:[taskJson valueForKey:@"due_date"]];
 //        }
-        TCTask *task = [[TCTask alloc] initWithTitle:[taskJson valueForKey:@"title"]];
-        task.completed = [[taskJson valueForKey:@"completed"] boolValue] ;
-        NSLog(@"Bool Value: %i",[[taskJson valueForKey:@"completed"] boolValue]);
-        task.desc = [taskJson valueForKey:@"desc"];
-        task.url = [NSString stringWithFormat:@"http://api.onespark.de/api/v1/tasks/%@",[taskJson valueForKey:@"id"]];
+        
+       
+        NSLog(@"Due Date: %@", [taskJson valueForKey: @"due_date"]);
+        bool completed = [[taskJson valueForKey:@"completed"] boolValue];
+        
+        TCTask *task = [[TCTask alloc] initWithTitle:[taskJson valueForKey:@"title"]
+                                                 desc:[taskJson valueForKey:@"desc"]
+                                              project:nil
+                                              dueDate:nil
+                                                  url:[NSString stringWithFormat:@"http://api.onespark.de/api/v1/tasks/%@", [taskJson valueForKey:@"id"]]
+                                            completed:completed
+                                               wsType:0];
         if ([self.detailItem isKindOfClass: [TCWSOneSpark class]]) {
             task.wsType = 1;
         }
-        NSLog(@"Due Date: %@", [taskJson valueForKey: @"due_date"]);
-        
-//        TCTask *task = [[TCTask alloc] initWithTitle:[taskJson valueForKey:@"title"]
-//                                                desc:[taskJson valueForKey:@"desc"]
-//                                             project:[taskJson valueForKey:@"project"]
-//                                             dueDate:nil
-//                                                 url:[NSString stringWithFormat:@"http://api.onespark.de/api/v1/tasks/%@",[taskJson valueForKey:@"id"]]
-//                                           completed:NO];
         [fetchedTasks addObject:task];
     }
         
