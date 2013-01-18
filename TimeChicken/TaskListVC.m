@@ -182,9 +182,14 @@
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
     // If the table view is asking to commit a delete command...
     if (editingStyle == UITableViewCellEditingStyleDelete) {
-        
         TCTaskStore *taskStore = [TCTaskStore  taskStore];
-        NSArray *taskList = [taskStore tasks];
+        NSArray *taskList;
+        if (indexPath.section == 0) {
+            taskList = [taskStore getOpenTasks];
+        } else if (indexPath.section == 1) {
+            taskList = [taskStore getCompletedTasks];
+        }
+        
         TCTask *task = [taskList objectAtIndex:[indexPath row]];
         
         [taskStore addTaskToArchivedTasks:task];
