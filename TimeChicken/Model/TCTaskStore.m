@@ -26,19 +26,14 @@
 - (id)init {
     self = [super init];
     if(self) {
-        openTasks = [[NSMutableArray alloc] init];
-        completedTasks = [[NSMutableArray alloc] init];
+        tasks = [[NSMutableArray alloc] init];
         archivedTasks = [[NSMutableArray alloc] init];
     }
     return self;
 }
 
-- (NSArray *) openTasks {
-//    NSLog(@"Open Tasks: %@", openTasks);
-    return openTasks;
-}
-- (NSArray *) completedTasks {
-    return completedTasks;
+- (NSArray *) tasks {
+    return tasks;
 }
 - (NSArray *) archivedTasks {
     return archivedTasks;
@@ -46,58 +41,47 @@
 
 - (TCTask *) createNewTask {
     TCTask *newTask = [[TCTask alloc] initWithTitle:@"New Task"];
-    [openTasks addObject:newTask];
+    newTask.completed = NO;
+    [tasks addObject:newTask];
     return newTask;
 }
 
-- (void) addTaskToOpenTasks:(TCTask *)task {
-    
-    [openTasks addObject:task];
+- (void) addTask:(TCTask *)task {    
+    [tasks addObject:task];
 }
-- (void) addTaskToCompletedTasks:(TCTask *)task {
+
+- (void) addTasks:(NSArray *)listOfTasks {
     //extend with check, if task is in other arrays and remove it there, if it is added to completedTasks
-    [completedTasks addObject:task];
-}
-- (void) addTasksToOpenTasks:(NSArray *)listOfTasks {
-    //extend with check, if task is in other arrays and remove it there, if it is added to completedTasks
-    [openTasks addObjectsFromArray:listOfTasks];
+    [tasks addObjectsFromArray:listOfTasks];
 }
 
 - (void) addTaskToArchivedTasks:(TCTask *)task {
     [archivedTasks addObject:task];
 }
 
-
-
-- (void) removeTaskFromOpenTasks:(TCTask *)task {
-    [openTasks removeObjectIdenticalTo:task];
+- (void) addTasksToArchivedTasks:(NSArray *)listOfTasks {
+    [archivedTasks addObjectsFromArray:listOfTasks];
 }
-- (void) removeTaskFromCompletedTasks:(TCTask *)task {
-    [completedTasks removeObjectIdenticalTo:task];
+
+- (void) removeTask:(TCTask *)task {
+    [tasks removeObjectIdenticalTo:task];
 }
 - (void) removeTaskFromArchivedTasks:(TCTask *)task {
     [archivedTasks removeObjectIdenticalTo:task];
 }
 
-- (void) moveTaskAtIndexInOpenTasks:(int)from toIndex:(int)to {
+- (void) moveTaskAtIndex:(int)from toIndex:(int)to {
     if (from == to){
         return;
     }
     // Get pointer to object being moved so we can re-insert it
-    TCTask *task = [openTasks objectAtIndex:from];
+    TCTask *task = [tasks objectAtIndex:from];
     // Remove item from array
-    [openTasks removeObjectAtIndex:from];    
+    [tasks removeObjectAtIndex:from];
     // Insert item in array at new location
-    [openTasks insertObject:task atIndex:to];
+    [tasks insertObject:task atIndex:to];
 }
-- (void) moveTaskAtIndexInCompletedTasks:(int)from toIndex:(int)to {
-    if (from == to) {
-        return;
-    }
-    TCTask *task = [completedTasks objectAtIndex:from];
-    [completedTasks removeObjectAtIndex:from];
-    [completedTasks insertObject:task atIndex:to];
-}
+
 - (void) moveTaskAtIndexInArchivedTasks:(int)from toIndex:(int)to{
     if (from == to) {
         return;

@@ -11,31 +11,27 @@
 @class TCTask;
 
 @interface TCTaskStore : NSObject {
-    NSMutableArray *openTasks;
-    NSMutableArray *completedTasks;
+    NSMutableArray *tasks;
     NSMutableArray *archivedTasks;
 }
 
 + (TCTaskStore *) taskStore;
 
-- (NSArray *) openTasks;
-- (NSArray *) completedTasks;
+- (NSArray *) tasks;
 - (NSArray *) archivedTasks;
 
 - (TCTask *) createNewTask;
 
-- (void) addTaskToOpenTasks:(TCTask *)task;
-- (void) addTaskToCompletedTasks:(TCTask *)task;
+- (void) addTask:(TCTask *)task;
+- (void) addTasks:(NSArray *)listOfTasks;
+
 - (void) addTaskToArchivedTasks:(TCTask *)task;
+- (void) addTasksToArchivedTasks:(NSArray *)listOfTasks;
 
-- (void) addTasksToOpenTasks:(NSArray *)listOfTasks;
-
-- (void) removeTaskFromCompletedTasks:(TCTask *)task;
-- (void) removeTaskFromOpenTasks:(TCTask *)task;
+- (void) removeTask:(TCTask *)task;
 - (void) removeTaskFromArchivedTasks:(TCTask *)task;
 
-- (void) moveTaskAtIndexInOpenTasks:(int)from toIndex:(int)to;
-- (void) moveTaskAtIndexInCompletedTasks:(int)from toIndex:(int)to;
+- (void) moveTaskAtIndex:(int)from toIndex:(int)to;
 - (void) moveTaskAtIndexInArchivedTasks:(int)from toIndex:(int)to;
 
 

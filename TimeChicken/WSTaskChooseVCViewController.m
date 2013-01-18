@@ -57,6 +57,12 @@
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
 }
 
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    [[self tableView] reloadData];
+}
+
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
@@ -141,7 +147,7 @@
 - (void) importWSTasks:(id)sender {
     NSLog(@"Import %u tasks!", [self.chosedTasksForImport count]);
     // Import tasks to TCTaskStore
-    [[TCTaskStore taskStore] addTasksToOpenTasks:self.chosedTasksForImport];
+    [[TCTaskStore taskStore] addTasks:self.chosedTasksForImport];
 }
 
 
