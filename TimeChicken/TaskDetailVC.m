@@ -10,6 +10,8 @@
 #import "TCTask.h"
 #import "TaskDetailEditCell.h"
 #import "TCDatePicker.h"
+#import "TCTaskStore.h"
+#import "ButtonCell.h"
 
 @interface TaskDetailVC ()<UITextFieldDelegate>
 @property (nonatomic,strong) TCDatePicker* datepicker;
@@ -37,17 +39,16 @@
     self.title = @"TaskDetails";
     
     //Load the NIB-File for Custom Task-TableCell
-    UINib *nib = [UINib nibWithNibName:@"TaskDetailEditCell" bundle:nil];
+    UINib *nibTaskDetailEditCell = [UINib nibWithNibName:@"TaskDetailEditCell" bundle:nil];
     
     //Register this NIB which contains the cell
-    [[self tableView] registerNib:nib forCellReuseIdentifier:@"TaskDetailEditCell"];
+    [[self tableView] registerNib:nibTaskDetailEditCell forCellReuseIdentifier:@"TaskDetailEditCell"];
     
-    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"complete" style:UIBarButtonItemStyleDone target:self action:@selector(closeTask:)];
+    //Load the NIB-file for Custom Button-Cell
+    UINib *nibButtonCell = [UINib nibWithNibName:@"ButtonCell" bundle:nil];
     
-    
-    
-    // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-    // self.navigationItem.rightBarButtonItem = self.editButtonItem;
+    //Register the NIB which contains the cell
+    [[self tableView] registerNib:nibButtonCell forCellReuseIdentifier:@"ButtonCell"];
 }
 
 - (void)didReceiveMemoryWarning
@@ -60,18 +61,16 @@
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    // Return the number of sections.
-    //    return [taskDetailsArray count];
-    
-    return 2;
+    return 3;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     switch(section)
     {
-        case 0: return 5;
-        case 1: return [self.detailItem.timeSessions count];
+        case 0: return 5;   //Task-properties
+        case 1: return 1;   //Complete-Button
+        case 2: return [self.detailItem.timeSessions count];    //TimeSessionlist
     }
     
     return -1;
@@ -81,7 +80,8 @@
     switch(section)
     {
         case 0: return nil;
-        case 1: return @"Time Sessions";
+        case 1: return nil;
+        case 2: return @"Time Sessions";
     }
     return nil;
 }
@@ -141,6 +141,17 @@
     }
     
     if(indexPath.section == 1){
+        
+        //Complete Button
+        ButtonCell *cell = [tableView dequeueReusableCellWithIdentifier:@"ButtonCell"];      
+        [[cell button] addTarget:self action:@selector(closeTask:) forControlEvents:UIControlEventTouchUpInside];
+        [[cell button] setTitle:@"complete Task" forState:nil];
+        cell.backgroundView = [[UIView alloc] initWithFrame:CGRectZero];
+
+        return cell;
+    }
+    
+    if(indexPath.section == 2){
         static NSString *CellIdentifier = @"Cell";
         UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
         if (cell == nil) {
@@ -180,7 +191,11 @@
     self.detailItem.workedTime = [sender.text intValue];
 }
 
--(IBAction)closeTask:(UIBarButtonItem*)sender{
+-(IBAction)closeTask:(UIButton*)sender{
+    self.detailItem.completed = YES;
+//    [[TCTaskStore taskStore] addTaskToCompletedTasks:self.detailItem];
+//    [[TCTaskStore taskStore] removeTaskFromOpenTasks:self.detailItem];
+    [[self navigationController] popViewControllerAnimated:YES];
     NSLog(@"completeTask was klicked");
 }
 

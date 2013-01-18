@@ -17,19 +17,6 @@
 
 @implementation TaskListVC
 
-//- (id)initWithStyle:(UITableViewStyle)style
-//{
-//    self = [super initWithStyle:style];
-//    if (self) {
-//        self.title = @"Tasks";
-//        for (int i=0; i<5; i++){
-//            [[TCTaskStore taskStore] createNewTask];
-//        }
-//        // Custom initialization
-//    }
-//    return self;
-//}
-
 - (id) init{
     //call the superclass's designated initializer
     self = [super initWithStyle:UITableViewStyleGrouped];
@@ -38,11 +25,6 @@
         NSDate *date = [[NSDate alloc] init];
         TCTask *taskWithImage = [[TCTask alloc] initWithTitle:@"ImageTask" desc:@"shows image and date" project:@"TC-App-Dev" dueDate:date url:nil completed:YES wsType:0];
         [[TCTaskStore taskStore] addTask:taskWithImage];
-        
-        for (int i=0; i<5; i++){
-            [[TCTaskStore taskStore] createNewTask];
-        }
-        
     }
     return self;
 }
@@ -51,25 +33,26 @@
     return [self init];
 }
 
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    [self.tableView reloadData];
+}
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
     
     self.tableView.backgroundView = nil;
     self.tableView.backgroundColor = [UIColor colorWithRed:230.0f/255.0f green:230.0f/255.0f blue:230.0f/255.0f alpha:1.0f];
-    
+   
     //Load the NIB-File for Custom Task-TableCell
     UINib *nib = [UINib nibWithNibName:@"TaskCell" bundle:nil];
     
     //Register this NIB which contains the cell
     [[self tableView] registerNib:nib forCellReuseIdentifier:@"TaskCell"];
 
-    // Uncomment the following line to preserve selection between presentations.
-    // self.clearsSelectionOnViewWillAppear = NO;
-
     UIBarButtonItem *addButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(addNewTask:)];
     [[self navigationItem] setRightBarButtonItem:addButton];
-    
 
     self.navigationItem.leftBarButtonItem = self.editButtonItem;
 }
@@ -86,79 +69,140 @@
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    // Return the number of sections.
     return 2;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    //Number of rows it should expect should be based on sections
-    int count;
-    if(section == 0) {
-        count =  [[[TCTaskStore taskStore] getOpenTasks] count];
-    } else if (section == 1) {
-        count =  [[[TCTaskStore taskStore] getCompletedTasks] count];
+    switch(section)
+    {
+        case 0:{
+           return [[[TCTaskStore taskStore] getOpenTasks] count];
+        }
+        case 1:{
+            return [[[TCTaskStore taskStore] getCompletedTasks] count];
+        }
     }
-    return count;
+    
+    return -1;
 }
 
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section{
-    if(section==0) return @"Open Tasks";
-    else return @"Completed Tasks";
+    switch(section){
+        case 0: return @"Open Tasks";
+        case 1: return @"Completed Tasks";
+    }
+    return nil;
 }
 
-- (UITableViewCell *) tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
-//    NSDictionary *dictionary = [dataArray objectAtIndex:indexPath.section];
-//    NSArray *array = [dictionary objectForKey:@"data"];
-    TCTask *task = nil;
-    if (indexPath.section == 0) {
-        NSArray *openTasks = [[TCTaskStore taskStore] getOpenTasks];
-        task =  [openTasks objectAtIndex:indexPath.row];
-    } else if(indexPath.section == 1) {
-        NSArray *completedTasks = [[TCTaskStore taskStore] getCompletedTasks];
-        task =  [completedTasks objectAtIndex:indexPath.row];
-    }
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
     TaskCell *cell = [tableView dequeueReusableCellWithIdentifier:@"TaskCell"];
     
-    //Connect TimerButton of TaskCell to this TaskListViewController and asign table
-    [cell setController:self];
-    [cell setTableView:tableView];
+    TCTask *currentTask;
     
-    //if tasktyp is onespark, show image
-    if(task.wsType==1){
-        [[cell thumbnailView] setImage:[UIImage imageNamed:@"onesparkThumb.png"]];
+    if(indexPath.section==0){
+        NSArray *openTasks = [[TCTaskStore taskStore] getOpenTasks];
+        currentTask = [openTasks objectAtIndex:indexPath.row];
+        
+        //set Backend-Thumbnails
+        switch (currentTask.wsType) {
+//            case 0:{
+//                [[cell thumbnailView] setImage:nil];
+//                break;
+//            }
+            case 1:{
+                [[cell thumbnailView] setImage:[UIImage imageNamed:@"onesparkThumb.png"]];
+                break;
+            }
+            case 2:{
+                [[cell thumbnailView] setImage:[UIImage imageNamed:@"jiraThumb.png"]];
+                break;
+            }
+            default:{
+                [[cell thumbnailView] setImage:nil];
+                break;
+            }
+        }
+        
+        //set title
+        [[cell titleLabel] setText:[currentTask title]];
+        
+        //set subtitle
+        NSDateFormatter *dateFormat = [[NSDateFormatter alloc] init];
+        [dateFormat setDateFormat:@"YYYY.MM.dd"];
+        [[cell subtitleLabel] setText:[NSString stringWithFormat:@"due: %@", [dateFormat stringFromDate:[currentTask dueDate]]]];
+        
+        //set Time on Button
+         NSString *timeString = @"00:15:28";
+        [[cell timeButton] setTitle:timeString forState:nil];
+        return cell;
     }
     
-    cell.titleLabel.text = task.title;
-    NSDateFormatter *dateFormat = [[NSDateFormatter alloc] init];
-    [dateFormat setDateFormat:@"YYYY.MM.dd"];
-    [[cell subtitleLabel] setText:[NSString stringWithFormat:@"due: %@", [dateFormat stringFromDate:[task dueDate]]]];
-    NSString *timeString = @"00:15:28";
-    [[cell timeButton] setTitle:timeString forState:UIControlStateNormal];
-    return cell;
+    if(indexPath.section==1){
+        NSArray *completedTasks = [[TCTaskStore taskStore] getCompletedTasks];
+        currentTask = [completedTasks objectAtIndex:indexPath.row];
+        
+        //set Backend-Thumbnails
+        switch (currentTask.wsType) {
+                //            case 0:{
+                //                [[cell thumbnailView] setImage:nil];
+                //                break;
+                //            }
+            case 1:{
+                [[cell thumbnailView] setImage:[UIImage imageNamed:@"onesparkThumb.png"]];
+                break;
+            }
+            case 2:{
+                [[cell thumbnailView] setImage:[UIImage imageNamed:@"jiraThumb.png"]];
+                break;
+            }
+            default:{
+                [[cell thumbnailView] setImage:nil];
+                break;
+            }
+        }
+        
+        //set title
+        [[cell titleLabel] setText:[currentTask title]];
+        
+        //set subtitle
+        NSDateFormatter *dateFormat = [[NSDateFormatter alloc] init];
+        [dateFormat setDateFormat:@"YYYY.MM.dd"];
+        [[cell subtitleLabel] setText:[NSString stringWithFormat:@"due: %@", [dateFormat stringFromDate:[currentTask dueDate]]]];
+        
+        //set Time on Button
+        NSString *timeString = @"00:15:28";
+        [[cell timeButton] setTitle:timeString forState:nil];
+        return cell;
+    }
+    return nil;
+
+
 }
 
 - (void) tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-    NSLog(@"IndexPath = Section %u, Row %u", indexPath.section, indexPath.row);
-    //Get the selected Task
-    TCTask *task = nil;
-    if (indexPath.section == 0) {
-        task =  [[[TCTaskStore taskStore] getOpenTasks] objectAtIndex:indexPath.row];
-    } else if(indexPath.section == 1) {
-        task =  [[[TCTaskStore taskStore] getCompletedTasks] objectAtIndex:indexPath.row];
+    TCTask *selectedTask = nil;
+    
+    NSArray *completedTasks = [[TCTaskStore taskStore] getCompletedTasks];
+    NSArray *openTasks = [[TCTaskStore taskStore] getOpenTasks];
+    
+    switch (indexPath.section) {
+        case 0:{
+            selectedTask = [openTasks objectAtIndex:indexPath.row];
+            break;
+        }
+         
+        case 1:{
+            selectedTask = [completedTasks objectAtIndex:indexPath.row];
+            break;
+        }
+        default: selectedTask = nil;
     }
     
-    // transition to TaskDetailController
     TaskDetailVC *detailVC = [[TaskDetailVC alloc] init];
-    [detailVC setDetailItem:task];
-    
+    [detailVC setDetailItem:selectedTask];
     [self.navigationController pushViewController:detailVC animated:YES];
-//    NSlog(@"%@", selectedTask.title);
-}
-
-- (void)viewWillAppear:(BOOL)animated {
-    [super viewWillAppear:animated];
-    [[self tableView] reloadData];
 }
 
 - (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath {
@@ -169,10 +213,11 @@
     // Create a new Task and add it to the store
     TCTask *newTask = [[TCTaskStore taskStore] createNewTask];
     
-    // Figure out where that item is in the tasks array
-    
+    // Figure out where that item is in the opentasks array
     NSArray *openTasks = [[TCTaskStore taskStore] getOpenTasks];
+    
     int lastRow = [openTasks indexOfObject:newTask];
+  
     NSIndexPath *ip = [NSIndexPath indexPathForRow:lastRow inSection:0];
     
     // insert new row into table

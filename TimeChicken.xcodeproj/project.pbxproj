@@ -25,6 +25,9 @@
 		39A9B36816A814C900C9E8CC /* onesparkThumb.png in Resources */ = {isa = PBXBuildFile; fileRef = 39A9B36716A814C900C9E8CC /* onesparkThumb.png */; };
 		39E3763416A6C9F70048DC19 /* TaskDetailVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 39E3762F16A6C9F70048DC19 /* TaskDetailVC.m */; };
 		39E3763616A6C9F70048DC19 /* TaskListVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 39E3763216A6C9F70048DC19 /* TaskListVC.m */; };
+		39EDE63B16A958740034299D /* ButtonCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 39EDE63A16A958740034299D /* ButtonCell.xib */; };
+		39EDE63F16A958B00034299D /* ButtonCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 39EDE63E16A958B00034299D /* ButtonCell.m */; };
+		39EDE64116A9713F0034299D /* jiraThumb.png in Resources */ = {isa = PBXBuildFile; fileRef = 39EDE64016A9713F0034299D /* jiraThumb.png */; };
 		9E03A5BF16A587A300EA3CBD /* icon-os.png in Resources */ = {isa = PBXBuildFile; fileRef = 9E03A5BE16A587A300EA3CBD /* icon-os.png */; };
 		9E03A5C416A58BF000EA3CBD /* WebserviceDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9E03A5C216A58BF000EA3CBD /* WebserviceDetailViewController.m */; };
 		9E03A5C516A58BF000EA3CBD /* WebserviceDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9E03A5C316A58BF000EA3CBD /* WebserviceDetailViewController.xib */; };
@@ -69,6 +72,10 @@
 		39E3762F16A6C9F70048DC19 /* TaskDetailVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TaskDetailVC.m; sourceTree = "<group>"; };
 		39E3763116A6C9F70048DC19 /* TaskListVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TaskListVC.h; sourceTree = "<group>"; };
 		39E3763216A6C9F70048DC19 /* TaskListVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TaskListVC.m; sourceTree = "<group>"; };
+		39EDE63A16A958740034299D /* ButtonCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ButtonCell.xib; sourceTree = "<group>"; };
+		39EDE63D16A958B00034299D /* ButtonCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ButtonCell.h; sourceTree = "<group>"; };
+		39EDE63E16A958B00034299D /* ButtonCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ButtonCell.m; sourceTree = "<group>"; };
+		39EDE64016A9713F0034299D /* jiraThumb.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = jiraThumb.png; path = Images/jiraThumb.png; sourceTree = "<group>"; };
 		9E03A5BE16A587A300EA3CBD /* icon-os.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon-os.png"; sourceTree = "<group>"; };
 		9E03A5C116A58BF000EA3CBD /* WebserviceDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WebserviceDetailViewController.h; sourceTree = "<group>"; };
 		9E03A5C216A58BF000EA3CBD /* WebserviceDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WebserviceDetailViewController.m; sourceTree = "<group>"; };
@@ -192,6 +199,7 @@
 		9E03A5C016A587B000EA3CBD /* images */ = {
 			isa = PBXGroup;
 			children = (
+				39EDE64016A9713F0034299D /* jiraThumb.png */,
 				39A9B36716A814C900C9E8CC /* onesparkThumb.png */,
 				9E03A5BE16A587A300EA3CBD /* icon-os.png */,
 				39685E8E16A54FC500FE52A1 /* first.png */,
@@ -237,6 +245,9 @@
 				9ECBD0E316A94FD900C412FC /* TaskDetailEditCell.h */,
 				9ECBD0E416A94FD900C412FC /* TaskDetailEditCell.m */,
 				9ECBD0E516A94FD900C412FC /* TaskDetailEditCell.xib */,
+				39EDE63A16A958740034299D /* ButtonCell.xib */,
+				39EDE63D16A958B00034299D /* ButtonCell.h */,
+				39EDE63E16A958B00034299D /* ButtonCell.m */,
 			);
 			path = TableCells;
 			sourceTree = "<group>";
@@ -305,6 +316,8 @@
 				39A9B36816A814C900C9E8CC /* onesparkThumb.png in Resources */,
 				9ECBD0E716A94FD900C412FC /* TaskCell.xib in Resources */,
 				9ECBD0E916A94FD900C412FC /* TaskDetailEditCell.xib in Resources */,
+				39EDE63B16A958740034299D /* ButtonCell.xib in Resources */,
+				39EDE64116A9713F0034299D /* jiraThumb.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -332,6 +345,7 @@
 				9EF416D216A93E6C0006E8A2 /* WSTaskChooseVCViewController.m in Sources */,
 				9ECBD0E616A94FD900C412FC /* TaskCell.m in Sources */,
 				9ECBD0E816A94FD900C412FC /* TaskDetailEditCell.m in Sources */,
+				39EDE63F16A958B00034299D /* ButtonCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
