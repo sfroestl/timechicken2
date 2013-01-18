@@ -36,7 +36,7 @@
     if(self){
         self.title = @"Tasks";
         NSDate *date = [[NSDate alloc] init];
-        TCTask *taskWithImage = [[TCTask alloc] initWithTitle:@"ImageTask" desc:@"shows image and date" project:@"TC-App-Dev" dueDate:date url:nil completed:YES wsType:1];
+        TCTask *taskWithImage = [[TCTask alloc] initWithTitle:@"ImageTask" desc:@"shows image and date" project:@"TC-App-Dev" dueDate:date url:nil completed:YES wsType:0];
         [[TCTaskStore taskStore] addTask:taskWithImage];
         
         for (int i=0; i<5; i++){
@@ -57,30 +57,12 @@
     
     self.tableView.backgroundView = nil;
     self.tableView.backgroundColor = [UIColor colorWithRed:230.0f/255.0f green:230.0f/255.0f blue:230.0f/255.0f alpha:1.0f];
-
-    //initialize the dataArray
-    dataArray = [[NSMutableArray alloc]init];
-    
-    //openTasks section data
-    NSPredicate *condition = [NSPredicate predicateWithFormat:@"completed == NO"];
-    NSArray *openTasks = [[[TCTaskStore taskStore] tasks] filteredArrayUsingPredicate:condition];
-    NSDictionary *openTasksArrayDict = [NSDictionary dictionaryWithObject:openTasks forKey:@"data"];
-    [dataArray addObject:openTasksArrayDict];
-    
-    //completedTasks section data
-    condition = [NSPredicate predicateWithFormat:@"completed == YES"];
-    NSArray *completedTasks = [[[TCTaskStore taskStore] tasks] filteredArrayUsingPredicate:condition];
-    NSDictionary *completedTasksArrayDict = [NSDictionary dictionaryWithObject:completedTasks forKey:@"data"];
-    [dataArray addObject:completedTasksArrayDict];
-    
     
     //Load the NIB-File for Custom Task-TableCell
     UINib *nib = [UINib nibWithNibName:@"TaskCell" bundle:nil];
     
     //Register this NIB which contains the cell
     [[self tableView] registerNib:nib forCellReuseIdentifier:@"TaskCell"];
-    
-    
 
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
@@ -105,15 +87,19 @@
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
     // Return the number of sections.
-    return [dataArray count];
+    return 2;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     //Number of rows it should expect should be based on sections
-    NSDictionary *dictinary = [dataArray objectAtIndex:section];
-    NSArray *array = [dictinary objectForKey:@"data"];
-    return [array count];
+    int count;
+    if(section == 0) {
+        count =  [[[TCTaskStore taskStore] getOpenTasks] count];
+    } else if (section == 1) {
+        count =  [[[TCTaskStore taskStore] getCompletedTasks] count];
+    }
+    return count;
 }
 
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section{
@@ -122,10 +108,16 @@
 }
 
 - (UITableViewCell *) tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
-    NSDictionary *dictionary = [dataArray objectAtIndex:indexPath.section];
-    NSArray *array = [dictionary objectForKey:@"data"];
-    TCTask *task =  [array objectAtIndex:indexPath.row];
-    
+//    NSDictionary *dictionary = [dataArray objectAtIndex:indexPath.section];
+//    NSArray *array = [dictionary objectForKey:@"data"];
+    TCTask *task = nil;
+    if (indexPath.section == 0) {
+        NSArray *openTasks = [[TCTaskStore taskStore] getOpenTasks];
+        task =  [openTasks objectAtIndex:indexPath.row];
+    } else if(indexPath.section == 1) {
+        NSArray *completedTasks = [[TCTaskStore taskStore] getCompletedTasks];
+        task =  [completedTasks objectAtIndex:indexPath.row];
+    }
     TaskCell *cell = [tableView dequeueReusableCellWithIdentifier:@"TaskCell"];
     
     //Connect TimerButton of TaskCell to this TaskListViewController and asign table
@@ -137,25 +129,28 @@
         [[cell thumbnailView] setImage:[UIImage imageNamed:@"onesparkThumb.png"]];
     }
     
-    [[cell titleLabel] setText:[task title]];
+    cell.titleLabel.text = task.title;
     NSDateFormatter *dateFormat = [[NSDateFormatter alloc] init];
     [dateFormat setDateFormat:@"YYYY.MM.dd"];
     [[cell subtitleLabel] setText:[NSString stringWithFormat:@"due: %@", [dateFormat stringFromDate:[task dueDate]]]];
     NSString *timeString = @"00:15:28";
-    [[cell timeButton] setTitle:timeString forState:nil];    
+    [[cell timeButton] setTitle:timeString forState:UIControlStateNormal];
     return cell;
 }
 
 - (void) tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    NSLog(@"IndexPath = Section %u, Row %u", indexPath.section, indexPath.row);
     //Get the selected Task
-    TCTask *selectedTask = nil;
-    NSDictionary *dictionary = [dataArray objectAtIndex:indexPath.section];
-    NSArray *array = [dictionary objectForKey:@"data"];
-    selectedTask = [array objectAtIndex:indexPath.row];
+    TCTask *task = nil;
+    if (indexPath.section == 0) {
+        task =  [[[TCTaskStore taskStore] getOpenTasks] objectAtIndex:indexPath.row];
+    } else if(indexPath.section == 1) {
+        task =  [[[TCTaskStore taskStore] getCompletedTasks] objectAtIndex:indexPath.row];
+    }
     
     // transition to TaskDetailController
     TaskDetailVC *detailVC = [[TaskDetailVC alloc] init];
-    [detailVC setDetailItem:selectedTask];
+    [detailVC setDetailItem:task];
     
     [self.navigationController pushViewController:detailVC animated:YES];
 //    NSlog(@"%@", selectedTask.title);
@@ -175,7 +170,9 @@
     TCTask *newTask = [[TCTaskStore taskStore] createNewTask];
     
     // Figure out where that item is in the tasks array
-    int lastRow = [[[TCTaskStore taskStore] tasks] indexOfObject:newTask];
+    
+    NSArray *openTasks = [[TCTaskStore taskStore] getOpenTasks];
+    int lastRow = [openTasks indexOfObject:newTask];
     NSIndexPath *ip = [NSIndexPath indexPathForRow:lastRow inSection:0];
     
     // insert new row into table
@@ -204,47 +201,5 @@
     NSLog(@"Going to start/stop the Timer for %@", ip);
 }
 
-/*
-// Override to support conditional editing of the table view.
-- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    // Return NO if you do not want the specified item to be editable.
-    return YES;
-}
-*/
-
-/*
-// Override to support editing the table view.
-- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    if (editingStyle == UITableViewCellEditingStyleDelete) {
-        // Delete the row from the data source
-        [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
-    }   
-    else if (editingStyle == UITableViewCellEditingStyleInsert) {
-        // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-    }   
-}
-*/
-
-/*
-// Override to support rearranging the table view.
-- (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath
-{
-}
-*/
-
-/*
-// Override to support conditional rearranging of the table view.
-- (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    // Return NO if you do not want the item to be re-orderable.
-    return YES;
-}
-*/
-
-#pragma mark - Table view delegate
-
-//}
 
 @end

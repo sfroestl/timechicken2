@@ -32,7 +32,20 @@
     return self;
 }
 
+- (NSArray *) getOpenTasks {
+    NSPredicate *condition = [NSPredicate predicateWithFormat:@"(completed == NO) OR (completed == nil)"];
+    NSArray *openTasks = [[[TCTaskStore taskStore] tasks] filteredArrayUsingPredicate:condition];
+    return openTasks;
+}
+
+- (NSArray *) getCompletedTasks {
+    NSPredicate *condition = [NSPredicate predicateWithFormat:@"(completed == YES)"];
+    NSArray *openTasks = [[[TCTaskStore taskStore] tasks] filteredArrayUsingPredicate:condition];
+    return openTasks;    
+}
+
 - (NSArray *) tasks {
+    NSLog(@"%@", tasks);
     return tasks;
 }
 - (NSArray *) archivedTasks {
@@ -41,7 +54,6 @@
 
 - (TCTask *) createNewTask {
     TCTask *newTask = [[TCTask alloc] initWithTitle:@"New Task"];
-    newTask.completed = NO;
     [tasks addObject:newTask];
     return newTask;
 }

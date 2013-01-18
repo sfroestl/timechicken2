@@ -10,7 +10,6 @@
 #import "TaskCell.h"
 
 @interface TaskListVC : UITableViewController{
-    NSMutableArray *dataArray;
 }
 
 

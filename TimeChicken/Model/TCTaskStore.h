@@ -34,6 +34,7 @@
 - (void) moveTaskAtIndex:(int)from toIndex:(int)to;
 - (void) moveTaskAtIndexInArchivedTasks:(int)from toIndex:(int)to;
 
-
+- (NSArray *) getOpenTasks;
+- (NSArray *) getCompletedTasks;
 
 @end
