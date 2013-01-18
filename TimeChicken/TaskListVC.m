@@ -53,6 +53,9 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    self.tableView.backgroundView = nil;
+    self.tableView.backgroundColor = [UIColor colorWithRed:230.0f/255.0f green:230.0f/255.0f blue:230.0f/255.0f alpha:1.0f];
 
     //initialize the dataArray
     dataArray = [[NSMutableArray alloc]init];
@@ -83,6 +86,8 @@
 
     self.navigationItem.leftBarButtonItem = self.editButtonItem;
 }
+
+
 
 - (void)didReceiveMemoryWarning
 {
