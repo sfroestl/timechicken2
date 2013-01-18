@@ -39,15 +39,20 @@
         TCTask *taskWithImage = [[TCTask alloc] initWithTitle:@"ImageTask" desc:@"shows image and date" project:@"TC-App-Dev" dueDate:date url:nil completed:NO wsType:1];
         [[TCTaskStore taskStore] addTaskToOpenTasks:taskWithImage];
         
-        for (int i=0; i<5; i++){
-            [[TCTaskStore taskStore] createNewTask];
-        }
+//        for (int i=0; i<5; i++){
+//            [[TCTaskStore taskStore] createNewTask];
+//        }
     }
     return self;
 }
 
 -(id) initWithStyle:(UITableViewStyle)style{
     return [self init];
+}
+
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    [self.tableView reloadData];
 }
 
 - (void)viewDidLoad
@@ -128,6 +133,10 @@
     [cell setTableView:tableView];
     
     //if tasktyp is onespark, show image
+    if(task.wsType <1){
+        [[cell thumbnailView] setImage:nil];
+    }
+    
     if(task.wsType==1){
         [[cell thumbnailView] setImage:[UIImage imageNamed:@"onesparkThumb.png"]];
     }
@@ -154,11 +163,6 @@
     
     [self.navigationController pushViewController:detailVC animated:YES];
 //    NSlog(@"%@", selectedTask.title);
-}
-
-- (void)viewWillAppear:(BOOL)animated {
-    [super viewWillAppear:animated];
-    [self.tableView reloadData];
 }
 
 - (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath {
