@@ -9,6 +9,7 @@
 #import "WSTaskChooseVCViewController.h"
 #import "TCTask.h"
 #import "TCTaskStore.h"
+#import "TaskListVC.h"
 
 @interface WSTaskChooseVCViewController ()
 
@@ -148,6 +149,13 @@
     NSLog(@"Import %u tasks!", [self.chosedTasksForImport count]);
     // Import tasks to TCTaskStore
     [[TCTaskStore taskStore] addTasks:self.chosedTasksForImport];
+    [self.chosedTasksForImport removeAllObjects];
+    wsTasks = nil;
+//    TaskListVC *taskVC = [self.tabBarController.viewControllers objectAtIndex:0];
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Successfully importet tasks." message:nil delegate:nil cancelButtonTitle:@"Great!" otherButtonTitles:nil];
+    [alert show];
+    [self.parentViewController.tabBarController setSelectedIndex:0];
+    [self.navigationController popViewControllerAnimated:NO];
 }
 
 

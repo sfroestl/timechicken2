@@ -20,6 +20,6 @@
 - (TCWebservice *) createNewWebservice;
 - (void) addWebservice:(TCWebservice *)webservice;
 - (void) removeWebservice:(TCWebservice *)webservice;
-- (void)moveItemAtIndex:(int)from toIndex:(int)to;
+- (void) moveItemAtIndex:(int)from toIndex:(int)to;
 
 @end

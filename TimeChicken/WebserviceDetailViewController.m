@@ -78,20 +78,27 @@
     
     NSDictionary *jsonData = [client jsonResponse];
     for (NSMutableArray *taskJson in [jsonData valueForKey:@"tasks"]) {
-        NSLog(@"Task: %@", taskJson);
+//        NSLog(@"Task: %@", taskJson);
 //        NSDateFormatter *dateFormat = [[NSDateFormatter alloc] init];
 //        NSString *due_date_string = [taskJson valueForKey:@"due_date"];
 //        if (due_date_string) {
 //            NSDate *dueDate = [dateFormat dateFromString:[taskJson valueForKey:@"due_date"]];
 //        }
-        TCTask *task = [[TCTask alloc] initWithTitle:[taskJson valueForKey:@"title"]];
-        task.completed = NO;
-//        TCTask *task = [[TCTask alloc] initWithTitle:[taskJson valueForKey:@"title"]
-//                                                desc:[taskJson valueForKey:@"desc"]
-//                                             project:[taskJson valueForKey:@"project"]
-//                                             dueDate:nil
-//                                                 url:[NSString stringWithFormat:@"http://api.onespark.de/api/v1/tasks/%@",[taskJson valueForKey:@"id"]]
-//                                           completed:NO];
+        
+       
+        NSLog(@"Due Date: %@", [taskJson valueForKey: @"due_date"]);
+        bool completed = [[taskJson valueForKey:@"completed"] boolValue];
+        
+        TCTask *task = [[TCTask alloc] initWithTitle:[taskJson valueForKey:@"title"]
+                                                 desc:[taskJson valueForKey:@"desc"]
+                                              project:nil
+                                              dueDate:nil
+                                                  url:[NSString stringWithFormat:@"http://api.onespark.de/api/v1/tasks/%@", [taskJson valueForKey:@"id"]]
+                                            completed:completed
+                                               wsType:0];
+        if ([self.detailItem isKindOfClass: [TCWSOneSpark class]]) {
+            task.wsType = 1;
+        }
         [fetchedTasks addObject:task];
     }
         
