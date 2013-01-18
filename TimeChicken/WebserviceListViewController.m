@@ -9,7 +9,7 @@
 #import "WebserviceListViewController.h"
 #import "WebserviceDetailViewController.h"
 #import "TCWebserviceStore.h"
-#import "TCWebservice.h"
+#import "TCWebserviceEntity.h"
 #import "TCWSOneSpark.h"
 
 @interface WebserviceListViewController ()
@@ -69,7 +69,7 @@
     if (!cell) {
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"WebserviceCell"];
     }
-    TCWebservice *ws = [[[TCWebserviceStore webservices] allWebservices] objectAtIndex:[indexPath row]];
+    TCWebserviceEntity *ws = [[[TCWebserviceStore webservices] allWebservices] objectAtIndex:[indexPath row]];
     [cell.imageView setImage:ws.image];
     [cell.textLabel setText: ws.title];
     
@@ -78,7 +78,7 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     NSLog(@"Selected Webservice");
-    TCWebservice *selectedWS = [[[TCWebserviceStore webservices] allWebservices] objectAtIndex:[indexPath row]];
+    TCWebserviceEntity *selectedWS = [[[TCWebserviceStore webservices] allWebservices] objectAtIndex:[indexPath row]];
     
     // transition to DetailController
     WebserviceDetailViewController *detailVC = [[WebserviceDetailViewController alloc] init];
@@ -95,7 +95,7 @@
 
 - (IBAction)addNewWebservice:(id)sender {
     // Create a new BNRItem and add it to the store
-    TCWebservice *newWS = [[TCWebserviceStore webservices] createNewWebservice];
+    TCWebserviceEntity *newWS = [[TCWebserviceStore webservices] createNewWebservice];
     
     // Figure out where that item is in the array
     int lastRow = [[[TCWebserviceStore webservices] allWebservices] indexOfObject:newWS];
@@ -110,7 +110,7 @@
     if (editingStyle == UITableViewCellEditingStyleDelete) {
         TCWebserviceStore *wsStore = [TCWebserviceStore webservices];
         NSArray *wsList = [wsStore allWebservices];
-        TCWebservice *ws = [wsList objectAtIndex:[indexPath row]];
+        TCWebserviceEntity *ws = [wsList objectAtIndex:[indexPath row]];
         [wsStore removeWebservice:ws];
         
         // We also remove that row from the table view with an animation

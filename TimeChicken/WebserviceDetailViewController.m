@@ -8,9 +8,10 @@
 
 #import "WebserviceDetailViewController.h"
 #import "WSTaskChooseVCViewController.h"
-#import "TCWebservice.h"
+#import "TCWebserviceEntity.h"
 #import "TCWSOneSpark.h"
 #import "TCRestClient.h"
+#import "OneSparkRestClient.h"
 #import "TCTaskStore.h"
 
 @interface WebserviceDetailViewController ()
@@ -48,7 +49,7 @@
         NSLog(@"Selected: %@", self.detailItem.title);
         if ([self.detailItem isKindOfClass: [TCWSOneSpark class]]) {
             NSLog(@"init TCOneSparkRestClient");
-            restClient = [[TCRestClient alloc] initOneSparkRestClientwithDelegate:self];
+            restClient = [[OneSparkRestClient alloc] initRestClientwithDelegate:self];
         }
         [titleField setText:detailItem.title];        
     }
@@ -64,7 +65,7 @@
 
 
 - (void)fetchTasks {    
-    NSLog(@"%@",restClient);
+    NSLog(@"%@", restClient);
     [restClient fetchUserTaskList];
 }
 
@@ -95,7 +96,7 @@
                                               dueDate:nil
                                                   url:[NSString stringWithFormat:@"http://api.onespark.de/api/v1/tasks/%@", [taskJson valueForKey:@"id"]]
                                             completed:completed
-                                               wsType:0];
+                                               wsType: ONESPARK];
         task.wsId = [[taskJson valueForKey:@"id"] integerValue];
         if ([self.detailItem isKindOfClass: [TCWSOneSpark class]]) {
             task.wsType = 1;

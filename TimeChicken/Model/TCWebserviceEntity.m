@@ -6,9 +6,9 @@
 //  Copyright (c) 2013 Sebastian Fröstl. All rights reserved.
 //
 
-#import "TCWebservice.h"
+#import "TCWebserviceEntity.h"
 
-@implementation TCWebservice
+@implementation TCWebserviceEntity
 
 @synthesize title = _title;
 @synthesize image = _image;

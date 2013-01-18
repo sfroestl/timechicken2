@@ -7,9 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "TCRestClientDelegate.h"
 #import "TCRestClient.h"
 
-@class TCWebservice;
+
+@class TCWebserviceEntity;
 @class TCRestClient;
 
 
@@ -20,7 +22,7 @@
     __weak IBOutlet UITextField *passwordField;
     __weak IBOutlet UILabel *lastSyncLabel;
 }
-@property (strong, nonatomic) TCWebservice *detailItem;
+@property (strong, nonatomic) TCWebserviceEntity *detailItem;
 
 - (IBAction)fetchTaskButtonPressed:(id)sender;
 

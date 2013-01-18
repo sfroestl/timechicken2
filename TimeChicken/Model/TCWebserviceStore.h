@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
-@class TCWebservice;
+@class TCWebserviceEntity;
 
 @interface TCWebserviceStore : NSObject {
      NSMutableArray *webservices;
@@ -17,9 +17,9 @@
 + (TCWebserviceStore *)webservices;
 
 - (NSArray *) allWebservices;
-- (TCWebservice *) createNewWebservice;
-- (void) addWebservice:(TCWebservice *)webservice;
-- (void) removeWebservice:(TCWebservice *)webservice;
+- (TCWebserviceEntity *) createNewWebservice;
+- (void) addWebservice:(TCWebserviceEntity *)webservice;
+- (void) removeWebservice:(TCWebserviceEntity *)webservice;
 - (void) moveItemAtIndex:(int)from toIndex:(int)to;
 
 @end

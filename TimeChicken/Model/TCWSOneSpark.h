@@ -6,10 +6,10 @@
 //  Copyright (c) 2013 Christian Schäfer. All rights reserved.
 //
 
-#import "TCWebservice.h"
+#import "TCWebserviceEntity.h"
 #import "TCTask.h"
 
-@interface TCWSOneSpark : TCWebservice
+@interface TCWSOneSpark : TCWebserviceEntity
 
 @property(strong, nonatomic) NSString *username;
 @property(strong, nonatomic) NSString *password;

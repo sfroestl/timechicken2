@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@class TCWebservice;
+@class TCWebserviceEntity;
 
 @interface WebserviceListViewController : UITableViewController {
 }

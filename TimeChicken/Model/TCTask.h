@@ -8,8 +8,6 @@
 
 #import <Foundation/Foundation.h>
 
-enum WS_TYPES {local, onespark, jira};
-
 @interface TCTask : NSObject
 
 @property (strong, nonatomic) NSString *title;

@@ -2,40 +2,32 @@
 //  TCRestClient.h
 //  TimeChicken
 //
-//  Created by Sebastian Fröstl on 15.01.13.
+//  Created by Sebastian Fröstl on 18.01.13.
 //  Copyright (c) 2013 Christian Schäfer. All rights reserved.
 //
 
 #import <Foundation/Foundation.h>
-
-@class Base64;
-@class TCTask;
-@class TCRestClient;
-
-@protocol TCRestClientDelegate <NSObject>
+#import "TCRestClientDelegate.h"
+#import "TCTask.h"
+@protocol TCRestClientIF <NSObject>
 @required
-- (void) resetClientFinished:(TCRestClient*)restClient;
-- (void) restClient:(TCRestClient*)restClient failedWithError:(NSError*)error;
+- (void) fetchUserTaskList;
+- (void) fetchUserProjectList;
 @end
 
-@interface TCRestClient : NSObject{
+@interface TCRestClient : NSObject <TCRestClientIF>{
     NSMutableData *urlData;
     NSURLConnection *connection;
     NSString *projectsUrl;
     NSURL *tasksUrl;
-    NSString *timesessionUrl;    
+    NSString *timesessionUrl;
     NSArray *taskList;
     __weak id <TCRestClientDelegate> restClientDelegate;
 }
 @property (nonatomic, weak) id <TCRestClientDelegate> restClientDelegate;
 @property (nonatomic, strong)  NSDictionary *jsonResponse;
 
-
-
-- (id)initOneSparkRestClientwithDelegate:(id<TCRestClientDelegate>) delegate;
-
-
-- (void) fetchUserTaskList;
+- (id)initRestClientwithDelegate:(id<TCRestClientDelegate>) delegate;
 
 @end
 

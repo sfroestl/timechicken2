@@ -8,7 +8,11 @@
 
 #import <Foundation/Foundation.h>
 
-@interface TCWebservice : NSObject
+enum {LOCAL, ONESPARK, JIRA};
+typedef NSUInteger WS_TYPES;
+
+@interface TCWebserviceEntity : NSObject
+
 
 @property (strong, nonatomic) NSString *title;
 @property (strong, nonatomic) UIImage *image;

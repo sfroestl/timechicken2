@@ -32,12 +32,13 @@
 		9E03A5C416A58BF000EA3CBD /* WebserviceDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9E03A5C216A58BF000EA3CBD /* WebserviceDetailViewController.m */; };
 		9E03A5C516A58BF000EA3CBD /* WebserviceDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9E03A5C316A58BF000EA3CBD /* WebserviceDetailViewController.xib */; };
 		9E0780B416A69A920045161B /* Base64.m in Sources */ = {isa = PBXBuildFile; fileRef = 9E0780B316A69A920045161B /* Base64.m */; };
-		9E0E0A5B16A5B33C00C97B68 /* TCRestClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 9E0E0A5716A5B33C00C97B68 /* TCRestClient.m */; };
 		9E1ED3A416A569D100DF3049 /* TCTask.m in Sources */ = {isa = PBXBuildFile; fileRef = 9E1ED39B16A569D100DF3049 /* TCTask.m */; };
 		9E1ED3A516A569D100DF3049 /* TCTaskStore.m in Sources */ = {isa = PBXBuildFile; fileRef = 9E1ED39D16A569D100DF3049 /* TCTaskStore.m */; };
 		9E1ED3A716A569D100DF3049 /* TCWebserviceStore.m in Sources */ = {isa = PBXBuildFile; fileRef = 9E1ED3A116A569D100DF3049 /* TCWebserviceStore.m */; };
 		9E1ED3A816A569D100DF3049 /* TCWSOneSpark.m in Sources */ = {isa = PBXBuildFile; fileRef = 9E1ED3A316A569D100DF3049 /* TCWSOneSpark.m */; };
-		9E1ED3B116A56C4600DF3049 /* TCWebservice.m in Sources */ = {isa = PBXBuildFile; fileRef = 9E1ED3B016A56C4600DF3049 /* TCWebservice.m */; };
+		9E1ED3B116A56C4600DF3049 /* TCWebserviceEntity.m in Sources */ = {isa = PBXBuildFile; fileRef = 9E1ED3B016A56C4600DF3049 /* TCWebserviceEntity.m */; };
+		9E7FD44916A9D579009208D7 /* OneSparkRestClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 9E7FD44816A9D579009208D7 /* OneSparkRestClient.m */; };
+		9E7FD45316A9DE3A009208D7 /* TCRestClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 9E7FD45216A9DE3A009208D7 /* TCRestClient.m */; };
 		9ECBD0E616A94FD900C412FC /* TaskCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 9ECBD0E116A94FD900C412FC /* TaskCell.m */; };
 		9ECBD0E716A94FD900C412FC /* TaskCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9ECBD0E216A94FD900C412FC /* TaskCell.xib */; };
 		9ECBD0E816A94FD900C412FC /* TaskDetailEditCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 9ECBD0E416A94FD900C412FC /* TaskDetailEditCell.m */; };
@@ -82,8 +83,6 @@
 		9E03A5C316A58BF000EA3CBD /* WebserviceDetailViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = WebserviceDetailViewController.xib; sourceTree = "<group>"; };
 		9E0780B216A69A920045161B /* Base64.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Base64.h; sourceTree = "<group>"; };
 		9E0780B316A69A920045161B /* Base64.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Base64.m; sourceTree = "<group>"; };
-		9E0E0A5716A5B33C00C97B68 /* TCRestClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TCRestClient.m; sourceTree = "<group>"; };
-		9E0E0A5816A5B33C00C97B68 /* TCRestClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TCRestClient.h; sourceTree = "<group>"; };
 		9E1ED39A16A569D100DF3049 /* TCTask.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TCTask.h; sourceTree = "<group>"; };
 		9E1ED39B16A569D100DF3049 /* TCTask.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TCTask.m; sourceTree = "<group>"; };
 		9E1ED39C16A569D100DF3049 /* TCTaskStore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TCTaskStore.h; sourceTree = "<group>"; };
@@ -92,8 +91,13 @@
 		9E1ED3A116A569D100DF3049 /* TCWebserviceStore.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TCWebserviceStore.m; sourceTree = "<group>"; };
 		9E1ED3A216A569D100DF3049 /* TCWSOneSpark.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TCWSOneSpark.h; sourceTree = "<group>"; };
 		9E1ED3A316A569D100DF3049 /* TCWSOneSpark.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TCWSOneSpark.m; sourceTree = "<group>"; };
-		9E1ED3AF16A56C4600DF3049 /* TCWebservice.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TCWebservice.h; sourceTree = "<group>"; };
-		9E1ED3B016A56C4600DF3049 /* TCWebservice.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TCWebservice.m; sourceTree = "<group>"; };
+		9E1ED3AF16A56C4600DF3049 /* TCWebserviceEntity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TCWebserviceEntity.h; sourceTree = "<group>"; };
+		9E1ED3B016A56C4600DF3049 /* TCWebserviceEntity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TCWebserviceEntity.m; sourceTree = "<group>"; };
+		9E7FD44516A9D043009208D7 /* TCRestClientDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TCRestClientDelegate.h; sourceTree = "<group>"; };
+		9E7FD44616A9D086009208D7 /* TCRestClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TCRestClient.h; sourceTree = "<group>"; };
+		9E7FD44716A9D579009208D7 /* OneSparkRestClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OneSparkRestClient.h; sourceTree = "<group>"; };
+		9E7FD44816A9D579009208D7 /* OneSparkRestClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OneSparkRestClient.m; sourceTree = "<group>"; };
+		9E7FD45216A9DE3A009208D7 /* TCRestClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TCRestClient.m; sourceTree = "<group>"; };
 		9ECBD0E016A94FD900C412FC /* TaskCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TaskCell.h; sourceTree = "<group>"; };
 		9ECBD0E116A94FD900C412FC /* TaskCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TaskCell.m; sourceTree = "<group>"; };
 		9ECBD0E216A94FD900C412FC /* TaskCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TaskCell.xib; sourceTree = "<group>"; };
@@ -213,8 +217,11 @@
 		9E0E0A5316A5B33C00C97B68 /* Service */ = {
 			isa = PBXGroup;
 			children = (
-				9E0E0A5816A5B33C00C97B68 /* TCRestClient.h */,
-				9E0E0A5716A5B33C00C97B68 /* TCRestClient.m */,
+				9E7FD44516A9D043009208D7 /* TCRestClientDelegate.h */,
+				9E7FD44616A9D086009208D7 /* TCRestClient.h */,
+				9E7FD45216A9DE3A009208D7 /* TCRestClient.m */,
+				9E7FD44716A9D579009208D7 /* OneSparkRestClient.h */,
+				9E7FD44816A9D579009208D7 /* OneSparkRestClient.m */,
 			);
 			path = Service;
 			sourceTree = "<group>";
@@ -226,8 +233,8 @@
 				9E1ED39B16A569D100DF3049 /* TCTask.m */,
 				9E1ED39C16A569D100DF3049 /* TCTaskStore.h */,
 				9E1ED39D16A569D100DF3049 /* TCTaskStore.m */,
-				9E1ED3AF16A56C4600DF3049 /* TCWebservice.h */,
-				9E1ED3B016A56C4600DF3049 /* TCWebservice.m */,
+				9E1ED3AF16A56C4600DF3049 /* TCWebserviceEntity.h */,
+				9E1ED3B016A56C4600DF3049 /* TCWebserviceEntity.m */,
 				9E1ED3A216A569D100DF3049 /* TCWSOneSpark.h */,
 				9E1ED3A316A569D100DF3049 /* TCWSOneSpark.m */,
 				9E1ED3A016A569D100DF3049 /* TCWebserviceStore.h */,
@@ -336,9 +343,8 @@
 				9E1ED3A516A569D100DF3049 /* TCTaskStore.m in Sources */,
 				9E1ED3A716A569D100DF3049 /* TCWebserviceStore.m in Sources */,
 				9E1ED3A816A569D100DF3049 /* TCWSOneSpark.m in Sources */,
-				9E1ED3B116A56C4600DF3049 /* TCWebservice.m in Sources */,
+				9E1ED3B116A56C4600DF3049 /* TCWebserviceEntity.m in Sources */,
 				9E03A5C416A58BF000EA3CBD /* WebserviceDetailViewController.m in Sources */,
-				9E0E0A5B16A5B33C00C97B68 /* TCRestClient.m in Sources */,
 				9E0780B416A69A920045161B /* Base64.m in Sources */,
 				39E3763416A6C9F70048DC19 /* TaskDetailVC.m in Sources */,
 				39E3763616A6C9F70048DC19 /* TaskListVC.m in Sources */,
@@ -346,6 +352,8 @@
 				9ECBD0E616A94FD900C412FC /* TaskCell.m in Sources */,
 				9ECBD0E816A94FD900C412FC /* TaskDetailEditCell.m in Sources */,
 				39EDE63F16A958B00034299D /* ButtonCell.m in Sources */,
+				9E7FD44916A9D579009208D7 /* OneSparkRestClient.m in Sources */,
+				9E7FD45316A9DE3A009208D7 /* TCRestClient.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
