@@ -9,7 +9,7 @@
 #import "WebserviceListVC.h"
 #import "WebserviceDetailVC.h"
 #import "TCWebserviceStore.h"
-#import "TCWebserviceEntity.h"
+#import "TCWebservice.h"
 #import "TCWSOneSpark.h"
 #import "NewWebserviceVC.h"
 
@@ -58,7 +58,7 @@
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return [[[TCWebserviceStore webservices] allWebservices] count];
+    return [[[TCWebserviceStore wsStore] allWebservices] count];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -70,7 +70,7 @@
     if (!cell) {
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"WebserviceCell"];
     }
-    TCWebserviceEntity *ws = [[[TCWebserviceStore webservices] allWebservices] objectAtIndex:[indexPath row]];
+    TCWebservice *ws = [[[TCWebserviceStore wsStore] allWebservices] objectAtIndex:[indexPath row]];
 //    [cell.imageView setImage:[UIImage imageNamed:ws.image]];
     
     [cell.textLabel setText: ws.title];
@@ -80,7 +80,7 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     NSLog(@"Selected Webservice");
-    TCWebserviceEntity *selectedWS = [[[TCWebserviceStore webservices] allWebservices] objectAtIndex:[indexPath row]];
+    TCWebservice *selectedWS = [[[TCWebserviceStore wsStore] allWebservices] objectAtIndex:[indexPath row]];
     
     // transition to DetailController
     WebserviceDetailVC *detailVC = [[WebserviceDetailVC alloc] init];
@@ -92,7 +92,7 @@
 }
 
 - (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath {
-    [[TCWebserviceStore webservices] moveItemAtIndex:[fromIndexPath row]toIndex:[toIndexPath row]];
+    [[TCWebserviceStore wsStore] moveItemAtIndex:[fromIndexPath row]toIndex:[toIndexPath row]];
 }
 
 - (IBAction)addNewWebservice:(id)sender {
@@ -111,9 +111,9 @@
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
     // If the table view is asking to commit a delete command...
     if (editingStyle == UITableViewCellEditingStyleDelete) {
-        TCWebserviceStore *wsStore = [TCWebserviceStore webservices];
+        TCWebserviceStore *wsStore = [TCWebserviceStore wsStore];
         NSArray *wsList = [wsStore allWebservices];
-        TCWebserviceEntity *ws = [wsList objectAtIndex:[indexPath row]];
+        TCWebservice *ws = [wsList objectAtIndex:[indexPath row]];
         [wsStore removeWebservice:ws];
         
         // We also remove that row from the table view with an animation

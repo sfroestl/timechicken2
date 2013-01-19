@@ -11,7 +11,7 @@
 #import "TCRestClient.h"
 
 
-@class TCWebserviceEntity;
+@class TCWebservice;
 @class TCRestClient;
 
 
@@ -22,7 +22,7 @@
     __weak IBOutlet UITextField *passwordField;
     __weak IBOutlet UILabel *lastSyncLabel;
 }
-@property (strong, nonatomic) TCWebserviceEntity *detailItem;
+@property (strong, nonatomic) TCWebservice *detailItem;
 
 - (IBAction)fetchTaskButtonPressed:(id)sender;
 

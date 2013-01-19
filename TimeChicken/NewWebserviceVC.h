@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-@class TCWebserviceEntity;
+@class TCWebservice;
 @class TCWSOneSpark;
 //@class TCWSJira;
 

@@ -7,27 +7,32 @@
 //
 
 #import "TCWebserviceStore.h"
-#import "TCWebserviceEntity.h"
-#import "TCWSOneSpark.h"
+#import "TCWebservice.h"
+
 
 @implementation TCWebserviceStore
 
 
-+ (TCWebserviceStore *)webservices {
-    static TCWebserviceStore *webservices = nil;
-    if(!webservices)
-        webservices = [[super allocWithZone:nil] init];
-    return webservices;    
++ (TCWebserviceStore *)wsStore {
+    static TCWebserviceStore *wsStore = nil;
+    if(!wsStore)
+        wsStore = [[super allocWithZone:nil] init];
+    return wsStore;    
 }
 
 + (id)allocWithZone:(NSZone *)zone  {
-    return [self webservices];
+    return [self wsStore];
 }
 
 - (id)init {
     self = [super init];
     if(self) {
         webservices = [[NSMutableArray alloc] init];
+        wsNames = [[NSArray alloc] initWithObjects:@"One Spark", @"Jira", nil];
+        wsDescs = [[NSArray alloc] initWithObjects:
+                   @"Make your idea happen!",
+                   @"JIRA ist ein Projektverfolgungstool für Teams", nil];
+        wsImagePaths = [[NSArray alloc] initWithObjects: @"icon-os.png", @"jiraThumb.png", nil];
     }
     return self;
 }
@@ -36,39 +41,45 @@
     return webservices;
 }
 
-- (TCWebserviceEntity *)createNewWebservice {
-    TCWebserviceEntity *newWS = [[TCWSOneSpark alloc] initWithTitle:@"New Webservice"];
-    [webservices addObject:newWS];
-    return newWS;
+- (NSArray *) wsNames {
+    return wsNames;
 }
 
-- (TCWebserviceEntity *) createWebserviceWithType:(int)type {
-    TCWebserviceEntity * newWs;
-    
-    switch (type) {
-        case 1:
-            newWs = [[TCWSOneSpark alloc] initWithTitle:[[TCWebserviceEntity webserviceNames] objectAtIndex:1]];
-            break;
-        case 2:
-            newWs = [[TCWSOneSpark alloc] initWithTitle:[[TCWebserviceEntity webserviceNames] objectAtIndex:2]];
-            break;            
-        default:
-            break;
-    }
+- (NSString *) wsNameofType:(int) type {
+    return [wsNames objectAtIndex:type];
+}
+
+- (NSString *) wsDescriptionOfType:(int) type {
+    return [wsDescs objectAtIndex:type];
+}
+
+- (NSString *) wsImageOfType:(int) type {
+    return [wsImagePaths objectAtIndex:type];
+}
+
+- (TCWebservice *) webserviceWithType:(int)type {
+    TCWebservice * newWs = [[TCWebservice alloc] initWithTitle:[wsNames objectAtIndex:type] desc:[wsDescs objectAtIndex:type] type:type];
     return newWs;
 }
 
-- (void) addWebservice:(TCWebserviceEntity *)webservice {
+- (TCWebservice *) webserviceWithType:(int)type andBaseUrl:(NSURL *)bUrl {
+    TCWebservice * newWs = [[TCWebservice alloc] initWithTitle:[wsNames objectAtIndex:type] desc:[wsDescs objectAtIndex:type] type:type andBaseUrl:bUrl];
+    return newWs;
+}
+
+- (void) addWebservice:(TCWebservice *)webservice {
     [webservices addObject:webservices];
 }
-- (void) removeWebservice:(TCWebserviceEntity *)webservice {
+
+- (void) removeWebservice:(TCWebservice *)webservice {
     [webservices removeObjectIdenticalTo:webservice];
 }
+
 - (void)moveItemAtIndex:(int)from toIndex:(int)to {
     if (from == to){
         return;
     }
-    TCWebserviceEntity *ws = [webservices objectAtIndex:from];    
+    TCWebservice *ws = [webservices objectAtIndex:from];    
     // Remove item from array
     [webservices removeObjectAtIndex:from];
     // Insert item in array at new location

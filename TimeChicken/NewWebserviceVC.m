@@ -7,7 +7,7 @@
 //
 
 #import "NewWebserviceVC.h"
-#import "TCWebserviceEntity.h"
+#import "TCWebservice.h"
 #import "TCWSOneSpark.h"
 #import "WebserviceEditVC.h"
 
@@ -43,7 +43,7 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {    
-    return ([[TCWebserviceEntity webserviceNames] count] - 1);}
+    return ([[TCWebservice webserviceNames] count] - 1);}
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
@@ -52,9 +52,9 @@
     if (!cell) {
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:@"WSCell"];
     }
-    [[cell textLabel] setText:[[TCWebserviceEntity webserviceNames] objectAtIndex:indexPath.row + 1]];
-    [[cell detailTextLabel] setText:[[TCWebserviceEntity webserviceDescriptions] objectAtIndex:indexPath.row + 1]];
-    [[cell imageView] setImage: [UIImage imageNamed:[[TCWebserviceEntity webserviceImages] objectAtIndex:indexPath.row + 1]]];
+    [[cell textLabel] setText:[[TCWebservice webserviceNames] objectAtIndex:indexPath.row + 1]];
+    [[cell detailTextLabel] setText:[[TCWebservice webserviceDescriptions] objectAtIndex:indexPath.row + 1]];
+    [[cell imageView] setImagePath: [UIImage imageNamed:[[TCWebservice webserviceImages] objectAtIndex:indexPath.row + 1]]];
     
     return cell;
 }
@@ -63,7 +63,7 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     WebserviceEditVC *wsDetailVC = [[WebserviceEditVC alloc] init];
-    TCWebserviceEntity *webservice;
+    TCWebservice *webservice;
     switch (indexPath.row) {
         case 0:
             webservice = [[TCWSOneSpark alloc] init];

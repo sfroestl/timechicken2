@@ -8,19 +8,32 @@
 
 #import <Foundation/Foundation.h>
 
-@class TCWebserviceEntity;
+enum {ONESPARK, JIRA};
+typedef NSUInteger WS_TYPES;
+
+@class TCWebservice;
 
 @interface TCWebserviceStore : NSObject {
-     NSMutableArray *webservices;
+    NSMutableArray *webservices;
+    NSArray *wsNames;
+    NSArray *wsDescs;
+    NSArray *wsImagePaths;
 }
 
-+ (TCWebserviceStore *)webservices;
++ (TCWebserviceStore *)wsStore;
+
+- (NSArray *) wsNames;
+- (NSString *) wsNameofType:(int) type;
+- (NSString *) wsDescriptionOfType:(int) type;
+- (NSString *) wsImageOfType:(int) type;
 
 - (NSArray *) allWebservices;
-- (TCWebserviceEntity *) createNewWebservice;
-- (TCWebserviceEntity *) createWebserviceWithType:(int)type;
-- (void) addWebservice:(TCWebserviceEntity *)webservice;
-- (void) removeWebservice:(TCWebserviceEntity *)webservice;
+
+- (TCWebservice *) webserviceWithType:(int)type;
+- (TCWebservice *) webserviceWithType:(int)type andBaseUrl:(NSURL *) bUrl;
+
+- (void) addWebservice:(TCWebservice *)webservice;
+- (void) removeWebservice:(TCWebservice *)webservice;
 - (void) moveItemAtIndex:(int)from toIndex:(int)to;
 
 @end

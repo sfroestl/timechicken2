@@ -8,7 +8,7 @@
 
 #import "WebserviceDetailVC.h"
 #import "ChooseTaskVC.h"
-#import "TCWebserviceEntity.h"
+#import "TCWebservice.h"
 #import "TCWSOneSpark.h"
 #import "TCRestClient.h"
 #import "OneSparkRestClient.h"

@@ -112,15 +112,15 @@
 //                break;
 //            }
             case 1:{
-                [[cell thumbnailView] setImage:[UIImage imageNamed:@"onesparkThumb.png"]];
+                [[cell thumbnailView] setImagePath:[UIImage imageNamed:@"onesparkThumb.png"]];
                 break;
             }
             case 2:{
-                [[cell thumbnailView] setImage:[UIImage imageNamed:@"jiraThumb.png"]];
+                [[cell thumbnailView] setImagePath:[UIImage imageNamed:@"jiraThumb.png"]];
                 break;
             }
             default:{
-                [[cell thumbnailView] setImage:nil];
+                [[cell thumbnailView] setImagePath:nil];
                 break;
             }
         }
@@ -150,15 +150,15 @@
                 //                break;
                 //            }
             case 1:{
-                [[cell thumbnailView] setImage:[UIImage imageNamed:@"onesparkThumb.png"]];
+                [[cell thumbnailView] setImagePath:[UIImage imageNamed:@"onesparkThumb.png"]];
                 break;
             }
             case 2:{
-                [[cell thumbnailView] setImage:[UIImage imageNamed:@"jiraThumb.png"]];
+                [[cell thumbnailView] setImagePath:[UIImage imageNamed:@"jiraThumb.png"]];
                 break;
             }
             default:{
-                [[cell thumbnailView] setImage:nil];
+                [[cell thumbnailView] setImagePath:nil];
                 break;
             }
         }

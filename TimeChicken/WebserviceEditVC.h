@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "TCRestClientDelegate.h"
-@class TCWebserviceEntity;
+@class TCWebservice;
 @class TCWSOneSpark;
 @class OneSparkRestClient;
 
@@ -16,7 +16,7 @@
     TCRestClient *restClient;
 }
 
-@property (strong, nonatomic) TCWebserviceEntity *detailItem;
+@property (strong, nonatomic) TCWebservice *detailItem;
 
 - (void) proveWs;
 - (void) saveWs;

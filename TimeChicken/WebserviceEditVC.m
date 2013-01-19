@@ -7,7 +7,7 @@
 //
 
 #import "WebserviceEditVC.h"
-#import "TCWebserviceEntity.h"
+#import "TCWebservice.h"
 #import "TCWSOneSpark.h"
 #import "OneSparkRestClient.h"
 #import "TCWebserviceStore.h"
@@ -158,12 +158,12 @@
 
 - (void) saveWs {
     NSLog(@"--> Save WS");
-    TCWebserviceEntity *ws;
+    TCWebservice *ws;
     if ([self.detailItem isKindOfClass:[TCWSOneSpark class]]) {
         ws = [[TCWSOneSpark alloc] init];
     }
     
-    [[TCWebserviceStore webservices] addWebservice:ws];
+    [[TCWebserviceStore wsStore] addWebservice:ws];
     [[self navigationController] popToRootViewControllerAnimated:YES];
 }
 
