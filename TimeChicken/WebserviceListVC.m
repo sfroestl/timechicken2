@@ -67,19 +67,19 @@
     
     // If there is no reusable cell of this type, create a new one
     if (!cell) {
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"WebserviceCell"];
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:@"WebserviceCell"];
     }
     TCWebservice *ws = [[[TCWebserviceStore wsStore] allWebservices] objectAtIndex:[indexPath row]];
     NSLog(@"%@", ws);
     [cell.imageView setImage:[UIImage imageNamed:ws.imagePath]];
     
     [cell.textLabel setText: ws.title];
+    [cell.detailTextLabel setText:ws.username];
     
     return cell;
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    NSLog(@"Selected Webservice");
     TCWebservice *selectedWS = [[[TCWebserviceStore wsStore] allWebservices] objectAtIndex:[indexPath row]];
     
     // transition to DetailController

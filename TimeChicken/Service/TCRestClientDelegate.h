@@ -7,6 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
+
 @class OSTestRestClient;
 
 @protocol TCRestClientDelegate <NSObject>

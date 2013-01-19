@@ -39,11 +39,11 @@
     self.password = pw;
 }
 
-- (NSString *)username {
+- (NSString *) getUsername {
     return self.username;
 }
 
-- (NSString *)password {
+- (NSString *) getPassword {
     return self.password;
 }
 

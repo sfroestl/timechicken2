@@ -11,9 +11,9 @@
 @protocol TCRestClientIF <NSObject>
 
 @required
-- (void) fetchUserTaskList;
-- (void) fetchUserProjectList;
-- (void) fetchUser;
-- (void)setAuthCredentials:(NSString*)userName password:(NSString *)pw;
+//- (void) fetchUserTaskList;
+//- (void) fetchUserProjectList;
+- (void)fetchUsername:(void (^)(NSString *username, NSError *error))block;
+- (void)setBasicAuthUsername:(NSString *)name andPassword:(NSString *)pw;
 
 @end

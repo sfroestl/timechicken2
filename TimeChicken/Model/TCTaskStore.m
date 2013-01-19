@@ -62,6 +62,11 @@
     [tasks addObject:task];
 }
 
+- (void) addTask:(TCTask *)task fromURL: (NSString *)URLString {
+    task.url = URLString;
+    [tasks addObject:task];
+}
+
 - (void) addTasks:(NSArray *)listOfTasks {
     //extend with check, if task is in other arrays and remove it there, if it is added to completedTasks
     [tasks addObjectsFromArray:listOfTasks];

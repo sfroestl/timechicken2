@@ -9,13 +9,21 @@
 #import "WebserviceEditVC.h"
 #import "TCWebservice.h"
 #import "TCWebserviceStore.h"
+#import "TCClient.h"
+#import "TCRestClientIF.h"
+#import "TCOneSparkClient.h"
+#import "TCJiraClient.h"
+
 //#import "TCWSJira.h"
 
 @interface WebserviceEditVC ()
 
 @end
 
-@implementation WebserviceEditVC
+@implementation WebserviceEditVC {
+@private
+    __strong UIActivityIndicatorView *_activityIndicatorView;
+}
 
 @synthesize detailItem = _detailItem;
 
@@ -50,7 +58,6 @@
 }
 
 - (void)viewWillAppear:(BOOL)animated {
-    NSLog(@"--> Edit Webservice View");
 }
 
 - (void)didReceiveMemoryWarning
@@ -68,7 +75,6 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    NSLog(@"--> And the WS Type is %i", self.detailItem.type);
     int count;
     switch (self.detailItem.type) {            
         case 0:
@@ -84,12 +90,12 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     NSString *wsCellIdentifier = @"EditCell";
-    NSLog(@"--> Configure cell");
     
     UITableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:wsCellIdentifier];
     if (!cell) {
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:wsCellIdentifier];
         cell.accessoryType = UITableViewCellAccessoryNone;
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
         
         if ([indexPath section] == 0) {
             UITextField *txtField = [[UITextField alloc] initWithFrame:CGRectMake(120, 10, 185, 30)];
@@ -110,8 +116,7 @@
             else if ([indexPath row] == 2){
                 txtField.tag = 123;
                 txtField.placeholder = @"http://jira.myserver.de";
-                txtField.keyboardType = UIKeyboardTypeDefault;
-                txtField.secureTextEntry = YES;
+                txtField.keyboardType = UIKeyboardTypeURL;
             }
             
             
@@ -146,23 +151,45 @@
 }
 
 - (void) proveWs {
+    [_activityIndicatorView startAnimating];
+    self.navigationItem.rightBarButtonItem.enabled = NO;
+    
     NSLog(@"--> Prove WS");
     UITextField *txtField = (UITextField *)[[self view ]viewWithTag:121];
     NSString *username = [txtField text];
     
     txtField = (UITextField *)[[self view] viewWithTag:122];
     NSString *password = [txtField text];
-    NSLog(@"--> username %@, password: %@", username, password);
-    // validate user data
-//    if ([self.detailItem isKindOfClass:[TCWSOneSpark class]]) {
-//        OneSparkRestClient *client = [[OneSparkRestClient alloc] initRestClientwithDelegate:self];        
-//        [client setAuthCredentials:username password:password];        
-//        [client fetchUser];
-//    }
-    self.detailItem.username = username;
-    self.detailItem.password = password;
-    
-    [self saveWs];
+    NSLog(@"--> username %@", username);
+    TCClient<TCRestClientIF> *client = nil;
+    switch (self.detailItem.type) {
+        case 0:
+            client = [TCOneSparkClient oneSparkClient];
+            break;
+        case 1:
+            txtField = (UITextField *)[[self view] viewWithTag:123];
+            NSString *url = [txtField text];
+            client = [TCJiraClient jiraClientWithBaseUrl:url];
+            self.detailItem.baseUrlString = url;
+            break;
+    }
+    if (client) {
+        [client setBasicAuthUsername:username andPassword:password];
+        [client fetchUsername:^(NSString *username, NSError *error) {
+            if (error) {
+                [[[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Error", nil) message:[error localizedDescription] delegate:nil cancelButtonTitle:nil otherButtonTitles:NSLocalizedString(@"OK", nil), nil] show];
+                self.navigationItem.rightBarButtonItem.enabled = YES;
+            } else {
+                [[[UIAlertView alloc] initWithTitle:@"Well done!"
+                                            message:[NSString stringWithFormat:@"You're logged in with %@", username]
+                                           delegate:nil cancelButtonTitle:nil otherButtonTitles:@"OK", nil, nil] show];
+                self.detailItem.username = username;
+                self.detailItem.password = password;
+                [self saveWs];
+            }
+            [_activityIndicatorView stopAnimating];
+        }];
+    }
 }
 
 - (void)cancel {

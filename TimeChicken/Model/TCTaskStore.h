@@ -23,6 +23,7 @@
 - (TCTask *) createNewTask;
 
 - (void) addTask:(TCTask *)task;
+- (void) addTask:(TCTask *)task fromURL: (NSString *)URLString;
 - (void) addTasks:(NSArray *)listOfTasks;
 
 - (void) addTaskToArchivedTasks:(TCTask *)task;

@@ -44,7 +44,7 @@
     [super viewWillAppear:animated];
     
     if(detailItem) {
-        NSLog(@"Selected: %@", self.detailItem.title);
+        NSLog(@"Selected: %@", self.detailItem);
         [titleField setText:detailItem.title];        
     }
 }

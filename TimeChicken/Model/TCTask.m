@@ -39,6 +39,8 @@
     }
     return self;
 }
+
+
 - (NSString *)description {
     return [NSString stringWithFormat:@"{Task: {title:%@, wsId:%i, completed: %@, desc: %@}}", self.title, self.wsId, self.completed ? @"YES":@"NO", self.desc];
 }
