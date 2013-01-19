@@ -11,15 +11,16 @@
 
 @implementation TCRestClient
 @synthesize jsonResponse = _jsonResponse;
-@synthesize restClientDelegate = restClientDelegate;
+@synthesize restClientDelegate = _restClientDelegate;
 
-- (void) fetchUserTaskList{}
-- (void) fetchUserProjectList{}
-- (id)initRestClientwithDelegate:(id<TCRestClientDelegate>) delegate {
-    self = [super init];
-    restClientDelegate = delegate;
-    return self;
-}
+//- (void) fetchUserTaskList{}
+//- (void) fetchUserProjectList{}
+//- (void) fetchUser {}
+//- (id)initRestClientwithDelegate:(id<TCRestClientDelegate>) delegate {
+//    self = [super init];
+//    self.restClientDelegate = delegate;
+//    return self;
+//}
 @end
 
 

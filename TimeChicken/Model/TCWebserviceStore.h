@@ -18,6 +18,7 @@
 
 - (NSArray *) allWebservices;
 - (TCWebserviceEntity *) createNewWebservice;
+- (TCWebserviceEntity *) createWebserviceWithType:(int)type;
 - (void) addWebservice:(TCWebserviceEntity *)webservice;
 - (void) removeWebservice:(TCWebserviceEntity *)webservice;
 - (void) moveItemAtIndex:(int)from toIndex:(int)to;

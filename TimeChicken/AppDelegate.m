@@ -9,16 +9,17 @@
 #import "AppDelegate.h"
 #import "TaskListVC.h"
 
-#import "WebserviceListViewController.h"
+#import "WebserviceListVC.h"
 
 @implementation AppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
+    NSLog(@"App started!");
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     // Override point for customization after application launch.
     UIViewController *taskListViewController = [[TaskListVC alloc] init];
-    UIViewController *webserviceVC = [[WebserviceListViewController alloc] init];
+    UIViewController *webserviceVC = [[WebserviceListVC alloc] init];
     
     UINavigationController *taskListNavC = [[UINavigationController alloc] initWithRootViewController:taskListViewController];
     UINavigationController *webserviceNavC = [[UINavigationController alloc] initWithRootViewController:webserviceVC];

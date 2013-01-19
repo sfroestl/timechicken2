@@ -15,7 +15,7 @@
 @class TCRestClient;
 
 
-@interface WebserviceDetailViewController : UIViewController<TCRestClientDelegate> {
+@interface WebserviceDetailVC : UIViewController<TCRestClientDelegate> {
     TCRestClient *restClient;
     __weak IBOutlet UITextField *titleField;
     __weak IBOutlet UITextField *usernameField;

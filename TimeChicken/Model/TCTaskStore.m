@@ -45,7 +45,7 @@
 }
 
 - (NSArray *) tasks {
-//    NSLog(@"%@", tasks);
+    NSLog(@"%@", tasks);
     return tasks;
 }
 - (NSArray *) archivedTasks {

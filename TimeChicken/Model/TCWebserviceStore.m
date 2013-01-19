@@ -42,6 +42,22 @@
     return newWS;
 }
 
+- (TCWebserviceEntity *) createWebserviceWithType:(int)type {
+    TCWebserviceEntity * newWs;
+    
+    switch (type) {
+        case 1:
+            newWs = [[TCWSOneSpark alloc] initWithTitle:[[TCWebserviceEntity webserviceNames] objectAtIndex:1]];
+            break;
+        case 2:
+            newWs = [[TCWSOneSpark alloc] initWithTitle:[[TCWebserviceEntity webserviceNames] objectAtIndex:2]];
+            break;            
+        default:
+            break;
+    }
+    return newWs;
+}
+
 - (void) addWebservice:(TCWebserviceEntity *)webservice {
     [webservices addObject:webservices];
 }

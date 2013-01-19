@@ -18,7 +18,7 @@
 		39685E8A16A54FC500FE52A1 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 39685E8916A54FC500FE52A1 /* Default-568h@2x.png */; };
 		39685E8F16A54FC500FE52A1 /* first.png in Resources */ = {isa = PBXBuildFile; fileRef = 39685E8E16A54FC500FE52A1 /* first.png */; };
 		39685E9116A54FC500FE52A1 /* first@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 39685E9016A54FC500FE52A1 /* first@2x.png */; };
-		39685E9416A54FC500FE52A1 /* WebserviceListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 39685E9316A54FC500FE52A1 /* WebserviceListViewController.m */; };
+		39685E9416A54FC500FE52A1 /* WebserviceListVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 39685E9316A54FC500FE52A1 /* WebserviceListVC.m */; };
 		39685E9616A54FC500FE52A1 /* second.png in Resources */ = {isa = PBXBuildFile; fileRef = 39685E9516A54FC500FE52A1 /* second.png */; };
 		39685E9816A54FC500FE52A1 /* second@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 39685E9716A54FC500FE52A1 /* second@2x.png */; };
 		39685EAB16A55FF200FE52A1 /* TCDatePicker.m in Sources */ = {isa = PBXBuildFile; fileRef = 39685EA716A55FF200FE52A1 /* TCDatePicker.m */; };
@@ -29,8 +29,8 @@
 		39EDE63F16A958B00034299D /* ButtonCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 39EDE63E16A958B00034299D /* ButtonCell.m */; };
 		39EDE64116A9713F0034299D /* jiraThumb.png in Resources */ = {isa = PBXBuildFile; fileRef = 39EDE64016A9713F0034299D /* jiraThumb.png */; };
 		9E03A5BF16A587A300EA3CBD /* icon-os.png in Resources */ = {isa = PBXBuildFile; fileRef = 9E03A5BE16A587A300EA3CBD /* icon-os.png */; };
-		9E03A5C416A58BF000EA3CBD /* WebserviceDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9E03A5C216A58BF000EA3CBD /* WebserviceDetailViewController.m */; };
-		9E03A5C516A58BF000EA3CBD /* WebserviceDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9E03A5C316A58BF000EA3CBD /* WebserviceDetailViewController.xib */; };
+		9E03A5C416A58BF000EA3CBD /* WebserviceDetailVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 9E03A5C216A58BF000EA3CBD /* WebserviceDetailVC.m */; };
+		9E03A5C516A58BF000EA3CBD /* WebserviceDetailVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9E03A5C316A58BF000EA3CBD /* WebserviceDetailVC.xib */; };
 		9E0780B416A69A920045161B /* Base64.m in Sources */ = {isa = PBXBuildFile; fileRef = 9E0780B316A69A920045161B /* Base64.m */; };
 		9E1ED3A416A569D100DF3049 /* TCTask.m in Sources */ = {isa = PBXBuildFile; fileRef = 9E1ED39B16A569D100DF3049 /* TCTask.m */; };
 		9E1ED3A516A569D100DF3049 /* TCTaskStore.m in Sources */ = {isa = PBXBuildFile; fileRef = 9E1ED39D16A569D100DF3049 /* TCTaskStore.m */; };
@@ -39,11 +39,13 @@
 		9E1ED3B116A56C4600DF3049 /* TCWebserviceEntity.m in Sources */ = {isa = PBXBuildFile; fileRef = 9E1ED3B016A56C4600DF3049 /* TCWebserviceEntity.m */; };
 		9E7FD44916A9D579009208D7 /* OneSparkRestClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 9E7FD44816A9D579009208D7 /* OneSparkRestClient.m */; };
 		9E7FD45316A9DE3A009208D7 /* TCRestClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 9E7FD45216A9DE3A009208D7 /* TCRestClient.m */; };
+		9E7FD46616A9EAF6009208D7 /* NewWebserviceVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 9E7FD46516A9EAF6009208D7 /* NewWebserviceVC.m */; };
+		9E7FD46E16A9F928009208D7 /* WebserviceEditVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 9E7FD46D16A9F928009208D7 /* WebserviceEditVC.m */; };
 		9ECBD0E616A94FD900C412FC /* TaskCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 9ECBD0E116A94FD900C412FC /* TaskCell.m */; };
 		9ECBD0E716A94FD900C412FC /* TaskCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9ECBD0E216A94FD900C412FC /* TaskCell.xib */; };
 		9ECBD0E816A94FD900C412FC /* TaskDetailEditCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 9ECBD0E416A94FD900C412FC /* TaskDetailEditCell.m */; };
 		9ECBD0E916A94FD900C412FC /* TaskDetailEditCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9ECBD0E516A94FD900C412FC /* TaskDetailEditCell.xib */; };
-		9EF416D216A93E6C0006E8A2 /* WSTaskChooseVCViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9EF416D116A93E6C0006E8A2 /* WSTaskChooseVCViewController.m */; };
+		9EF416D216A93E6C0006E8A2 /* ChooseTaskVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 9EF416D116A93E6C0006E8A2 /* ChooseTaskVC.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -62,8 +64,8 @@
 		39685E8916A54FC500FE52A1 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 		39685E8E16A54FC500FE52A1 /* first.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = first.png; sourceTree = "<group>"; };
 		39685E9016A54FC500FE52A1 /* first@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "first@2x.png"; sourceTree = "<group>"; };
-		39685E9216A54FC500FE52A1 /* WebserviceListViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WebserviceListViewController.h; sourceTree = "<group>"; };
-		39685E9316A54FC500FE52A1 /* WebserviceListViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WebserviceListViewController.m; sourceTree = "<group>"; };
+		39685E9216A54FC500FE52A1 /* WebserviceListVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WebserviceListVC.h; sourceTree = "<group>"; };
+		39685E9316A54FC500FE52A1 /* WebserviceListVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WebserviceListVC.m; sourceTree = "<group>"; };
 		39685E9516A54FC500FE52A1 /* second.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = second.png; sourceTree = "<group>"; };
 		39685E9716A54FC500FE52A1 /* second@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "second@2x.png"; sourceTree = "<group>"; };
 		39685EA616A55FF200FE52A1 /* TCDatePicker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TCDatePicker.h; sourceTree = "<group>"; };
@@ -78,9 +80,9 @@
 		39EDE63E16A958B00034299D /* ButtonCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ButtonCell.m; sourceTree = "<group>"; };
 		39EDE64016A9713F0034299D /* jiraThumb.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = jiraThumb.png; path = Images/jiraThumb.png; sourceTree = "<group>"; };
 		9E03A5BE16A587A300EA3CBD /* icon-os.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon-os.png"; sourceTree = "<group>"; };
-		9E03A5C116A58BF000EA3CBD /* WebserviceDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WebserviceDetailViewController.h; sourceTree = "<group>"; };
-		9E03A5C216A58BF000EA3CBD /* WebserviceDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WebserviceDetailViewController.m; sourceTree = "<group>"; };
-		9E03A5C316A58BF000EA3CBD /* WebserviceDetailViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = WebserviceDetailViewController.xib; sourceTree = "<group>"; };
+		9E03A5C116A58BF000EA3CBD /* WebserviceDetailVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WebserviceDetailVC.h; sourceTree = "<group>"; };
+		9E03A5C216A58BF000EA3CBD /* WebserviceDetailVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WebserviceDetailVC.m; sourceTree = "<group>"; };
+		9E03A5C316A58BF000EA3CBD /* WebserviceDetailVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = WebserviceDetailVC.xib; sourceTree = "<group>"; };
 		9E0780B216A69A920045161B /* Base64.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Base64.h; sourceTree = "<group>"; };
 		9E0780B316A69A920045161B /* Base64.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Base64.m; sourceTree = "<group>"; };
 		9E1ED39A16A569D100DF3049 /* TCTask.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TCTask.h; sourceTree = "<group>"; };
@@ -98,14 +100,18 @@
 		9E7FD44716A9D579009208D7 /* OneSparkRestClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OneSparkRestClient.h; sourceTree = "<group>"; };
 		9E7FD44816A9D579009208D7 /* OneSparkRestClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OneSparkRestClient.m; sourceTree = "<group>"; };
 		9E7FD45216A9DE3A009208D7 /* TCRestClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TCRestClient.m; sourceTree = "<group>"; };
+		9E7FD46416A9EAF6009208D7 /* NewWebserviceVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewWebserviceVC.h; sourceTree = "<group>"; };
+		9E7FD46516A9EAF6009208D7 /* NewWebserviceVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewWebserviceVC.m; sourceTree = "<group>"; };
+		9E7FD46C16A9F928009208D7 /* WebserviceEditVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WebserviceEditVC.h; sourceTree = "<group>"; };
+		9E7FD46D16A9F928009208D7 /* WebserviceEditVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WebserviceEditVC.m; sourceTree = "<group>"; };
 		9ECBD0E016A94FD900C412FC /* TaskCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TaskCell.h; sourceTree = "<group>"; };
 		9ECBD0E116A94FD900C412FC /* TaskCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TaskCell.m; sourceTree = "<group>"; };
 		9ECBD0E216A94FD900C412FC /* TaskCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TaskCell.xib; sourceTree = "<group>"; };
 		9ECBD0E316A94FD900C412FC /* TaskDetailEditCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TaskDetailEditCell.h; sourceTree = "<group>"; };
 		9ECBD0E416A94FD900C412FC /* TaskDetailEditCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TaskDetailEditCell.m; sourceTree = "<group>"; };
 		9ECBD0E516A94FD900C412FC /* TaskDetailEditCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TaskDetailEditCell.xib; sourceTree = "<group>"; };
-		9EF416D016A93E6C0006E8A2 /* WSTaskChooseVCViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = WSTaskChooseVCViewController.h; path = TimeChicken/WSTaskChooseVCViewController.h; sourceTree = SOURCE_ROOT; };
-		9EF416D116A93E6C0006E8A2 /* WSTaskChooseVCViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = WSTaskChooseVCViewController.m; path = TimeChicken/WSTaskChooseVCViewController.m; sourceTree = SOURCE_ROOT; };
+		9EF416D016A93E6C0006E8A2 /* ChooseTaskVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ChooseTaskVC.h; path = TimeChicken/ChooseTaskVC.h; sourceTree = SOURCE_ROOT; };
+		9EF416D116A93E6C0006E8A2 /* ChooseTaskVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ChooseTaskVC.m; path = TimeChicken/ChooseTaskVC.m; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -163,13 +169,17 @@
 				39685E8216A54FC500FE52A1 /* AppDelegate.h */,
 				39685E8316A54FC500FE52A1 /* AppDelegate.m */,
 				9E03A5C016A587B000EA3CBD /* images */,
-				39685E9216A54FC500FE52A1 /* WebserviceListViewController.h */,
-				39685E9316A54FC500FE52A1 /* WebserviceListViewController.m */,
-				9E03A5C116A58BF000EA3CBD /* WebserviceDetailViewController.h */,
-				9E03A5C216A58BF000EA3CBD /* WebserviceDetailViewController.m */,
-				9E03A5C316A58BF000EA3CBD /* WebserviceDetailViewController.xib */,
-				9EF416D016A93E6C0006E8A2 /* WSTaskChooseVCViewController.h */,
-				9EF416D116A93E6C0006E8A2 /* WSTaskChooseVCViewController.m */,
+				39685E9216A54FC500FE52A1 /* WebserviceListVC.h */,
+				39685E9316A54FC500FE52A1 /* WebserviceListVC.m */,
+				9E03A5C116A58BF000EA3CBD /* WebserviceDetailVC.h */,
+				9E03A5C216A58BF000EA3CBD /* WebserviceDetailVC.m */,
+				9E03A5C316A58BF000EA3CBD /* WebserviceDetailVC.xib */,
+				9EF416D016A93E6C0006E8A2 /* ChooseTaskVC.h */,
+				9EF416D116A93E6C0006E8A2 /* ChooseTaskVC.m */,
+				9E7FD46416A9EAF6009208D7 /* NewWebserviceVC.h */,
+				9E7FD46516A9EAF6009208D7 /* NewWebserviceVC.m */,
+				9E7FD46C16A9F928009208D7 /* WebserviceEditVC.h */,
+				9E7FD46D16A9F928009208D7 /* WebserviceEditVC.m */,
 				39685E7A16A54FC500FE52A1 /* Supporting Files */,
 			);
 			path = TimeChicken;
@@ -319,7 +329,7 @@
 				39685E9616A54FC500FE52A1 /* second.png in Resources */,
 				39685E9816A54FC500FE52A1 /* second@2x.png in Resources */,
 				9E03A5BF16A587A300EA3CBD /* icon-os.png in Resources */,
-				9E03A5C516A58BF000EA3CBD /* WebserviceDetailViewController.xib in Resources */,
+				9E03A5C516A58BF000EA3CBD /* WebserviceDetailVC.xib in Resources */,
 				39A9B36816A814C900C9E8CC /* onesparkThumb.png in Resources */,
 				9ECBD0E716A94FD900C412FC /* TaskCell.xib in Resources */,
 				9ECBD0E916A94FD900C412FC /* TaskDetailEditCell.xib in Resources */,
@@ -337,23 +347,25 @@
 			files = (
 				39685E8016A54FC500FE52A1 /* main.m in Sources */,
 				39685E8416A54FC500FE52A1 /* AppDelegate.m in Sources */,
-				39685E9416A54FC500FE52A1 /* WebserviceListViewController.m in Sources */,
+				39685E9416A54FC500FE52A1 /* WebserviceListVC.m in Sources */,
 				39685EAB16A55FF200FE52A1 /* TCDatePicker.m in Sources */,
 				9E1ED3A416A569D100DF3049 /* TCTask.m in Sources */,
 				9E1ED3A516A569D100DF3049 /* TCTaskStore.m in Sources */,
 				9E1ED3A716A569D100DF3049 /* TCWebserviceStore.m in Sources */,
 				9E1ED3A816A569D100DF3049 /* TCWSOneSpark.m in Sources */,
 				9E1ED3B116A56C4600DF3049 /* TCWebserviceEntity.m in Sources */,
-				9E03A5C416A58BF000EA3CBD /* WebserviceDetailViewController.m in Sources */,
+				9E03A5C416A58BF000EA3CBD /* WebserviceDetailVC.m in Sources */,
 				9E0780B416A69A920045161B /* Base64.m in Sources */,
 				39E3763416A6C9F70048DC19 /* TaskDetailVC.m in Sources */,
 				39E3763616A6C9F70048DC19 /* TaskListVC.m in Sources */,
-				9EF416D216A93E6C0006E8A2 /* WSTaskChooseVCViewController.m in Sources */,
+				9EF416D216A93E6C0006E8A2 /* ChooseTaskVC.m in Sources */,
 				9ECBD0E616A94FD900C412FC /* TaskCell.m in Sources */,
 				9ECBD0E816A94FD900C412FC /* TaskDetailEditCell.m in Sources */,
 				39EDE63F16A958B00034299D /* ButtonCell.m in Sources */,
 				9E7FD44916A9D579009208D7 /* OneSparkRestClient.m in Sources */,
 				9E7FD45316A9DE3A009208D7 /* TCRestClient.m in Sources */,
+				9E7FD46616A9EAF6009208D7 /* NewWebserviceVC.m in Sources */,
+				9E7FD46E16A9F928009208D7 /* WebserviceEditVC.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

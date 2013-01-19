@@ -11,6 +11,5 @@
 
 
 
-@interface OneSparkRestClient : TCRestClient {
-}
+@interface OneSparkRestClient : TCRestClient
 @end

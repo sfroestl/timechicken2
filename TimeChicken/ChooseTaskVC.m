@@ -6,16 +6,16 @@
 //  Copyright (c) 2013 Christian Schäfer. All rights reserved.
 //
 
-#import "WSTaskChooseVCViewController.h"
+#import "ChooseTaskVC.h"
 #import "TCTask.h"
 #import "TCTaskStore.h"
 #import "TaskListVC.h"
 
-@interface WSTaskChooseVCViewController ()
+@interface ChooseTaskVC ()
 
 @end
 
-@implementation WSTaskChooseVCViewController
+@implementation ChooseTaskVC
 
 @synthesize chosedTasksForImport = _chosedTasksForImport;
 @synthesize alreadyImportedTasks = _alreadyImportedTasks;

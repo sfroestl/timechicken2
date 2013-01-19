@@ -6,17 +6,18 @@
 //  Copyright (c) 2013 Christian Schäfer. All rights reserved.
 //
 
-#import "WebserviceListViewController.h"
-#import "WebserviceDetailViewController.h"
+#import "WebserviceListVC.h"
+#import "WebserviceDetailVC.h"
 #import "TCWebserviceStore.h"
 #import "TCWebserviceEntity.h"
 #import "TCWSOneSpark.h"
+#import "NewWebserviceVC.h"
 
-@interface WebserviceListViewController ()
+@interface WebserviceListVC ()
 
 @end
 
-@implementation WebserviceListViewController
+@implementation WebserviceListVC
 
 							
 - (void)viewDidLoad
@@ -39,9 +40,9 @@
 - (id)init
 {
     //call the superclass's designated initializer
-    self = [super initWithStyle:UITableViewStylePlain ];
+    self = [super initWithStyle:UITableViewStyleGrouped];
     if(self){
-        self.title = @"Webservice";
+        self.title = @"Webservices";
         UIBarButtonItem *bbi = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(addNewWebservice:)];
         
         // Set this bar button item as the right item in navigation
@@ -70,7 +71,8 @@
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"WebserviceCell"];
     }
     TCWebserviceEntity *ws = [[[TCWebserviceStore webservices] allWebservices] objectAtIndex:[indexPath row]];
-    [cell.imageView setImage:ws.image];
+//    [cell.imageView setImage:[UIImage imageNamed:ws.image]];
+    
     [cell.textLabel setText: ws.title];
     
     return cell;
@@ -81,7 +83,7 @@
     TCWebserviceEntity *selectedWS = [[[TCWebserviceStore webservices] allWebservices] objectAtIndex:[indexPath row]];
     
     // transition to DetailController
-    WebserviceDetailViewController *detailVC = [[WebserviceDetailViewController alloc] init];
+    WebserviceDetailVC *detailVC = [[WebserviceDetailVC alloc] init];
     detailVC.detailItem = selectedWS;
     if ([selectedWS isKindOfClass:[TCWSOneSpark class]]) {
         NSLog(@"Webservice is TCWSOneSpark!");
@@ -94,15 +96,16 @@
 }
 
 - (IBAction)addNewWebservice:(id)sender {
-    // Create a new BNRItem and add it to the store
-    TCWebserviceEntity *newWS = [[TCWebserviceStore webservices] createNewWebservice];
+    NewWebserviceVC *newWsVC = [[NewWebserviceVC alloc] init];
+    [[self navigationController] pushViewController:newWsVC animated:YES];
+//    TCWebserviceEntity *newWS = [[TCWebserviceStore webservices] createNewWebservice];
     
-    // Figure out where that item is in the array
-    int lastRow = [[[TCWebserviceStore webservices] allWebservices] indexOfObject:newWS];
-    NSIndexPath *ip = [NSIndexPath indexPathForRow:lastRow inSection:0];
-    
-    // insert new row into table
-    [[self tableView] insertRowsAtIndexPaths:[NSArray arrayWithObject:ip ] withRowAnimation:UITableViewRowAnimationRight];
+//    // Figure out where that item is in the array
+//    int lastRow = [[[TCWebserviceStore webservices] allWebservices] indexOfObject:newWS];
+//    NSIndexPath *ip = [NSIndexPath indexPathForRow:lastRow inSection:0];
+//    
+//    // insert new row into table
+//    [[self tableView] insertRowsAtIndexPaths:[NSArray arrayWithObject:ip ] withRowAnimation:UITableViewRowAnimationRight];
 }
 
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {

@@ -7,6 +7,9 @@
 //
 
 #import "NewWebserviceVC.h"
+#import "TCWebserviceEntity.h"
+#import "TCWSOneSpark.h"
+#import "WebserviceEditVC.h"
 
 @interface NewWebserviceVC ()
 
@@ -14,24 +17,21 @@
 
 @implementation NewWebserviceVC
 
-- (id)initWithStyle:(UITableViewStyle)style
+- (id)init
 {
-    self = [super initWithStyle:style];
+    self = [super initWithStyle:UITableViewStyleGrouped];
     if (self) {
         // Custom initialization
     }
     return self;
 }
+- (id)initWithStyle:(UITableViewStyle)style {
+    return [self init];
+}
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-
-    // Uncomment the following line to preserve selection between presentations.
-    // self.clearsSelectionOnViewWillAppear = NO;
- 
-    // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-    // self.navigationItem.rightBarButtonItem = self.editButtonItem;
 }
 
 - (void)didReceiveMemoryWarning
@@ -40,32 +40,40 @@
     // Dispose of any resources that can be recreated.
 }
 
-#pragma mark - Table view data source
-
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
-{
-#warning Potentially incomplete method implementation.
-    // Return the number of sections.
-    return 0;
-}
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
-{
-#warning Incomplete method implementation.
-    // Return the number of rows in the section.
-    return 0;
-}
+{    
+    return ([[TCWebserviceEntity webserviceNames] count] - 1);}
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    static NSString *CellIdentifier = @"Cell";
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"WSCell"];
     
-    // Configure the cell...
+    if (!cell) {
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:@"WSCell"];
+    }
+    [[cell textLabel] setText:[[TCWebserviceEntity webserviceNames] objectAtIndex:indexPath.row + 1]];
+    [[cell detailTextLabel] setText:[[TCWebserviceEntity webserviceDescriptions] objectAtIndex:indexPath.row + 1]];
+    [[cell imageView] setImage: [UIImage imageNamed:[[TCWebserviceEntity webserviceImages] objectAtIndex:indexPath.row + 1]]];
     
     return cell;
 }
+#pragma mark - Table view delegate
 
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    WebserviceEditVC *wsDetailVC = [[WebserviceEditVC alloc] init];
+    TCWebserviceEntity *webservice;
+    switch (indexPath.row) {
+        case 0:
+            webservice = [[TCWSOneSpark alloc] init];
+            wsDetailVC.detailItem = webservice;
+            break;
+        case 1:
+            break;
+    }
+    [[self navigationController] pushViewController:wsDetailVC animated:YES];
+}
 /*
 // Override to support conditional editing of the table view.
 - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
@@ -105,17 +113,6 @@
 }
 */
 
-#pragma mark - Table view delegate
 
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    // Navigation logic may go here. Create and push another view controller.
-    /*
-     <#DetailViewController#> *detailViewController = [[<#DetailViewController#> alloc] initWithNibName:@"<#Nib name#>" bundle:nil];
-     // ...
-     // Pass the selected object to the new view controller.
-     [self.navigationController pushViewController:detailViewController animated:YES];
-     */
-}
 
 @end

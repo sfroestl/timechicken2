@@ -7,6 +7,11 @@
 //
 
 #import "WebserviceEditVC.h"
+#import "TCWebserviceEntity.h"
+#import "TCWSOneSpark.h"
+#import "OneSparkRestClient.h"
+#import "TCWebserviceStore.h"
+//#import "TCWSJira.h"
 
 @interface WebserviceEditVC ()
 
@@ -14,24 +19,40 @@
 
 @implementation WebserviceEditVC
 
-- (id)initWithStyle:(UITableViewStyle)style
+@synthesize detailItem = _detailItem;
+
+- (id)init
 {
-    self = [super initWithStyle:style];
+    self = [super initWithStyle:UITableViewStyleGrouped];
     if (self) {
-        // Custom initialization
+        self.title = [[self detailItem] title];
+        UIBarButtonItem *cancelBbi = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCancel target:self action:@selector(cancel)];
+        UIBarButtonItem *saveBbi = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemSave target:self action:@selector(proveWs)];
+        
+        [[self navigationItem] setLeftBarButtonItem:cancelBbi];
+        [[self navigationItem] setRightBarButtonItem:saveBbi];
+        if (self.detailItem) {
+//            if ([self.detailItem isKindOfClass:[TCWSOneSpark class]]) {
+//                restClient = [[OneSparkRestClient alloc] initRestClientwithDelegate:self];
+//            }
+        }
     }
     return self;
+}
+
+- (id)initWithStyle:(UITableViewStyle)style {
+    return [self init];
 }
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
 
-    // Uncomment the following line to preserve selection between presentations.
-    // self.clearsSelectionOnViewWillAppear = NO;
- 
-    // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-    // self.navigationItem.rightBarButtonItem = self.editButtonItem;
+    // Do any additional setup after loading the view from its nib.
+}
+
+- (void)viewWillAppear:(BOOL)animated {
+    NSLog(@"--> Edit Webservice View");
 }
 
 - (void)didReceiveMemoryWarning
@@ -44,30 +65,121 @@
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-#warning Potentially incomplete method implementation.
-    // Return the number of sections.
-    return 0;
+    return 1;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-#warning Incomplete method implementation.
-    // Return the number of rows in the section.
-    return 0;
+    int count;
+    if ([self.detailItem isKindOfClass: [TCWSOneSpark class]]) {
+        count = 2;
+    }
+    return count;
+//    else if ([self.detailItem isKindOfClass: [TCWSJira class]]){}
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    static NSString *CellIdentifier = @"Cell";
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
+    NSString *wsCellIdentifier = @"EditCell";
+    NSLog(@"--> Configure cell");
     
-    // Configure the cell...
+    UITableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:wsCellIdentifier];
+    if (!cell) {
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:wsCellIdentifier];
+        cell.accessoryType = UITableViewCellAccessoryNone;
+        
+        if ([indexPath section] == 0) {
+            UITextField *txtField = [[UITextField alloc] initWithFrame:CGRectMake(120, 10, 185, 30)];
+            txtField.tag = 121;
+            txtField.adjustsFontSizeToFitWidth = YES;
+            txtField.textColor = [UIColor blackColor];
+            txtField.backgroundColor = [UIColor groupTableViewBackgroundColor];
+            if ([indexPath row] == 0) {
+                txtField.placeholder = @"example@gmail.com";
+                txtField.keyboardType = UIKeyboardTypeEmailAddress;
+            }
+            else if ([indexPath row] == 1){
+                txtField.tag = 122;
+                txtField.placeholder = @"Required";
+                txtField.keyboardType = UIKeyboardTypeDefault;
+                txtField.secureTextEntry = YES;
+            }
+            txtField.autocorrectionType = UITextAutocorrectionTypeNo; // no auto correction support
+            txtField.autocapitalizationType = UITextAutocapitalizationTypeNone; // no auto capitalization support;
+            
+            txtField.clearButtonMode = UITextFieldViewModeNever; // no clear 'x' button to the right
+            [txtField setEnabled: YES];
+            
+            [cell addSubview:txtField];
+        }
+    }
+    if ([indexPath section] == 0) {
+        switch ([indexPath row]) {
+            case 0:
+                cell.textLabel.text = @"Email";
+                break;
+            case 1:
+                cell.textLabel.text = @"Password";
+            default:
+                break;
+        }
+    }
+    else { // Login button section
+        cell.textLabel.text = @"Log in";
+    }
+    return cell;    
+
+}
+
+- (void) proveWs {
+    NSLog(@"--> Prove WS");
+    UITextField *txtField = (UITextField *)[[self view ]viewWithTag:121];
+    NSString *username = [txtField text];
     
-    return cell;
+    txtField = (UITextField *)[[self view] viewWithTag:122];
+    NSString *password = [txtField text];
+    NSLog(@"--> username %@, password: %@", username, password);
+    // validate user data
+    if ([self.detailItem isKindOfClass:[TCWSOneSpark class]]) {
+        OneSparkRestClient *client = [[OneSparkRestClient alloc] initRestClientwithDelegate:self];        
+        [client setAuthCredentials:username password:password];        
+        [client fetchUser];
+    }
+    self.detailItem.username = username;
+    self.detailItem.password = password;
+    
+    [self saveWs];
+}
+
+- (void)cancel {
+    NSLog(@"cancel");
+    [[self navigationController] popToRootViewControllerAnimated:YES];
+}
+
+- (void) saveWs {
+    NSLog(@"--> Save WS");
+    TCWebserviceEntity *ws;
+    if ([self.detailItem isKindOfClass:[TCWSOneSpark class]]) {
+        ws = [[TCWSOneSpark alloc] init];
+    }
+    
+    [[TCWebserviceStore webservices] addWebservice:ws];
+    [[self navigationController] popToRootViewControllerAnimated:YES];
+}
+
+
+- (void) resetClientFinished:(TCRestClient*)client{
+    NSLog(@"--> RestClientDelegate called with FINISHED %@", [client jsonResponse]);
+    [self saveWs];
+    
+}
+- (void) restClient:(TCRestClient*)restClient failedWithError:(NSError*)error{
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Ups..." message:@"Your login was incorrekt" delegate:nil cancelButtonTitle:@"Retry!" otherButtonTitles:nil, nil];
+    [alert show];
 }
 
 /*
-// Override to support conditional editing of the table view.
+/ Override to support conditional editing of the table view.
 - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
 {
     // Return NO if you do not want the specified item to be editable.

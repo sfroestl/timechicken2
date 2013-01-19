@@ -7,6 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
+@class TCWebserviceEntity;
+@class TCWSOneSpark;
+//@class TCWSJira;
 
 @interface NewWebserviceVC : UITableViewController
 

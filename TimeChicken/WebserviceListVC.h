@@ -10,7 +10,7 @@
 
 @class TCWebserviceEntity;
 
-@interface WebserviceListViewController : UITableViewController {
+@interface WebserviceListVC : UITableViewController {
 }
 - (IBAction)addNewWebservice:(id)sender;
 

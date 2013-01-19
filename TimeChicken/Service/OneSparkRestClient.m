@@ -9,10 +9,14 @@
 #import "OneSparkRestClient.h"
 
 NSString* const baseUrl = @"http://api.onespark.de:81/api/v1";
+NSString* const userUrlPart = @"/user";
 NSString* const tasksUrlPart = @"/tasks";
 NSString* const projectsUrlPart = @"/projects";
 
 @implementation OneSparkRestClient
+
+@synthesize username = _username;
+@synthesize password = _password;
 
 - (id)initRestClientwithDelegate:(id<TCRestClientDelegate>) delegate
 {
@@ -20,13 +24,21 @@ NSString* const projectsUrlPart = @"/projects";
     if (self) {
         self.restClientDelegate = delegate;
         tasksUrl = [[NSURL alloc] initWithString: [NSString stringWithFormat:@"%@%@", baseUrl, tasksUrlPart]];
+        userUrl = [[NSURL alloc] initWithString: [NSString stringWithFormat:@"%@%@", baseUrl, userUrlPart]];
     }
     return self;
 }
 
+- (void)setAuthCredentials:(NSString*)userName password:(NSString *)pw {
+    NSLog(@"--> setAuthCredentials");
+    self.username = userName;
+    self.password = pw;
+}
+
 - (void) fetchUserTaskList
 {
-    NSString *authStr = [NSString stringWithFormat:@"%@:%@", @"sfroestl", @"asdasd"];
+    NSLog(@"--> fetchUserTaskList");
+    NSString *authStr = [NSString stringWithFormat:@"%@:%@", self.username, self.password];
     NSString *authValue = [NSString stringWithFormat:@"Basic %@", [Base64 base64String:authStr]];
     NSLog(@"Basic64: %@", authValue);
     
@@ -36,7 +48,19 @@ NSString* const projectsUrlPart = @"/projects";
     connection = [[NSURLConnection alloc] initWithRequest:request delegate:self startImmediately:YES];
 }
 
-//- (void) fetchUserProjectList {}
+- (void) fetchUserProjectList {}
+
+- (void) fetchUser {
+    NSLog(@"--> fetchUser");
+    NSString *authStr = [NSString stringWithFormat:@"%@:%@", self.username, self.password];
+    NSString *authValue = [NSString stringWithFormat:@"Basic %@", [Base64 base64String:authStr]];
+    NSLog(@"Basic64: %@", authValue);
+    
+    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:userUrl];
+    [request setValue:authValue forHTTPHeaderField:@"Authorization"];
+    
+    connection = [[NSURLConnection alloc] initWithRequest:request delegate:self startImmediately:YES];
+}
 
 - (BOOL) updateTask
 {

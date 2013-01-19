@@ -6,19 +6,19 @@
 //  Copyright (c) 2013 Christian Schäfer. All rights reserved.
 //
 
-#import "WebserviceDetailViewController.h"
-#import "WSTaskChooseVCViewController.h"
+#import "WebserviceDetailVC.h"
+#import "ChooseTaskVC.h"
 #import "TCWebserviceEntity.h"
 #import "TCWSOneSpark.h"
 #import "TCRestClient.h"
 #import "OneSparkRestClient.h"
 #import "TCTaskStore.h"
 
-@interface WebserviceDetailViewController ()
+@interface WebserviceDetailVC ()
 
 @end
 
-@implementation WebserviceDetailViewController
+@implementation WebserviceDetailVC
 
 @synthesize detailItem;
 
@@ -74,7 +74,7 @@
 }
 
 - (void) resetClientFinished:(TCRestClient*)client{
-    NSLog(@"--> RestClientDelegate called");
+    NSLog(@"--> RestClientDelegate called with FINISHED");
     NSMutableArray *fetchedTasks = [[NSMutableArray alloc] init];
     
     NSDictionary *jsonData = [client jsonResponse];
@@ -104,7 +104,7 @@
         [fetchedTasks addObject:task];
     }
         
-    WSTaskChooseVCViewController *wsResultCtrl = [[WSTaskChooseVCViewController alloc] init];
+    ChooseTaskVC *wsResultCtrl = [[ChooseTaskVC alloc] init];
     [wsResultCtrl setWsTasks:fetchedTasks];
     [self.navigationController pushViewController:wsResultCtrl animated:YES];
     

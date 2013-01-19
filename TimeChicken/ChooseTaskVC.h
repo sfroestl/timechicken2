@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface WSTaskChooseVCViewController : UITableViewController {
+@interface ChooseTaskVC : UITableViewController {
     NSArray *wsTasks;
 }
 @property (nonatomic, strong) NSMutableArray *chosedTasksForImport;
