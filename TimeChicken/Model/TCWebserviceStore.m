@@ -33,7 +33,7 @@
                    @"Make your idea happen!",
                    @"JIRA ist ein Projektverfolgungstool für Teams", nil];
         wsImagePaths = [[NSArray alloc] initWithObjects:@"icon-os.png", @"jiraThumb.png", nil];
-        wsBaseUrls = [[NSArray alloc] initWithObjects:@"http://api.onespark.de:81/api/v1", nil];
+        wsBaseUrls = [[NSArray alloc] initWithObjects:@"http://api.onespark.de:81/api/v1", @"http://jira.yourdomain.de", nil];
     }
     return self;
 }

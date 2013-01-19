@@ -166,7 +166,7 @@
 }
 
 - (void)cancel {
-    NSLog(@"cancel");
+    NSLog(@"--> cancel");
     [[self navigationController] popToRootViewControllerAnimated:YES];
 }
 
