@@ -13,7 +13,7 @@
 @class OneSparkRestClient;
 
 @interface WebserviceEditVC : UITableViewController <TCRestClientDelegate> {
-    TCRestClient *restClient;
+    OSTestRestClient *restClient;
 }
 
 @property (strong, nonatomic) TCWebservice *detailItem;

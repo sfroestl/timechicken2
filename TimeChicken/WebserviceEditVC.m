@@ -8,8 +8,6 @@
 
 #import "WebserviceEditVC.h"
 #import "TCWebservice.h"
-#import "TCWSOneSpark.h"
-#import "OneSparkRestClient.h"
 #import "TCWebserviceStore.h"
 //#import "TCWSJira.h"
 
@@ -70,12 +68,17 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
+    NSLog(@"--> And the WS Type is %i", self.detailItem.type);
     int count;
-    if ([self.detailItem isKindOfClass: [TCWSOneSpark class]]) {
-        count = 2;
+    switch (self.detailItem.type) {            
+        case 0:
+            count = 2;
+            break;
+        case 1:
+            count = 3;
+            break;
     }
     return count;
-//    else if ([self.detailItem isKindOfClass: [TCWSJira class]]){}
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -95,15 +98,23 @@
             txtField.textColor = [UIColor blackColor];
             txtField.backgroundColor = [UIColor groupTableViewBackgroundColor];
             if ([indexPath row] == 0) {
-                txtField.placeholder = @"example@gmail.com";
+                txtField.placeholder = @"your username";
                 txtField.keyboardType = UIKeyboardTypeEmailAddress;
             }
             else if ([indexPath row] == 1){
                 txtField.tag = 122;
-                txtField.placeholder = @"Required";
+                txtField.placeholder = @"your password";
                 txtField.keyboardType = UIKeyboardTypeDefault;
                 txtField.secureTextEntry = YES;
             }
+            else if ([indexPath row] == 2){
+                txtField.tag = 123;
+                txtField.placeholder = @"http://jira.myserver.de";
+                txtField.keyboardType = UIKeyboardTypeDefault;
+                txtField.secureTextEntry = YES;
+            }
+            
+            
             txtField.autocorrectionType = UITextAutocorrectionTypeNo; // no auto correction support
             txtField.autocapitalizationType = UITextAutocapitalizationTypeNone; // no auto capitalization support;
             
@@ -116,10 +127,13 @@
     if ([indexPath section] == 0) {
         switch ([indexPath row]) {
             case 0:
-                cell.textLabel.text = @"Email";
+                cell.textLabel.text = @"Username";
                 break;
             case 1:
                 cell.textLabel.text = @"Password";
+                break;
+            case 2:
+                cell.textLabel.text = @"URL";
             default:
                 break;
         }
@@ -140,11 +154,11 @@
     NSString *password = [txtField text];
     NSLog(@"--> username %@, password: %@", username, password);
     // validate user data
-    if ([self.detailItem isKindOfClass:[TCWSOneSpark class]]) {
-        OneSparkRestClient *client = [[OneSparkRestClient alloc] initRestClientwithDelegate:self];        
-        [client setAuthCredentials:username password:password];        
-        [client fetchUser];
-    }
+//    if ([self.detailItem isKindOfClass:[TCWSOneSpark class]]) {
+//        OneSparkRestClient *client = [[OneSparkRestClient alloc] initRestClientwithDelegate:self];        
+//        [client setAuthCredentials:username password:password];        
+//        [client fetchUser];
+//    }
     self.detailItem.username = username;
     self.detailItem.password = password;
     
@@ -158,22 +172,18 @@
 
 - (void) saveWs {
     NSLog(@"--> Save WS");
-    TCWebservice *ws;
-    if ([self.detailItem isKindOfClass:[TCWSOneSpark class]]) {
-        ws = [[TCWSOneSpark alloc] init];
-    }
-    
+    TCWebservice *ws = self.detailItem;
     [[TCWebserviceStore wsStore] addWebservice:ws];
     [[self navigationController] popToRootViewControllerAnimated:YES];
 }
 
 
-- (void) resetClientFinished:(TCRestClient*)client{
-    NSLog(@"--> RestClientDelegate called with FINISHED %@", [client jsonResponse]);
-    [self saveWs];
+- (void) resetClientFinished:(OSTestRestClient*)client{
+//    NSLog(@"--> RestClientDelegate called with FINISHED %@", [client jsonResponse]);
+//    [self saveWs];
     
 }
-- (void) restClient:(TCRestClient*)restClient failedWithError:(NSError*)error{
+- (void) restClient:(OSTestRestClient*)restClient failedWithError:(NSError*)error{
     UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Ups..." message:@"Your login was incorrekt" delegate:nil cancelButtonTitle:@"Retry!" otherButtonTitles:nil, nil];
     [alert show];
 }

@@ -9,9 +9,7 @@
 #import "WebserviceDetailVC.h"
 #import "ChooseTaskVC.h"
 #import "TCWebservice.h"
-#import "TCWSOneSpark.h"
-#import "TCRestClient.h"
-#import "OneSparkRestClient.h"
+#import "OSTestRestClient.h"
 #import "TCTaskStore.h"
 
 @interface WebserviceDetailVC ()
@@ -47,10 +45,6 @@
     
     if(detailItem) {
         NSLog(@"Selected: %@", self.detailItem.title);
-        if ([self.detailItem isKindOfClass: [TCWSOneSpark class]]) {
-            NSLog(@"init TCOneSparkRestClient");
-            restClient = [[OneSparkRestClient alloc] initRestClientwithDelegate:self];
-        }
         [titleField setText:detailItem.title];        
     }
 }
@@ -66,14 +60,14 @@
 
 - (void)fetchTasks {    
     NSLog(@"%@", restClient);
-    [restClient fetchUserTaskList];
+//    [restClient fetchUserTaskList];
 }
 
 - (IBAction)fetchTaskButtonPressed:(id)sender {    
     [self fetchTasks];
 }
 
-- (void) resetClientFinished:(TCRestClient*)client{
+- (void) resetClientFinished:(OSTestRestClient*)client{
     NSLog(@"--> RestClientDelegate called with FINISHED");
     NSMutableArray *fetchedTasks = [[NSMutableArray alloc] init];
     
@@ -98,9 +92,9 @@
                                             completed:completed
                                                wsType: ONESPARK];
         task.wsId = [[taskJson valueForKey:@"id"] integerValue];
-        if ([self.detailItem isKindOfClass: [TCWSOneSpark class]]) {
-            task.wsType = 1;
-        }
+//        if ([self.detailItem isKindOfClass: [TCWSOneSpark class]]) {
+//            task.wsType = 1;
+//        }
         [fetchedTasks addObject:task];
     }
         
@@ -109,7 +103,7 @@
     [self.navigationController pushViewController:wsResultCtrl animated:YES];
     
 }
-- (void) restClient:(TCRestClient*)restClient failedWithError:(NSError*)error{
+- (void) restClient:(OSTestRestClient*)restClient failedWithError:(NSError*)error{
     NSLog(@"RestClient ERROR: %@", error);
 }
 @end

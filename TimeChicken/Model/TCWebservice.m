@@ -18,17 +18,18 @@
     if((self = [super init])){
         self.title = title;
         self.desc = desc;
-        type = type;
+        type = wsType;
     }
     return self;
 }
 
-- (id) initWithTitle:(NSString *)title desc:(NSString *)desc type:(int) wsType andBaseUrl:(NSString *)bUrlString {
+- (id) initWithTitle:(NSString *)title desc:(NSString *)desc type:(int) wsType baseUrl:(NSString *)bUrlString imagePath:(NSString *) imgPath {
     if((self = [super init])){
         self.title = title;
         self.desc = desc;
-        type = type;
+        type = wsType;
         self.baseUrlString = bUrlString;
+        self.imagePath = imgPath;
     }
     return self;
 }
@@ -44,6 +45,14 @@
 
 - (NSString *)password {
     return self.password;
+}
+
+- (int)type {
+    return type;
+}
+
+- (NSString *)description {
+    return [NSString stringWithFormat:@"WS: Type:%i Title:%@ Img:%@ bURL: %@ Desc:%@", self.type, self.title, self.imagePath, self.baseUrlString, self.desc];
 }
 
 @end

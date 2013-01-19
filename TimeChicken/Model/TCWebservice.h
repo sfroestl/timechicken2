@@ -8,6 +8,9 @@
 
 #import <Foundation/Foundation.h>
 
+enum {ONESPARK, JIRA};
+typedef NSUInteger WS_TYPES;
+
 @interface TCWebservice : NSObject {
     int type;
 }
@@ -20,10 +23,11 @@
 @property (strong, nonatomic) NSString *baseUrlString;
 
 - (id) initWithTitle:(NSString *)title desc:(NSString *)desc type:(int) wsType;
-- (id) initWithTitle:(NSString *)title desc:(NSString *)desc type:(int) wsType andBaseUrl:(NSURL *)bUrl;
+- (id) initWithTitle:(NSString *)title desc:(NSString *)desc type:(int) wsType baseUrl:(NSString *)bUrlString imagePath:(NSString *) imgPath;
 - (void) setAuthUsername: (NSString *)name andPassword:(NSString *)pw;
 
 - (NSString *)username;
 - (NSString *)password;
+- (int)type;
 
 @end

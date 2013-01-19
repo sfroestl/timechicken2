@@ -32,7 +32,8 @@
         wsDescs = [[NSArray alloc] initWithObjects:
                    @"Make your idea happen!",
                    @"JIRA ist ein Projektverfolgungstool für Teams", nil];
-        wsImagePaths = [[NSArray alloc] initWithObjects: @"icon-os.png", @"jiraThumb.png", nil];
+        wsImagePaths = [[NSArray alloc] initWithObjects:@"icon-os.png", @"jiraThumb.png", nil];
+        wsBaseUrls = [[NSArray alloc] initWithObjects:@"http://api.onespark.de:81/api/v1", nil];
     }
     return self;
 }
@@ -58,17 +59,25 @@
 }
 
 - (TCWebservice *) webserviceWithType:(int)type {
-    TCWebservice * newWs = [[TCWebservice alloc] initWithTitle:[wsNames objectAtIndex:type] desc:[wsDescs objectAtIndex:type] type:type];
+    TCWebservice * newWs = [[TCWebservice alloc] initWithTitle:[wsNames objectAtIndex:type]
+                                                          desc:[wsDescs objectAtIndex:type]
+                                                          type:type
+                                                       baseUrl:[wsBaseUrls objectAtIndex:type]
+                                                     imagePath:[wsImagePaths objectAtIndex:type]];
     return newWs;
 }
 
-- (TCWebservice *) webserviceWithType:(int)type andBaseUrl:(NSURL *)bUrl {
-    TCWebservice * newWs = [[TCWebservice alloc] initWithTitle:[wsNames objectAtIndex:type] desc:[wsDescs objectAtIndex:type] type:type andBaseUrl:bUrl];
+- (TCWebservice *) webserviceWithType:(int)type andBaseUrl:(NSString *)bUrl {
+    TCWebservice * newWs = [[TCWebservice alloc] initWithTitle:[wsNames objectAtIndex:type]
+                                                          desc:[wsDescs objectAtIndex:type]
+                                                          type:type
+                                                       baseUrl:bUrl
+                                                     imagePath:[wsImagePaths objectAtIndex:type]];
     return newWs;
 }
 
 - (void) addWebservice:(TCWebservice *)webservice {
-    [webservices addObject:webservices];
+    [webservices addObject:webservice];
 }
 
 - (void) removeWebservice:(TCWebservice *)webservice {

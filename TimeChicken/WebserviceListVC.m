@@ -10,7 +10,6 @@
 #import "WebserviceDetailVC.h"
 #import "TCWebserviceStore.h"
 #import "TCWebservice.h"
-#import "TCWSOneSpark.h"
 #import "NewWebserviceVC.h"
 
 @interface WebserviceListVC ()
@@ -71,7 +70,8 @@
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"WebserviceCell"];
     }
     TCWebservice *ws = [[[TCWebserviceStore wsStore] allWebservices] objectAtIndex:[indexPath row]];
-//    [cell.imageView setImage:[UIImage imageNamed:ws.image]];
+    NSLog(@"%@", ws);
+    [cell.imageView setImage:[UIImage imageNamed:ws.imagePath]];
     
     [cell.textLabel setText: ws.title];
     
@@ -85,9 +85,6 @@
     // transition to DetailController
     WebserviceDetailVC *detailVC = [[WebserviceDetailVC alloc] init];
     detailVC.detailItem = selectedWS;
-    if ([selectedWS isKindOfClass:[TCWSOneSpark class]]) {
-        NSLog(@"Webservice is TCWSOneSpark!");
-    }
     [self.navigationController pushViewController:detailVC animated:YES];
 }
 

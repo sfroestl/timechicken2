@@ -8,8 +8,6 @@
 
 #import <UIKit/UIKit.h>
 @class TCWebservice;
-@class TCWSOneSpark;
-//@class TCWSJira;
 
 @interface NewWebserviceVC : UITableViewController
 

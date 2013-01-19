@@ -8,8 +8,6 @@
 
 #import <Foundation/Foundation.h>
 
-enum {ONESPARK, JIRA};
-typedef NSUInteger WS_TYPES;
 
 @class TCWebservice;
 
@@ -18,6 +16,7 @@ typedef NSUInteger WS_TYPES;
     NSArray *wsNames;
     NSArray *wsDescs;
     NSArray *wsImagePaths;
+    NSArray *wsBaseUrls;
 }
 
 + (TCWebserviceStore *)wsStore;

@@ -8,15 +8,15 @@
 
 #import <UIKit/UIKit.h>
 #import "TCRestClientDelegate.h"
-#import "TCRestClient.h"
+#import "OSTestRestClient.h"
 
 
 @class TCWebservice;
-@class TCRestClient;
+@class OSTestRestClient;
 
 
 @interface WebserviceDetailVC : UIViewController<TCRestClientDelegate> {
-    TCRestClient *restClient;
+    OSTestRestClient *restClient;
     __weak IBOutlet UITextField *titleField;
     __weak IBOutlet UITextField *usernameField;
     __weak IBOutlet UITextField *passwordField;
