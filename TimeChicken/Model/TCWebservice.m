@@ -12,7 +12,7 @@
 
 @synthesize title = _title;
 @synthesize desc = _desc;
-@synthesize baseUrl = _baseUrl;
+@synthesize baseUrlString = _baseUrlString;
 
 - (id) initWithTitle:(NSString *)title desc:(NSString *)desc type:(int) wsType {
     if((self = [super init])){
@@ -23,12 +23,12 @@
     return self;
 }
 
-- (id) initWithTitle:(NSString *)title desc:(NSString *)desc type:(int) wsType andBaseUrl:(NSURL *)bUrl {
+- (id) initWithTitle:(NSString *)title desc:(NSString *)desc type:(int) wsType andBaseUrl:(NSString *)bUrlString {
     if((self = [super init])){
         self.title = title;
         self.desc = desc;
         type = type;
-        self.baseUrl = bUrl;
+        self.baseUrlString = bUrlString;
     }
     return self;
 }

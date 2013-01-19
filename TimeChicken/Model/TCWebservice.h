@@ -17,8 +17,13 @@
 @property (strong, nonatomic) NSString *desc;
 @property (strong, nonatomic) NSString *username;
 @property (strong, nonatomic) NSString *password;
-@property (strong, nonatomic) NSURL *baseUrl;
+@property (strong, nonatomic) NSString *baseUrlString;
 
 - (id) initWithTitle:(NSString *)title desc:(NSString *)desc type:(int) wsType;
 - (id) initWithTitle:(NSString *)title desc:(NSString *)desc type:(int) wsType andBaseUrl:(NSURL *)bUrl;
+- (void) setAuthUsername: (NSString *)name andPassword:(NSString *)pw;
+
+- (NSString *)username;
+- (NSString *)password;
+
 @end

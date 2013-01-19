@@ -1,19 +1,23 @@
 //
-//  OneSparkRestClient.m
+//  TCOneSparkRestClient.m
 //  TimeChicken
 //
-//  Created by Sebastian Fröstl on 18.01.13.
+//  Created by Sebastian Fröstl on 15.01.13.
 //  Copyright (c) 2013 Christian Schäfer. All rights reserved.
 //
 
-#import "OneSparkRestClient.h"
+#import "OSTestRestClient.h"
+#import "TCTask.h"
+#import "Base64.h"
 
 NSString* const baseUrl = @"http://api.onespark.de:81/api/v1";
 NSString* const userUrlPart = @"/user";
 NSString* const tasksUrlPart = @"/tasks";
 NSString* const projectsUrlPart = @"/projects";
 
-@implementation OneSparkRestClient
+@implementation OSTestRestClient
+@synthesize jsonResponse = _jsonResponse;
+@synthesize restClientDelegate = _restClientDelegate;
 
 @synthesize username = _username;
 @synthesize password = _password;
@@ -103,10 +107,11 @@ NSString* const projectsUrlPart = @"/projects";
     [self.restClientDelegate resetClientFinished:self];
 }
 
-- (void) resetClientFinished:(TCRestClient*)restClient{
+- (void) resetClientFinished:(OSTestRestClient*)restClient{
 }
 
-- (void) restClient:(TCRestClient*)restClient failedWithError:(NSError*)error{
+- (void) restClient:(OSTestRestClient*)restClient failedWithError:(NSError*)error{
 }
-
 @end
+
+

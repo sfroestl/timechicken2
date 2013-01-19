@@ -7,13 +7,13 @@
 //
 
 #import <Foundation/Foundation.h>
-@class TCRestClient;
+@class OSTestRestClient;
 
 @protocol TCRestClientDelegate <NSObject>
 
 @required
-- (void) resetClientFinished:(TCRestClient*)restClient;
-- (void) restClient:(TCRestClient*)restClient failedWithError:(NSError*)error;
+- (void) resetClientFinished:(OSTestRestClient*)restClient;
+- (void) restClient:(OSTestRestClient*)restClient failedWithError:(NSError*)error;
 
 @end
 
