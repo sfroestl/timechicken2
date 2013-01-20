@@ -57,7 +57,15 @@
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return [[[TCWebserviceStore wsStore] allWebservices] count];
+    int rowCount = [[[TCWebserviceStore wsStore] allWebservices] count];
+    if (rowCount == 0) {
+//        NewWebserviceVC *newVC = [[NewWebserviceVC alloc] init];        
+//        UINavigationController *navC = [[UINavigationController alloc] initWithRootViewController:newVC];
+//        [[self navigationController] presentViewController:navC animated:YES completion:nil];
+//        NewWebserviceVC *newWsVC = [[NewWebserviceVC alloc] init];
+//        [[self navigationController] pushViewController:newWsVC animated:YES];
+    }
+    return rowCount;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -84,7 +92,7 @@
     
     // transition to DetailController
     WebserviceDetailVC *detailVC = [[WebserviceDetailVC alloc] init];
-    detailVC.detailItem = selectedWS;
+    detailVC.detailItemWebService = selectedWS;
     [self.navigationController pushViewController:detailVC animated:YES];
 }
 

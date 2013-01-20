@@ -109,7 +109,7 @@
 }
 
 - (NSArray *) findByWsId:(int) wsId andwsType:(int) wsType {
-    NSPredicate *condition = [NSPredicate predicateWithFormat:@"(wsId == %i) OR (wsType == %i)", wsId, wsType];
+    NSPredicate *condition = [NSPredicate predicateWithFormat:@"(wsID == %i) OR (wsType == %i)", wsId, wsType];
     NSArray *foundTasks = [[[TCTaskStore taskStore] tasks] filteredArrayUsingPredicate:condition];
     return foundTasks;
 }

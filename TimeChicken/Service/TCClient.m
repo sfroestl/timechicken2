@@ -16,13 +16,9 @@
 
 
 + (TCOneSparkClient *)oneSparkClient {
-    static TCOneSparkClient *_oneSparkClient = nil;
-    static dispatch_once_t onceToken;
-    dispatch_once(&onceToken, ^{
-        _oneSparkClient = [[TCOneSparkClient alloc] init];
-    });
-    
-    return _oneSparkClient;
+    TCOneSparkClient *oneSparkClient = nil;
+    oneSparkClient = [[TCOneSparkClient alloc] init];    
+    return oneSparkClient;
 }
 
 + (TCOneSparkClient *)oneSparkClientWithBaseUrl:(NSString *)baseUrlString {
@@ -47,13 +43,15 @@
 }
 
 + (TCJiraClient *)jiraClientWithBaseUrl:(NSString *)baseUrlString {
-    static TCJiraClient *_jiraClient = nil;
-    static dispatch_once_t onceToken;
-    dispatch_once(&onceToken, ^{
-        _jiraClient = [[TCJiraClient alloc] initWithBaseURL:[NSURL URLWithString:baseUrlString]];
-    });
-    
-    return _jiraClient;
+    TCJiraClient *jiraClient = [[TCJiraClient alloc] initWithBaseURL:[NSURL URLWithString:baseUrlString]];
+    return jiraClient;
+//    static TCJiraClient *_jiraClient = nil;
+//    static dispatch_once_t onceToken;
+//    dispatch_once(&onceToken, ^{
+//        _jiraClient = [[TCJiraClient alloc] initWithBaseURL:[NSURL URLWithString:baseUrlString]];
+//    });
+//    
+//    return _jiraClient;
 }
 
 

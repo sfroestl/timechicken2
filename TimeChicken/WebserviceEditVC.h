@@ -7,18 +7,15 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "TCRestClientDelegate.h"
-@class TCWebservice;
-@class TCWSOneSpark;
-@class OneSparkRestClient;
 
-@interface WebserviceEditVC : UITableViewController <TCRestClientDelegate>
+@class TCWebservice;
+
+@interface WebserviceEditVC : UITableViewController
 
 @property (strong, nonatomic) TCWebservice *detailItem;
 
 - (void) proveWs;
 - (void) saveWs;
-- (void) cancel;
 
 
 @end

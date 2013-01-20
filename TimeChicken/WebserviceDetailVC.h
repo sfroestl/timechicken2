@@ -15,15 +15,12 @@
 @class OSTestRestClient;
 
 
-@interface WebserviceDetailVC : UIViewController<TCRestClientDelegate> {
-    OSTestRestClient *restClient;
+@interface WebserviceDetailVC : UIViewController {
     __weak IBOutlet UITextField *titleField;
     __weak IBOutlet UITextField *usernameField;
     __weak IBOutlet UITextField *passwordField;
     __weak IBOutlet UILabel *lastSyncLabel;
 }
-@property (strong, nonatomic) TCWebservice *detailItem;
-
-- (IBAction)fetchTaskButtonPressed:(id)sender;
+@property (strong, nonatomic) TCWebservice *detailItemWebService;
 
 @end

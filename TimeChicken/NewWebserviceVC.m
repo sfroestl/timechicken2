@@ -21,7 +21,8 @@
 {
     self = [super initWithStyle:UITableViewStyleGrouped];
     if (self) {
-        // Custom initialization
+        [self setTitle: @"Choose a Webservice"];    
+        
     }
     return self;
 }
@@ -34,6 +35,13 @@
     [super viewDidLoad];
 }
 
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    UIBarButtonItem *bbi = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCancel target:self action:@selector(cancel)];
+    
+    // Set this bar button item as the right item in navigation
+    [[self navigationItem] setLeftBarButtonItem:bbi];
+}
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
@@ -70,7 +78,12 @@
     wsDetailVC.detailItem = webservice;
     [[self navigationController] pushViewController:wsDetailVC animated:YES];
 }
-
+         
+- (void)cancel {
+    NSLog(@"--> cancel");
+//    [self dismissViewControllerAnimated:YES completion:nil];
+    [[self navigationController] popToRootViewControllerAnimated:YES];
+}
 
 
 @end

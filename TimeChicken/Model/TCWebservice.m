@@ -19,6 +19,7 @@
         self.title = title;
         self.desc = desc;
         type = wsType;
+        _wsID = [TCWebservice generateWsId];
     }
     return self;
 }
@@ -30,6 +31,7 @@
         type = wsType;
         self.baseUrlString = bUrlString;
         self.imagePath = imgPath;
+        _wsID = [TCWebservice generateWsId];
     }
     return self;
 }
@@ -47,12 +49,22 @@
     return self.password;
 }
 
+- (int) getWsID {
+    return _wsID;
+}
+
 - (int)type {
     return type;
 }
 
 - (NSString *)description {
-    return [NSString stringWithFormat:@"WS: Type:%i Title:%@ Img:%@ bURL: %@ Desc:%@", self.type, self.title, self.imagePath, self.baseUrlString, self.desc];
+    return [NSString stringWithFormat:@"WS: Type:%i Title:%@ Username:%@ WSID:%i Img:%@ bURL: %@ Desc:%@", self.type, self.title, self.username, self.wsID, self.imagePath, self.baseUrlString, self.desc];
+}
+
++ (int)generateWsId {
+    static int wsId = 0;
+    wsId = wsId + 1;
+    return wsId;
 }
 
 @end

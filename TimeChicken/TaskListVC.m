@@ -23,7 +23,7 @@
     if(self){
         self.title = @"Tasks";
         NSDate *date = [[NSDate alloc] init];
-        TCTask *taskWithImage = [[TCTask alloc] initWithTitle:@"ImageTask" desc:@"shows image and date" project:@"TC-App-Dev" dueDate:date url:nil completed:YES wsType:0];
+        TCTask *taskWithImage = [[TCTask alloc] initWithTitle:@"ImageTask" desc:@"shows image and date" projectTitle:@"TC-App-Dev" dueDate:date];
         [[TCTaskStore taskStore] addTask:taskWithImage];
     }
     return self;
@@ -107,15 +107,11 @@
         
         //set Backend-Thumbnails
         switch (currentTask.wsType) {
-//            case 0:{
-//                [[cell thumbnailView] setImage:nil];
-//                break;
-//            }
-            case 1:{
+            case 0:{
                 [[cell thumbnailView] setImage:[UIImage imageNamed:@"onesparkThumb.png"]];
                 break;
             }
-            case 2:{
+            case 1:{
                 [[cell thumbnailView] setImage:[UIImage imageNamed:@"jiraThumb.png"]];
                 break;
             }

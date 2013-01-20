@@ -82,7 +82,7 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     TCTask *wsTask = [wsTasks objectAtIndex:[indexPath row]];
-    NSArray *alreadyImportedTasks = [[TCTaskStore taskStore] findByWsId:wsTask.wsId andwsType:wsTask.wsType];
+    NSArray *alreadyImportedTasks = [[TCTaskStore taskStore] findByWsId:wsTask.wsID andwsType:wsTask.wsType];
     
     UITableViewCell *cell;
     if (alreadyImportedTasks.count != 0 ) {
@@ -94,7 +94,7 @@
     }
     BOOL found = NO;
     for (TCTask *task in alreadyImportedTasks){
-        if(task.wsId == wsTask.wsId){
+        if(task.wsID == wsTask.wsID){
             found = YES;
             break;
         }

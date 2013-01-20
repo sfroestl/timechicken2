@@ -34,6 +34,16 @@
                    @"JIRA ist ein Projektverfolgungstool für Teams", nil];
         wsImagePaths = [[NSArray alloc] initWithObjects:@"icon-os.png", @"jiraThumb.png", nil];
         wsBaseUrls = [[NSArray alloc] initWithObjects:@"http://api.onespark.de:81/api/v1", @"http://jira.yourdomain.de", nil];
+        
+        TCWebservice *osService = [[TCWebservice alloc] initWithTitle:@"One Spark" desc:[wsDescs objectAtIndex:0] type:0 baseUrl:[wsBaseUrls objectAtIndex:0] imagePath:[wsImagePaths objectAtIndex:0]];
+        osService.username = @"sfroestl";
+        osService.password = @"asdasd";
+        [webservices addObject:osService];
+        
+        TCWebservice *jiraService = [[TCWebservice alloc] initWithTitle:@"Jira" desc:[wsDescs objectAtIndex:1] type:1 baseUrl:@"http://jira.inf.tu-dresden.de" imagePath:[wsImagePaths objectAtIndex:1]];
+        jiraService.username = @"froestl";
+        jiraService.password = @"fr1bb3#RN";
+        [webservices addObject:jiraService];
     }
     return self;
 }
@@ -94,5 +104,19 @@
     // Insert item in array at new location
     [webservices insertObject:ws atIndex:to];
 }
+
+
+- (BOOL) containsWs:(TCWebservice *)newWs {
+    BOOL contains = false;
+    for (TCWebservice *ws in webservices) {
+        if ((ws.type == newWs.type) && ([ws.username isEqualToString:newWs.username]) && ([ws.baseUrlString isEqualToString:newWs.baseUrlString ])) {
+            contains = true;
+            break;
+        }
+    }
+    NSLog(@"Contains: %i", contains);
+    return contains;
+}
+
 
 @end

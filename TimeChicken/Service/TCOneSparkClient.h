@@ -13,6 +13,8 @@ FOUNDATION_EXPORT NSString *const kTasksPath;
 FOUNDATION_EXPORT NSString *const kProjectsPath;
 FOUNDATION_EXPORT NSString *const kUsersPath;
 
+@class TCTask;
+
 @interface TCOneSparkClient : TCClient <TCRestClientIF>
 
 @end

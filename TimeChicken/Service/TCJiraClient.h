@@ -14,6 +14,8 @@ FOUNDATION_EXPORT NSString *const kProjectsPath;
 FOUNDATION_EXPORT NSString *const kJiraRestPath;
 FOUNDATION_EXPORT NSString *const kUsersPath;
 
+@class TCTask;
+
 @interface TCJiraClient : TCClient <TCRestClientIF>
 
 @property (nonatomic, strong) NSURL *jiraBaseUrl;

@@ -7,18 +7,26 @@
 //
 
 #import "WebserviceDetailVC.h"
+
 #import "ChooseTaskVC.h"
 #import "TCWebservice.h"
-#import "OSTestRestClient.h"
 #import "TCTaskStore.h"
+
+#import "TCClient.h"
+#import "TCRestClientIF.h"
+#import "TCOneSparkClient.h"
+#import "TCJiraClient.h"
 
 @interface WebserviceDetailVC ()
 
 @end
 
-@implementation WebserviceDetailVC
+@implementation WebserviceDetailVC{
+@private
+    __strong UIActivityIndicatorView *_activityIndicatorView;
+}
 
-@synthesize detailItem;
+@synthesize detailItemWebService;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -43,9 +51,9 @@
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     
-    if(detailItem) {
-        NSLog(@"Selected: %@", self.detailItem);
-        [titleField setText:detailItem.title];        
+    if(detailItemWebService) {
+        NSLog(@"Selected: %@", self.detailItemWebService);
+        [titleField setText:detailItemWebService.title];        
     }
 }
 
@@ -54,56 +62,47 @@
     [self.view endEditing:YES];
     
     // Save changes
-    [detailItem setTitle: [titleField text]];
+    [detailItemWebService setTitle: [titleField text]];
 }
 
-
-- (void)fetchTasks {    
-    NSLog(@"%@", restClient);
-//    [restClient fetchUserTaskList];
-}
 
 - (IBAction)fetchTaskButtonPressed:(id)sender {    
     [self fetchTasks];
 }
 
-- (void) resetClientFinished:(OSTestRestClient*)client{
-    NSLog(@"--> RestClientDelegate called with FINISHED");
-    NSMutableArray *fetchedTasks = [[NSMutableArray alloc] init];
+
+- (void)fetchTasks {
+    NSLog(@"-->> fetchTasks");
+    [_activityIndicatorView startAnimating];
+    self.navigationItem.rightBarButtonItem.enabled = NO;
     
-    NSDictionary *jsonData = [client jsonResponse];
-    for (NSMutableArray *taskJson in [jsonData valueForKey:@"tasks"]) {
-//        NSLog(@"Task: %@", taskJson);
-//        NSDateFormatter *dateFormat = [[NSDateFormatter alloc] init];
-//        NSString *due_date_string = [taskJson valueForKey:@"due_date"];
-//        if (due_date_string) {
-//            NSDate *dueDate = [dateFormat dateFromString:[taskJson valueForKey:@"due_date"]];
-//        }
-        
-       
-        NSLog(@"Due Date: %@", [taskJson valueForKey: @"due_date"]);
-        bool completed = [[taskJson valueForKey:@"completed"] boolValue];
-        
-        TCTask *task = [[TCTask alloc] initWithTitle:[taskJson valueForKey:@"title"]
-                                                 desc:[taskJson valueForKey:@"desc"]
-                                              project:nil
-                                              dueDate:nil
-                                                  url:[NSString stringWithFormat:@"http://api.onespark.de/api/v1/tasks/%@", [taskJson valueForKey:@"id"]]
-                                            completed:completed
-                                               wsType: ONESPARK];
-        task.wsId = [[taskJson valueForKey:@"id"] integerValue];
-//        if ([self.detailItem isKindOfClass: [TCWSOneSpark class]]) {
-//            task.wsType = 1;
-//        }
-        [fetchedTasks addObject:task];
+    TCClient<TCRestClientIF> *client = nil;
+    TCWebservice *webService = self.detailItemWebService;
+    
+    switch (webService.type) {
+        case 0:
+            client = [TCOneSparkClient oneSparkClient];
+            break;
+        case 1:            
+            client = [TCJiraClient jiraClientWithBaseUrl:webService.baseUrlString];
+            break;
     }
+    if (client) {
+        [client setBasicAuthUsername:webService.username andPassword:webService.password];
         
-    ChooseTaskVC *wsResultCtrl = [[ChooseTaskVC alloc] init];
-    [wsResultCtrl setWsTasks:fetchedTasks];
-    [self.navigationController pushViewController:wsResultCtrl animated:YES];
-    
+        [client fetchUserTaskList:^(NSArray *tasks, NSError *error) {
+            if (error) {
+                [[[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Error", nil) message:[error localizedDescription] delegate:nil cancelButtonTitle:nil otherButtonTitles:NSLocalizedString(@"OK", nil), nil] show];
+            } else {
+                ChooseTaskVC *wsResultCtrl = [[ChooseTaskVC alloc] init];
+                [wsResultCtrl setWsTasks:tasks];
+                [self.navigationController pushViewController:wsResultCtrl animated:YES];
+            }
+            [_activityIndicatorView stopAnimating];
+        } withWebservice:webService];
+    }
+
 }
-- (void) restClient:(OSTestRestClient*)restClient failedWithError:(NSError*)error{
-    NSLog(@"RestClient ERROR: %@", error);
-}
+
+
 @end

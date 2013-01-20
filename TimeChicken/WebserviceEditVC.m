@@ -31,11 +31,10 @@
 {
     self = [super initWithStyle:UITableViewStyleGrouped];
     if (self) {
-        self.title = [[self detailItem] title];
-        UIBarButtonItem *cancelBbi = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCancel target:self action:@selector(cancel)];
+//        UIBarButtonItem *cancelBbi = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCancel target:self action:@selector(cancel)];
         UIBarButtonItem *saveBbi = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemSave target:self action:@selector(proveWs)];
         
-        [[self navigationItem] setLeftBarButtonItem:cancelBbi];
+//        [[self navigationItem] setLeftBarButtonItem:cancelBbi];
         [[self navigationItem] setRightBarButtonItem:saveBbi];
         if (self.detailItem) {
 //            if ([self.detailItem isKindOfClass:[TCWSOneSpark class]]) {
@@ -58,6 +57,8 @@
 }
 
 - (void)viewWillAppear:(BOOL)animated {
+    NSLog(@"Detail item: %@", self.detailItem);
+    self.title = self.detailItem.title;
 }
 
 - (void)didReceiveMemoryWarning
@@ -162,6 +163,13 @@
     NSString *password = [txtField text];
     NSLog(@"--> username %@", username);
     TCClient<TCRestClientIF> *client = nil;
+    
+    if ((password == nil) || (username == nil)) {
+        [[[UIAlertView alloc] initWithTitle:nil message:@"Please fill in username and password" delegate:nil cancelButtonTitle:nil otherButtonTitles:@"OK", nil, nil] show ];
+        self.navigationItem.rightBarButtonItem.enabled = YES;
+        return;
+    }
+    
     switch (self.detailItem.type) {
         case 0:
             client = [TCOneSparkClient oneSparkClient];
@@ -169,6 +177,13 @@
         case 1:
             txtField = (UITextField *)[[self view] viewWithTag:123];
             NSString *url = [txtField text];
+            
+            if (url == nil) {
+                [[[UIAlertView alloc] initWithTitle:nil message:@"Please fill in a valid url" delegate:nil cancelButtonTitle:nil otherButtonTitles:@"OK", nil, nil] show ];
+                self.navigationItem.rightBarButtonItem.enabled = YES;
+                return;
+            }
+            
             client = [TCJiraClient jiraClientWithBaseUrl:url];
             self.detailItem.baseUrlString = url;
             break;
@@ -180,9 +195,6 @@
                 [[[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Error", nil) message:[error localizedDescription] delegate:nil cancelButtonTitle:nil otherButtonTitles:NSLocalizedString(@"OK", nil), nil] show];
                 self.navigationItem.rightBarButtonItem.enabled = YES;
             } else {
-                [[[UIAlertView alloc] initWithTitle:@"Well done!"
-                                            message:[NSString stringWithFormat:@"You're logged in with %@", username]
-                                           delegate:nil cancelButtonTitle:nil otherButtonTitles:@"OK", nil, nil] show];
                 self.detailItem.username = username;
                 self.detailItem.password = password;
                 [self saveWs];
@@ -192,28 +204,25 @@
     }
 }
 
-- (void)cancel {
-    NSLog(@"--> cancel");
-    [[self navigationController] popToRootViewControllerAnimated:YES];
-}
-
 - (void) saveWs {
     NSLog(@"--> Save WS");
     TCWebservice *ws = self.detailItem;
+    
+    if ([[TCWebserviceStore wsStore] containsWs:ws]) {
+        NSLog(@"-->> Already exists");
+        [[[UIAlertView alloc] initWithTitle:@"Did you forget?"
+                                    message:[NSString stringWithFormat:@"You're already connected with %@", ws.username]
+                                   delegate:nil cancelButtonTitle:nil otherButtonTitles:@"OK", nil, nil] show];
+        [[self navigationController] popToRootViewControllerAnimated:YES];
+        return;
+    }
     [[TCWebserviceStore wsStore] addWebservice:ws];
+    [[[UIAlertView alloc] initWithTitle:@"Well done!"
+                                message:[NSString stringWithFormat:@"You're logged in with %@", ws.username]
+                               delegate:nil cancelButtonTitle:nil otherButtonTitles:@"OK", nil, nil] show];
     [[self navigationController] popToRootViewControllerAnimated:YES];
 }
 
-
-- (void) resetClientFinished:(OSTestRestClient*)client{
-//    NSLog(@"--> RestClientDelegate called with FINISHED %@", [client jsonResponse]);
-//    [self saveWs];
-    
-}
-- (void) restClient:(OSTestRestClient*)restClient failedWithError:(NSError*)error{
-    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Ups..." message:@"Your login was incorrekt" delegate:nil cancelButtonTitle:@"Retry!" otherButtonTitles:nil, nil];
-    [alert show];
-}
 
 /*
 / Override to support conditional editing of the table view.

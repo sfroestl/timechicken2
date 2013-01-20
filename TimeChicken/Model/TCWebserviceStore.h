@@ -35,4 +35,6 @@
 - (void) removeWebservice:(TCWebservice *)webservice;
 - (void) moveItemAtIndex:(int)from toIndex:(int)to;
 
+- (BOOL) containsWs:(TCWebservice *)newWs;
+
 @end
