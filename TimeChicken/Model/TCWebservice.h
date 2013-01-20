@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
-enum {ONESPARK, JIRA};
+enum {NONE, ONESPARK, JIRA};
 typedef NSUInteger WS_TYPES;
 
 @interface TCWebservice : NSObject {

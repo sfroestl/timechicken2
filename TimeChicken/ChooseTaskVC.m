@@ -85,25 +85,29 @@
     NSArray *alreadyImportedTasks = [[TCTaskStore taskStore] findByWsId:wsTask.wsID andwsType:wsTask.wsType];
     
     UITableViewCell *cell;
-    if (alreadyImportedTasks.count != 0 ) {
-    }
-    cell = [tableView dequeueReusableCellWithIdentifier:@"WSTaskCell"];
-    // Ceck if Taks is already imported
-    if (!cell) {
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"WSTaskCell"];
-    }
+
     BOOL found = NO;
     for (TCTask *task in alreadyImportedTasks){
-        if(task.wsID == wsTask.wsID){
+        if([task.url isEqualToString:wsTask.url]){
             found = YES;
             break;
         }
     }
-    if (found) {
-        NSLog(@"true!!!");
-        cell.userInteractionEnabled = NO;
-        
-    }        
+    if (!found) {
+        cell = [tableView dequeueReusableCellWithIdentifier:@"WSTaskCell"];
+        // Ceck if Taks is already imported
+        if (!cell) {
+            cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"WSTaskCell"];            
+            cell.userInteractionEnabled = YES;
+        }
+    } else {
+        cell = [tableView dequeueReusableCellWithIdentifier:@"WSTaskCellDisabled"];
+        // Ceck if Taks is already imported
+        if (!cell) {
+            cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"WSTaskCellDisabled"];
+            cell.userInteractionEnabled = NO;
+        }
+    }
     [cell.textLabel setText: wsTask.title];
     if ([self.chosedTasksForImport containsObject:indexPath]) {
         cell.accessoryType = UITableViewCellAccessoryCheckmark;
@@ -173,9 +177,8 @@
     wsTasks = nil;
 //    TaskListVC *taskVC = [self.tabBarController.viewControllers objectAtIndex:0];
     UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Successfully importet tasks." message:nil delegate:nil cancelButtonTitle:@"Great!" otherButtonTitles:nil];
-    [alert show];
+    [alert show];    
     [self.parentViewController.tabBarController setSelectedIndex:0];
-    [self.navigationController popViewControllerAnimated:NO];
 }
 
 

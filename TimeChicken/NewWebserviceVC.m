@@ -72,11 +72,24 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     WebserviceEditVC *wsDetailVC = [[WebserviceEditVC alloc] init];
-    NSLog(@"--> Create WS With type %i", indexPath.row);
-    TCWebservice *webservice = [[TCWebserviceStore wsStore] webserviceWithType:indexPath.row];
-    NSLog(@"--> WSType is %i", webservice.type);
-    wsDetailVC.detailItem = webservice;
-    [[self navigationController] pushViewController:wsDetailVC animated:YES];
+    TCWebservice *webservice = nil;
+    switch (indexPath.row) {
+        case 0:
+            NSLog(@"--> Create WS With type %i", ONESPARK);
+            webservice = [[TCWebserviceStore wsStore] webserviceWithType:ONESPARK];
+            NSLog(@"--> WSType is %i", webservice.type);            
+            break;
+        case 1:
+            NSLog(@"--> Create WS With type %i", JIRA);
+            webservice = [[TCWebserviceStore wsStore] webserviceWithType:JIRA];
+            NSLog(@"--> WSType is %i", webservice.type);
+            break;
+    }
+    if (webservice) {
+        wsDetailVC.detailItem = webservice;
+        [[self navigationController] pushViewController:wsDetailVC animated:YES];
+    }
+   
 }
          
 - (void)cancel {

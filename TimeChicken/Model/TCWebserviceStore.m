@@ -28,19 +28,19 @@
     self = [super init];
     if(self) {
         webservices = [[NSMutableArray alloc] init];
-        wsNames = [[NSArray alloc] initWithObjects:@"One Spark", @"Jira", nil];
-        wsDescs = [[NSArray alloc] initWithObjects:
+        wsNames = [[NSArray alloc] initWithObjects:@"", @"One Spark", @"Jira", nil];
+        wsDescs = [[NSArray alloc] initWithObjects:@"", 
                    @"Make your idea happen!",
                    @"JIRA ist ein Projektverfolgungstool für Teams", nil];
-        wsImagePaths = [[NSArray alloc] initWithObjects:@"icon-os.png", @"jiraThumb.png", nil];
-        wsBaseUrls = [[NSArray alloc] initWithObjects:@"http://api.onespark.de:81/api/v1", @"http://jira.yourdomain.de", nil];
+        wsImagePaths = [[NSArray alloc] initWithObjects:@"", @"icon-os.png", @"jiraThumb.png", nil];
+        wsBaseUrls = [[NSArray alloc] initWithObjects:@"", @"http://api.onespark.de:81/api/v1", @"http://jira.yourdomain.de", nil];
         
-        TCWebservice *osService = [[TCWebservice alloc] initWithTitle:@"One Spark" desc:[wsDescs objectAtIndex:0] type:0 baseUrl:[wsBaseUrls objectAtIndex:0] imagePath:[wsImagePaths objectAtIndex:0]];
+        TCWebservice *osService = [[TCWebservice alloc] initWithTitle:@"One Spark" desc:[wsDescs objectAtIndex:ONESPARK] type:ONESPARK baseUrl:[wsBaseUrls objectAtIndex:ONESPARK] imagePath:[wsImagePaths objectAtIndex:ONESPARK]];
         osService.username = @"sfroestl";
         osService.password = @"asdasd";
         [webservices addObject:osService];
         
-        TCWebservice *jiraService = [[TCWebservice alloc] initWithTitle:@"Jira" desc:[wsDescs objectAtIndex:1] type:1 baseUrl:@"http://jira.inf.tu-dresden.de" imagePath:[wsImagePaths objectAtIndex:1]];
+        TCWebservice *jiraService = [[TCWebservice alloc] initWithTitle:@"Jira" desc:[wsDescs objectAtIndex:JIRA] type:JIRA baseUrl:@"http://jira.inf.tu-dresden.de" imagePath:[wsImagePaths objectAtIndex:JIRA]];
         jiraService.username = @"froestl";
         jiraService.password = @"fr1bb3#RN";
         [webservices addObject:jiraService];

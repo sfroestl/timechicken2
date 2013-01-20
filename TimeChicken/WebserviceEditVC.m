@@ -171,10 +171,10 @@
     }
     
     switch (self.detailItem.type) {
-        case 0:
+        case ONESPARK:
             client = [TCOneSparkClient oneSparkClient];
             break;
-        case 1:
+        case JIRA:
             txtField = (UITextField *)[[self view] viewWithTag:123];
             NSString *url = [txtField text];
             

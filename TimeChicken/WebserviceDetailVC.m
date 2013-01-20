@@ -80,10 +80,10 @@
     TCWebservice *webService = self.detailItemWebService;
     
     switch (webService.type) {
-        case 0:
+        case ONESPARK:
             client = [TCOneSparkClient oneSparkClient];
             break;
-        case 1:            
+        case JIRA:
             client = [TCJiraClient jiraClientWithBaseUrl:webService.baseUrlString];
             break;
     }

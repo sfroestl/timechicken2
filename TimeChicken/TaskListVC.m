@@ -107,11 +107,11 @@
         
         //set Backend-Thumbnails
         switch (currentTask.wsType) {
-            case 0:{
+            case 1:{
                 [[cell thumbnailView] setImage:[UIImage imageNamed:@"onesparkThumb.png"]];
                 break;
             }
-            case 1:{
+            case 2:{
                 [[cell thumbnailView] setImage:[UIImage imageNamed:@"jiraThumb.png"]];
                 break;
             }
