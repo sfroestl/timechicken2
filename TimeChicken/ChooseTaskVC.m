@@ -10,6 +10,8 @@
 #import "TCTask.h"
 #import "TCTaskStore.h"
 #import "TaskListVC.h"
+#import "WebserviceDetailVC.h"
+#import "UIColor+TimeChickenAdditions.h"
 
 @interface ChooseTaskVC ()
 
@@ -49,6 +51,8 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    self.tableView.backgroundView = nil;
+    self.tableView.backgroundColor = [UIColor tcMetallicColor];
     
 }
 
@@ -58,11 +62,6 @@
     self.alreadyImportedTasks = [[TCTaskStore taskStore] findByWsType:1];
     NSLog(@"Already Imported %@", self.alreadyImportedTasks);
     [[self tableView] reloadData];
-}
-
-- (void)viewWillDisappear:(BOOL)animated
-{
-    [self.navigationController popViewControllerAnimated:YES];
 }
 
 - (void)didReceiveMemoryWarning
@@ -177,8 +176,10 @@
     wsTasks = nil;
 //    TaskListVC *taskVC = [self.tabBarController.viewControllers objectAtIndex:0];
     UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Successfully importet tasks." message:nil delegate:nil cancelButtonTitle:@"Great!" otherButtonTitles:nil];
-    [alert show];    
+    [alert show];
+    
     [self.parentViewController.tabBarController setSelectedIndex:0];
+    [[self navigationController] popToRootViewControllerAnimated:NO];
 }
 
 

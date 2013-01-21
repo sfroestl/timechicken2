@@ -7,6 +7,7 @@
 //
 
 #import "TaskDetailVC.h"
+#import "UIColor+TimeChickenAdditions.h"
 #import "TCTask.h"
 #import "TaskDetailEditCell.h"
 #import "TCDatePicker.h"
@@ -34,7 +35,7 @@
     [super viewDidLoad];
     
     self.tableView.backgroundView = nil;
-    self.tableView.backgroundColor = [UIColor colorWithRed:230.0f/255.0f green:230.0f/255.0f blue:230.0f/255.0f alpha:1.0f];
+    self.tableView.backgroundColor = [UIColor tcMetallicColor];
     
     self.title = @"TaskDetails";
     

@@ -22,6 +22,8 @@ NSString* const projectsUrlPart = @"/projects";
 @synthesize username = _username;
 @synthesize password = _password;
 
+#pragma mark - NSObject
+
 - (id)initRestClientwithDelegate:(id<TCRestClientDelegate>) delegate
 {
     self = [super init];
@@ -32,6 +34,8 @@ NSString* const projectsUrlPart = @"/projects";
     }
     return self;
 }
+
+#pragma mark - Private
 
 - (void)setAuthCredentials:(NSString*)userName password:(NSString *)pw {
     NSLog(@"--> setAuthCredentials");

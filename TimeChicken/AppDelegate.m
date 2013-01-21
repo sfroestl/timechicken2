@@ -24,6 +24,12 @@
     UINavigationController *taskListNavC = [[UINavigationController alloc] initWithRootViewController:taskListViewController];
     UINavigationController *webserviceNavC = [[UINavigationController alloc] initWithRootViewController:webserviceVC];
     
+    UINavigationBar *taskBar = [taskListNavC navigationBar];
+    [taskBar setTintColor:[UIColor colorWithRed:0.0f/255.0f green:109.0f/255.0f blue:14.0f/255.0f alpha:1.0f]];
+    
+    UINavigationBar *wsBar = [webserviceNavC navigationBar];
+    [wsBar setTintColor:[UIColor colorWithRed:0.0f/255.0f green:109.0f/255.0f blue:14.0f/255.0f alpha:1.0f]];
+    
     self.tabBarController = [[UITabBarController alloc] init];
     self.tabBarController.viewControllers = @[taskListNavC, webserviceNavC];
     self.window.rootViewController = self.tabBarController;
