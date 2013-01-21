@@ -71,7 +71,18 @@
 }
 
 
-- (void)fetchTasks {
+- (void)fetchTasks {    
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Fetching data..." message:nil delegate:self cancelButtonTitle:nil otherButtonTitles: nil];
+    [alert show];
+    
+    UIActivityIndicatorView *indicator = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];
+    
+    // Adjust the indicator so it is up a few pixels from the bottom of the alert
+    indicator.center = CGPointMake(alert.bounds.size.width / 2, alert.bounds.size.height - 50);
+    [indicator startAnimating];
+    [alert addSubview:indicator];
+    
+    
     NSLog(@"-->> fetchTasks");
     [_activityIndicatorView startAnimating];
     self.navigationItem.rightBarButtonItem.enabled = NO;
@@ -92,8 +103,10 @@
         
         [client fetchUserTaskList:^(NSArray *tasks, NSError *error) {
             if (error) {
+                [alert dismissWithClickedButtonIndex:0 animated:YES];
                 [[[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Error", nil) message:[error localizedDescription] delegate:nil cancelButtonTitle:nil otherButtonTitles:NSLocalizedString(@"OK", nil), nil] show];
             } else {
+                [alert dismissWithClickedButtonIndex:0 animated:YES];
                 ChooseTaskVC *wsResultCtrl = [[ChooseTaskVC alloc] init];
                 [wsResultCtrl setWsTasks:tasks];
                 [self.navigationController pushViewController:wsResultCtrl animated:YES];
