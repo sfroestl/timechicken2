@@ -29,6 +29,9 @@
 - (void) addTaskToArchivedTasks:(TCTask *)task;
 - (void) addTasksToArchivedTasks:(NSArray *)listOfTasks;
 
+- (void) completeTask:(TCTask *)task;
+- (void) reopenTask:(TCTask *)task;
+
 - (void) removeTask:(TCTask *)task;
 - (void) removeTaskFromArchivedTasks:(TCTask *)task;
 

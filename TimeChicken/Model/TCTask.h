@@ -30,4 +30,6 @@
 - (id)initWithJiraAttributes:(NSDictionary *)attributes wsType:(int)wsType wsID:(int)wsId;
 - (id)initWithTitle:(NSString*)title desc:(NSString*)desc projectTitle:(NSString*)project dueDate:(NSDate*)date;
 - (id)initWithTitle:(NSString *)title;
+
+- (BOOL) isCompleted;
 @end

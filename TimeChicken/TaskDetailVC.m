@@ -143,9 +143,14 @@
     if(indexPath.section == 1){
         
         //Complete Button
-        ButtonCell *cell = [tableView dequeueReusableCellWithIdentifier:@"ButtonCell"];      
-        [[cell button] addTarget:self action:@selector(closeTask:) forControlEvents:UIControlEventTouchUpInside];
-        [[cell button] setTitle:@"complete Task" forState:nil];
+        ButtonCell *cell = [tableView dequeueReusableCellWithIdentifier:@"ButtonCell"];
+        if ([self.detailItem isCompleted]) {
+            [[cell button] addTarget:self action:@selector(closeTaskButtonPressed:) forControlEvents:UIControlEventTouchUpInside];
+            [[cell button] setTitle:@"reopen" forState:UIControlStateNormal];
+        } else {
+            [[cell button] addTarget:self action:@selector(closeTaskButtonPressed:) forControlEvents:UIControlEventTouchUpInside];
+            [[cell button] setTitle:@"complete" forState:UIControlStateNormal];
+        }            
         cell.backgroundView = [[UIView alloc] initWithFrame:CGRectZero];
 
         return cell;
@@ -171,6 +176,14 @@
     return YES;
 }
 
+- (void)reopenTask {
+    [[TCTaskStore taskStore] reopenTask:self.detailItem];
+}
+
+- (void)completeTask {
+    [[TCTaskStore taskStore] completeTask:self.detailItem];
+}
+
 -(IBAction)titleFieldChanged:(UITextField*)sender{
     self.detailItem.title = sender.text;
 }
@@ -191,12 +204,16 @@
     self.detailItem.workedTime = [sender.text intValue];
 }
 
--(IBAction)closeTask:(UIButton*)sender{
-    self.detailItem.completed = YES;
-//    [[TCTaskStore taskStore] addTaskToCompletedTasks:self.detailItem];
-//    [[TCTaskStore taskStore] removeTaskFromOpenTasks:self.detailItem];
-    [[self navigationController] popViewControllerAnimated:YES];
-    NSLog(@"completeTask was klicked");
+-(IBAction)closeTaskButtonPressed:(UIButton*)sender{
+    [sender setSelected:YES];
+    if ([self.detailItem isCompleted]) {
+        [self reopenTask];
+        [[self tableView] reloadData];
+    } else {
+        [self completeTask];
+        [[self tableView] reloadData];
+        [[self navigationController] popToRootViewControllerAnimated:NO];
+    }
 }
 
 @end

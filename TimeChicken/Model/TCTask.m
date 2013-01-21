@@ -7,6 +7,7 @@
 //
 
 #import "TCTask.h"
+#import "TCOneSparkClient.h"
 
 @implementation TCTask
 
@@ -29,6 +30,7 @@
     self = [super init];
     if(self){
         _title = [attributes valueForKeyPath:@"title"];
+        _url = [NSString stringWithFormat:@"%@%@", kOSAPIBaseURLString, [attributes valueForKeyPath:@"id"]];
         
         if (![[attributes valueForKey:@"desc"] isKindOfClass:[NSNull class]]) {
             _desc = [attributes valueForKeyPath:@"desc"];
@@ -83,6 +85,10 @@
     return self;
 }
 
+- (BOOL) isCompleted {
+    return _completed;
+}
+
 - (id)initWithTitle:(NSString*)title desc:(NSString*)desc projectTitle:(NSString*)project dueDate:(NSDate*)date {
     if((self = [super init])){
         self.title = title;
@@ -92,7 +98,7 @@
     return self;
 }
 
--(id)initWithTitle:(NSString *)title {
+- (id)initWithTitle:(NSString *)title {
     if((self = [super init])){
         self.title = title;
     }

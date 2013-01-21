@@ -15,8 +15,7 @@
 NSString *const kTasksPath = @"/tasks";
 NSString *const kProjectsPath = @"/projects";
 NSString *const kUserPath = @"/user";
-
-static NSString * const kOSAPIBaseURLString = @"http://api.onespark.de:81/api/v1";
+NSString *const kOSAPIBaseURLString = @"http://api.onespark.de:81/api/v1";
 
 @implementation TCOneSparkClient
 

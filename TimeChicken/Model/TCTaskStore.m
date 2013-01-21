@@ -80,6 +80,16 @@
     [archivedTasks addObjectsFromArray:listOfTasks];
 }
 
+- (void) completeTask:(TCTask *)task {
+    task.completed = YES;
+    task.completedAt = [NSDate date];
+}
+
+- (void) reopenTask:(TCTask *)task {
+    task.completed = NO;
+    task.completedAt = nil;
+}
+
 - (void) removeTask:(TCTask *)task {
     [tasks removeObjectIdenticalTo:task];
 }

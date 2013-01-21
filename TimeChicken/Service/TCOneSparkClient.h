@@ -12,6 +12,7 @@
 FOUNDATION_EXPORT NSString *const kTasksPath;
 FOUNDATION_EXPORT NSString *const kProjectsPath;
 FOUNDATION_EXPORT NSString *const kUsersPath;
+FOUNDATION_EXPORT NSString * const kOSAPIBaseURLString;
 
 @class TCTask;
 

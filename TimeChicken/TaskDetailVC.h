@@ -15,4 +15,6 @@
 
 @property (strong, nonatomic) TCTask *detailItem;
 
+- (void) completeTask;
+- (void) reopenTask;
 @end
