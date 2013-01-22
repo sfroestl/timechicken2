@@ -129,5 +129,41 @@
     return date;
 }
 
+-(void) encodeWithCoder:(NSCoder *)aCoder{
+    [aCoder encodeObject:self.title forKey:@"title"];
+    [aCoder encodeObject:self.desc forKey:@"desc"];
+    [aCoder encodeObject:self.url forKey:@"url"];
+    [aCoder encodeObject:self.dueDate forKey:@"dueDate"];
+    [aCoder encodeObject:self.lastUpdate forKey:@"lastUpdate"];
+    [aCoder encodeObject:self.project forKey:@"project"];
+    [aCoder encodeBool:self.completed forKey:@"completed"];
+    [aCoder encodeObject:self.timeSessions forKey:@"timeSessions"];
+    [aCoder encodeObject:self.completedAt forKey:@"completedAt"];
+    [aCoder encodeObject:self.wsProjectId forKey:@"wsProjectId"];
+    [aCoder encodeInt:self.workedTime forKey:@"workedTime"];
+    [aCoder encodeInt:self.wsType forKey:@"wsType"];
+    [aCoder encodeInt:self.wsID forKey:@"wsID"];
+}
+
+-(id)initWithCoder:(NSCoder *)aDecoder{
+    self = [super init];
+    if(self){
+        [self setTitle:[aDecoder decodeObjectForKey:@"title"]];
+        [self setDesc:[aDecoder decodeObjectForKey:@"desc"]];
+        [self setUrl:[aDecoder decodeObjectForKey:@"url"]];
+        [self setDueDate:[aDecoder decodeObjectForKey:@"dueDate"]];
+        [self setLastUpdate:[aDecoder decodeObjectForKey:@"lastUpdate"]];
+        [self setProject:[aDecoder decodeObjectForKey:@"project"]];
+        [self setCompleted:[aDecoder decodeBoolForKey:@"completed"]];
+        [self setTimeSessions:[aDecoder decodeObjectForKey:@"timeSessions"]];
+        [self setCompletedAt:[aDecoder decodeObjectForKey:@"completedAt"]];
+        [self setWsProjectId:[aDecoder decodeObjectForKey:@"wsProjectId"]];
+        [self setWorkedTime:[aDecoder decodeIntForKey:@"workedTime"]];
+        [self setWsType:[aDecoder decodeIntForKey:@"wsType"]];
+        [self setWsID:[aDecoder decodeIntForKey:@"wsID"]];
+    }
+    return self;
+}
+
 
 @end

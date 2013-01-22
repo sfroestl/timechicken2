@@ -26,7 +26,13 @@
 - (id)init {
     self = [super init];
     if(self) {
-        tasks = [[NSMutableArray alloc] init];
+        NSString *path = [self taskArchivePath];
+        tasks = [NSKeyedUnarchiver unarchiveObjectWithFile:path];
+        
+        //if the array hadn't be saved previously, creae a new empty one
+        if(!tasks){
+            tasks = [[NSMutableArray alloc] init];
+        }
         archivedTasks = [[NSMutableArray alloc] init];
     }
     return self;
@@ -127,6 +133,22 @@
     NSPredicate *condition = [NSPredicate predicateWithFormat:@"(wsType == %i)", wsType];
     NSArray *foundTasks = [[[TCTaskStore taskStore] tasks] filteredArrayUsingPredicate:condition];
     return foundTasks;
+}
+
+-(NSString *)taskArchivePath{
+    NSArray *documentDirectories = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+    
+    //Get one and only document directory from that list
+    NSString *documentDirectory = [documentDirectories objectAtIndex:0];
+    
+    return [documentDirectory stringByAppendingPathComponent:@"tasks.archive"];
+}
+
+-(BOOL)saveChanges{
+    //returning success or failure
+    NSString *path = [self taskArchivePath];
+    
+    return [NSKeyedArchiver archiveRootObject:tasks toFile:path];
 }
 
 @end

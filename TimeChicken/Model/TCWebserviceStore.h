@@ -21,6 +21,9 @@
 
 + (TCWebserviceStore *)wsStore;
 
+-(NSString *)wsArchivePath;
+-(BOOL) saveChanges;
+
 - (NSArray *) wsNames;
 - (NSString *) wsNameofType:(int) type;
 - (NSString *) wsDescriptionOfType:(int) type;
