@@ -11,8 +11,8 @@
 enum {NONE, ONESPARK, JIRA};
 typedef NSUInteger WS_TYPES;
 
-@interface TCWebservice : NSObject {
-    int type;
+@interface TCWebservice : NSObject <NSCoding>{
+    int _type;
 }
 
 @property (strong, nonatomic) NSString *title;
@@ -34,5 +34,6 @@ typedef NSUInteger WS_TYPES;
 - (NSString *)username;
 - (NSString *)password;
 - (int)type;
+- (void)setType:(int)wsType;
 
 @end

@@ -27,23 +27,21 @@
 - (id)init {
     self = [super init];
     if(self) {
-        webservices = [[NSMutableArray alloc] init];
+        NSString *path = [self wsArchivePath];
+        webservices = [NSKeyedUnarchiver unarchiveObjectWithFile:path];
+        if(webservices){
+        NSLog(@"%@",webservices);
+        }
+        if(!webservices){
+            webservices = [[NSMutableArray alloc] init];
+        }
+        
         wsNames = [[NSArray alloc] initWithObjects:@"", @"One Spark", @"Jira", nil];
         wsDescs = [[NSArray alloc] initWithObjects:@"", 
                    @"Make your idea happen!",
                    @"JIRA ist ein Projektverfolgungstool für Teams", nil];
         wsImagePaths = [[NSArray alloc] initWithObjects:@"", @"icon-os.png", @"jiraThumb.png", nil];
         wsBaseUrls = [[NSArray alloc] initWithObjects:@"", @"http://api.onespark.de:81/api/v1", @"http://jira.yourdomain.de", nil];
-        
-        TCWebservice *osService = [[TCWebservice alloc] initWithTitle:@"One Spark" desc:[wsDescs objectAtIndex:ONESPARK] type:ONESPARK baseUrl:[wsBaseUrls objectAtIndex:ONESPARK] imagePath:[wsImagePaths objectAtIndex:ONESPARK]];
-        osService.username = @"sfroestl";
-        osService.password = @"asdasd";
-        [webservices addObject:osService];
-        
-        TCWebservice *jiraService = [[TCWebservice alloc] initWithTitle:@"Jira" desc:[wsDescs objectAtIndex:JIRA] type:JIRA baseUrl:@"http://jira.inf.tu-dresden.de" imagePath:[wsImagePaths objectAtIndex:JIRA]];
-        jiraService.username = @"froestl";
-        jiraService.password = @"fr1bb3#RN";
-        [webservices addObject:jiraService];
     }
     return self;
 }
@@ -116,6 +114,19 @@
     }
     NSLog(@"Contains: %i", contains);
     return contains;
+}
+
+-(NSString *)wsArchivePath{
+    NSArray *documentDirectories = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+    NSString *documentDirecty = [documentDirectories objectAtIndex:0];
+    
+    return [documentDirecty stringByAppendingPathComponent:@"webservices.archive"];
+}
+
+-(BOOL)saveChanges{
+    NSString *path = [self wsArchivePath];
+    
+    return [NSKeyedArchiver archiveRootObject:webservices toFile:path];
 }
 
 

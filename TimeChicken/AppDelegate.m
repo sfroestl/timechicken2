@@ -9,6 +9,7 @@
 #import "AppDelegate.h"
 #import "TaskListVC.h"
 #import "TCTaskStore.h"
+#import "TCWebserviceStore.h"
 
 #import "WebserviceListVC.h"
 
@@ -46,13 +47,21 @@
 
 - (void)applicationDidEnterBackground:(UIApplication *)application
 {
-    //persistent saving to file, when app goes in background
-    BOOL success = [[TCTaskStore taskStore] saveChanges];
-    if(success){
+    //persistent saving to files, when app goes in background
+    BOOL successTasks = [[TCTaskStore taskStore] saveChanges];
+    if(successTasks){
         NSLog(@"Saved all of the tasks");
     }
     else{
         NSLog(@"Could not save any of the Tasks");
+    }
+    
+    BOOL successWebservices = [[TCWebserviceStore wsStore] saveChanges];
+    if(successWebservices){
+        NSLog(@"Saved all of the webservices");
+    }
+    else{
+        NSLog(@"Could not save any of the Webservices");
     }
 }
 
