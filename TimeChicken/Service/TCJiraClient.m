@@ -21,6 +21,8 @@ NSString *const kJiraUserPath = @"/rest/auth/1/session";
 
 @synthesize jiraBaseUrl = _jiraBaseUrl;
 
+#pragma mark - NSObject
+
 - (id)initWithBaseURL:(NSURL *)url {
     self = [super initWithBaseURL:url];
     if (!self) {
@@ -32,6 +34,9 @@ NSString *const kJiraUserPath = @"/rest/auth/1/session";
     self.jiraBaseUrl = url;
     return self;
 }
+
+#pragma mark - Private
+
 - (void)setBasicAuthUsername:(NSString *)name andPassword:(NSString *)pw {
     [self setAuthorizationHeaderWithUsername:name password:pw];
 }

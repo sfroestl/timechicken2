@@ -12,11 +12,6 @@
 
 @interface WebserviceListVC : UITableViewController {
 }
+
 - (IBAction)addNewWebservice:(id)sender;
-
-
-//
-//NSURLConnection *restClient;
-//- (void)fetchTasksForWebservice: (TCWebservice *) webservice;
-
 @end

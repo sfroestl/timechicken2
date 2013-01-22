@@ -12,6 +12,8 @@
 #import "TCWebservice.h"
 #import "NewWebserviceVC.h"
 
+#import "UIColor+TimeChickenAdditions.h"
+
 @interface WebserviceListVC ()
 
 @end
@@ -22,7 +24,12 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-	// Do any additional setup after loading the view, typically from a nib.
+//    UIView *background = [[UIView alloc] init];
+//	background.backgroundColor = [UIColor tcMetallicColor];
+//	self.tableView.backgroundView = background;
+    self.tableView.backgroundView = nil;
+    self.tableView.backgroundColor = [UIColor tcMetallicColor];
+
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -79,6 +86,7 @@
     }
     TCWebservice *ws = [[[TCWebserviceStore wsStore] allWebservices] objectAtIndex:[indexPath row]];
     NSLog(@"%@", ws);
+
     [cell.imageView setImage:[UIImage imageNamed:ws.imagePath]];
     
     [cell.textLabel setText: ws.title];

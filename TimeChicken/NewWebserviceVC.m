@@ -21,8 +21,7 @@
 {
     self = [super initWithStyle:UITableViewStyleGrouped];
     if (self) {
-        [self setTitle: @"Choose a Webservice"];    
-        
+        [self setTitle: @"Choose a Webservice"];
     }
     return self;
 }
@@ -33,6 +32,8 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    self.tableView.backgroundView = nil;
+    self.tableView.backgroundColor = [UIColor colorWithRed:233.0f/255.0f green:233.0f/255.0f blue:233.0f/255.0f alpha:1.0f];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -50,8 +51,9 @@
 
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
-{    
-    return [[[TCWebserviceStore wsStore] wsNames] count];
+{
+    // cause default (lokal) is within array
+    return ([[[TCWebserviceStore wsStore] wsNames] count]) -1;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -60,10 +62,13 @@
     
     if (!cell) {
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:@"WSCell"];
+        [cell setBackgroundView:nil];
+        [cell setBackgroundColor:[UIColor whiteColor]];
     }
-    [[cell textLabel] setText:[[[TCWebserviceStore wsStore] wsNames] objectAtIndex:indexPath.row]];
-    [[cell detailTextLabel] setText:[[TCWebserviceStore wsStore] wsDescriptionOfType:indexPath.row]];
-    [[cell imageView] setImage:[UIImage imageNamed:[[TCWebserviceStore wsStore] wsImageOfType:indexPath.row]]];
+    // default (lokal) is stored in array at pos 0
+    [[cell textLabel] setText:[[[TCWebserviceStore wsStore] wsNames] objectAtIndex:(indexPath.row +1)]];
+    [[cell detailTextLabel] setText:[[TCWebserviceStore wsStore] wsDescriptionOfType:(indexPath.row +1)]];
+    [[cell imageView] setImage:[UIImage imageNamed:[[TCWebserviceStore wsStore] wsImageOfType:(indexPath.row + 1)]]];
     
     return cell;
 }

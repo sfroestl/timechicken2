@@ -19,6 +19,8 @@ NSString *const kOSAPIBaseURLString = @"http://api.onespark.de:81/api/v1";
 
 @implementation TCOneSparkClient
 
+#pragma mark - NSObject
+
 - (id)init {
    self = [super initWithBaseURL:[NSURL URLWithString:kOSAPIBaseURLString]];
    if (!self) {
@@ -40,6 +42,8 @@ NSString *const kOSAPIBaseURLString = @"http://api.onespark.de:81/api/v1";
     
     return self;
 }
+
+#pragma mark - Private
 
 - (void)setBasicAuthUsername:(NSString *)name andPassword:(NSString *)pw {
     [self setAuthorizationHeaderWithUsername:name password:pw];

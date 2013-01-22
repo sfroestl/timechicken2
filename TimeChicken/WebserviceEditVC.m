@@ -52,6 +52,8 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    self.tableView.backgroundView = nil;
+    self.tableView.backgroundColor = [UIColor colorWithRed:233.0f/255.0f green:233.0f/255.0f blue:233.0f/255.0f alpha:1.0f];
 
     // Do any additional setup after loading the view from its nib.
 }
@@ -78,11 +80,11 @@
 {
     int count;
     switch (self.detailItem.type) {            
-        case 0:
-            count = 2;
-            break;
         case 1:
             count = 3;
+            break;
+        case 2:
+            count = 4;
             break;
     }
     return count;
@@ -105,17 +107,21 @@
             txtField.textColor = [UIColor blackColor];
             txtField.backgroundColor = [UIColor groupTableViewBackgroundColor];
             if ([indexPath row] == 0) {
+                txtField.placeholder = self.detailItem.title;
+                txtField.keyboardType = UIKeyboardTypeDefault;
+            } else if([indexPath row] == 1){
+                txtField.tag = 122;
                 txtField.placeholder = @"your username";
                 txtField.keyboardType = UIKeyboardTypeEmailAddress;
             }
-            else if ([indexPath row] == 1){
-                txtField.tag = 122;
+            else if ([indexPath row] == 2){
+                txtField.tag = 123;
                 txtField.placeholder = @"your password";
                 txtField.keyboardType = UIKeyboardTypeDefault;
                 txtField.secureTextEntry = YES;
             }
-            else if ([indexPath row] == 2){
-                txtField.tag = 123;
+            else if ([indexPath row] == 3){
+                txtField.tag = 124;
                 txtField.placeholder = @"http://jira.myserver.de";
                 txtField.keyboardType = UIKeyboardTypeURL;
             }
@@ -133,21 +139,21 @@
     if ([indexPath section] == 0) {
         switch ([indexPath row]) {
             case 0:
-                cell.textLabel.text = @"Username";
+                cell.textLabel.text = @"Title";
                 break;
             case 1:
-                cell.textLabel.text = @"Password";
+                cell.textLabel.text = @"Username";
                 break;
             case 2:
+                cell.textLabel.text = @"Password";
+                break;
+            case 3:
                 cell.textLabel.text = @"URL";
             default:
                 break;
         }
     }
-    else { // Login button section
-        cell.textLabel.text = @"Log in";
-    }
-    return cell;    
+    return cell;
 
 }
 
@@ -156,12 +162,17 @@
     self.navigationItem.rightBarButtonItem.enabled = NO;
     
     NSLog(@"--> Prove WS");
+    
     UITextField *txtField = (UITextField *)[[self view ]viewWithTag:121];
+    NSString *title = [txtField text];
+    
+    txtField = (UITextField *)[[self view ]viewWithTag:122];
     NSString *username = [txtField text];
     
-    txtField = (UITextField *)[[self view] viewWithTag:122];
+    txtField = (UITextField *)[[self view] viewWithTag:123];
     NSString *password = [txtField text];
     NSLog(@"--> username %@", username);
+    
     TCClient<TCRestClientIF> *client = nil;
     
     if ((password == nil) || (username == nil)) {
@@ -175,7 +186,7 @@
             client = [TCOneSparkClient oneSparkClient];
             break;
         case JIRA:
-            txtField = (UITextField *)[[self view] viewWithTag:123];
+            txtField = (UITextField *)[[self view] viewWithTag:124];
             NSString *url = [txtField text];
             
             if (url == nil) {
@@ -195,6 +206,9 @@
                 [[[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Error", nil) message:[error localizedDescription] delegate:nil cancelButtonTitle:nil otherButtonTitles:NSLocalizedString(@"OK", nil), nil] show];
                 self.navigationItem.rightBarButtonItem.enabled = YES;
             } else {
+                if (title != @"") {
+                    self.detailItem.title = title;
+                }
                 self.detailItem.username = username;
                 self.detailItem.password = password;
                 [self saveWs];
