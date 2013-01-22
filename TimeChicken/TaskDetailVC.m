@@ -173,7 +173,6 @@
         [[cell startDate] setText:[NSString stringWithFormat:@"%@", [dateFormat stringFromDate:[ts start]]]];
         [[cell endDate] setText:[NSString stringWithFormat:@"%@", [dateFormat stringFromDate:[ts end]]]];
         [[cell duration] setText:[NSString stringWithFormat:@"%@", [ts getDurationAsString]]];
-//        [[cell duration] setText:ts.duration];
         
         return cell;
     }
