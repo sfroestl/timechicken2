@@ -17,6 +17,9 @@
 
 + (TCTaskStore *) taskStore;
 
+-(NSString *)taskArchivePath;
+-(BOOL) saveChanges;
+
 - (NSArray *) tasks;
 - (NSArray *) archivedTasks;
 

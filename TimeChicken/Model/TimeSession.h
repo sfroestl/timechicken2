@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
-@interface TimeSession : NSObject
+@interface TimeSession : NSObject <NSCoding>
 
 @property (strong, nonatomic) NSDate *start;
 @property (strong, nonatomic) NSDate *end;

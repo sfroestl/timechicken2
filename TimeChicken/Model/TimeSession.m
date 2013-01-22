@@ -67,4 +67,18 @@
     return out;
 }
 
+-(void) encodeWithCoder:(NSCoder *)aCoder{
+    [aCoder encodeObject:self.start forKey:@"start"];
+    [aCoder encodeObject:self.end forKey:@"end"];
+}
+
+-(id) initWithCoder:(NSCoder *)aDecoder{
+    self = [super init];
+    if(self){
+        [self setStart:[aDecoder decodeObjectForKey:@"start"]];
+        [self setEnd:[aDecoder decodeObjectForKey:@"end"]];
+    }
+    return self;
+}
+
 @end

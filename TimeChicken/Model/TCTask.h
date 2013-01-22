@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
-@interface TCTask : NSObject
+@interface TCTask : NSObject <NSCoding>
 
 @property (strong, nonatomic) NSString *title;
 @property (strong, nonatomic) NSString *desc;
