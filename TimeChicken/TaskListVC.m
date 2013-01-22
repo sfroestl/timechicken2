@@ -11,6 +11,9 @@
 #import "TCTask.h"
 #import "TaskDetailVC.h"
 
+//only for mocking a Task purpose
+#import "TimeSession.h"
+
 @interface TaskListVC ()
 
 @end
@@ -24,7 +27,17 @@
         self.title = @"Tasks";
         NSDate *date = [[NSDate alloc] init];
         TCTask *taskWithImage = [[TCTask alloc] initWithTitle:@"ImageTask" desc:@"shows image and date" projectTitle:@"TC-App-Dev" dueDate:date];
+        TimeSession *ts = [[TimeSession alloc] initWithStart:[NSDate date]];
+        ts.end = [NSDate dateWithTimeInterval:143552 sinceDate:date];
+        
+        TimeSession *ts2 = [[TimeSession alloc] initWithStart:[NSDate date]];
+        ts2.end = [[NSDate date] dateByAddingTimeInterval:60*60*12];
+        
+        [[taskWithImage timeSessions] addObject:ts];
+        [[taskWithImage timeSessions] addObject:ts2];
+        
         [[TCTaskStore taskStore] addTask:taskWithImage];
+        
     }
     return self;
 }

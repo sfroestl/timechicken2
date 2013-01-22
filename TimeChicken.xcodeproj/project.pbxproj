@@ -18,6 +18,9 @@
 		39685E8A16A54FC500FE52A1 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 39685E8916A54FC500FE52A1 /* Default-568h@2x.png */; };
 		39685E9416A54FC500FE52A1 /* WebserviceListVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 39685E9316A54FC500FE52A1 /* WebserviceListVC.m */; };
 		39685EAB16A55FF200FE52A1 /* TCDatePicker.m in Sources */ = {isa = PBXBuildFile; fileRef = 39685EA716A55FF200FE52A1 /* TCDatePicker.m */; };
+		3969AA7D16ADE9DD0099977E /* TimeSession.m in Sources */ = {isa = PBXBuildFile; fileRef = 3969AA7C16ADE9DD0099977E /* TimeSession.m */; };
+		3969AA8116ADEBF10099977E /* TimeSessionCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3969AA8016ADEBF10099977E /* TimeSessionCell.m */; };
+		3969AA8316ADEC1F0099977E /* TimeSessionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3969AA8216ADEC1F0099977E /* TimeSessionCell.xib */; };
 		39E3763416A6C9F70048DC19 /* TaskDetailVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 39E3762F16A6C9F70048DC19 /* TaskDetailVC.m */; };
 		39E3763616A6C9F70048DC19 /* TaskListVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 39E3763216A6C9F70048DC19 /* TaskListVC.m */; };
 		39EDE63B16A958740034299D /* ButtonCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 39EDE63A16A958740034299D /* ButtonCell.xib */; };
@@ -78,6 +81,11 @@
 		39685E9316A54FC500FE52A1 /* WebserviceListVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WebserviceListVC.m; sourceTree = "<group>"; };
 		39685EA616A55FF200FE52A1 /* TCDatePicker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TCDatePicker.h; sourceTree = "<group>"; };
 		39685EA716A55FF200FE52A1 /* TCDatePicker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TCDatePicker.m; sourceTree = "<group>"; };
+		3969AA7B16ADE9DD0099977E /* TimeSession.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TimeSession.h; sourceTree = "<group>"; };
+		3969AA7C16ADE9DD0099977E /* TimeSession.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TimeSession.m; sourceTree = "<group>"; };
+		3969AA7F16ADEBF10099977E /* TimeSessionCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TimeSessionCell.h; sourceTree = "<group>"; };
+		3969AA8016ADEBF10099977E /* TimeSessionCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TimeSessionCell.m; sourceTree = "<group>"; };
+		3969AA8216ADEC1F0099977E /* TimeSessionCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TimeSessionCell.xib; sourceTree = "<group>"; };
 		39E3762E16A6C9F70048DC19 /* TaskDetailVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TaskDetailVC.h; sourceTree = "<group>"; };
 		39E3762F16A6C9F70048DC19 /* TaskDetailVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TaskDetailVC.m; sourceTree = "<group>"; };
 		39E3763116A6C9F70048DC19 /* TaskListVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TaskListVC.h; sourceTree = "<group>"; };
@@ -293,6 +301,8 @@
 				9E1ED3B016A56C4600DF3049 /* TCWebservice.m */,
 				9E1ED3A016A569D100DF3049 /* TCWebserviceStore.h */,
 				9E1ED3A116A569D100DF3049 /* TCWebserviceStore.m */,
+				3969AA7B16ADE9DD0099977E /* TimeSession.h */,
+				3969AA7C16ADE9DD0099977E /* TimeSession.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -343,6 +353,9 @@
 				39EDE63A16A958740034299D /* ButtonCell.xib */,
 				39EDE63D16A958B00034299D /* ButtonCell.h */,
 				39EDE63E16A958B00034299D /* ButtonCell.m */,
+				3969AA7F16ADEBF10099977E /* TimeSessionCell.h */,
+				3969AA8016ADEBF10099977E /* TimeSessionCell.m */,
+				3969AA8216ADEC1F0099977E /* TimeSessionCell.xib */,
 			);
 			path = TableCells;
 			sourceTree = "<group>";
@@ -413,6 +426,7 @@
 				9E226D9C16AB13E50080984A /* second.png in Resources */,
 				9E226D9D16AB13E50080984A /* second@2x.png in Resources */,
 				9EDD868C16AB67A70046B501 /* WebserviceDetailVC.xib in Resources */,
+				3969AA8316ADEC1F0099977E /* TimeSessionCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -454,6 +468,8 @@
 				9E226D8716AB03630080984A /* UIImageView+AFNetworking.m in Sources */,
 				9E226DA016AB2D850080984A /* TCClient.m in Sources */,
 				9E226DA316AB2E010080984A /* TCJiraClient.m in Sources */,
+				3969AA7D16ADE9DD0099977E /* TimeSession.m in Sources */,
+				3969AA8116ADEBF10099977E /* TimeSessionCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
