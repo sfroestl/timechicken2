@@ -10,8 +10,10 @@
 
 @interface UIButton (TimeChickenAdditions)
 
-+ (UIButton *) tcBigGreenButton; // complete
-+ (UIButton *) tcBigGrayButton; // reopen
-+ (UIButton *) tcBigOrangeButton; // delete
++ (UIButton *) tcGreenButton; // complete
++ (UIButton *) tcBlackButton; // reopen
++ (UIButton *) tcOrangeButton; // delete
++ (UIButton *) tcBlueButton;
++ (UIButton *) tcGrayButton; // delete
 
 @end

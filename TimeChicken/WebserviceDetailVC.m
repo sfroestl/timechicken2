@@ -9,6 +9,7 @@
 #import "WebserviceDetailVC.h"
 
 #import "UIColor+TimeChickenAdditions.h"
+#import "UIButton+TimeChickenAdditions.h"
 #import "ChooseTaskVC.h"
 #import "TCTaskStore.h"
 #import "TCWebservice.h"
@@ -54,32 +55,16 @@
     self.tableView.backgroundColor = [UIColor tcMetallicColor];    
     
     
-    UIButton *importButton = [UIButton buttonWithType:UIButtonTypeCustom];
-    UIImage *buttonImage = [[UIImage imageNamed:@"orangeButton"]
-                            resizableImageWithCapInsets:UIEdgeInsetsMake(18, 18, 18, 18)];
-    UIImage *buttonImageHighlight = [[UIImage imageNamed:@"orangeButtonHighlight"]
-                                     resizableImageWithCapInsets:UIEdgeInsetsMake(18, 18, 18, 18)];
-    // Set the background for any states you plan to use
-    [importButton setBackgroundImage:buttonImage forState:UIControlStateNormal];
-    [importButton setBackgroundImage:buttonImageHighlight forState:UIControlStateHighlighted];
-    
+    UIButton *importButton = [UIButton tcOrangeButton];
     [importButton addTarget:self action:@selector(fetchTaskButtonPressed:) forControlEvents:UIControlEventTouchUpInside];
     [importButton setTitle:@"Import Tasks" forState:UIControlStateNormal];
     [importButton setFrame:CGRectMake(10.0, 250.0, 300.0, 42.0)];
     
     [self.view addSubview:importButton];
     
-    UIButton *deleteButton = [UIButton buttonWithType:UIButtonTypeCustom];
-    buttonImage = [[UIImage imageNamed:@"blackButton"]
-                            resizableImageWithCapInsets:UIEdgeInsetsMake(18, 18, 18, 18)];
-    buttonImageHighlight = [[UIImage imageNamed:@"blackButtonHighlight"]
-                                     resizableImageWithCapInsets:UIEdgeInsetsMake(18, 18, 18, 18)];
-    // Set the background for any states you plan to use
-    [deleteButton setBackgroundImage:buttonImage forState:UIControlStateNormal];
-    [deleteButton setBackgroundImage:buttonImageHighlight forState:UIControlStateHighlighted];
-    
+    UIButton *deleteButton = [UIButton tcBlackButton];    
     [deleteButton addTarget:self action:@selector(deleteWebservice) forControlEvents:UIControlEventTouchUpInside];
-    [deleteButton setTitle:@"Delete Webservice" forState:UIControlStateNormal];
+    [deleteButton setTitle:@"Delete" forState:UIControlStateNormal];
     [deleteButton setFrame:CGRectMake(10.0, 310.0, 300.0, 42.0)];
     
     [self.view addSubview:deleteButton];

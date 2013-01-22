@@ -11,4 +11,6 @@
 @interface UIColor (TimeChickenAdditions)
 
 + (UIColor *)tcMetallicColor;
+
++ (UIColor *)tcDueDateColor;
 @end

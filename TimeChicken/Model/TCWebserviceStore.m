@@ -32,7 +32,7 @@
         wsDescs = [[NSArray alloc] initWithObjects:@"", 
                    @"Make your idea happen!",
                    @"JIRA ist ein Projektverfolgungstool für Teams", nil];
-        wsImagePaths = [[NSArray alloc] initWithObjects:@"", @"icon-os.png", @"jiraThumb.png", nil];
+        wsImagePaths = [[NSArray alloc] initWithObjects:@"", @"icon-onesparkLarge", @"icon-jiraLarge", nil];
         wsBaseUrls = [[NSArray alloc] initWithObjects:@"", @"http://api.onespark.de:81/api/v1", @"http://jira.yourdomain.de", nil];
         
         TCWebservice *osService = [[TCWebservice alloc] initWithTitle:@"One Spark" desc:[wsDescs objectAtIndex:ONESPARK] type:ONESPARK baseUrl:[wsBaseUrls objectAtIndex:ONESPARK] imagePath:[wsImagePaths objectAtIndex:ONESPARK]];

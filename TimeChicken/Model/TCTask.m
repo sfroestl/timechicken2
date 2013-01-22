@@ -56,6 +56,7 @@
         }
         _wsType = wsType;
         _wsID = wsId;
+        _timeSessions = [[NSMutableArray alloc] init];
     }
     return self;
 }
@@ -83,6 +84,25 @@
         }
         _wsType = wsType;
         _wsID = wsId;
+        _timeSessions = [[NSMutableArray alloc] init];
+    }
+    return self;
+}
+
+- (id)initWithTitle:(NSString*)title desc:(NSString*)desc projectTitle:(NSString*)project dueDate:(NSDate*)date {
+    if((self = [super init])){
+        self.title = title;
+        self.desc = desc;
+        self.project = project;
+        _timeSessions = [[NSMutableArray alloc] init];
+    }
+    return self;
+}
+
+- (id)initWithTitle:(NSString *)title {
+    if((self = [super init])){
+        self.title = title;
+        _timeSessions = [[NSMutableArray alloc] init];
     }
     return self;
 }
@@ -91,22 +111,7 @@
     return _completed;
 }
 
-- (id)initWithTitle:(NSString*)title desc:(NSString*)desc projectTitle:(NSString*)project dueDate:(NSDate*)date {
-    if((self = [super init])){
-        self.title = title;
-        self.desc = desc;
-        self.project = project;
-        self.timeSessions = [[NSMutableArray alloc] init];
-    }
-    return self;
-}
 
-- (id)initWithTitle:(NSString *)title {
-    if((self = [super init])){
-        self.title = title;
-    }
-    return self;
-}
 
 - (NSString *)description {
     return [NSString stringWithFormat:@"{Task: {title:%@, wsType:%i, wsId:%i, completed: %@, desc: %@}}", self.title, self.wsType, self.wsID, self.completed ? @"YES":@"NO", self.desc];

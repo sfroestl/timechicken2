@@ -8,6 +8,7 @@
 
 #import "TaskDetailVC.h"
 #import "UIColor+TimeChickenAdditions.h"
+#import "UIButton+TimeChickenAdditions.h"
 #import "TCTask.h"
 #import "TaskDetailEditCell.h"
 #import "TCDatePicker.h"
@@ -47,17 +48,30 @@
     //Register this NIB which contains the cell
     [[self tableView] registerNib:nibTaskDetailEditCell forCellReuseIdentifier:@"TaskDetailEditCell"];
     
-    //Load the NIB-file for Custom Button-Cell
-    UINib *nibButtonCell = [UINib nibWithNibName:@"ButtonCell" bundle:nil];
-    
-    //Register the NIB which contains the cell
-    [[self tableView] registerNib:nibButtonCell forCellReuseIdentifier:@"ButtonCell"];
-    
     //Load the NIB-file for Custom TimeSession-Cell
     UINib *nibTimeSessionCell = [UINib nibWithNibName:@"TimeSessionCell" bundle:nil];
     
     //Register the NIB which contains the cell
     [[self tableView] registerNib:nibTimeSessionCell forCellReuseIdentifier:@"TimeSessionCell"];
+    
+
+    if ([self.detailItem isCompleted]) {
+        UIButton *reopenButton = [UIButton tcBlackButton];
+        [reopenButton setFrame:CGRectMake(10.0, 250.0, 300.0, 42.0)];
+        [reopenButton addTarget:self action:@selector(closeTaskButtonPressed:) forControlEvents:UIControlEventTouchUpInside];
+        [reopenButton setTitle:@"Reopen" forState:UIControlStateNormal];
+        
+        [self.view addSubview:reopenButton];
+    } else {
+        UIButton *completeButton = [UIButton tcOrangeButton];
+        [completeButton setFrame:CGRectMake(10.0, 250.0, 300.0, 42.0)];
+        [completeButton addTarget:self action:@selector(closeTaskButtonPressed:) forControlEvents:UIControlEventTouchUpInside];
+        [completeButton setTitle:@"Complete" forState:UIControlStateNormal];
+        
+        [self.view addSubview:completeButton];
+    }
+
+    
 }
 
 - (void)didReceiveMemoryWarning
@@ -70,35 +84,52 @@
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    return 3;
+    return 2;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
+    int count;
     switch(section)
     {
-        case 0: return 5;   //Task-properties
-        case 1: return 1;   //Complete-Button
-        case 2: return [self.detailItem.timeSessions count];    //TimeSessionlist
+        case 0: count = 5; break;  //Task-properties
+        case 1: count = [self.detailItem.timeSessions count]; break;    //TimeSessionlist
     }
     
-    return -1;
+    return count;
+}
+-(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
+    int count;
+    if (section == 1){
+        count = 100;
+    } else {
+        count = 10;
+    }
+    return count;
 }
 
-- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section{
-    switch(section)
-    {
-        case 0: return nil;
-        case 1: return nil;
-        case 2: return @"Time Sessions";
+-(UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
+    UIView *customTitleView;
+    
+    if (section == 1){
+        UIView *customTitleView = [ [UIView alloc] initWithFrame:CGRectMake(0, 0, 300, 35)];
+        UILabel *titleLabel = [ [UILabel alloc] initWithFrame:CGRectMake(0, 0, 300, 35)];
+        [titleLabel setTextAlignment:NSTextAlignmentCenter];
+        [titleLabel setFont:[UIFont systemFontOfSize:14.0f]];
+        titleLabel.text = @"Your Tracked Time";
+        titleLabel.textColor = [UIColor grayColor];
+        titleLabel.shadowColor = [UIColor whiteColor];
+        titleLabel.shadowOffset = CGSizeMake(0.75, 1.0);
+        titleLabel.backgroundColor = [UIColor clearColor];
+        [customTitleView addSubview:titleLabel];
     }
-    return nil;
+    return customTitleView;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if (indexPath.section==0) {
-        TaskDetailEditCell *cell = [tableView dequeueReusableCellWithIdentifier:@"TaskDetailEditCell"];
+    TaskDetailEditCell *cell = [tableView dequeueReusableCellWithIdentifier:@"TaskDetailEditCell"];
+    if (indexPath.section==0) {      
         
         switch(indexPath.row)
         {
@@ -108,7 +139,7 @@
                 [[cell valueTextfield] addTarget:self action:@selector(titleFieldChanged:) forControlEvents:UIControlEventEditingChanged];
                 cell.valueTextfield.delegate = self;
                 cell.selectionStyle = UITableViewCellSelectionStyleNone;
-                return cell;
+                break;
             }
             case 1:{
                 [[cell keyLabel] setText:@"Project"];
@@ -116,7 +147,7 @@
                 [[cell valueTextfield] addTarget:self action:@selector(projectFieldChanged:) forControlEvents:UIControlEventEditingChanged];
                 cell.valueTextfield.delegate = self;
                 cell.selectionStyle = UITableViewCellSelectionStyleNone;
-                return cell;
+                break;
             }
             case 2:{
                 [[cell keyLabel] setText:@"Description"];
@@ -124,7 +155,7 @@
                 [[cell valueTextfield] addTarget:self action:@selector(descriptionFieldChanged:) forControlEvents:UIControlEventEditingChanged];
                 cell.valueTextfield.delegate = self;
                 cell.selectionStyle = UITableViewCellSelectionStyleNone;
-                return cell;
+                break;
             }
             case 3:{
                 [[cell keyLabel] setText:@"Due Date"];
@@ -135,33 +166,17 @@
                 }
                 [self.datepicker addTarget:self action:@selector(datePickerDateChanged:) forControlEvents:UIControlEventValueChanged];
                 cell.selectionStyle = UITableViewCellSelectionStyleNone;
-                return cell;
+                break;
             }
             case 4:{
-                [[cell keyLabel] setText:@"worked Time"];
+                [[cell keyLabel] setText:@"Worked Time"];
                 [[cell valueTextfield] setText:[NSString stringWithFormat:@"%d", self.detailItem.workedTime]];
                 [[cell valueTextfield] addTarget:self action:@selector(workedTimeFieldChanged:) forControlEvents:UIControlEventEditingChanged];
                 cell.valueTextfield.delegate = self;
                 cell.selectionStyle = UITableViewCellSelectionStyleNone;
-                return cell;
+                break;
             }
         }
-    }
-    
-    if(indexPath.section == 1){
-        
-        //Complete Button
-        ButtonCell *cell = [tableView dequeueReusableCellWithIdentifier:@"ButtonCell"];
-        if ([self.detailItem isCompleted]) {
-            [[cell button] addTarget:self action:@selector(closeTaskButtonPressed:) forControlEvents:UIControlEventTouchUpInside];
-            [[cell button] setTitle:@"reopen" forState:UIControlStateNormal];
-        } else {
-            [[cell button] addTarget:self action:@selector(closeTaskButtonPressed:) forControlEvents:UIControlEventTouchUpInside];
-            [[cell button] setTitle:@"complete" forState:UIControlStateNormal];
-        }            
-        cell.backgroundView = [[UIView alloc] initWithFrame:CGRectZero];
-
-        return cell;
     }
     //TimeSessions
     if(indexPath.section == 2){
@@ -173,11 +188,11 @@
         [[cell startDate] setText:[NSString stringWithFormat:@"%@", [dateFormat stringFromDate:[ts start]]]];
         [[cell endDate] setText:[NSString stringWithFormat:@"%@", [dateFormat stringFromDate:[ts end]]]];
         [[cell duration] setText:[NSString stringWithFormat:@"%@", [ts getDurationAsString]]];
-        
-        return cell;
     }
-    return nil;
+    return cell;
 }
+
+
 
 -(BOOL)textFieldShouldReturn:(UITextField *)textField{
     //close keyboard if return is pressed (in textfield)
@@ -217,11 +232,12 @@
     [sender setSelected:YES];
     if ([self.detailItem isCompleted]) {
         [self reopenTask];
-        [[self tableView] reloadData];
+        [[self tableView] reloadInputViews];
+        [[self navigationController] popToRootViewControllerAnimated:YES];
     } else {
         [self completeTask];
-        [[self tableView] reloadData];
-        [[self navigationController] popToRootViewControllerAnimated:NO];
+        [[self tableView] reloadInputViews];
+        [[self navigationController] popToRootViewControllerAnimated:YES];
     }
 }
 

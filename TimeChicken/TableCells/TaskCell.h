@@ -13,13 +13,10 @@
 @property (weak, nonatomic) IBOutlet UIImageView *thumbnailView;
 @property (weak, nonatomic) IBOutlet UILabel *titleLabel;
 @property (weak, nonatomic) IBOutlet UILabel *subtitleLabel;
-@property (weak, nonatomic) IBOutlet UIButton *timeButton;
 
 @property (weak, nonatomic) id controller;
 @property (weak, nonatomic) UITableView *tableView;
 
-
-- (IBAction)startStopTimer:(id)sender;
 
 
 @end

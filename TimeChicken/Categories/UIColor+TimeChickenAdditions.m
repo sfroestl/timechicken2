@@ -13,4 +13,8 @@
 + (UIColor *)tcMetallicColor {
     return [self colorWithPatternImage:[UIImage imageNamed:@"metallicLight2"]];
 }
+
++ (UIColor *)tcDueDateColor {
+    return [UIColor colorWithRed:181.0f/255.0f green:36.0f/255.0f blue:0.0f/255.0f alpha:1.0f];
+}
 @end
