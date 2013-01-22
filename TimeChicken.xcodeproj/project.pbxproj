@@ -25,8 +25,8 @@
 		39E3763616A6C9F70048DC19 /* TaskListVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 39E3763216A6C9F70048DC19 /* TaskListVC.m */; };
 		39EDE63B16A958740034299D /* ButtonCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 39EDE63A16A958740034299D /* ButtonCell.xib */; };
 		39EDE63F16A958B00034299D /* ButtonCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 39EDE63E16A958B00034299D /* ButtonCell.m */; };
-		9E03A5C416A58BF000EA3CBD /* WebserviceDetailVCOld.m in Sources */ = {isa = PBXBuildFile; fileRef = 9E03A5C216A58BF000EA3CBD /* WebserviceDetailVCOld.m */; };
 		9E0780B416A69A920045161B /* Base64.m in Sources */ = {isa = PBXBuildFile; fileRef = 9E0780B316A69A920045161B /* Base64.m */; };
+		9E17DD4516AEAACE008BB230 /* WebserviceDetailVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 9E17DD4416AEAACE008BB230 /* WebserviceDetailVC.m */; };
 		9E1ED3A416A569D100DF3049 /* TCTask.m in Sources */ = {isa = PBXBuildFile; fileRef = 9E1ED39B16A569D100DF3049 /* TCTask.m */; };
 		9E1ED3A516A569D100DF3049 /* TCTaskStore.m in Sources */ = {isa = PBXBuildFile; fileRef = 9E1ED39D16A569D100DF3049 /* TCTaskStore.m */; };
 		9E1ED3A716A569D100DF3049 /* TCWebserviceStore.m in Sources */ = {isa = PBXBuildFile; fileRef = 9E1ED3A116A569D100DF3049 /* TCWebserviceStore.m */; };
@@ -55,7 +55,6 @@
 		9E24DCBA16ADF76E00389EAD /* blackButtonHighlight.png in Resources */ = {isa = PBXBuildFile; fileRef = 9E24DCB616ADF76E00389EAD /* blackButtonHighlight.png */; };
 		9E24DCBB16ADF76E00389EAD /* blackButtonHighlight@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9E24DCB716ADF76E00389EAD /* blackButtonHighlight@2x.png */; };
 		9E24DCBD16ADF99300389EAD /* orange.png in Resources */ = {isa = PBXBuildFile; fileRef = 9E24DCBC16ADF99300389EAD /* orange.png */; };
-		9E2C5BC316ADC8EA00D1747B /* WebserviceDetailVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 9E2C5BC216ADC8EA00D1747B /* WebserviceDetailVC.m */; };
 		9E2C5BD616ADCA3800D1747B /* blueButton.png in Resources */ = {isa = PBXBuildFile; fileRef = 9E2C5BC516ADCA3800D1747B /* blueButton.png */; };
 		9E2C5BD716ADCA3800D1747B /* blueButton@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9E2C5BC616ADCA3800D1747B /* blueButton@2x.png */; };
 		9E2C5BD816ADCA3800D1747B /* blueButtonHighlight.png in Resources */ = {isa = PBXBuildFile; fileRef = 9E2C5BC716ADCA3800D1747B /* blueButtonHighlight.png */; };
@@ -120,10 +119,10 @@
 		39EDE63A16A958740034299D /* ButtonCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ButtonCell.xib; sourceTree = "<group>"; };
 		39EDE63D16A958B00034299D /* ButtonCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ButtonCell.h; sourceTree = "<group>"; };
 		39EDE63E16A958B00034299D /* ButtonCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ButtonCell.m; sourceTree = "<group>"; };
-		9E03A5C116A58BF000EA3CBD /* WebserviceDetailVCOld.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WebserviceDetailVCOld.h; sourceTree = "<group>"; };
-		9E03A5C216A58BF000EA3CBD /* WebserviceDetailVCOld.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WebserviceDetailVCOld.m; sourceTree = "<group>"; };
 		9E0780B216A69A920045161B /* Base64.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Base64.h; sourceTree = "<group>"; };
 		9E0780B316A69A920045161B /* Base64.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Base64.m; sourceTree = "<group>"; };
+		9E17DD4316AEAACE008BB230 /* WebserviceDetailVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WebserviceDetailVC.h; sourceTree = "<group>"; };
+		9E17DD4416AEAACE008BB230 /* WebserviceDetailVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WebserviceDetailVC.m; sourceTree = "<group>"; };
 		9E1ED39A16A569D100DF3049 /* TCTask.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TCTask.h; sourceTree = "<group>"; };
 		9E1ED39B16A569D100DF3049 /* TCTask.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TCTask.m; sourceTree = "<group>"; };
 		9E1ED39C16A569D100DF3049 /* TCTaskStore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TCTaskStore.h; sourceTree = "<group>"; };
@@ -170,8 +169,6 @@
 		9E24DCB616ADF76E00389EAD /* blackButtonHighlight.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = blackButtonHighlight.png; sourceTree = "<group>"; };
 		9E24DCB716ADF76E00389EAD /* blackButtonHighlight@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "blackButtonHighlight@2x.png"; sourceTree = "<group>"; };
 		9E24DCBC16ADF99300389EAD /* orange.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = orange.png; sourceTree = "<group>"; };
-		9E2C5BC116ADC8EA00D1747B /* WebserviceDetailVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WebserviceDetailVC.h; sourceTree = "<group>"; };
-		9E2C5BC216ADC8EA00D1747B /* WebserviceDetailVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WebserviceDetailVC.m; sourceTree = "<group>"; };
 		9E2C5BC516ADCA3800D1747B /* blueButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = blueButton.png; sourceTree = "<group>"; };
 		9E2C5BC616ADCA3800D1747B /* blueButton@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "blueButton@2x.png"; sourceTree = "<group>"; };
 		9E2C5BC716ADCA3800D1747B /* blueButtonHighlight.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = blueButtonHighlight.png; sourceTree = "<group>"; };
@@ -279,10 +276,8 @@
 				9EF416D116A93E6C0006E8A2 /* ChooseTaskVC.m */,
 				39685E9216A54FC500FE52A1 /* WebserviceListVC.h */,
 				39685E9316A54FC500FE52A1 /* WebserviceListVC.m */,
-				9E03A5C116A58BF000EA3CBD /* WebserviceDetailVCOld.h */,
-				9E03A5C216A58BF000EA3CBD /* WebserviceDetailVCOld.m */,
-				9E2C5BC116ADC8EA00D1747B /* WebserviceDetailVC.h */,
-				9E2C5BC216ADC8EA00D1747B /* WebserviceDetailVC.m */,
+				9E17DD4316AEAACE008BB230 /* WebserviceDetailVC.h */,
+				9E17DD4416AEAACE008BB230 /* WebserviceDetailVC.m */,
 				9E7FD46416A9EAF6009208D7 /* NewWebserviceVC.h */,
 				9E7FD46516A9EAF6009208D7 /* NewWebserviceVC.m */,
 				9E7FD46C16A9F928009208D7 /* WebserviceEditVC.h */,
@@ -563,7 +558,6 @@
 				9E24DCBA16ADF76E00389EAD /* blackButtonHighlight.png in Resources */,
 				9E24DCBB16ADF76E00389EAD /* blackButtonHighlight@2x.png in Resources */,
 				9E24DCBD16ADF99300389EAD /* orange.png in Resources */,
-				9EDD868C16AB67A70046B501 /* WebserviceDetailVC.xib in Resources */,
 				3969AA8316ADEC1F0099977E /* TimeSessionCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -583,7 +577,6 @@
 				9E1ED3A516A569D100DF3049 /* TCTaskStore.m in Sources */,
 				9E1ED3A716A569D100DF3049 /* TCWebserviceStore.m in Sources */,
 				9E1ED3B116A56C4600DF3049 /* TCWebservice.m in Sources */,
-				9E03A5C416A58BF000EA3CBD /* WebserviceDetailVCOld.m in Sources */,
 				9E0780B416A69A920045161B /* Base64.m in Sources */,
 				39E3763416A6C9F70048DC19 /* TaskDetailVC.m in Sources */,
 				39E3763616A6C9F70048DC19 /* TaskListVC.m in Sources */,
@@ -606,11 +599,11 @@
 				9E226D8716AB03630080984A /* UIImageView+AFNetworking.m in Sources */,
 				9E226DA016AB2D850080984A /* TCClient.m in Sources */,
 				9E226DA316AB2E010080984A /* TCJiraClient.m in Sources */,
-				9E2C5BC316ADC8EA00D1747B /* WebserviceDetailVC.m in Sources */,
 				9E2C5BFF16ADDC8F00D1747B /* UIButton+TimeChickenAdditions.m in Sources */,
 				9E2C5C0216ADE0AA00D1747B /* UIColor+TimeChickenAdditions.m in Sources */,
 				3969AA7D16ADE9DD0099977E /* TimeSession.m in Sources */,
 				3969AA8116ADEBF10099977E /* TimeSessionCell.m in Sources */,
+				9E17DD4516AEAACE008BB230 /* WebserviceDetailVC.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
