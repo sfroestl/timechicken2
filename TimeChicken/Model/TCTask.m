@@ -19,6 +19,8 @@
 @synthesize completed = _completed;
 @synthesize completedAt = _completedAt;
 
+@synthesize timeSessions = _timeSessions;
+
 @synthesize wsType = _wsType;
 @synthesize wsID = _wsID;
 @synthesize lastUpdate = _lastUpdate;
@@ -94,6 +96,7 @@
         self.title = title;
         self.desc = desc;
         self.project = project;
+        self.timeSessions = [[NSMutableArray alloc] init];
     }
     return self;
 }
@@ -120,5 +123,6 @@
     NSDate *date = [dateFormatter dateFromString:dateString];
     return date;
 }
+
 
 @end

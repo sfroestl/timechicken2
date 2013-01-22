@@ -13,6 +13,8 @@
 #import "TCDatePicker.h"
 #import "TCTaskStore.h"
 #import "ButtonCell.h"
+#import "TimeSessionCell.h"
+#import "TimeSession.h"
 
 @interface TaskDetailVC ()<UITextFieldDelegate>
 @property (nonatomic,strong) TCDatePicker* datepicker;
@@ -50,6 +52,12 @@
     
     //Register the NIB which contains the cell
     [[self tableView] registerNib:nibButtonCell forCellReuseIdentifier:@"ButtonCell"];
+    
+    //Load the NIB-file for Custom TimeSession-Cell
+    UINib *nibTimeSessionCell = [UINib nibWithNibName:@"TimeSessionCell" bundle:nil];
+    
+    //Register the NIB which contains the cell
+    [[self tableView] registerNib:nibTimeSessionCell forCellReuseIdentifier:@"TimeSessionCell"];
 }
 
 - (void)didReceiveMemoryWarning
@@ -138,7 +146,6 @@
                 return cell;
             }
         }
-        
     }
     
     if(indexPath.section == 1){
@@ -156,19 +163,20 @@
 
         return cell;
     }
-    
+    //TimeSessions
     if(indexPath.section == 2){
-        static NSString *CellIdentifier = @"Cell";
-        UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
-        if (cell == nil) {
-            cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
-        }
+        TimeSessionCell *cell = [tableView dequeueReusableCellWithIdentifier:@"TimeSessionCell"];
+        TimeSession *ts = [self.detailItem.timeSessions objectAtIndex:indexPath.row];
         
-        cell.textLabel.text = @"bla";
+        NSDateFormatter *dateFormat = [[NSDateFormatter alloc] init];
+        [dateFormat setDateFormat:@"YY.MM.dd HH:mm"];
+        [[cell startDate] setText:[NSString stringWithFormat:@"%@", [dateFormat stringFromDate:[ts start]]]];
+        [[cell endDate] setText:[NSString stringWithFormat:@"%@", [dateFormat stringFromDate:[ts end]]]];
+        [[cell duration] setText:[NSString stringWithFormat:@"%@", [ts getDurationAsString]]];
+        
         return cell;
     }
-    
-    return [[UITableViewCell alloc]init];
+    return nil;
 }
 
 -(BOOL)textFieldShouldReturn:(UITextField *)textField{

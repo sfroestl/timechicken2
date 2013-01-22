@@ -32,4 +32,5 @@
 - (id)initWithTitle:(NSString *)title;
 
 - (BOOL) isCompleted;
+
 @end
