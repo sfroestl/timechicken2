@@ -7,6 +7,7 @@
 //
 
 #import "WebserviceEditVC.h"
+#import "UIColor+TimeChickenAdditions.h"
 #import "TCWebservice.h"
 #import "TCWebserviceStore.h"
 #import "TCClient.h"
@@ -33,14 +34,9 @@
     if (self) {
 //        UIBarButtonItem *cancelBbi = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCancel target:self action:@selector(cancel)];
         UIBarButtonItem *saveBbi = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemSave target:self action:@selector(proveWs)];
-        
 //        [[self navigationItem] setLeftBarButtonItem:cancelBbi];
         [[self navigationItem] setRightBarButtonItem:saveBbi];
-        if (self.detailItem) {
-//            if ([self.detailItem isKindOfClass:[TCWSOneSpark class]]) {
-//                restClient = [[OneSparkRestClient alloc] initRestClientwithDelegate:self];
-//            }
-        }
+
     }
     return self;
 }
@@ -53,13 +49,12 @@
 {
     [super viewDidLoad];
     self.tableView.backgroundView = nil;
-    self.tableView.backgroundColor = [UIColor colorWithRed:233.0f/255.0f green:233.0f/255.0f blue:233.0f/255.0f alpha:1.0f];
+    self.tableView.backgroundColor = [UIColor tcMetallicColor];
 
     // Do any additional setup after loading the view from its nib.
 }
 
 - (void)viewWillAppear:(BOOL)animated {
-    NSLog(@"Detail item: %@", self.detailItem);
     self.title = self.detailItem.title;
 }
 
@@ -90,6 +85,9 @@
     return count;
 }
 
+
+#pragma mark - Table View delegate
+
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     NSString *wsCellIdentifier = @"EditCell";
@@ -107,6 +105,7 @@
             txtField.textColor = [UIColor blackColor];
             txtField.backgroundColor = [UIColor groupTableViewBackgroundColor];
             if ([indexPath row] == 0) {
+                txtField.text = self.detailItem.title;
                 txtField.placeholder = self.detailItem.title;
                 txtField.keyboardType = UIKeyboardTypeDefault;
             } else if([indexPath row] == 1){
@@ -157,7 +156,33 @@
 
 }
 
+- (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section {
+    return 220.0f;
+}
+
+- (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section {
+    UIView *customFooterView = [[UIView alloc] init];
+    
+    NSString *desc = [[TCWebserviceStore wsStore] wsDescriptionOfType: self.detailItem.type];
+    customFooterView = [ [UIView alloc] initWithFrame:CGRectMake(20, 10, 280, 170)];
+    UILabel *titleLabel = [ [UILabel alloc] initWithFrame:CGRectMake(20, 10, 280, 170)];
+    [titleLabel setTextAlignment:NSTextAlignmentLeft];
+    [titleLabel setFont:[UIFont systemFontOfSize:14.0f]];
+    titleLabel.text = desc;
+    titleLabel.textColor = [UIColor grayColor];
+    titleLabel.shadowColor = [UIColor whiteColor];
+    titleLabel.shadowOffset = CGSizeMake(0.75, 1.0);
+    titleLabel.backgroundColor = [UIColor clearColor];
+    titleLabel.numberOfLines = 0;
+    [customFooterView addSubview:titleLabel];
+    
+    return customFooterView;
+}
+
+#pragma mark - Private
+
 - (void) proveWs {
+     
     [_activityIndicatorView startAnimating];
     self.navigationItem.rightBarButtonItem.enabled = NO;
     
@@ -171,7 +196,6 @@
     
     txtField = (UITextField *)[[self view] viewWithTag:123];
     NSString *password = [txtField text];
-    NSLog(@"--> username %@", username);
     
     TCClient<TCRestClientIF> *client = nil;
     
@@ -200,13 +224,29 @@
             break;
     }
     if (client) {
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Connecting..." message:nil delegate:self cancelButtonTitle:nil otherButtonTitles: nil];
+        [alert show];
+        
+        UIActivityIndicatorView *indicator = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];
+        // Adjust the indicator so it is up a few pixels from the bottom of the alert
+        indicator.center = CGPointMake(alert.bounds.size.width / 2, alert.bounds.size.height - 50);
+        [indicator startAnimating];
+        [alert addSubview:indicator];
+        
         [client setBasicAuthUsername:username andPassword:password];
         [client fetchUsername:^(NSString *username, NSError *error) {
             if (error) {
-                [[[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Error", nil) message:[error localizedDescription] delegate:nil cancelButtonTitle:nil otherButtonTitles:NSLocalizedString(@"OK", nil), nil] show];
+                [alert dismissWithClickedButtonIndex:0 animated:YES];
+                NSLog(@"--> Connection error %@", error);
+                if (error.code == 401) {
+                    [[[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Connection failed", nil) message:@"Your login information is not correct" delegate:nil cancelButtonTitle:nil otherButtonTitles:NSLocalizedString(@"OK", nil), nil] show];
+                } else {
+                    [[[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Error", nil) message:[error localizedDescription] delegate:nil cancelButtonTitle:nil otherButtonTitles:NSLocalizedString(@"OK", nil), nil] show];
+                }
                 self.navigationItem.rightBarButtonItem.enabled = YES;
             } else {
-                if (title != @"") {
+                [alert dismissWithClickedButtonIndex:0 animated:YES];
+                if (title != nil) {
                     self.detailItem.title = title;
                 }
                 self.detailItem.username = username;
@@ -238,56 +278,5 @@
 }
 
 
-/*
-/ Override to support conditional editing of the table view.
-- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    // Return NO if you do not want the specified item to be editable.
-    return YES;
-}
-*/
-
-/*
-// Override to support editing the table view.
-- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    if (editingStyle == UITableViewCellEditingStyleDelete) {
-        // Delete the row from the data source
-        [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
-    }   
-    else if (editingStyle == UITableViewCellEditingStyleInsert) {
-        // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-    }   
-}
-*/
-
-/*
-// Override to support rearranging the table view.
-- (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath
-{
-}
-*/
-
-/*
-// Override to support conditional rearranging of the table view.
-- (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    // Return NO if you do not want the item to be re-orderable.
-    return YES;
-}
-*/
-
-#pragma mark - Table view delegate
-
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    // Navigation logic may go here. Create and push another view controller.
-    /*
-     <#DetailViewController#> *detailViewController = [[<#DetailViewController#> alloc] initWithNibName:@"<#Nib name#>" bundle:nil];
-     // ...
-     // Pass the selected object to the new view controller.
-     [self.navigationController pushViewController:detailViewController animated:YES];
-     */
-}
 
 @end

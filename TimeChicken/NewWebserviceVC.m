@@ -7,6 +7,7 @@
 //
 
 #import "NewWebserviceVC.h"
+#import "UIColor+TimeChickenAdditions.h"
 #import "TCWebserviceStore.h"
 #import "TCWebservice.h"
 #import "WebserviceEditVC.h"
@@ -21,7 +22,7 @@
 {
     self = [super initWithStyle:UITableViewStyleGrouped];
     if (self) {
-        [self setTitle: @"Choose a Webservice"];
+        [self setTitle: @"Collaboration Tool"];
     }
     return self;
 }
@@ -33,7 +34,7 @@
 {
     [super viewDidLoad];
     self.tableView.backgroundView = nil;
-    self.tableView.backgroundColor = [UIColor colorWithRed:233.0f/255.0f green:233.0f/255.0f blue:233.0f/255.0f alpha:1.0f];
+    self.tableView.backgroundColor = [UIColor tcMetallicColor];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -49,6 +50,7 @@
     // Dispose of any resources that can be recreated.
 }
 
+#pragma mark - Table view data source
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
@@ -62,6 +64,7 @@
     
     if (!cell) {
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:@"WSCell"];
+        [cell setSelectionStyle:UITableViewCellSelectionStyleGray];
         [cell setBackgroundView:nil];
         [cell setBackgroundColor:[UIColor whiteColor]];
     }
@@ -96,7 +99,10 @@
     }
    
 }
-         
+
+
+#pragma mark - private
+
 - (void)cancel {
     NSLog(@"--> cancel");
 //    [self dismissViewControllerAnimated:YES completion:nil];

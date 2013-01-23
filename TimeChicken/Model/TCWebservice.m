@@ -7,8 +7,10 @@
 //
 
 #import "TCWebservice.h"
+#import "TCWebserviceStore.h"
 
-@implementation TCWebservice
+@implementation TCWebservice {
+}
 
 @synthesize title = _title;
 @synthesize desc = _desc;
@@ -20,7 +22,7 @@
         self.title = title;
         self.desc = desc;
         _type = wsType;
-        _wsID = [TCWebservice generateWsId];
+        _wsID = [TCWebserviceStore generateWsId];
     }
     return self;
 }
@@ -32,7 +34,7 @@
         _type = wsType;
         self.baseUrlString = bUrlString;
         self.imagePath = imgPath;
-        _wsID = [TCWebservice generateWsId];
+        _wsID = [TCWebserviceStore generateWsId];
     }
     return self;
 }
@@ -66,11 +68,7 @@
     return [NSString stringWithFormat:@"WS: Type:%i Title:%@ Username:%@ WSID:%i Img:%@ bURL: %@ Desc:%@", self.type, self.title, self.username, self.wsID, self.imagePath, self.baseUrlString, self.desc];
 }
 
-+ (int)generateWsId {
-    static int wsId = 0;
-    wsId = wsId + 1;
-    return wsId;
-}
+
 
 //for persistant encoding into Document
 -(void) encodeWithCoder:(NSCoder *)aCoder{

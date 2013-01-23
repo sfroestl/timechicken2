@@ -48,11 +48,11 @@
     //call the superclass's designated initializer
     self = [super initWithStyle:UITableViewStyleGrouped];
     if(self){
-        self.title = @"Webservices";
-        UIBarButtonItem *bbi = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(addNewWebservice:)];
+        self.title = @"Synchronize";
+        UIBarButtonItem *addButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(addNewWebservice:)];
         
         // Set this bar button item as the right item in navigation
-        [[self navigationItem] setRightBarButtonItem:bbi];
+        [[self navigationItem] setRightBarButtonItem:addButton];
         
         [[self navigationItem] setLeftBarButtonItem:[self editButtonItem]];
     }
@@ -64,25 +64,16 @@
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    int rowCount = [[[TCWebserviceStore wsStore] allWebservices] count];
-    if (rowCount == 0) {
-//        NewWebserviceVC *newVC = [[NewWebserviceVC alloc] init];        
-//        UINavigationController *navC = [[UINavigationController alloc] initWithRootViewController:newVC];
-//        [[self navigationController] presentViewController:navC animated:YES completion:nil];
-//        NewWebserviceVC *newWsVC = [[NewWebserviceVC alloc] init];
-//        [[self navigationController] pushViewController:newWsVC animated:YES];
-    }
-    return rowCount;
+    return [[[TCWebserviceStore wsStore] allWebservices] count];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    // Create an instance of UITableViewCell, with default appearance
-    // Check for a reusable cell first, use that if it exists
+
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"WebserviceCell"];
     
-    // If there is no reusable cell of this type, create a new one
     if (!cell) {
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:@"WebserviceCell"];
+        [cell setSelectionStyle:UITableViewCellSelectionStyleGray];
     }
     TCWebservice *ws = [[[TCWebserviceStore wsStore] allWebservices] objectAtIndex:[indexPath row]];
     NSLog(@"%@", ws);

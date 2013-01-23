@@ -20,6 +20,7 @@
 }
 
 + (TCWebserviceStore *)wsStore;
++ (int) generateWsId;
 
 -(NSString *)wsArchivePath;
 -(BOOL) saveChanges;

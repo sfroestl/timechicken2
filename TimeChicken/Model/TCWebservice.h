@@ -24,9 +24,6 @@ typedef NSUInteger WS_TYPES;
 
 @property int wsID;
 
-+ (int)generateWsId;
-
-
 - (id) initWithTitle:(NSString *)title desc:(NSString *)desc type:(int) wsType;
 - (id) initWithTitle:(NSString *)title desc:(NSString *)desc type:(int) wsType baseUrl:(NSString *)bUrlString imagePath:(NSString *) imgPath;
 - (void) setAuthUsername: (NSString *)name andPassword:(NSString *)pw;

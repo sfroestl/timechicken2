@@ -13,15 +13,13 @@
 #import "ChooseTaskVC.h"
 #import "TCTaskStore.h"
 #import "TCWebservice.h"
+#import "TCWebserviceStore.h"
 
 #import "TCJiraClient.h"
 #import "TCOneSparkClient.h"
 
-@interface WebserviceDetailVC ()
 
-@end
-
-@implementation WebserviceDetailVC{
+@implementation WebserviceDetailVC {
 @private
     __strong UIActivityIndicatorView *_activityIndicatorView;
 }
@@ -31,6 +29,10 @@
 - (id)init {
     self = [super initWithStyle:UITableViewStyleGrouped];
     if (self) {
+        UIBarButtonItem *editButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemEdit target:self action:@selector(editButtonPressed:)];
+        
+        // Set this bar button item as the right item in navigation
+        [[self navigationItem] setRightBarButtonItem:editButton];
     }
     return self;
 }
@@ -63,8 +65,8 @@
     [self.view addSubview:importButton];
     
     UIButton *deleteButton = [UIButton tcBlackButton];    
-    [deleteButton addTarget:self action:@selector(deleteWebservice) forControlEvents:UIControlEventTouchUpInside];
-    [deleteButton setTitle:@"Delete" forState:UIControlStateNormal];
+    [deleteButton addTarget:self action:@selector(removeWSButtonPressed:) forControlEvents:UIControlEventTouchUpInside];
+    [deleteButton setTitle:@"Remove" forState:UIControlStateNormal];
     [deleteButton setFrame:CGRectMake(10.0, 310.0, 300.0, 42.0)];
     
     [self.view addSubview:deleteButton];
@@ -103,7 +105,7 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     NSString *wsCellIdentifier = @"WSCell";
-    TCWebservice *displayedWs = self.detailItemWebService;
+    TCWebservice *ws = self.detailItemWebService;
     UITableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:wsCellIdentifier];
     if (!cell) {
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:wsCellIdentifier];
@@ -118,14 +120,14 @@
             
             if ([indexPath row] == 0) {
                 cell.textLabel.text = @"Title";
-                textLabel.text = displayedWs.title;
+                textLabel.text = ws.title;
             } else if([indexPath row] == 1){
                 cell.textLabel.text = @"Username";
-                textLabel.text = displayedWs.username;
+                textLabel.text = ws.username;
             }
             else if ([indexPath row] == 2){
                 cell.textLabel.text = @"URL";
-                textLabel.text = displayedWs.baseUrlString;
+                textLabel.text = ws.baseUrlString;
             }            
             [cell addSubview:textLabel];
         }
@@ -135,7 +137,7 @@
         textLabel.backgroundColor = [UIColor groupTableViewBackgroundColor];
         
         cell.textLabel.text = @"Importet Tasks";
-        int count = [[[TCTaskStore taskStore] findByWsType:displayedWs.type] count];
+        int count = [[[TCTaskStore taskStore] findByWsId:ws.wsID] count];
         textLabel.text = [NSString stringWithFormat:@"%i", count];
         [cell addSubview:textLabel];
         }
@@ -147,6 +149,26 @@
 # pragma mark Actions
 - (IBAction)fetchTaskButtonPressed:(id)sender {
     [self fetchTasks];
+}
+
+- (IBAction)editButtonPressed:(id)sender {
+    
+}
+
+# pragma mark UIAlertViewDelegate
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
+    NSLog(@"Clicked %i", buttonIndex);
+    if(buttonIndex == 1) {
+        [self removeWebservice];
+        [[self navigationController] popToRootViewControllerAnimated:YES];
+    }
+}
+
+
+- (IBAction)removeWSButtonPressed:(id)sender {
+    NSString *message = [NSString stringWithFormat:@"Remove Connection to %@?", self.detailItemWebService.title];
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:message message:nil delegate:self cancelButtonTitle:@"Cancel" otherButtonTitles:@"Yes", nil];
+    [alert show];
 }
 
 
@@ -197,8 +219,10 @@
     
 }
 
-- (void) deleteWebservice {
-    NSLog(@"-->> Delete WS!");
+- (void) removeWebservice {
+    NSLog(@"-->> remove WS!");
+    TCWebservice *ws = [self detailItemWebService];
+    [[TCWebserviceStore wsStore] removeWebservice:ws];
 }
 
 

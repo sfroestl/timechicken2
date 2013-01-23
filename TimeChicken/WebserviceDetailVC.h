@@ -13,10 +13,10 @@
 @class TCWebservice;
 
 
-@interface WebserviceDetailVC : UITableViewController
+@interface WebserviceDetailVC : UITableViewController <UIAlertViewDelegate>
 
 @property (strong, nonatomic) TCWebservice *detailItemWebService;
 
-- (void)fetchTasks;
-- (void) deleteWebservice;
+- (void) fetchTasks;
+- (void) removeWebservice;
 @end

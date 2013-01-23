@@ -24,6 +24,12 @@
     return [self wsStore];
 }
 
++ (int)generateWsId {
+    static int wsId = 0;
+    wsId = wsId + 1;
+    return wsId;
+}
+
 - (id)init {
     self = [super init];
     if(self) {
@@ -38,8 +44,8 @@
         
         wsNames = [[NSArray alloc] initWithObjects:@"", @"One Spark", @"Jira", nil];
         wsDescs = [[NSArray alloc] initWithObjects:@"", 
-                   @"Make your idea happen!",
-                   @"JIRA ist ein Projektverfolgungstool für Teams", nil];
+                   @"One Spark - Make your idea happen!\n\nOne Spark ist ein Projektmanagement-Portal, das einzelnen Nutzern und auch großen Teams ermöglicht effizient an Projekten zu arbeiten.\n\nModulweise können andere Tools als Plugins eingebunden werden.",
+                   @"JIRA ist ein Projektverfolgungstool für Teams, die großartige Software erstellen wollen.\n\nTausende Teams haben sich für JIRA entschieden, um Ihre Aufgaben besser zu koordinieren. Mit JIRA ist man immer informiert, woran das Team gerade arbeitet. ", nil];
         wsImagePaths = [[NSArray alloc] initWithObjects:@"", @"icon-onesparkLarge", @"icon-jiraLarge", nil];
         wsBaseUrls = [[NSArray alloc] initWithObjects:@"", @"http://api.onespark.de:81/api/v1", @"http://jira.yourdomain.de", nil];
     }
@@ -116,18 +122,20 @@
     return contains;
 }
 
--(NSString *)wsArchivePath{
+-(NSString *)wsArchivePath {
     NSArray *documentDirectories = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
     NSString *documentDirecty = [documentDirectories objectAtIndex:0];
     
     return [documentDirecty stringByAppendingPathComponent:@"webservices.archive"];
 }
 
--(BOOL)saveChanges{
+-(BOOL)saveChanges {
     NSString *path = [self wsArchivePath];
     
     return [NSKeyedArchiver archiveRootObject:webservices toFile:path];
 }
+
+
 
 
 @end
