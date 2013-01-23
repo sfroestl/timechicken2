@@ -20,8 +20,6 @@
 		3969AA8316ADEC1F0099977E /* TimeSessionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3969AA8216ADEC1F0099977E /* TimeSessionCell.xib */; };
 		39E3763416A6C9F70048DC19 /* TaskDetailVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 39E3762F16A6C9F70048DC19 /* TaskDetailVC.m */; };
 		39E3763616A6C9F70048DC19 /* TaskListVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 39E3763216A6C9F70048DC19 /* TaskListVC.m */; };
-		39EDE63B16A958740034299D /* ButtonCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 39EDE63A16A958740034299D /* ButtonCell.xib */; };
-		39EDE63F16A958B00034299D /* ButtonCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 39EDE63E16A958B00034299D /* ButtonCell.m */; };
 		9E0780B416A69A920045161B /* Base64.m in Sources */ = {isa = PBXBuildFile; fileRef = 9E0780B316A69A920045161B /* Base64.m */; };
 		9E17DD4516AEAACE008BB230 /* WebserviceDetailVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 9E17DD4416AEAACE008BB230 /* WebserviceDetailVC.m */; };
 		9E17DD4816AEB31B008BB230 /* TaskTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 9E17DD4716AEB31B008BB230 /* TaskTableViewCell.m */; };
@@ -109,9 +107,6 @@
 		39E3762F16A6C9F70048DC19 /* TaskDetailVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TaskDetailVC.m; sourceTree = "<group>"; };
 		39E3763116A6C9F70048DC19 /* TaskListVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TaskListVC.h; sourceTree = "<group>"; };
 		39E3763216A6C9F70048DC19 /* TaskListVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TaskListVC.m; sourceTree = "<group>"; };
-		39EDE63A16A958740034299D /* ButtonCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ButtonCell.xib; sourceTree = "<group>"; };
-		39EDE63D16A958B00034299D /* ButtonCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ButtonCell.h; sourceTree = "<group>"; };
-		39EDE63E16A958B00034299D /* ButtonCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ButtonCell.m; sourceTree = "<group>"; };
 		9E0780B216A69A920045161B /* Base64.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Base64.h; sourceTree = "<group>"; };
 		9E0780B316A69A920045161B /* Base64.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Base64.m; sourceTree = "<group>"; };
 		9E17DD4316AEAACE008BB230 /* WebserviceDetailVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WebserviceDetailVC.h; sourceTree = "<group>"; };
@@ -464,9 +459,6 @@
 				9ECBD0E316A94FD900C412FC /* TaskDetailEditCell.h */,
 				9ECBD0E416A94FD900C412FC /* TaskDetailEditCell.m */,
 				9ECBD0E516A94FD900C412FC /* TaskDetailEditCell.xib */,
-				39EDE63A16A958740034299D /* ButtonCell.xib */,
-				39EDE63D16A958B00034299D /* ButtonCell.h */,
-				39EDE63E16A958B00034299D /* ButtonCell.m */,
 				3969AA7F16ADEBF10099977E /* TimeSessionCell.h */,
 				3969AA8016ADEBF10099977E /* TimeSessionCell.m */,
 				3969AA8216ADEC1F0099977E /* TimeSessionCell.xib */,
@@ -528,7 +520,6 @@
 				39685E7E16A54FC500FE52A1 /* InfoPlist.strings in Resources */,
 				9ECBD0E716A94FD900C412FC /* TaskCell.xib in Resources */,
 				9ECBD0E916A94FD900C412FC /* TaskDetailEditCell.xib in Resources */,
-				39EDE63B16A958740034299D /* ButtonCell.xib in Resources */,
 				3969AA8316ADEC1F0099977E /* TimeSessionCell.xib in Resources */,
 				9E17DD7016AEF835008BB230 /* blackButton.png in Resources */,
 				9E17DD7116AEF835008BB230 /* blackButton@2x.png in Resources */,
@@ -584,7 +575,6 @@
 				9EF416D216A93E6C0006E8A2 /* ChooseTaskVC.m in Sources */,
 				9ECBD0E616A94FD900C412FC /* TaskCell.m in Sources */,
 				9ECBD0E816A94FD900C412FC /* TaskDetailEditCell.m in Sources */,
-				39EDE63F16A958B00034299D /* ButtonCell.m in Sources */,
 				9E7FD45316A9DE3A009208D7 /* OSTestRestClient.m in Sources */,
 				9E7FD46616A9EAF6009208D7 /* NewWebserviceVC.m in Sources */,
 				9E7FD46E16A9F928009208D7 /* WebserviceEditVC.m in Sources */,
