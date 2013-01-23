@@ -14,7 +14,9 @@
 #import "TCDatePicker.h"
 #import "TCTaskStore.h"
 #import "TimeSessionCell.h"
-#import "TimeSession.h"
+#import "TCTimeSession.h"
+#import "TimeSessionListVC.h"
+
 
 @interface TaskDetailVC ()<UITextFieldDelegate>
 @property (nonatomic,strong) TCDatePicker* datepicker;
@@ -22,6 +24,8 @@
 @end
 
 @implementation TaskDetailVC
+
+@synthesize detailItem = _detailItem;
 
 - (id)initWithStyle:(UITableViewStyle)style
 {
@@ -47,13 +51,8 @@
     //Register this NIB which contains the cell
     [[self tableView] registerNib:nibTaskDetailEditCell forCellReuseIdentifier:@"TaskDetailEditCell"];
     
-    //Load the NIB-file for Custom TimeSession-Cell
-    UINib *nibTimeSessionCell = [UINib nibWithNibName:@"TimeSessionCell" bundle:nil];
-    
-    //Register the NIB which contains the cell
-    [[self tableView] registerNib:nibTimeSessionCell forCellReuseIdentifier:@"TimeSessionCell"];
     UIButton *timerButton = [UIButton tcOrangeButton];
-    [timerButton setFrame:CGRectMake(10.0, 250.0, 300.0, 42.0)];
+    [timerButton setFrame:CGRectMake(10.0, 270.0, 300.0, 42.0)];
     [timerButton addTarget:self action:@selector(timerButtonPressed:) forControlEvents:UIControlEventTouchUpInside];
     [timerButton setTitle:@"Start Time Tracker" forState:UIControlStateNormal];
     
@@ -61,14 +60,14 @@
 
     if ([self.detailItem isCompleted]) {
         UIButton *reopenButton = [UIButton tcBlackButton];
-        [reopenButton setFrame:CGRectMake(10.0, 310.0, 300.0, 42.0)];
+        [reopenButton setFrame:CGRectMake(10.0, 330.0, 300.0, 42.0)];
         [reopenButton addTarget:self action:@selector(closeTaskButtonPressed:) forControlEvents:UIControlEventTouchUpInside];
         [reopenButton setTitle:@"Reopen" forState:UIControlStateNormal];
         
         [self.view addSubview:reopenButton];
     } else {
         UIButton *completeButton = [UIButton tcBlackButton];
-        [completeButton setFrame:CGRectMake(10.0, 310.0, 300.0, 42.0)];
+        [completeButton setFrame:CGRectMake(10.0, 330.0, 300.0, 42.0)];
         [completeButton addTarget:self action:@selector(closeTaskButtonPressed:) forControlEvents:UIControlEventTouchUpInside];
         [completeButton setTitle:@"Complete" forState:UIControlStateNormal];
         
@@ -93,51 +92,24 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    int count;
-    switch(section)
-    {
-        case 0: count = 5; break;  //Task-properties
-        case 1: count = [self.detailItem.timeSessions count]; break;    //TimeSessionlist
-    }
-    
-    return count;
-}
--(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
-    int count;
-    if (section == 1){
-        count = 100;
+    if (section == 0) {
+        return 4;
     } else {
-        count = 10;
+        return 1;
     }
-    return count;
 }
 
--(UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
-    UIView *customTitleView;
-    
-    if (section == 1){
-        UIView *customTitleView = [ [UIView alloc] initWithFrame:CGRectMake(0, 0, 300, 35)];
-        UILabel *titleLabel = [ [UILabel alloc] initWithFrame:CGRectMake(0, 0, 300, 35)];
-        [titleLabel setTextAlignment:NSTextAlignmentCenter];
-        [titleLabel setFont:[UIFont systemFontOfSize:14.0f]];
-        titleLabel.text = @"Your Tracked Time";
-        titleLabel.textColor = [UIColor grayColor];
-        titleLabel.shadowColor = [UIColor whiteColor];
-        titleLabel.shadowOffset = CGSizeMake(0.75, 1.0);
-        titleLabel.backgroundColor = [UIColor clearColor];
-        [customTitleView addSubview:titleLabel];
-    }
-    return customTitleView;
-}
+
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    TaskDetailEditCell *cell = [tableView dequeueReusableCellWithIdentifier:@"TaskDetailEditCell"];
-    [cell.keyLabel setFont:[UIFont systemFontOfSize:14.f]];
-    [cell.keyLabel setFrame:CGRectMake(10.0, 15.0, 100.0, 15.0)];
-    cell.selectionStyle = UITableViewCellSelectionStyleNone;
-    
+   
+    // Cells for atributes
     if (indexPath.section==0) {
+        TaskDetailEditCell *cell = [tableView dequeueReusableCellWithIdentifier:@"TaskDetailEditCell"];
+        [cell.keyLabel setFont:[UIFont systemFontOfSize:14.f]];
+        [cell.keyLabel setFrame:CGRectMake(10.0, 15.0, 100.0, 15.0)];
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
         
         switch(indexPath.row)
         {
@@ -172,27 +144,33 @@
                 [self.datepicker addTarget:self action:@selector(datePickerDateChanged:) forControlEvents:UIControlEventValueChanged];
                 break;
             }
-            case 4:{
-                [[cell keyLabel] setText:@"Worked Time:"];
-                [[cell valueTextfield] setText:[self.detailItem workedTimeAsString]];
-                [cell.valueTextfield setEnabled:NO];
-                cell.valueTextfield.delegate = self;
-                break;
-            }
-        }
+        }        
+        return cell;
+    }    
+    // Cell for working time
+    else {
+        UITableViewCell *cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:@"TaskWorkedTimeCell"];
+        [cell setSelectionStyle:UITableViewCellSelectionStyleGray];
+        [cell setAccessoryType: UITableViewCellAccessoryDisclosureIndicator];
+        [cell.textLabel setFont:[UIFont systemFontOfSize:14.f]];
+        [cell.textLabel setFrame:CGRectMake(10.0, 15.0, 100.0, 15.0)];
+        cell.textLabel.textColor = [UIColor lightGrayColor];
+        cell.detailTextLabel.textColor = [UIColor darkGrayColor];
+        [cell.textLabel setText:@"Worked Time:"];
+        [cell.detailTextLabel setText:[self.detailItem workedTimeAsString]];    
+
+        return cell;
     }
-    //TimeSessions
-    if(indexPath.section == 1){
-        TimeSessionCell *cell = [tableView dequeueReusableCellWithIdentifier:@"TimeSessionCell"];
-        TimeSession *ts = [self.detailItem.timeSessions objectAtIndex:indexPath.row];
+    return [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"test"];
+}
+
+- (void) tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    if(indexPath.section == 1 && indexPath.row == 0) {
+        TimeSessionListVC *timeSessionVC = [[TimeSessionListVC alloc] init];
+        timeSessionVC.task = self.detailItem;
+        [[self navigationController] pushViewController:timeSessionVC animated:YES];
         
-        NSDateFormatter *dateFormat = [[NSDateFormatter alloc] init];
-        [dateFormat setDateFormat:@"dd.MM.YY HH:mm"];
-        [[cell startDate] setText:[NSString stringWithFormat:@"%@", [dateFormat stringFromDate:[ts start]]]];
-        [[cell endDate] setText:[NSString stringWithFormat:@"%@", [dateFormat stringFromDate:[ts end]]]];
-        [[cell duration] setText:[NSString stringWithFormat:@"%@", [ts durationAsString]]];
     }
-    return cell;
 }
 
 

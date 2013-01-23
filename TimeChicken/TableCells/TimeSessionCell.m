@@ -10,8 +10,8 @@
 
 @implementation TimeSessionCell
 
-@synthesize startDate;
-@synthesize endDate;
-@synthesize duration;
+@synthesize startDateLabel;
+@synthesize endDateLabel;
+@synthesize durationLabel;
 
 @end

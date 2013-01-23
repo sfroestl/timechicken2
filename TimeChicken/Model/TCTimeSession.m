@@ -6,9 +6,9 @@
 //  Copyright (c) 2013 Christian Schäfer. All rights reserved.
 //
 
-#import "TimeSession.h"
+#import "TCTimeSession.h"
 
-@implementation TimeSession
+@implementation TCTimeSession
 
 @synthesize start = _start;
 @synthesize end = _end;
@@ -25,7 +25,19 @@
     return [self.end timeIntervalSinceDate:self.start];
 }
 
--(NSString *)durationAsString {
+- (NSString*) durationAsString {
+    int durationInSec = [self.end timeIntervalSinceDate: self.start]/1000;
+    int hours = floor(durationInSec/3600);
+    int minutes = round(durationInSec - hours*3600);
+//    int seconds = round(durationInSec - (hours*3600 + minutes *60));
+    if (hours > 0) {
+        return [NSString stringWithFormat:@"%i h %i min", hours, minutes];
+    } else {
+        return [NSString stringWithFormat:@"%i min", minutes];
+    }
+}
+
+-(NSString *)durationAsString2 {
     NSString *out = @"running";
     if((self.start!=nil)&&(self.end!=nil)){        
         NSTimeInterval secondsBetween = [self.end timeIntervalSinceDate: self.start];

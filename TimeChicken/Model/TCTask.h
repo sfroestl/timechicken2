@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
-@class TimeSession;
+@class TCTimeSession;
 
 @interface TCTask : NSObject <NSCoding> {
     int _workedTime;

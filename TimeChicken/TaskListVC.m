@@ -16,7 +16,7 @@
 #import "TCWebserviceStore.h"
 
 //only for mocking a Task purpose
-#import "TimeSession.h"
+#import "TCTimeSession.h"
 
 @interface TaskListVC ()
 

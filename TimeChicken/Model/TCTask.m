@@ -8,7 +8,7 @@
 
 #import "TCTask.h"
 #import "TCOneSparkClient.h"
-#import "TimeSession.h"
+#import "TCTimeSession.h"
 
 @implementation TCTask
 
@@ -132,7 +132,7 @@
 
 - (int) calculateWorkedTimeInSeconds {
     int seconds = 0;
-    for (TimeSession *timeSession in _timeSessions) {
+    for (TCTimeSession *timeSession in _timeSessions) {
         seconds = seconds + timeSession.durationInSeconds;
     }
     return seconds/1000;

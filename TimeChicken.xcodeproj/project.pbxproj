@@ -15,7 +15,7 @@
 		39685E8416A54FC500FE52A1 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 39685E8316A54FC500FE52A1 /* AppDelegate.m */; };
 		39685E9416A54FC500FE52A1 /* WebserviceListVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 39685E9316A54FC500FE52A1 /* WebserviceListVC.m */; };
 		39685EAB16A55FF200FE52A1 /* TCDatePicker.m in Sources */ = {isa = PBXBuildFile; fileRef = 39685EA716A55FF200FE52A1 /* TCDatePicker.m */; };
-		3969AA7D16ADE9DD0099977E /* TimeSession.m in Sources */ = {isa = PBXBuildFile; fileRef = 3969AA7C16ADE9DD0099977E /* TimeSession.m */; };
+		3969AA7D16ADE9DD0099977E /* TCTimeSession.m in Sources */ = {isa = PBXBuildFile; fileRef = 3969AA7C16ADE9DD0099977E /* TCTimeSession.m */; };
 		3969AA8116ADEBF10099977E /* TimeSessionCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3969AA8016ADEBF10099977E /* TimeSessionCell.m */; };
 		3969AA8316ADEC1F0099977E /* TimeSessionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3969AA8216ADEC1F0099977E /* TimeSessionCell.xib */; };
 		39E3763416A6C9F70048DC19 /* TaskDetailVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 39E3762F16A6C9F70048DC19 /* TaskDetailVC.m */; };
@@ -82,6 +82,7 @@
 		9E92007B16B00EB1002E42AD /* nav-background.png in Resources */ = {isa = PBXBuildFile; fileRef = 9E92007716B00EB1002E42AD /* nav-background.png */; };
 		9E92007C16B00EB1002E42AD /* nav-background@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9E92007816B00EB1002E42AD /* nav-background@2x.png */; };
 		9E92007F16B012D4002E42AD /* UIFont+TimeChickenAddons.m in Sources */ = {isa = PBXBuildFile; fileRef = 9E92007E16B012D4002E42AD /* UIFont+TimeChickenAddons.m */; };
+		9E92008216B02F3F002E42AD /* TimeSessionListVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 9E92008116B02F3E002E42AD /* TimeSessionListVC.m */; };
 		9ECBD0E616A94FD900C412FC /* TaskCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 9ECBD0E116A94FD900C412FC /* TaskCell.m */; };
 		9ECBD0E716A94FD900C412FC /* TaskCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9ECBD0E216A94FD900C412FC /* TaskCell.xib */; };
 		9ECBD0E816A94FD900C412FC /* TaskDetailEditCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 9ECBD0E416A94FD900C412FC /* TaskDetailEditCell.m */; };
@@ -106,8 +107,8 @@
 		39685E9316A54FC500FE52A1 /* WebserviceListVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WebserviceListVC.m; sourceTree = "<group>"; };
 		39685EA616A55FF200FE52A1 /* TCDatePicker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TCDatePicker.h; sourceTree = "<group>"; };
 		39685EA716A55FF200FE52A1 /* TCDatePicker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TCDatePicker.m; sourceTree = "<group>"; };
-		3969AA7B16ADE9DD0099977E /* TimeSession.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TimeSession.h; sourceTree = "<group>"; };
-		3969AA7C16ADE9DD0099977E /* TimeSession.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TimeSession.m; sourceTree = "<group>"; };
+		3969AA7B16ADE9DD0099977E /* TCTimeSession.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TCTimeSession.h; sourceTree = "<group>"; };
+		3969AA7C16ADE9DD0099977E /* TCTimeSession.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TCTimeSession.m; sourceTree = "<group>"; };
 		3969AA7F16ADEBF10099977E /* TimeSessionCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TimeSessionCell.h; sourceTree = "<group>"; };
 		3969AA8016ADEBF10099977E /* TimeSessionCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TimeSessionCell.m; sourceTree = "<group>"; };
 		3969AA8216ADEC1F0099977E /* TimeSessionCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TimeSessionCell.xib; sourceTree = "<group>"; };
@@ -206,6 +207,8 @@
 		9E92007816B00EB1002E42AD /* nav-background@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "nav-background@2x.png"; sourceTree = "<group>"; };
 		9E92007D16B012D4002E42AD /* UIFont+TimeChickenAddons.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIFont+TimeChickenAddons.h"; path = "Categories/UIFont+TimeChickenAddons.h"; sourceTree = "<group>"; };
 		9E92007E16B012D4002E42AD /* UIFont+TimeChickenAddons.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIFont+TimeChickenAddons.m"; path = "Categories/UIFont+TimeChickenAddons.m"; sourceTree = "<group>"; };
+		9E92008016B02F3D002E42AD /* TimeSessionListVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TimeSessionListVC.h; sourceTree = "<group>"; };
+		9E92008116B02F3E002E42AD /* TimeSessionListVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TimeSessionListVC.m; sourceTree = "<group>"; };
 		9ECBD0E016A94FD900C412FC /* TaskCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TaskCell.h; sourceTree = "<group>"; };
 		9ECBD0E116A94FD900C412FC /* TaskCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TaskCell.m; sourceTree = "<group>"; };
 		9ECBD0E216A94FD900C412FC /* TaskCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TaskCell.xib; sourceTree = "<group>"; };
@@ -269,14 +272,6 @@
 			isa = PBXGroup;
 			children = (
 				9ECBD0DF16A94FD900C412FC /* TableCells */,
-				39E3762E16A6C9F70048DC19 /* TaskDetailVC.h */,
-				39E3762F16A6C9F70048DC19 /* TaskDetailVC.m */,
-				39E3763116A6C9F70048DC19 /* TaskListVC.h */,
-				39E3763216A6C9F70048DC19 /* TaskListVC.m */,
-				9E17DD4A16AEB32B008BB230 /* Views */,
-				9E0E0A5316A5B33C00C97B68 /* Service */,
-				9E1ED39916A569D100DF3049 /* Model */,
-				39685EA516A55FF200FE52A1 /* Helpers */,
 				39685E8216A54FC500FE52A1 /* AppDelegate.h */,
 				39685E8316A54FC500FE52A1 /* AppDelegate.m */,
 				9EF416D016A93E6C0006E8A2 /* ChooseTaskVC.h */,
@@ -289,6 +284,16 @@
 				9E7FD46516A9EAF6009208D7 /* NewWebserviceVC.m */,
 				9E7FD46C16A9F928009208D7 /* WebserviceEditVC.h */,
 				9E7FD46D16A9F928009208D7 /* WebserviceEditVC.m */,
+				39E3763116A6C9F70048DC19 /* TaskListVC.h */,
+				39E3763216A6C9F70048DC19 /* TaskListVC.m */,
+				39E3762E16A6C9F70048DC19 /* TaskDetailVC.h */,
+				39E3762F16A6C9F70048DC19 /* TaskDetailVC.m */,
+				9E92008016B02F3D002E42AD /* TimeSessionListVC.h */,
+				9E92008116B02F3E002E42AD /* TimeSessionListVC.m */,
+				9E17DD4A16AEB32B008BB230 /* Views */,
+				9E0E0A5316A5B33C00C97B68 /* Service */,
+				9E1ED39916A569D100DF3049 /* Model */,
+				39685EA516A55FF200FE52A1 /* Helpers */,
 				9E2C5BFC16ADDC4000D1747B /* Categories */,
 			);
 			path = TimeChicken;
@@ -411,8 +416,8 @@
 				9E1ED3B016A56C4600DF3049 /* TCWebservice.m */,
 				9E1ED3A016A569D100DF3049 /* TCWebserviceStore.h */,
 				9E1ED3A116A569D100DF3049 /* TCWebserviceStore.m */,
-				3969AA7B16ADE9DD0099977E /* TimeSession.h */,
-				3969AA7C16ADE9DD0099977E /* TimeSession.m */,
+				3969AA7B16ADE9DD0099977E /* TCTimeSession.h */,
+				3969AA7C16ADE9DD0099977E /* TCTimeSession.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -626,12 +631,13 @@
 				9E226DA316AB2E010080984A /* TCJiraClient.m in Sources */,
 				9E2C5BFF16ADDC8F00D1747B /* UIButton+TimeChickenAdditions.m in Sources */,
 				9E2C5C0216ADE0AA00D1747B /* UIColor+TimeChickenAdditions.m in Sources */,
-				3969AA7D16ADE9DD0099977E /* TimeSession.m in Sources */,
+				3969AA7D16ADE9DD0099977E /* TCTimeSession.m in Sources */,
 				3969AA8116ADEBF10099977E /* TimeSessionCell.m in Sources */,
 				9E17DD4516AEAACE008BB230 /* WebserviceDetailVC.m in Sources */,
 				9E17DD4816AEB31B008BB230 /* TaskTableViewCell.m in Sources */,
 				9E92007016B00CD5002E42AD /* UIImage+TimeChickenAdditions.m in Sources */,
 				9E92007F16B012D4002E42AD /* UIFont+TimeChickenAddons.m in Sources */,
+				9E92008216B02F3F002E42AD /* TimeSessionListVC.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

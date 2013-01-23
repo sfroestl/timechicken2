@@ -9,8 +9,8 @@
 #import <Foundation/Foundation.h>
 
 @interface TimeSessionCell : UITableViewCell
-@property (weak, nonatomic) IBOutlet UILabel *startDate;
-@property (weak, nonatomic) IBOutlet UILabel *endDate;
-@property (weak, nonatomic) IBOutlet UILabel *duration;
+@property (weak, nonatomic) IBOutlet UILabel *startDateLabel;
+@property (weak, nonatomic) IBOutlet UILabel *endDateLabel;
+@property (weak, nonatomic) IBOutlet UILabel *durationLabel;
 
 @end
