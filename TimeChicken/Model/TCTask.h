@@ -29,6 +29,11 @@
 @property (assign, nonatomic) int wsType;
 @property (assign, nonatomic) int wsID;
 
+@property (strong, nonatomic) NSDate *timeTrackerStart;
+@property (strong, nonatomic) NSTimer *upTimer;
+
+
+
 - (id)initWithOneSparkAttributes:(NSDictionary *)attributes wsType:(int)wsType wsID:(int)wsId;
 - (id)initWithJiraAttributes:(NSDictionary *)attributes wsType:(int)wsType wsID:(int)wsId;
 - (id)initWithTitle:(NSString*)title desc:(NSString*)desc projectTitle:(NSString*)project dueDate:(NSDate*)date;

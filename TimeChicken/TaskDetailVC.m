@@ -20,6 +20,8 @@
 
 @interface TaskDetailVC ()<UITextFieldDelegate>
 @property (nonatomic,strong) TCDatePicker* datepicker;
+@property (nonatomic, strong) UIButton *timerButton;
+//@property (strong, nonatomic) NSTimer *upTimer;
 
 @end
 
@@ -51,12 +53,21 @@
     //Register this NIB which contains the cell
     [[self tableView] registerNib:nibTaskDetailEditCell forCellReuseIdentifier:@"TaskDetailEditCell"];
     
-    UIButton *timerButton = [UIButton tcOrangeButton];
-    [timerButton setFrame:CGRectMake(10.0, 270.0, 300.0, 42.0)];
-    [timerButton addTarget:self action:@selector(timerButtonPressed:) forControlEvents:UIControlEventTouchUpInside];
-    [timerButton setTitle:@"Start Time Tracker" forState:UIControlStateNormal];
+    self.timerButton = [UIButton tcOrangeButton];
+    [self.timerButton setFrame:CGRectMake(10.0, 270.0, 300.0, 42.0)];
+    [self.timerButton addTarget:self action:@selector(timerButtonPressed:) forControlEvents:UIControlEventTouchUpInside];
+    if(self.detailItem.timeTrackerStart==nil){
+        [self.timerButton setTitle:@"Start Time Tracker" forState:UIControlStateNormal];
+    }
+    else{
+        self.detailItem.upTimer = [NSTimer scheduledTimerWithTimeInterval:1.0/10.0
+                                                     target:self
+                                                   selector:@selector(updateTimer)
+                                                   userInfo:nil
+                                                    repeats:YES];
+    }
     
-    [self.view addSubview:timerButton];
+    [self.view addSubview:self.timerButton];
 
     if ([self.detailItem isCompleted]) {
         UIButton *reopenButton = [UIButton tcBlackButton];
@@ -219,7 +230,45 @@
 }
 
 - (IBAction)timerButtonPressed:(UIButton*)sender {
-    NSLog(@"-->> Timer Button pressed!");
+    TCTask *t = self.detailItem;
+    
+    //State = "notTracking"
+    if(t.timeTrackerStart==nil){
+         NSLog(@"-->> Timer tracking!");
+        t.timeTrackerStart = [NSDate date];
+        t.upTimer = [NSTimer scheduledTimerWithTimeInterval:1.0/10.0
+                                                               target:self
+                                                      selector:@selector(updateTimer)
+                                                             userInfo:nil
+                                                              repeats:YES];
+    }
+    //State = "Tracking"
+    else{
+        NSLog(@"-->> Timer stopped!");
+        [t.upTimer invalidate];
+        t.upTimer = nil;
+        TCTimeSession *ts = [[TCTimeSession alloc] initWithStart:t.timeTrackerStart];
+        ts.end = [NSDate date];
+        [t.timeSessions addObject:ts];
+        t.timeTrackerStart = nil;
+        [sender setTitle:@"Start Time Tracker" forState:UIControlStateNormal];
+    }
+}
+
+- (void)updateTimer{
+    //date from the elapsed time
+    NSDate *currentDate = [NSDate date];
+    NSTimeInterval timeInterval = [currentDate timeIntervalSinceDate:self.detailItem.timeTrackerStart];
+    NSDate *timerDate = [NSDate dateWithTimeIntervalSince1970:timeInterval];
+
+    //date formatter
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+    [dateFormatter setDateFormat:@"HH:mm:ss"];
+    [dateFormatter setTimeZone:[NSTimeZone timeZoneForSecondsFromGMT:0.0]];
+    
+    // fomatted elapsed time set to buttonTitle
+    NSString *timeString = [dateFormatter stringFromDate:timerDate];
+    [self.timerButton setTitle:timeString forState:UIControlStateNormal];
 }
 
 @end

@@ -27,6 +27,9 @@
 @synthesize url = _url;
 @synthesize wsProjectId = _wsProjectId;
 
+@synthesize timeTrackerStart = _timeTrackerStart;
+@synthesize upTimer = _upTimer;
+
 
 - (id)initWithOneSparkAttributes:(NSMutableDictionary *)attributes wsType:(int)wsType wsID:(int)wsId {
     self = [super init];

@@ -17,6 +17,6 @@
 
 -(int)durationInSeconds;
 -(NSString *)durationAsString;
-
+-(NSString *)durationAsString2;
 
 @end

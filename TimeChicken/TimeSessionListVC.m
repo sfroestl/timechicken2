@@ -86,7 +86,8 @@ static NSString *tsCellIdentifier = @"TimeSessionCell";
 
     NSDateFormatter *dateFormat = [[NSDateFormatter alloc] init];
     [dateFormat setDateFormat:@"E, DD.MM.YYYY - HH:mm"];
-    [cell.durationLabel setText:[NSString stringWithFormat:@"%@", [timeSession durationAsString]]];
+//    [cell.durationLabel setText:[NSString stringWithFormat:@"%@", [timeSession durationAsString]]];
+    [cell.durationLabel setText:[timeSession durationAsString2]];
     cell.endDateLabel.text = [dateFormat stringFromDate:timeSession.end];
     cell.startDateLabel.text = [dateFormat stringFromDate:timeSession.start];
     
