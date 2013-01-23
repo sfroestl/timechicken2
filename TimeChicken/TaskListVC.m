@@ -70,12 +70,10 @@
 }
 
 -(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
-    int count;
+    int count = 0;
     
-    if(section == 1){
+    if(section == 1 && ([[[TCTaskStore taskStore] getCompletedTasks] count] != 0)){
         count = 35;
-    } else {
-        count = 10;
     }
     return count;
 }
@@ -135,8 +133,8 @@
         NSArray *completedTasks = [[TCTaskStore taskStore] getCompletedTasks];
         currentTask = [completedTasks objectAtIndex:indexPath.row];
     }
-    
-    //set Backend-Thumbnails
+    cell.backgroundColor = [UIColor whiteColor];
+    //set Webservice-Thumbnails
     [cell.thumbnailView setImage: [UIImage imageNamed:[[TCWebserviceStore wsStore] wsImageOfType:currentTask.wsType]]];
     
     //set title
@@ -151,10 +149,10 @@
         cell.subtitleLabel.text = [NSString stringWithFormat:@"no due date"];
     }
     // Timer Button
-    UIButton *timerButton = [UIButton tcGrayButton];
-    [timerButton setFrame:CGRectMake(190.0, 6.0, 92.0, 34.0)];
-    [timerButton addTarget:self action:@selector(timerButtonPressed:) forControlEvents:UIControlEventTouchUpInside];
-    [cell addSubview:timerButton];
+//    UIButton *timerButton = [UIButton tcGrayButton];
+//    [timerButton setFrame:CGRectMake(190.0, 6.0, 92.0, 34.0)];
+//    [timerButton addTarget:self action:@selector(timerButtonPressed:) forControlEvents:UIControlEventTouchUpInside];
+//    [cell addSubview:timerButton];
 
     return cell;
 }

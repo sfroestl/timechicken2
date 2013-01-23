@@ -84,7 +84,6 @@
     // Set the background for any states you plan to use
     [button setBackgroundImage:buttonImage forState:UIControlStateNormal];
     [button setBackgroundImage:buttonImageHighlight forState:UIControlStateHighlighted];
-
     
     
     // Custom Colors and Shadow
@@ -92,5 +91,6 @@
 	
     return button;
 }
+
 
 @end

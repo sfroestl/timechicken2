@@ -10,6 +10,9 @@
 #import "TaskListVC.h"
 #import "TCTaskStore.h"
 #import "TCWebserviceStore.h"
+#import "UIColor+TimeChickenAdditions.h"
+#import "UIImage+TimeChickenAdditions.h"
+
 
 #import "WebserviceListVC.h"
 
@@ -26,11 +29,18 @@
     UINavigationController *taskListNavC = [[UINavigationController alloc] initWithRootViewController:taskListViewController];
     UINavigationController *webserviceNavC = [[UINavigationController alloc] initWithRootViewController:webserviceVC];
     
+    
+//    UINavigationBar *navigationBar = [UINavigationBar appearance];
+//	[navigationBar setBackgroundImage:[UIImage imageNamed:@"nav-background"] forBarMetrics:UIBarMetricsDefault];
+
+    
     UINavigationBar *taskBar = [taskListNavC navigationBar];
-    [taskBar setTintColor:[UIColor colorWithRed:0.0f/255.0f green:109.0f/255.0f blue:14.0f/255.0f alpha:1.0f]];
+    [taskBar setTintColor:[UIColor tcThemeColor]];
+//    [taskBar setBackgroundImage:[UIImage tcNavBackgroundMini] forBarMetrics:UIBarMetricsDefault];
+//    [taskBar setBackgroundImage:[UIImage tcNavBackgroundMini] forBarMetrics:UIBarMetricsLandscapePhone];
     
     UINavigationBar *wsBar = [webserviceNavC navigationBar];
-    [wsBar setTintColor:[UIColor colorWithRed:0.0f/255.0f green:109.0f/255.0f blue:14.0f/255.0f alpha:1.0f]];
+    [wsBar setTintColor:[UIColor tcThemeColor]];
     
     self.tabBarController = [[UITabBarController alloc] init];
     self.tabBarController.viewControllers = @[taskListNavC, webserviceNavC];

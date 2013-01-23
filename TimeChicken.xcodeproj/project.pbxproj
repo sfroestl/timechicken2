@@ -74,6 +74,14 @@
 		9E7FD45316A9DE3A009208D7 /* OSTestRestClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 9E7FD45216A9DE3A009208D7 /* OSTestRestClient.m */; };
 		9E7FD46616A9EAF6009208D7 /* NewWebserviceVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 9E7FD46516A9EAF6009208D7 /* NewWebserviceVC.m */; };
 		9E7FD46E16A9F928009208D7 /* WebserviceEditVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 9E7FD46D16A9F928009208D7 /* WebserviceEditVC.m */; };
+		9E92007016B00CD5002E42AD /* UIImage+TimeChickenAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 9E92006F16B00CD5002E42AD /* UIImage+TimeChickenAdditions.m */; };
+		9E92007316B00E43002E42AD /* TC-icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 9E92007116B00E43002E42AD /* TC-icon.png */; };
+		9E92007416B00E43002E42AD /* TC-icon@2.png in Resources */ = {isa = PBXBuildFile; fileRef = 9E92007216B00E43002E42AD /* TC-icon@2.png */; };
+		9E92007916B00EB1002E42AD /* nav-background-mini.png in Resources */ = {isa = PBXBuildFile; fileRef = 9E92007516B00EB1002E42AD /* nav-background-mini.png */; };
+		9E92007A16B00EB1002E42AD /* nav-background-mini@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9E92007616B00EB1002E42AD /* nav-background-mini@2x.png */; };
+		9E92007B16B00EB1002E42AD /* nav-background.png in Resources */ = {isa = PBXBuildFile; fileRef = 9E92007716B00EB1002E42AD /* nav-background.png */; };
+		9E92007C16B00EB1002E42AD /* nav-background@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9E92007816B00EB1002E42AD /* nav-background@2x.png */; };
+		9E92007F16B012D4002E42AD /* UIFont+TimeChickenAddons.m in Sources */ = {isa = PBXBuildFile; fileRef = 9E92007E16B012D4002E42AD /* UIFont+TimeChickenAddons.m */; };
 		9ECBD0E616A94FD900C412FC /* TaskCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 9ECBD0E116A94FD900C412FC /* TaskCell.m */; };
 		9ECBD0E716A94FD900C412FC /* TaskCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9ECBD0E216A94FD900C412FC /* TaskCell.xib */; };
 		9ECBD0E816A94FD900C412FC /* TaskDetailEditCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 9ECBD0E416A94FD900C412FC /* TaskDetailEditCell.m */; };
@@ -188,6 +196,16 @@
 		9E7FD46516A9EAF6009208D7 /* NewWebserviceVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewWebserviceVC.m; sourceTree = "<group>"; };
 		9E7FD46C16A9F928009208D7 /* WebserviceEditVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WebserviceEditVC.h; sourceTree = "<group>"; };
 		9E7FD46D16A9F928009208D7 /* WebserviceEditVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WebserviceEditVC.m; sourceTree = "<group>"; };
+		9E92006E16B00CD5002E42AD /* UIImage+TimeChickenAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIImage+TimeChickenAdditions.h"; path = "Categories/UIImage+TimeChickenAdditions.h"; sourceTree = "<group>"; };
+		9E92006F16B00CD5002E42AD /* UIImage+TimeChickenAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIImage+TimeChickenAdditions.m"; path = "Categories/UIImage+TimeChickenAdditions.m"; sourceTree = "<group>"; };
+		9E92007116B00E43002E42AD /* TC-icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "TC-icon.png"; sourceTree = "<group>"; };
+		9E92007216B00E43002E42AD /* TC-icon@2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "TC-icon@2.png"; sourceTree = "<group>"; };
+		9E92007516B00EB1002E42AD /* nav-background-mini.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "nav-background-mini.png"; sourceTree = "<group>"; };
+		9E92007616B00EB1002E42AD /* nav-background-mini@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "nav-background-mini@2x.png"; sourceTree = "<group>"; };
+		9E92007716B00EB1002E42AD /* nav-background.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "nav-background.png"; sourceTree = "<group>"; };
+		9E92007816B00EB1002E42AD /* nav-background@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "nav-background@2x.png"; sourceTree = "<group>"; };
+		9E92007D16B012D4002E42AD /* UIFont+TimeChickenAddons.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIFont+TimeChickenAddons.h"; path = "Categories/UIFont+TimeChickenAddons.h"; sourceTree = "<group>"; };
+		9E92007E16B012D4002E42AD /* UIFont+TimeChickenAddons.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIFont+TimeChickenAddons.m"; path = "Categories/UIFont+TimeChickenAddons.m"; sourceTree = "<group>"; };
 		9ECBD0E016A94FD900C412FC /* TaskCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TaskCell.h; sourceTree = "<group>"; };
 		9ECBD0E116A94FD900C412FC /* TaskCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TaskCell.m; sourceTree = "<group>"; };
 		9ECBD0E216A94FD900C412FC /* TaskCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TaskCell.xib; sourceTree = "<group>"; };
@@ -333,6 +351,12 @@
 		9E17DD4C16AEF835008BB230 /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				9E92007516B00EB1002E42AD /* nav-background-mini.png */,
+				9E92007616B00EB1002E42AD /* nav-background-mini@2x.png */,
+				9E92007716B00EB1002E42AD /* nav-background.png */,
+				9E92007816B00EB1002E42AD /* nav-background@2x.png */,
+				9E92007116B00E43002E42AD /* TC-icon.png */,
+				9E92007216B00E43002E42AD /* TC-icon@2.png */,
 				9E17DD4D16AEF835008BB230 /* Buttons */,
 				9E17DD9416AEF937008BB230 /* icon-jira.png */,
 				9E17DD9816AEF9B9008BB230 /* icon-jiraLarge.png */,
@@ -434,6 +458,10 @@
 				9E2C5BFE16ADDC8F00D1747B /* UIButton+TimeChickenAdditions.m */,
 				9E2C5C0016ADE0AA00D1747B /* UIColor+TimeChickenAdditions.h */,
 				9E2C5C0116ADE0AA00D1747B /* UIColor+TimeChickenAdditions.m */,
+				9E92006E16B00CD5002E42AD /* UIImage+TimeChickenAdditions.h */,
+				9E92006F16B00CD5002E42AD /* UIImage+TimeChickenAdditions.m */,
+				9E92007D16B012D4002E42AD /* UIFont+TimeChickenAddons.h */,
+				9E92007E16B012D4002E42AD /* UIFont+TimeChickenAddons.m */,
 			);
 			name = Categories;
 			sourceTree = "<group>";
@@ -551,6 +579,12 @@
 				9E17DD9B16AEF9B9008BB230 /* icon-jiraLarge.png in Resources */,
 				9E17DD9C16AEF9B9008BB230 /* icon-onespark.png in Resources */,
 				9E17DD9D16AEF9B9008BB230 /* icon-onesparkLarge.png in Resources */,
+				9E92007316B00E43002E42AD /* TC-icon.png in Resources */,
+				9E92007416B00E43002E42AD /* TC-icon@2.png in Resources */,
+				9E92007916B00EB1002E42AD /* nav-background-mini.png in Resources */,
+				9E92007A16B00EB1002E42AD /* nav-background-mini@2x.png in Resources */,
+				9E92007B16B00EB1002E42AD /* nav-background.png in Resources */,
+				9E92007C16B00EB1002E42AD /* nav-background@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -596,6 +630,8 @@
 				3969AA8116ADEBF10099977E /* TimeSessionCell.m in Sources */,
 				9E17DD4516AEAACE008BB230 /* WebserviceDetailVC.m in Sources */,
 				9E17DD4816AEB31B008BB230 /* TaskTableViewCell.m in Sources */,
+				9E92007016B00CD5002E42AD /* UIImage+TimeChickenAdditions.m in Sources */,
+				9E92007F16B012D4002E42AD /* UIFont+TimeChickenAddons.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -669,6 +705,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "TimeChicken/TimeChicken-Prefix.pch";
 				INFOPLIST_FILE = "TimeChicken/TimeChicken-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				PRODUCT_NAME = TimeChicken;
 				WRAPPER_EXTENSION = app;
 			};
@@ -680,6 +717,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "TimeChicken/TimeChicken-Prefix.pch";
 				INFOPLIST_FILE = "TimeChicken/TimeChicken-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				PRODUCT_NAME = TimeChicken;
 				WRAPPER_EXTENSION = app;
 			};

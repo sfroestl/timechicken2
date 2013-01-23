@@ -25,7 +25,7 @@
 
 - (id)initWithStyle:(UITableViewStyle)style
 {
-    self = [super initWithStyle:UITableViewStyleGrouped];
+    self = [super initWithStyle:UITableViewStylePlain];
     if (self) {
         // Custom initialization
     }
@@ -52,18 +52,23 @@
     
     //Register the NIB which contains the cell
     [[self tableView] registerNib:nibTimeSessionCell forCellReuseIdentifier:@"TimeSessionCell"];
+    UIButton *timerButton = [UIButton tcOrangeButton];
+    [timerButton setFrame:CGRectMake(10.0, 250.0, 300.0, 42.0)];
+    [timerButton addTarget:self action:@selector(timerButtonPressed:) forControlEvents:UIControlEventTouchUpInside];
+    [timerButton setTitle:@"Start Time Tracker" forState:UIControlStateNormal];
     
+    [self.view addSubview:timerButton];
 
     if ([self.detailItem isCompleted]) {
         UIButton *reopenButton = [UIButton tcBlackButton];
-        [reopenButton setFrame:CGRectMake(10.0, 250.0, 300.0, 42.0)];
+        [reopenButton setFrame:CGRectMake(10.0, 310.0, 300.0, 42.0)];
         [reopenButton addTarget:self action:@selector(closeTaskButtonPressed:) forControlEvents:UIControlEventTouchUpInside];
         [reopenButton setTitle:@"Reopen" forState:UIControlStateNormal];
         
         [self.view addSubview:reopenButton];
     } else {
-        UIButton *completeButton = [UIButton tcOrangeButton];
-        [completeButton setFrame:CGRectMake(10.0, 250.0, 300.0, 42.0)];
+        UIButton *completeButton = [UIButton tcBlackButton];
+        [completeButton setFrame:CGRectMake(10.0, 310.0, 300.0, 42.0)];
         [completeButton addTarget:self action:@selector(closeTaskButtonPressed:) forControlEvents:UIControlEventTouchUpInside];
         [completeButton setTitle:@"Complete" forState:UIControlStateNormal];
         
@@ -158,7 +163,7 @@
             }
             case 3:{
                 [[cell keyLabel] setText:@"Due Date"];
-                self.datepicker = [[TCDatePicker alloc] initWithDateFormatString:@"YYYY-MM-DD HH:mm" forTextField:[cell valueTextfield] withDatePickerMode:UIDatePickerModeDateAndTime];
+                self.datepicker = [[TCDatePicker alloc] initWithDateFormatString:@"DD-MM-YYYY HH:mm" forTextField:[cell valueTextfield] withDatePickerMode:UIDatePickerModeDateAndTime];
                 cell.valueTextfield.inputView = self.datepicker;
                 if(self.detailItem.dueDate){
                     self.datepicker.date = self.detailItem.dueDate;
@@ -183,7 +188,7 @@
         TimeSession *ts = [self.detailItem.timeSessions objectAtIndex:indexPath.row];
         
         NSDateFormatter *dateFormat = [[NSDateFormatter alloc] init];
-        [dateFormat setDateFormat:@"YY.MM.dd HH:mm"];
+        [dateFormat setDateFormat:@"dd.MM.YY HH:mm"];
         [[cell startDate] setText:[NSString stringWithFormat:@"%@", [dateFormat stringFromDate:[ts start]]]];
         [[cell endDate] setText:[NSString stringWithFormat:@"%@", [dateFormat stringFromDate:[ts end]]]];
         [[cell duration] setText:[NSString stringWithFormat:@"%@", [ts getDurationAsString]]];
@@ -238,6 +243,10 @@
         [[self tableView] reloadInputViews];
         [[self navigationController] popToRootViewControllerAnimated:YES];
     }
+}
+
+- (IBAction)timerButtonPressed:(UIButton*)sender {
+    NSLog(@"-->> Timer Button pressed!");
 }
 
 @end

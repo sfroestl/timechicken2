@@ -13,4 +13,7 @@
 + (UIColor *)tcMetallicColor;
 
 + (UIColor *)tcDueDateColor;
+
++ (UIColor *)tcThemeColor;
+
 @end

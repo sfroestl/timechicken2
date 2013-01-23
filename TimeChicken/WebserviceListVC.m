@@ -48,7 +48,7 @@
     //call the superclass's designated initializer
     self = [super initWithStyle:UITableViewStyleGrouped];
     if(self){
-        self.title = @"Synchronize";
+        self.title = @"Import Tasks";
         UIBarButtonItem *addButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(addNewWebservice:)];
         
         // Set this bar button item as the right item in navigation
