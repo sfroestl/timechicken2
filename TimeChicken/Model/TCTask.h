@@ -8,7 +8,11 @@
 
 #import <Foundation/Foundation.h>
 
-@interface TCTask : NSObject <NSCoding>
+@class TimeSession;
+
+@interface TCTask : NSObject <NSCoding> {
+    int _workedTime;
+}
 
 @property (strong, nonatomic) NSString *title;
 @property (strong, nonatomic) NSString *desc;
@@ -22,7 +26,6 @@
 @property (strong, nonatomic) NSDate *completedAt;
 
 @property (strong, nonatomic) NSString *wsProjectId;
-@property (assign, nonatomic) int workedTime;
 @property (assign, nonatomic) int wsType;
 @property (assign, nonatomic) int wsID;
 
@@ -30,7 +33,11 @@
 - (id)initWithJiraAttributes:(NSDictionary *)attributes wsType:(int)wsType wsID:(int)wsId;
 - (id)initWithTitle:(NSString*)title desc:(NSString*)desc projectTitle:(NSString*)project dueDate:(NSDate*)date;
 - (id)initWithTitle:(NSString *)title;
+- (int) workedTime;
 
+- (int) calculateWorkedTimeInSeconds;
+
+- (NSString*) workedTimeAsString;
 - (BOOL) isCompleted;
 
 @end

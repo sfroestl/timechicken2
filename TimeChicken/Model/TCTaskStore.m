@@ -8,6 +8,7 @@
 
 #import "TCTaskStore.h"
 #import "TCTask.h"
+#import "TimeSession.h"
 
 @implementation TCTaskStore
 
@@ -32,6 +33,18 @@
         //if the array hadn't be saved previously, creae a new empty one
         if(!tasks){
             tasks = [[NSMutableArray alloc] init];
+            TCTask *firstTask = [[TCTask alloc] initWithTitle:@"Nerdy coding" desc:@"Heloooo asdjasdjh asdo aosdhj iashdo as" projectTitle:@"Wuppi" dueDate:[NSDate date]];
+
+            TimeSession *session1 = [[TimeSession alloc] initWithStart:[NSDate dateWithTimeIntervalSince1970:1358751600000]];
+            session1.end = [NSDate dateWithTimeIntervalSince1970:1358780400000];
+            TimeSession *session2 = [[TimeSession alloc] initWithStart:[NSDate dateWithTimeIntervalSince1970:1358924400000]];
+            session2.end = [NSDate dateWithTimeIntervalSince1970:1358953200000];
+            
+            [firstTask.timeSessions addObject:session1];
+            [firstTask.timeSessions addObject:session2];
+            
+            [tasks addObject:firstTask];
+            
         }
         archivedTasks = [[NSMutableArray alloc] init];
     }

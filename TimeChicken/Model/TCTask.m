@@ -8,6 +8,7 @@
 
 #import "TCTask.h"
 #import "TCOneSparkClient.h"
+#import "TimeSession.h"
 
 @implementation TCTask
 
@@ -15,7 +16,6 @@
 @synthesize desc = _desc;
 @synthesize project = _project;
 @synthesize dueDate = _dueDate;
-@synthesize workedTime = _workedTime;
 @synthesize completed = _completed;
 @synthesize completedAt = _completedAt;
 
@@ -107,11 +107,32 @@
     return self;
 }
 
+- (int) workedTime {
+    return [self calculateWorkedTimeInSeconds];
+}
+
+- (NSString*) workedTimeAsString {
+    int sec = [self calculateWorkedTimeInSeconds];
+    int hours = floor(sec/3600);
+    int minutes = round(sec - hours*3600);
+    if (hours > 0) {
+        return [NSString stringWithFormat:@"%i h %i min", hours, minutes];
+    } else {
+        return [NSString stringWithFormat:@"%i min", minutes];
+    }
+}
+
 - (BOOL) isCompleted {
     return _completed;
 }
 
-
+- (int) calculateWorkedTimeInSeconds {
+    int seconds = 0;
+    for (TimeSession *timeSession in _timeSessions) {
+        seconds = seconds + timeSession.durationInSeconds;
+    }
+    return seconds/1000;
+}
 
 - (NSString *)description {
     return [NSString stringWithFormat:@"{Task: {title:%@, wsType:%i, wsId:%i, completed: %@, desc: %@}}", self.title, self.wsType, self.wsID, self.completed ? @"YES":@"NO", self.desc];
@@ -129,6 +150,8 @@
     return date;
 }
 
+# pragma mark Encode to save data
+
 -(void) encodeWithCoder:(NSCoder *)aCoder{
     [aCoder encodeObject:self.title forKey:@"title"];
     [aCoder encodeObject:self.desc forKey:@"desc"];
@@ -140,10 +163,12 @@
     [aCoder encodeObject:self.timeSessions forKey:@"timeSessions"];
     [aCoder encodeObject:self.completedAt forKey:@"completedAt"];
     [aCoder encodeObject:self.wsProjectId forKey:@"wsProjectId"];
-    [aCoder encodeInt:self.workedTime forKey:@"workedTime"];
     [aCoder encodeInt:self.wsType forKey:@"wsType"];
     [aCoder encodeInt:self.wsID forKey:@"wsID"];
 }
+
+# pragma mark Decode to reload data
+
 
 -(id)initWithCoder:(NSCoder *)aDecoder{
     self = [super init];
@@ -158,7 +183,6 @@
         [self setTimeSessions:[aDecoder decodeObjectForKey:@"timeSessions"]];
         [self setCompletedAt:[aDecoder decodeObjectForKey:@"completedAt"]];
         [self setWsProjectId:[aDecoder decodeObjectForKey:@"wsProjectId"]];
-        [self setWorkedTime:[aDecoder decodeIntForKey:@"workedTime"]];
         [self setWsType:[aDecoder decodeIntForKey:@"wsType"]];
         [self setWsID:[aDecoder decodeIntForKey:@"wsID"]];
     }

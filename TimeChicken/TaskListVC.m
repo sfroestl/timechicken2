@@ -141,12 +141,18 @@
     [[cell titleLabel] setText:[currentTask title]];
     
     //set subtitle
-    if ([currentTask isCompleted]) {
+    if (currentTask.dueDate) {
         NSDateFormatter *dateFormat = [[NSDateFormatter alloc] init];
-        [dateFormat setDateFormat:@"dd.MM.YYYY"];
-        cell.subtitleLabel.text = [NSString stringWithFormat:@"due: %@", [dateFormat stringFromDate:[currentTask dueDate]]];
+        [dateFormat setDateFormat:@"dd.MM.YYYY - HH:mm"];
+        cell.subtitleLabel.text = [NSString stringWithFormat:@"%@", [dateFormat stringFromDate:[currentTask dueDate]]];
     } else {
         cell.subtitleLabel.text = [NSString stringWithFormat:@"no due date"];
+    }
+    int workedTimeInseconds = [currentTask calculateWorkedTimeInSeconds];
+    if (workedTimeInseconds != 0) {
+        cell.woredTimeLabel.text = [currentTask workedTimeAsString];
+    } else {
+        cell.woredTimeLabel.text = @"0 h";
     }
     // Timer Button
 //    UIButton *timerButton = [UIButton tcGrayButton];

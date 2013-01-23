@@ -133,57 +133,56 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     TaskDetailEditCell *cell = [tableView dequeueReusableCellWithIdentifier:@"TaskDetailEditCell"];
-    if (indexPath.section==0) {      
+    [cell.keyLabel setFont:[UIFont systemFontOfSize:14.f]];
+    [cell.keyLabel setFrame:CGRectMake(10.0, 15.0, 100.0, 15.0)];
+    cell.selectionStyle = UITableViewCellSelectionStyleNone;
+    
+    if (indexPath.section==0) {
         
         switch(indexPath.row)
         {
             case 0:{
-                [[cell keyLabel] setText:@"Title"];
+                [[cell keyLabel] setText:@"Title:"];
                 [[cell valueTextfield] setText:self.detailItem.title];
                 [[cell valueTextfield] addTarget:self action:@selector(titleFieldChanged:) forControlEvents:UIControlEventEditingChanged];
                 cell.valueTextfield.delegate = self;
-                cell.selectionStyle = UITableViewCellSelectionStyleNone;
                 break;
             }
             case 1:{
-                [[cell keyLabel] setText:@"Project"];
+                [[cell keyLabel] setText:@"Project:"];
                 [[cell valueTextfield] setText:self.detailItem.project];
                 [[cell valueTextfield] addTarget:self action:@selector(projectFieldChanged:) forControlEvents:UIControlEventEditingChanged];
                 cell.valueTextfield.delegate = self;
-                cell.selectionStyle = UITableViewCellSelectionStyleNone;
                 break;
             }
             case 2:{
-                [[cell keyLabel] setText:@"Description"];
+                [[cell keyLabel] setText:@"Description:"];
                 [[cell valueTextfield] setText:self.detailItem.desc];
                 [[cell valueTextfield] addTarget:self action:@selector(descriptionFieldChanged:) forControlEvents:UIControlEventEditingChanged];
                 cell.valueTextfield.delegate = self;
-                cell.selectionStyle = UITableViewCellSelectionStyleNone;
                 break;
             }
             case 3:{
-                [[cell keyLabel] setText:@"Due Date"];
-                self.datepicker = [[TCDatePicker alloc] initWithDateFormatString:@"DD-MM-YYYY HH:mm" forTextField:[cell valueTextfield] withDatePickerMode:UIDatePickerModeDateAndTime];
+                [[cell keyLabel] setText:@"Due Date:"];
+                self.datepicker = [[TCDatePicker alloc] initWithDateFormatString:@"DD.MM.YYYY - HH:mm" forTextField:[cell valueTextfield] withDatePickerMode:UIDatePickerModeDateAndTime];
                 cell.valueTextfield.inputView = self.datepicker;
                 if(self.detailItem.dueDate){
                     self.datepicker.date = self.detailItem.dueDate;
                 }
                 [self.datepicker addTarget:self action:@selector(datePickerDateChanged:) forControlEvents:UIControlEventValueChanged];
-                cell.selectionStyle = UITableViewCellSelectionStyleNone;
                 break;
             }
             case 4:{
-                [[cell keyLabel] setText:@"Worked Time"];
-                [[cell valueTextfield] setText:[NSString stringWithFormat:@"%d", self.detailItem.workedTime]];
-                [[cell valueTextfield] addTarget:self action:@selector(workedTimeFieldChanged:) forControlEvents:UIControlEventEditingChanged];
+                [[cell keyLabel] setText:@"Worked Time:"];
+                [[cell valueTextfield] setText:[self.detailItem workedTimeAsString]];
+                [cell.valueTextfield setEnabled:NO];
                 cell.valueTextfield.delegate = self;
-                cell.selectionStyle = UITableViewCellSelectionStyleNone;
                 break;
             }
         }
     }
     //TimeSessions
-    if(indexPath.section == 2){
+    if(indexPath.section == 1){
         TimeSessionCell *cell = [tableView dequeueReusableCellWithIdentifier:@"TimeSessionCell"];
         TimeSession *ts = [self.detailItem.timeSessions objectAtIndex:indexPath.row];
         
@@ -191,7 +190,7 @@
         [dateFormat setDateFormat:@"dd.MM.YY HH:mm"];
         [[cell startDate] setText:[NSString stringWithFormat:@"%@", [dateFormat stringFromDate:[ts start]]]];
         [[cell endDate] setText:[NSString stringWithFormat:@"%@", [dateFormat stringFromDate:[ts end]]]];
-        [[cell duration] setText:[NSString stringWithFormat:@"%@", [ts getDurationAsString]]];
+        [[cell duration] setText:[NSString stringWithFormat:@"%@", [ts durationAsString]]];
     }
     return cell;
 }
@@ -226,10 +225,6 @@
 
 -(IBAction)datePickerDateChanged:(UIDatePicker*)sender{
     self.detailItem.dueDate = [sender date];
-}
-
--(IBAction)workedTimeFieldChanged:(UITextField*)sender{
-    self.detailItem.workedTime = [sender.text intValue];
 }
 
 -(IBAction)closeTaskButtonPressed:(UIButton*)sender{

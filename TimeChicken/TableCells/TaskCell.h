@@ -13,6 +13,7 @@
 @property (weak, nonatomic) IBOutlet UIImageView *thumbnailView;
 @property (weak, nonatomic) IBOutlet UILabel *titleLabel;
 @property (weak, nonatomic) IBOutlet UILabel *subtitleLabel;
+@property (weak, nonatomic) IBOutlet UILabel *woredTimeLabel;
 
 @property (weak, nonatomic) id controller;
 @property (weak, nonatomic) UITableView *tableView;

@@ -21,10 +21,14 @@
     return self;
 }
 
--(NSString *)getDurationAsString{
+- (int) durationInSeconds {
+    return [self.end timeIntervalSinceDate:self.start];
+}
+
+-(NSString *)durationAsString {
     NSString *out = @"running";
     if((self.start!=nil)&&(self.end!=nil)){        
-        NSTimeInterval secondsBetween = [self.end timeIntervalSinceDate:self.start];
+        NSTimeInterval secondsBetween = [self.end timeIntervalSinceDate: self.start];
         int seconds = (int) secondsBetween;
         int days = 0;
         int hours = 0;
