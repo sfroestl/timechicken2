@@ -16,4 +16,5 @@
 
 + (UIColor *)tcThemeColor;
 
++ (UIColor *)tcGreenColor;
 @end

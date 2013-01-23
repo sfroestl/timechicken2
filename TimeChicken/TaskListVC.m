@@ -154,6 +154,10 @@
     } else {
         cell.woredTimeLabel.text = @"0 h";
     }
+    if ([currentTask isWorking]) {
+        [cell.workedLabel setTextColor:[UIColor tcGreenColor]];
+        cell.workedLabel.text = @"working";
+    }
     // Timer Button
 //    UIButton *timerButton = [UIButton tcGrayButton];
 //    [timerButton setFrame:CGRectMake(190.0, 6.0, 92.0, 34.0)];

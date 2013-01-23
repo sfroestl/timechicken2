@@ -126,6 +126,10 @@
     return _completed;
 }
 
+- (BOOL) isWorking {
+    return YES;
+}
+
 - (int) calculateWorkedTimeInSeconds {
     int seconds = 0;
     for (TimeSession *timeSession in _timeSessions) {

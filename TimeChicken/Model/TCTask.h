@@ -39,5 +39,6 @@
 
 - (NSString*) workedTimeAsString;
 - (BOOL) isCompleted;
+- (BOOL) isWorking;
 
 @end
