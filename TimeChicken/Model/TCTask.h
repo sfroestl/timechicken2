@@ -42,7 +42,8 @@
 
 - (int) calculateWorkedTimeInSeconds;
 
-- (NSString*) workedTimeAsString;
+//- (NSString*) workedTimeAsString;
+- (NSString*) workedTimeAsString2;
 - (BOOL) isCompleted;
 - (BOOL) isWorking;
 

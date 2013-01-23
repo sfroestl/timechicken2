@@ -21,8 +21,6 @@
 @interface TaskDetailVC ()<UITextFieldDelegate>
 @property (nonatomic,strong) TCDatePicker* datepicker;
 @property (nonatomic, strong) UIButton *timerButton;
-//@property (strong, nonatomic) NSTimer *upTimer;
-
 @end
 
 @implementation TaskDetailVC
@@ -53,21 +51,23 @@
     //Register this NIB which contains the cell
     [[self tableView] registerNib:nibTaskDetailEditCell forCellReuseIdentifier:@"TaskDetailEditCell"];
     
-    self.timerButton = [UIButton tcOrangeButton];
-    [self.timerButton setFrame:CGRectMake(10.0, 270.0, 300.0, 42.0)];
-    [self.timerButton addTarget:self action:@selector(timerButtonPressed:) forControlEvents:UIControlEventTouchUpInside];
-    if(self.detailItem.timeTrackerStart==nil){
-        [self.timerButton setTitle:@"Start Time Tracker" forState:UIControlStateNormal];
+    if(![self.detailItem completed]){
+        self.timerButton = [UIButton tcOrangeButton];
+        [self.timerButton setFrame:CGRectMake(10.0, 270.0, 300.0, 42.0)];
+        [self.timerButton addTarget:self action:@selector(timerButtonPressed:) forControlEvents:UIControlEventTouchUpInside];
+        if(self.detailItem.timeTrackerStart==nil){
+            [self.timerButton setTitle:@"Start Time Tracker" forState:UIControlStateNormal];
+        }
+        else{
+            self.detailItem.upTimer = [NSTimer scheduledTimerWithTimeInterval:1.0/10.0
+                                                                       target:self
+                                                                     selector:@selector(updateTimer)
+                                                                     userInfo:nil
+                                                                      repeats:YES];
+        }
+        
+        [self.view addSubview:self.timerButton];
     }
-    else{
-        self.detailItem.upTimer = [NSTimer scheduledTimerWithTimeInterval:1.0/10.0
-                                                     target:self
-                                                   selector:@selector(updateTimer)
-                                                   userInfo:nil
-                                                    repeats:YES];
-    }
-    
-    [self.view addSubview:self.timerButton];
 
     if ([self.detailItem isCompleted]) {
         UIButton *reopenButton = [UIButton tcBlackButton];
@@ -86,6 +86,11 @@
     }
 
     
+}
+
+- (void)viewWillAppear:(BOOL)animated{
+
+
 }
 
 - (void)didReceiveMemoryWarning
@@ -168,7 +173,7 @@
         cell.textLabel.textColor = [UIColor lightGrayColor];
         cell.detailTextLabel.textColor = [UIColor darkGrayColor];
         [cell.textLabel setText:@"Worked Time:"];
-        [cell.detailTextLabel setText:[self.detailItem workedTimeAsString]];    
+        [cell.detailTextLabel setText:[self.detailItem workedTimeAsString2]];
 
         return cell;
     }
@@ -183,8 +188,6 @@
         
     }
 }
-
-
 
 -(BOOL)textFieldShouldReturn:(UITextField *)textField{
     //close keyboard if return is pressed (in textfield)
@@ -221,7 +224,10 @@
     if ([self.detailItem isCompleted]) {
         [self reopenTask];
         [[self tableView] reloadInputViews];
+//        [self.view setNeedsDisplay];
+//        [[super view]setNeedsLayout];
         [[self navigationController] popToRootViewControllerAnimated:YES];
+//        [self.tableView reloadData];
     } else {
         [self completeTask];
         [[self tableView] reloadInputViews];
@@ -252,6 +258,7 @@
         [t.timeSessions addObject:ts];
         t.timeTrackerStart = nil;
         [sender setTitle:@"Start Time Tracker" forState:UIControlStateNormal];
+        [self.tableView reloadData];
     }
 }
 

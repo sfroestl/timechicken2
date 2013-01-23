@@ -16,7 +16,7 @@
 - (id)initWithStart:(NSDate *) startDate;
 
 -(int)durationInSeconds;
--(NSString *)durationAsString;
+//-(NSString *)durationAsString;
 -(NSString *)durationAsString2;
 
 @end

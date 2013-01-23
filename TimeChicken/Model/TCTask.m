@@ -114,15 +114,35 @@
     return [self calculateWorkedTimeInSeconds];
 }
 
-- (NSString*) workedTimeAsString {
+- (NSString*)workedTimeAsString2{
     int sec = [self calculateWorkedTimeInSeconds];
-    int hours = floor(sec/3600);
-    int minutes = round(sec - hours*3600);
-    if (hours > 0) {
-        return [NSString stringWithFormat:@"%i h %i min", hours, minutes];
-    } else {
-        return [NSString stringWithFormat:@"%i min", minutes];
-    }
+    int seconds = sec;
+    int minutes = 0;
+    int hours = 0;
+    int days = 0;
+    
+    if (seconds >= 60)
+    {
+        minutes = seconds / 60;
+        seconds = seconds % 60;
+        if (minutes >= 60)
+        {
+            hours = minutes / 60;
+            minutes = minutes % 60;
+            if(hours>=24)
+            {
+                days = hours / 24;
+                hours = hours % 24;
+            }
+        }
+    };
+    
+    if(sec>59) return [NSString stringWithFormat:@"%d min",minutes];
+    if(sec>3599) return [NSString stringWithFormat:@"%d h %d min",hours, minutes];
+    if(sec>86399) return [NSString stringWithFormat:@"%d days",days];
+    if (sec>89999) return [NSString stringWithFormat:@"%d d %d h",days, hours];
+    
+    return [NSString stringWithFormat:@"%d sek",sec];
 }
 
 - (BOOL) isCompleted {
@@ -138,7 +158,7 @@
     for (TCTimeSession *timeSession in _timeSessions) {
         seconds = seconds + timeSession.durationInSeconds;
     }
-    return seconds/1000;
+    return seconds;
 }
 
 - (NSString *)description {
@@ -172,6 +192,8 @@
     [aCoder encodeObject:self.wsProjectId forKey:@"wsProjectId"];
     [aCoder encodeInt:self.wsType forKey:@"wsType"];
     [aCoder encodeInt:self.wsID forKey:@"wsID"];
+//    [aCoder encodeObject:self.timeTrackerStart forKey:@"timeTrackerStart"];
+//    [aCoder encodeObject:self.upTimer forKey:@"upTimer"];
 }
 
 # pragma mark Decode to reload data
@@ -192,6 +214,8 @@
         [self setWsProjectId:[aDecoder decodeObjectForKey:@"wsProjectId"]];
         [self setWsType:[aDecoder decodeIntForKey:@"wsType"]];
         [self setWsID:[aDecoder decodeIntForKey:@"wsID"]];
+//        [self setTimeTrackerStart:[aDecoder decodeObjectForKey:@"timeTrackerStart"]];
+//        [self setUpTimer:[aDecoder decodeObjectForKey:@"upTimer"]];
     }
     return self;
 }

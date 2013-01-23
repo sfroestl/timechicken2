@@ -150,11 +150,11 @@
     }
     int workedTimeInseconds = [currentTask calculateWorkedTimeInSeconds];
     if (workedTimeInseconds != 0) {
-        cell.woredTimeLabel.text = [currentTask workedTimeAsString];
+        cell.woredTimeLabel.text = [currentTask workedTimeAsString2];
     } else {
         cell.woredTimeLabel.text = @"0 h";
     }
-    if ([currentTask isWorking]) {
+    if (![currentTask completed]) {
         [cell.workedLabel setTextColor:[UIColor tcGreenColor]];
         cell.workedLabel.text = @"working";
     }
