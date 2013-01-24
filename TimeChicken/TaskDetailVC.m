@@ -51,23 +51,24 @@
     //Register this NIB which contains the cell
     [[self tableView] registerNib:nibTaskDetailEditCell forCellReuseIdentifier:@"TaskDetailEditCell"];
 
-    
-    if(![self.detailItem completed]){
-        self.timerButton = [UIButton tcOrangeButton];
-        [self.timerButton setFrame:CGRectMake(10.0, 270.0, 300.0, 42.0)];
-        [self.timerButton addTarget:self action:@selector(timerButtonPressed:) forControlEvents:UIControlEventTouchUpInside];
-        if(self.detailItem.timeTrackerStart==nil){
-            [self.timerButton setTitle:@"Start Time Tracker" forState:UIControlStateNormal];
+    if(([[[TCTaskStore taskStore] getRunningTasks] count]==0)||(self.detailItem.timeTrackerStart!=nil)){
+        if(![self.detailItem completed]){
+            self.timerButton = [UIButton tcOrangeButton];
+            [self.timerButton setFrame:CGRectMake(10.0, 270.0, 300.0, 42.0)];
+            [self.timerButton addTarget:self action:@selector(timerButtonPressed:) forControlEvents:UIControlEventTouchUpInside];
+            if(self.detailItem.timeTrackerStart==nil){
+                [self.timerButton setTitle:@"Start Time Tracker" forState:UIControlStateNormal];
+            }
+            else{
+                self.detailItem.upTimer = [NSTimer scheduledTimerWithTimeInterval:1.0/10.0
+                                                                           target:self
+                                                                         selector:@selector(updateTimer)
+                                                                         userInfo:nil
+                                                                          repeats:YES];
+            }
+            
+            [self.view addSubview:self.timerButton];
         }
-        else{
-            self.detailItem.upTimer = [NSTimer scheduledTimerWithTimeInterval:1.0/10.0
-                                                                       target:self
-                                                                     selector:@selector(updateTimer)
-                                                                     userInfo:nil
-                                                                      repeats:YES];
-        }
-        
-        [self.view addSubview:self.timerButton];
     }
 
     if ([self.detailItem isCompleted]) {

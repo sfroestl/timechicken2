@@ -40,6 +40,7 @@
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     [self.tableView reloadData];
+//    NSLog(@"%d",[[[TCTaskStore taskStore] getRunningTasks] count]);
 }
 
 - (void)viewDidLoad
@@ -60,8 +61,6 @@
     
     self.navigationItem.leftBarButtonItem = self.editButtonItem;
 }
-
-
 
 - (void)didReceiveMemoryWarning
 {
@@ -150,13 +149,14 @@
     }
     int workedTimeInseconds = [currentTask calculateWorkedTimeInSeconds];
     if (workedTimeInseconds != 0) {
-        cell.woredTimeLabel.text = [currentTask workedTimeAsString2];
+        cell.workedTimeLabel.text = [currentTask workedTimeAsString2];
     } else {
-        cell.woredTimeLabel.text = @"0 h";
+        cell.workedTimeLabel.text = @"0 h";
     }
     if ([currentTask isWorking]) {
         [cell.workedLabel setTextColor:[UIColor tcGreenColor]];
         cell.workedLabel.text = @"working";
+        cell.workedTimeLabel.text = @"";
     } else {
         [cell.workedLabel setTextColor:[UIColor grayColor]];
          cell.workedLabel.text = @"worked:";

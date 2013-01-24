@@ -164,4 +164,11 @@
     return [NSKeyedArchiver archiveRootObject:tasks toFile:path];
 }
 
+-(NSArray * )getRunningTasks{
+    NSPredicate *condition = [NSPredicate predicateWithFormat:@"timeTrackerStart != nil"];
+    NSArray *runningTasks = [[[TCTaskStore taskStore] tasks] filteredArrayUsingPredicate:condition];
+    return runningTasks;
+}
+
+
 @end
