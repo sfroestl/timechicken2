@@ -18,6 +18,7 @@
 		3969AA7D16ADE9DD0099977E /* TCTimeSession.m in Sources */ = {isa = PBXBuildFile; fileRef = 3969AA7C16ADE9DD0099977E /* TCTimeSession.m */; };
 		3969AA8116ADEBF10099977E /* TimeSessionCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3969AA8016ADEBF10099977E /* TimeSessionCell.m */; };
 		3969AA8316ADEC1F0099977E /* TimeSessionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3969AA8216ADEC1F0099977E /* TimeSessionCell.xib */; };
+		39D61EB016B0B3C600C1639D /* checkmark.png in Resources */ = {isa = PBXBuildFile; fileRef = 39D61EAF16B0B3C600C1639D /* checkmark.png */; };
 		39E3763416A6C9F70048DC19 /* TaskDetailVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 39E3762F16A6C9F70048DC19 /* TaskDetailVC.m */; };
 		39E3763616A6C9F70048DC19 /* TaskListVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 39E3763216A6C9F70048DC19 /* TaskListVC.m */; };
 		9E0780B416A69A920045161B /* Base64.m in Sources */ = {isa = PBXBuildFile; fileRef = 9E0780B316A69A920045161B /* Base64.m */; };
@@ -112,6 +113,7 @@
 		3969AA7F16ADEBF10099977E /* TimeSessionCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TimeSessionCell.h; sourceTree = "<group>"; };
 		3969AA8016ADEBF10099977E /* TimeSessionCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TimeSessionCell.m; sourceTree = "<group>"; };
 		3969AA8216ADEC1F0099977E /* TimeSessionCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TimeSessionCell.xib; sourceTree = "<group>"; };
+		39D61EAF16B0B3C600C1639D /* checkmark.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = checkmark.png; sourceTree = "<group>"; };
 		39E3762E16A6C9F70048DC19 /* TaskDetailVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TaskDetailVC.h; sourceTree = "<group>"; };
 		39E3762F16A6C9F70048DC19 /* TaskDetailVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TaskDetailVC.m; sourceTree = "<group>"; };
 		39E3763116A6C9F70048DC19 /* TaskListVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TaskListVC.h; sourceTree = "<group>"; };
@@ -356,6 +358,7 @@
 		9E17DD4C16AEF835008BB230 /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				39D61EAF16B0B3C600C1639D /* checkmark.png */,
 				9E92007516B00EB1002E42AD /* nav-background-mini.png */,
 				9E92007616B00EB1002E42AD /* nav-background-mini@2x.png */,
 				9E92007716B00EB1002E42AD /* nav-background.png */,
@@ -590,6 +593,7 @@
 				9E92007A16B00EB1002E42AD /* nav-background-mini@2x.png in Resources */,
 				9E92007B16B00EB1002E42AD /* nav-background.png in Resources */,
 				9E92007C16B00EB1002E42AD /* nav-background@2x.png in Resources */,
+				39D61EB016B0B3C600C1639D /* checkmark.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

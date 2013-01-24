@@ -51,6 +51,9 @@
     //Register this NIB which contains the cell
     [[self tableView] registerNib:nibTaskDetailEditCell forCellReuseIdentifier:@"TaskDetailEditCell"];
     
+    UIBarButtonItem *done = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone target:self action:@selector(doneWithTask)];
+    [[self navigationItem] setRightBarButtonItem:done];
+    
     if(![self.detailItem completed]){
         self.timerButton = [UIButton tcOrangeButton];
         [self.timerButton setFrame:CGRectMake(10.0, 270.0, 300.0, 42.0)];
@@ -276,6 +279,10 @@
     // fomatted elapsed time set to buttonTitle
     NSString *timeString = [dateFormatter stringFromDate:timerDate];
     [self.timerButton setTitle:timeString forState:UIControlStateNormal];
+}
+
+-(IBAction)doneWithTask{
+    [[self navigationController] popToRootViewControllerAnimated:YES];
 }
 
 @end

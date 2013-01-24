@@ -44,6 +44,14 @@
     
     self.tabBarController = [[UITabBarController alloc] init];
     self.tabBarController.viewControllers = @[taskListNavC, webserviceNavC];
+
+    //Adds Badge for openTasks
+    if ([[[TCTaskStore taskStore]tasks]count] == 0)
+        [[self.tabBarController.tabBar.items objectAtIndex:0] setBadgeValue:nil];
+    else
+        [[self.tabBarController.tabBar.items objectAtIndex:0] setBadgeValue:[NSString stringWithFormat:@"%d", [[[TCTaskStore taskStore] getOpenTasks]count]]];
+    
+    
     self.window.rootViewController = self.tabBarController;
     [self.window makeKeyAndVisible];
     return YES;
