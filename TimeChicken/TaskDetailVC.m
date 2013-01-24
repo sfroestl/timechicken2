@@ -127,13 +127,13 @@
         [cell.keyLabel setFont:[UIFont systemFontOfSize:14.f]];
         [cell.keyLabel setFrame:CGRectMake(10.0, 15.0, 100.0, 15.0)];
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
-        
+        [[cell valueTextfield] setClearButtonMode:UITextFieldViewModeWhileEditing];
         switch(indexPath.row)
         {
             case 0:{
                 [[cell keyLabel] setText:@"Title:"];
                 [[cell valueTextfield] setText:self.detailItem.title];
-                [[cell valueTextfield] addTarget:self action:@selector(titleFieldChanged:) forControlEvents:UIControlEventEditingChanged];
+                [[cell valueTextfield] addTarget:self action:@selector(titleFieldChanged:) forControlEvents:UIControlEventEditingChanged];                
                 cell.valueTextfield.delegate = self;
                 break;
             }
