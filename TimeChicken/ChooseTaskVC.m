@@ -149,7 +149,7 @@
     }
     // Import tasks to TCTaskStore
     [[TCTaskStore taskStore] addTasks:self.chosedTasksForImport];
-    [[self.tabBarController.tabBar.items objectAtIndex:0] setBadgeValue:[NSString stringWithFormat:@"%d", [[[TCTaskStore taskStore] getOpenTasks]count]]];
+
     [self.chosedTasksForImport removeAllObjects];
     wsTasks = nil;
 //    TaskListVC *taskVC = [self.tabBarController.viewControllers objectAtIndex:0];
