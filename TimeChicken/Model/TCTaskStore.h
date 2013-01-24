@@ -47,4 +47,6 @@
 - (NSArray *) findByWsType:(int) wsType;
 - (NSArray *) findByWsId:(int) wsId;
 
+- (NSArray *) getRunningTasks;
+
 @end
