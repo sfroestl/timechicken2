@@ -35,9 +35,6 @@
     if(self) {
         NSString *path = [self wsArchivePath];
         webservices = [NSKeyedUnarchiver unarchiveObjectWithFile:path];
-        if(webservices){
-        NSLog(@"%@",webservices);
-        }
         if(!webservices){
             webservices = [[NSMutableArray alloc] init];
         }
@@ -118,7 +115,6 @@
             break;
         }
     }
-    NSLog(@"Contains: %i", contains);
     return contains;
 }
 

@@ -45,7 +45,6 @@
     [super viewWillAppear:animated];
     
     if(detailItemWebService) {
-        NSLog(@"Selected: %@", self.detailItemWebService);
         [self setTitle:detailItemWebService.title];
     }
 }

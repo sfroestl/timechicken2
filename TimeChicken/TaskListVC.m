@@ -143,7 +143,7 @@
     //set subtitle
     if (currentTask.dueDate) {
         NSDateFormatter *dateFormat = [[NSDateFormatter alloc] init];
-        [dateFormat setDateFormat:@"dd.MM.YYYY - HH:mm"];
+        [dateFormat setDateFormat:@"dd.MM.YYYY"];
         cell.subtitleLabel.text = [NSString stringWithFormat:@"%@", [dateFormat stringFromDate:[currentTask dueDate]]];
     } else {
         cell.subtitleLabel.text = [NSString stringWithFormat:@"no due date"];

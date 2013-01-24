@@ -153,7 +153,7 @@
             }
             case 3:{
                 [[cell keyLabel] setText:@"Due Date:"];
-                self.datepicker = [[TCDatePicker alloc] initWithDateFormatString:@"DD.MM.YYYY - HH:mm" forTextField:[cell valueTextfield] withDatePickerMode:UIDatePickerModeDateAndTime];
+                self.datepicker = [[TCDatePicker alloc] initWithDateFormatString:@"dd.MM.YYYY" forTextField:[cell valueTextfield] withDatePickerMode:UIDatePickerModeDate];
                 cell.valueTextfield.inputView = self.datepicker;
                 if(self.detailItem.dueDate){
                     self.datepicker.date = self.detailItem.dueDate;
