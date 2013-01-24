@@ -43,7 +43,7 @@
         wsDescs = [[NSArray alloc] initWithObjects:@"", 
                    @"One Spark - Make your idea happen!\n\nOne Spark ist ein Projektmanagement-Portal, das einzelnen Nutzern und auch großen Teams ermöglicht effizient an Projekten zu arbeiten.\n\nModulweise können andere Tools als Plugins eingebunden werden.",
                    @"JIRA ist ein Projektverfolgungstool für Teams, die großartige Software erstellen wollen.\n\nTausende Teams haben sich für JIRA entschieden, um Ihre Aufgaben besser zu koordinieren. Mit JIRA ist man immer informiert, woran das Team gerade arbeitet. ", nil];
-        wsImagePaths = [[NSArray alloc] initWithObjects:@"", @"icon-onesparkLarge", @"icon-jiraLarge", nil];
+        wsImagePaths = [[NSArray alloc] initWithObjects:@"TC-icon", @"icon-onespark", @"icon-jira", nil];
         wsBaseUrls = [[NSArray alloc] initWithObjects:@"", @"http://api.onespark.de:81/api/v1", @"http://jira.yourdomain.de", nil];
     }
     return self;

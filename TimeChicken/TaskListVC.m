@@ -142,9 +142,11 @@
     //set subtitle
     if (currentTask.dueDate) {
         NSDateFormatter *dateFormat = [[NSDateFormatter alloc] init];
+        [cell.subtitleLabel setTextColor:[UIColor tcDueDateColor]];
         [dateFormat setDateFormat:@"dd.MM.YYYY"];
         cell.subtitleLabel.text = [NSString stringWithFormat:@"%@", [dateFormat stringFromDate:[currentTask dueDate]]];
     } else {
+        [cell.subtitleLabel setTextColor:[UIColor darkGrayColor]];
         cell.subtitleLabel.text = [NSString stringWithFormat:@"no due date"];
     }
     int workedTimeInseconds = [currentTask calculateWorkedTimeInSeconds];
@@ -193,6 +195,11 @@
 - (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath {
     [[TCTaskStore taskStore] moveTaskAtIndex:[fromIndexPath row] toIndex:[toIndexPath row]];
 }
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    return 55.0;
+}
+
 
 # pragma mark Actions
 
