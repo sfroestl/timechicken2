@@ -186,7 +186,6 @@
         TimeSessionListVC *timeSessionVC = [[TimeSessionListVC alloc] init];
         timeSessionVC.task = self.detailItem;
         [[self navigationController] pushViewController:timeSessionVC animated:YES];
-        
     }
 }
 
@@ -196,22 +195,9 @@
     return YES;
 }
 
-- (void)reopenTask {
-    [[TCTaskStore taskStore] reopenTask:self.detailItem];
-}
 
-- (void)completeTask {
-    TCTask *t = self.detailItem;
-    t.working = NO;
-    // Stop Timer and store Time Session
-    TCTimeSession *ts = [[TCTimeSession alloc] initWithStart:t.timeTrackerStart];
-    ts.end = [NSDate date];
-    [t.timeSessions addObject:ts];
-    t.timeTrackerStart = nil;
-    // TabBar Badge Value
-    [[self.tabBarController.tabBar.items objectAtIndex:0] setBadgeValue:nil];
-    [[TCTaskStore taskStore] completeTask:t];
-}
+
+# pragma mark Actions
 
 -(IBAction)titleFieldChanged:(UITextField*)sender{
     self.detailItem.title = sender.text;
@@ -277,6 +263,27 @@
         
         [self.tableView reloadData];
     }
+}
+
+#pragma mark Private Methods
+
+- (void)reopenTask {
+    [[TCTaskStore taskStore] reopenTask:self.detailItem];
+}
+
+- (void)completeTask {
+    TCTask *t = self.detailItem;
+    t.working = NO;
+    // Stop Timer and store Time Session
+    if (t.timeTrackerStart) {
+        TCTimeSession *ts = [[TCTimeSession alloc] initWithStart:t.timeTrackerStart];
+        ts.end = [NSDate date];
+        [t.timeSessions addObject:ts];
+        t.timeTrackerStart = nil;
+        // TabBar Badge Value
+        [[self.tabBarController.tabBar.items objectAtIndex:0] setBadgeValue:nil];
+    }
+    [[TCTaskStore taskStore] completeTask:t];
 }
 
 - (void)updateTimer{
