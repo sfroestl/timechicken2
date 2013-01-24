@@ -72,6 +72,10 @@
 		9E226DA316AB2E010080984A /* TCJiraClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 9E226DA216AB2E010080984A /* TCJiraClient.m */; };
 		9E2C5BFF16ADDC8F00D1747B /* UIButton+TimeChickenAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 9E2C5BFE16ADDC8F00D1747B /* UIButton+TimeChickenAdditions.m */; };
 		9E2C5C0216ADE0AA00D1747B /* UIColor+TimeChickenAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 9E2C5C0116ADE0AA00D1747B /* UIColor+TimeChickenAdditions.m */; };
+		9E71A2EF16B1563300106B57 /* cloud-icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 9E71A2EB16B1563300106B57 /* cloud-icon.png */; };
+		9E71A2F016B1563300106B57 /* cloud-icon@2.png in Resources */ = {isa = PBXBuildFile; fileRef = 9E71A2EC16B1563300106B57 /* cloud-icon@2.png */; };
+		9E71A2F116B1563300106B57 /* tasks-icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 9E71A2ED16B1563300106B57 /* tasks-icon.png */; };
+		9E71A2F216B1563300106B57 /* tasks-icon@2.png in Resources */ = {isa = PBXBuildFile; fileRef = 9E71A2EE16B1563300106B57 /* tasks-icon@2.png */; };
 		9E7FD45316A9DE3A009208D7 /* OSTestRestClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 9E7FD45216A9DE3A009208D7 /* OSTestRestClient.m */; };
 		9E7FD46616A9EAF6009208D7 /* NewWebserviceVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 9E7FD46516A9EAF6009208D7 /* NewWebserviceVC.m */; };
 		9E7FD46E16A9F928009208D7 /* WebserviceEditVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 9E7FD46D16A9F928009208D7 /* WebserviceEditVC.m */; };
@@ -192,6 +196,10 @@
 		9E2C5BFE16ADDC8F00D1747B /* UIButton+TimeChickenAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIButton+TimeChickenAdditions.m"; path = "Categories/UIButton+TimeChickenAdditions.m"; sourceTree = "<group>"; };
 		9E2C5C0016ADE0AA00D1747B /* UIColor+TimeChickenAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIColor+TimeChickenAdditions.h"; path = "Categories/UIColor+TimeChickenAdditions.h"; sourceTree = "<group>"; };
 		9E2C5C0116ADE0AA00D1747B /* UIColor+TimeChickenAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIColor+TimeChickenAdditions.m"; path = "Categories/UIColor+TimeChickenAdditions.m"; sourceTree = "<group>"; };
+		9E71A2EB16B1563300106B57 /* cloud-icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "cloud-icon.png"; sourceTree = "<group>"; };
+		9E71A2EC16B1563300106B57 /* cloud-icon@2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "cloud-icon@2.png"; sourceTree = "<group>"; };
+		9E71A2ED16B1563300106B57 /* tasks-icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tasks-icon.png"; sourceTree = "<group>"; };
+		9E71A2EE16B1563300106B57 /* tasks-icon@2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tasks-icon@2.png"; sourceTree = "<group>"; };
 		9E7FD44516A9D043009208D7 /* TCRestClientDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TCRestClientDelegate.h; sourceTree = "<group>"; };
 		9E7FD44616A9D086009208D7 /* OSTestRestClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OSTestRestClient.h; sourceTree = "<group>"; };
 		9E7FD45216A9DE3A009208D7 /* OSTestRestClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OSTestRestClient.m; sourceTree = "<group>"; };
@@ -358,6 +366,10 @@
 		9E17DD4C16AEF835008BB230 /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				9E71A2EB16B1563300106B57 /* cloud-icon.png */,
+				9E71A2EC16B1563300106B57 /* cloud-icon@2.png */,
+				9E71A2ED16B1563300106B57 /* tasks-icon.png */,
+				9E71A2EE16B1563300106B57 /* tasks-icon@2.png */,
 				39D61EAF16B0B3C600C1639D /* checkmark.png */,
 				9E92007516B00EB1002E42AD /* nav-background-mini.png */,
 				9E92007616B00EB1002E42AD /* nav-background-mini@2x.png */,
@@ -594,6 +606,10 @@
 				9E92007B16B00EB1002E42AD /* nav-background.png in Resources */,
 				9E92007C16B00EB1002E42AD /* nav-background@2x.png in Resources */,
 				39D61EB016B0B3C600C1639D /* checkmark.png in Resources */,
+				9E71A2EF16B1563300106B57 /* cloud-icon.png in Resources */,
+				9E71A2F016B1563300106B57 /* cloud-icon@2.png in Resources */,
+				9E71A2F116B1563300106B57 /* tasks-icon.png in Resources */,
+				9E71A2F216B1563300106B57 /* tasks-icon@2.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

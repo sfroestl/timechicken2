@@ -13,7 +13,7 @@
 //    NSMutableArray *dataArray;
 }
 
-- (IBAction)timerButtonPressed:(id)sender;
+//- (IBAction)timerButtonPressed:(id)sender;
 
 
 

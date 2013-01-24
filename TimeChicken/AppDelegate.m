@@ -27,8 +27,14 @@
     UIViewController *webserviceVC = [[WebserviceListVC alloc] init];
     
     UINavigationController *taskListNavC = [[UINavigationController alloc] initWithRootViewController:taskListViewController];
-    UINavigationController *webserviceNavC = [[UINavigationController alloc] initWithRootViewController:webserviceVC];
+    UITabBarItem *tab1 = [[UITabBarItem alloc] initWithTitle:@"Tasks" image:[UIImage imageNamed:@"tasks-icon"] tag:1];    
+    [tab1 setFinishedSelectedImage:[UIImage imageNamed:@"tasks-icon"] withFinishedUnselectedImage:nil];
+    [taskListNavC setTabBarItem:tab1];
     
+    UINavigationController *webserviceNavC = [[UINavigationController alloc] initWithRootViewController:webserviceVC];
+    UITabBarItem *tab2 = [[UITabBarItem alloc] initWithTitle:@"Import Tasks" image:[UIImage imageNamed:@"cloud-icon.png"] tag:2];
+    [tab2 setFinishedSelectedImage:[UIImage imageNamed:@"cloud-icon"] withFinishedUnselectedImage:nil];
+    [webserviceNavC setTabBarItem:tab2];
     
 //    UINavigationBar *navigationBar = [UINavigationBar appearance];
 //	[navigationBar setBackgroundImage:[UIImage imageNamed:@"nav-background"] forBarMetrics:UIBarMetricsDefault];
@@ -46,10 +52,10 @@
     self.tabBarController.viewControllers = @[taskListNavC, webserviceNavC];
 
     //Adds Badge for openTasks
-    if ([[[TCTaskStore taskStore]tasks]count] == 0)
-        [[self.tabBarController.tabBar.items objectAtIndex:0] setBadgeValue:nil];
-    else
-        [[self.tabBarController.tabBar.items objectAtIndex:0] setBadgeValue:[NSString stringWithFormat:@"%d", [[[TCTaskStore taskStore] getOpenTasks]count]]];
+//    if ([[[TCTaskStore taskStore]tasks]count] == 0)
+//        [[self.tabBarController.tabBar.items objectAtIndex:0] setBadgeValue:nil];
+//    else
+//        [[self.tabBarController.tabBar.items objectAtIndex:0] setBadgeValue:[NSString stringWithFormat:@"%d", [[[TCTaskStore taskStore] getOpenTasks]count]]];
     
     
     self.window.rootViewController = self.tabBarController;

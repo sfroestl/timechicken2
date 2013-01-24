@@ -50,9 +50,7 @@
     
     //Register this NIB which contains the cell
     [[self tableView] registerNib:nibTaskDetailEditCell forCellReuseIdentifier:@"TaskDetailEditCell"];
-    
-    UIBarButtonItem *done = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone target:self action:@selector(doneWithTask)];
-    [[self navigationItem] setRightBarButtonItem:done];
+
     
     if(![self.detailItem completed]){
         self.timerButton = [UIButton tcOrangeButton];
@@ -203,7 +201,14 @@
 }
 
 - (void)completeTask {
-    [[TCTaskStore taskStore] completeTask:self.detailItem];
+    TCTask *t = self.detailItem;
+    t.working = NO;
+    TCTimeSession *ts = [[TCTimeSession alloc] initWithStart:t.timeTrackerStart];
+    ts.end = [NSDate date];
+    [t.timeSessions addObject:ts];
+    t.timeTrackerStart = nil;
+
+    [[TCTaskStore taskStore] completeTask:t];
 }
 
 -(IBAction)titleFieldChanged:(UITextField*)sender{
@@ -223,7 +228,7 @@
 }
 
 -(IBAction)closeTaskButtonPressed:(UIButton*)sender{
-    [sender setSelected:YES];
+//    [sender setSelected:YES];
     if ([self.detailItem isCompleted]) {
         [self reopenTask];
         [[self tableView] reloadInputViews];
@@ -232,8 +237,8 @@
         [[self navigationController] popToRootViewControllerAnimated:YES];
 //        [self.tableView reloadData];
     } else {
-        [self completeTask];
-        [[self tableView] reloadInputViews];
+        [self completeTask];        
+        [[self tableView] reloadInputViews];        
         [[self navigationController] popToRootViewControllerAnimated:YES];
     }
 }
@@ -242,20 +247,22 @@
     TCTask *t = self.detailItem;
     
     //State = "notTracking"
-    if(t.timeTrackerStart==nil){
-         NSLog(@"-->> Timer tracking!");
+    if(t.timeTrackerStart == nil){
+        NSLog(@"-->> Timer tracking!");
         t.timeTrackerStart = [NSDate date];
         t.upTimer = [NSTimer scheduledTimerWithTimeInterval:1.0/10.0
                                                                target:self
                                                       selector:@selector(updateTimer)
                                                              userInfo:nil
                                                               repeats:YES];
+        t.working = YES;
     }
     //State = "Tracking"
     else{
         NSLog(@"-->> Timer stopped!");
         [t.upTimer invalidate];
         t.upTimer = nil;
+        t.working = NO;
         TCTimeSession *ts = [[TCTimeSession alloc] initWithStart:t.timeTrackerStart];
         ts.end = [NSDate date];
         [t.timeSessions addObject:ts];
@@ -281,8 +288,5 @@
     [self.timerButton setTitle:timeString forState:UIControlStateNormal];
 }
 
--(IBAction)doneWithTask{
-    [[self navigationController] popToRootViewControllerAnimated:YES];
-}
 
 @end

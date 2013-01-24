@@ -154,15 +154,12 @@
     } else {
         cell.woredTimeLabel.text = @"0 h";
     }
-    if (![currentTask completed]) {
+    if ([currentTask isWorking]) {
         [cell.workedLabel setTextColor:[UIColor tcGreenColor]];
         cell.workedLabel.text = @"working";
+    } else {
+         cell.workedLabel.text = @"worked:";
     }
-    // Timer Button
-//    UIButton *timerButton = [UIButton tcGrayButton];
-//    [timerButton setFrame:CGRectMake(190.0, 6.0, 92.0, 34.0)];
-//    [timerButton addTarget:self action:@selector(timerButtonPressed:) forControlEvents:UIControlEventTouchUpInside];
-//    [cell addSubview:timerButton];
 
     return cell;
 }
@@ -222,8 +219,6 @@
     
     // insert new row into table
     [[self tableView] insertRowsAtIndexPaths:[NSArray arrayWithObject:ip ] withRowAnimation:UITableViewRowAnimationRight];
-    
-    [[self.tabBarController.tabBar.items objectAtIndex:0] setBadgeValue:[NSString stringWithFormat:@"%d", [[[TCTaskStore taskStore] getOpenTasks]count]]];
 }
 
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -242,11 +237,7 @@
         [taskStore addTaskToArchivedTasks:task];
         [taskStore removeTask:task];
         
-        
-        // We also remove that row from the table view with an animation
         [tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationFade];
-        
-        [[self.tabBarController.tabBar.items objectAtIndex:0] setBadgeValue:[NSString stringWithFormat:@"%d", [[[TCTaskStore taskStore] getOpenTasks]count]]];
     }
 }
 

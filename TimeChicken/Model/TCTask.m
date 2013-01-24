@@ -18,6 +18,7 @@
 @synthesize dueDate = _dueDate;
 @synthesize completed = _completed;
 @synthesize completedAt = _completedAt;
+@synthesize working = _working;
 
 @synthesize timeSessions = _timeSessions;
 
@@ -150,7 +151,7 @@
 }
 
 - (BOOL) isWorking {
-    return YES;
+    return _working;
 }
 
 - (int) calculateWorkedTimeInSeconds {
@@ -192,6 +193,7 @@
     [aCoder encodeObject:self.wsProjectId forKey:@"wsProjectId"];
     [aCoder encodeInt:self.wsType forKey:@"wsType"];
     [aCoder encodeInt:self.wsID forKey:@"wsID"];
+    [aCoder encodeInt:self.working forKey:@"working"];
 //    [aCoder encodeObject:self.timeTrackerStart forKey:@"timeTrackerStart"];
 //    [aCoder encodeObject:self.upTimer forKey:@"upTimer"];
 }
@@ -214,6 +216,7 @@
         [self setWsProjectId:[aDecoder decodeObjectForKey:@"wsProjectId"]];
         [self setWsType:[aDecoder decodeIntForKey:@"wsType"]];
         [self setWsID:[aDecoder decodeIntForKey:@"wsID"]];
+        [self setWorking:[aDecoder decodeBoolForKey:@"working"]];
 //        [self setTimeTrackerStart:[aDecoder decodeObjectForKey:@"timeTrackerStart"]];
 //        [self setUpTimer:[aDecoder decodeObjectForKey:@"upTimer"]];
     }
