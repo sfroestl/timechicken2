@@ -193,7 +193,7 @@
     [aCoder encodeObject:self.wsProjectId forKey:@"wsProjectId"];
     [aCoder encodeInt:self.wsType forKey:@"wsType"];
     [aCoder encodeInt:self.wsID forKey:@"wsID"];
-    [aCoder encodeInt:self.working forKey:@"working"];
+    [aCoder encodeBool:self.working forKey:@"working"];
 //    [aCoder encodeObject:self.timeTrackerStart forKey:@"timeTrackerStart"];
 //    [aCoder encodeObject:self.upTimer forKey:@"upTimer"];
 }
