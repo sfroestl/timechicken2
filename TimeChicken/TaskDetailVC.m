@@ -203,11 +203,13 @@
 - (void)completeTask {
     TCTask *t = self.detailItem;
     t.working = NO;
+    // Stop Timer and store Time Session
     TCTimeSession *ts = [[TCTimeSession alloc] initWithStart:t.timeTrackerStart];
     ts.end = [NSDate date];
     [t.timeSessions addObject:ts];
     t.timeTrackerStart = nil;
-
+    // TabBar Badge Value
+    [[self.tabBarController.tabBar.items objectAtIndex:0] setBadgeValue:nil];
     [[TCTaskStore taskStore] completeTask:t];
 }
 
@@ -256,6 +258,8 @@
                                                              userInfo:nil
                                                               repeats:YES];
         t.working = YES;
+        // TabBar Badge Value
+        [[self.tabBarController.tabBar.items objectAtIndex:0] setBadgeValue:[NSString stringWithFormat:@"1"]];
     }
     //State = "Tracking"
     else{
@@ -268,6 +272,9 @@
         [t.timeSessions addObject:ts];
         t.timeTrackerStart = nil;
         [sender setTitle:@"Start Time Tracker" forState:UIControlStateNormal];
+        // TabBar Badge Value
+        [[self.tabBarController.tabBar.items objectAtIndex:0] setBadgeValue:nil];
+        
         [self.tableView reloadData];
     }
 }

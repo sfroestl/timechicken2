@@ -158,6 +158,7 @@
         [cell.workedLabel setTextColor:[UIColor tcGreenColor]];
         cell.workedLabel.text = @"working";
     } else {
+        [cell.workedLabel setTextColor:[UIColor grayColor]];
          cell.workedLabel.text = @"worked:";
     }
 
@@ -194,17 +195,6 @@
 }
 
 # pragma mark Actions
-//- (IBAction)timerButtonPressed:(id)sender {
-////    UIButton *button = sender;
-////    if ([button isSelected]) {
-////        UIImage *buttonImageActive = [[UIImage imageNamed:@"orangeButtonHighlight"] resizableImageWithCapInsets:UIEdgeInsetsMake(18, 18, 18, 18)];
-////        [button setBackgroundImage:buttonImageActive forState:UIControlStateNormal];
-////    } else {
-////        UIImage *buttonImageActive = [[UIImage imageNamed:@"greyButton"] resizableImageWithCapInsets:UIEdgeInsetsMake(18, 18, 18, 18)];
-////        [button setBackgroundImage:buttonImageActive forState:UIControlStateNormal];
-////    }
-//    NSLog(@"-->> Timer Button pressed %@", sender);
-//}
 
 - (IBAction)addNewTask:(id)sender {
     // Create a new Task and add it to the store
@@ -241,10 +231,6 @@
     }
 }
 
-
-//- (void)startStopTimer:(id)sender atIndexPath:(NSIndexPath *)ip{
-//    NSLog(@"Going to start/stop the Timer for %@", ip);
-//}
 
 
 @end

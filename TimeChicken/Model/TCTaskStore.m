@@ -33,17 +33,17 @@
         //if the array hadn't be saved previously, creae a new empty one
         if(!tasks){
             tasks = [[NSMutableArray alloc] init];
-            TCTask *firstTask = [[TCTask alloc] initWithTitle:@"Nerdy coding" desc:@"Heloooo asdjasdjh asdo aosdhj iashdo as" projectTitle:@"Wuppi" dueDate:[NSDate date]];
-
-            TCTimeSession *session1 = [[TCTimeSession alloc] initWithStart:[NSDate dateWithTimeIntervalSince1970:1358755421000]];
-            session1.end = [NSDate dateWithTimeIntervalSince1970:1358780400000];
-            TCTimeSession *session2 = [[TCTimeSession alloc] initWithStart:[NSDate dateWithTimeIntervalSince1970:1358924400000]];
-            session2.end = [NSDate dateWithTimeIntervalSince1970:1358953221000];
+//            TCTask *firstTask = [[TCTask alloc] initWithTitle:@"Nerdy coding" desc:@"Heloooo asdjasdjh asdo aosdhj iashdo as" projectTitle:@"Wuppi" dueDate:[NSDate date]];
+//
+//            TCTimeSession *session1 = [[TCTimeSession alloc] initWithStart:[NSDate dateWithTimeIntervalSince1970:1358755421000]];
+//            session1.end = [NSDate dateWithTimeIntervalSince1970:1358780400000];
+//            TCTimeSession *session2 = [[TCTimeSession alloc] initWithStart:[NSDate dateWithTimeIntervalSince1970:1358924400000]];
+//            session2.end = [NSDate dateWithTimeIntervalSince1970:1358953221000];
+//            
+//            [firstTask.timeSessions addObject:session1];
+//            [firstTask.timeSessions addObject:session2];
             
-            [firstTask.timeSessions addObject:session1];
-            [firstTask.timeSessions addObject:session2];
-            
-            [tasks addObject:firstTask];
+//            [tasks addObject:firstTask];
             
         }
         archivedTasks = [[NSMutableArray alloc] init];
