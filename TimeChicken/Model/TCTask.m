@@ -137,11 +137,11 @@
         }
     };
     
-    if(sec>59) return [NSString stringWithFormat:@"%d min",minutes];
-    if(sec>3599) return [NSString stringWithFormat:@"%d h %d min",hours, minutes];
-    if(sec>86399) return [NSString stringWithFormat:@"%d days",days];
     if (sec>89999) return [NSString stringWithFormat:@"%d d %d h",days, hours];
-    
+    if(sec>86399) return [NSString stringWithFormat:@"%d days",days];
+    if(sec>3599) return [NSString stringWithFormat:@"%d h %d min",hours, minutes];
+    if(sec>59) return [NSString stringWithFormat:@"%d min",minutes];
+
     return [NSString stringWithFormat:@"%d sek",sec];
 }
 
