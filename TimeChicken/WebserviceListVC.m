@@ -76,7 +76,7 @@
         [cell setSelectionStyle:UITableViewCellSelectionStyleGray];
     }
     TCWebservice *ws = [[[TCWebserviceStore wsStore] allWebservices] objectAtIndex:[indexPath row]];
-    NSLog(@"%@", ws);
+    NSLog(@"-->> Selected: %@", ws.title);
 
     [cell.imageView setImage:[UIImage imageNamed:ws.imagePath]];
     

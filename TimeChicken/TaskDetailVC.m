@@ -92,7 +92,6 @@
 
 - (void)viewWillAppear:(BOOL)animated{
 
-
 }
 
 - (void)didReceiveMemoryWarning
@@ -167,8 +166,12 @@
     }    
     // Cell for working time
     else {
-        UITableViewCell *cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:@"TaskWorkedTimeCell"];
-        [cell setSelectionStyle:UITableViewCellSelectionStyleGray];
+        UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier: @"TaskWorkedTimeCell"];
+        if (!cell) {
+            cell =  [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:@"TaskWorkedTimeCell"];
+            [cell setSelectionStyle:UITableViewCellSelectionStyleGray];
+            
+        }
         [cell setAccessoryType: UITableViewCellAccessoryDisclosureIndicator];
         [cell.textLabel setFont:[UIFont systemFontOfSize:14.f]];
         [cell.textLabel setFrame:CGRectMake(10.0, 15.0, 100.0, 15.0)];
@@ -186,6 +189,7 @@
     if(indexPath.section == 1 && indexPath.row == 0) {
         TimeSessionListVC *timeSessionVC = [[TimeSessionListVC alloc] init];
         timeSessionVC.task = self.detailItem;
+        [tableView deselectRowAtIndexPath:indexPath animated:YES];
         [[self navigationController] pushViewController:timeSessionVC animated:YES];
     }
 }

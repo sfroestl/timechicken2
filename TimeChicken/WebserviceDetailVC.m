@@ -45,7 +45,6 @@
     [super viewWillAppear:animated];
     
     if(detailItemWebService) {
-        NSLog(@"Selected: %@", self.detailItemWebService);
         [self setTitle:detailItemWebService.title];
     }
 }
@@ -185,6 +184,7 @@
     [alert addSubview:indicator];
     
     
+    [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:YES];
     NSLog(@"-->> fetchTasks");
     [_activityIndicatorView startAnimating];
     self.navigationItem.rightBarButtonItem.enabled = NO;
@@ -203,7 +203,8 @@
     if (client) {
         [client setBasicAuthUsername:webService.username andPassword:webService.password];
         
-        [client fetchUserTaskList:^(NSArray *tasks, NSError *error) {
+        [client fetchUserTaskList:^(NSArray *tasks, NSError *error) {            
+            [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
             if (error) {
                 [alert dismissWithClickedButtonIndex:0 animated:YES];
                 [[[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Error", nil) message:[error localizedDescription] delegate:nil cancelButtonTitle:nil otherButtonTitles:NSLocalizedString(@"OK", nil), nil] show];

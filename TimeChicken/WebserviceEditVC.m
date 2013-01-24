@@ -184,6 +184,7 @@
 - (void) proveWs {
      
     [_activityIndicatorView startAnimating];
+    [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:YES];
     self.navigationItem.rightBarButtonItem.enabled = NO;
     
     NSLog(@"--> Prove WS");
@@ -253,7 +254,8 @@
                 self.detailItem.password = password;
                 [self saveWs];
             }
-            [_activityIndicatorView stopAnimating];
+            [_activityIndicatorView stopAnimating];            
+            [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
         }];
     }
 }

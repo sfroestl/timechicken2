@@ -50,9 +50,7 @@
 		9E17DD8816AEF835008BB230 /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9E17DD6616AEF835008BB230 /* Default@2x.png */; };
 		9E17DD8F16AEF835008BB230 /* metallicLight2.png in Resources */ = {isa = PBXBuildFile; fileRef = 9E17DD6D16AEF835008BB230 /* metallicLight2.png */; };
 		9E17DD9616AEF937008BB230 /* icon-jira.png in Resources */ = {isa = PBXBuildFile; fileRef = 9E17DD9416AEF937008BB230 /* icon-jira.png */; };
-		9E17DD9B16AEF9B9008BB230 /* icon-jiraLarge.png in Resources */ = {isa = PBXBuildFile; fileRef = 9E17DD9816AEF9B9008BB230 /* icon-jiraLarge.png */; };
 		9E17DD9C16AEF9B9008BB230 /* icon-onespark.png in Resources */ = {isa = PBXBuildFile; fileRef = 9E17DD9916AEF9B9008BB230 /* icon-onespark.png */; };
-		9E17DD9D16AEF9B9008BB230 /* icon-onesparkLarge.png in Resources */ = {isa = PBXBuildFile; fileRef = 9E17DD9A16AEF9B9008BB230 /* icon-onesparkLarge.png */; };
 		9E1ED3A416A569D100DF3049 /* TCTask.m in Sources */ = {isa = PBXBuildFile; fileRef = 9E1ED39B16A569D100DF3049 /* TCTask.m */; };
 		9E1ED3A516A569D100DF3049 /* TCTaskStore.m in Sources */ = {isa = PBXBuildFile; fileRef = 9E1ED39D16A569D100DF3049 /* TCTaskStore.m */; };
 		9E1ED3A716A569D100DF3049 /* TCWebserviceStore.m in Sources */ = {isa = PBXBuildFile; fileRef = 9E1ED3A116A569D100DF3049 /* TCWebserviceStore.m */; };
@@ -153,9 +151,7 @@
 		9E17DD6616AEF835008BB230 /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
 		9E17DD6D16AEF835008BB230 /* metallicLight2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = metallicLight2.png; sourceTree = "<group>"; };
 		9E17DD9416AEF937008BB230 /* icon-jira.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "icon-jira.png"; path = "Resources/Images/icon-jira.png"; sourceTree = SOURCE_ROOT; };
-		9E17DD9816AEF9B9008BB230 /* icon-jiraLarge.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon-jiraLarge.png"; sourceTree = "<group>"; };
 		9E17DD9916AEF9B9008BB230 /* icon-onespark.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon-onespark.png"; sourceTree = "<group>"; };
-		9E17DD9A16AEF9B9008BB230 /* icon-onesparkLarge.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon-onesparkLarge.png"; sourceTree = "<group>"; };
 		9E1ED39A16A569D100DF3049 /* TCTask.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TCTask.h; sourceTree = "<group>"; };
 		9E1ED39B16A569D100DF3049 /* TCTask.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TCTask.m; sourceTree = "<group>"; };
 		9E1ED39C16A569D100DF3049 /* TCTaskStore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TCTaskStore.h; sourceTree = "<group>"; };
@@ -376,9 +372,7 @@
 				9E92007216B00E43002E42AD /* TC-icon@2.png */,
 				9E17DD4D16AEF835008BB230 /* Buttons */,
 				9E17DD9416AEF937008BB230 /* icon-jira.png */,
-				9E17DD9816AEF9B9008BB230 /* icon-jiraLarge.png */,
 				9E17DD9916AEF9B9008BB230 /* icon-onespark.png */,
-				9E17DD9A16AEF9B9008BB230 /* icon-onesparkLarge.png */,
 				9E17DD6416AEF835008BB230 /* Default-568h@2x.png */,
 				9E17DD6516AEF835008BB230 /* Default.png */,
 				9E17DD6616AEF835008BB230 /* Default@2x.png */,
@@ -593,9 +587,7 @@
 				9E17DD8816AEF835008BB230 /* Default@2x.png in Resources */,
 				9E17DD8F16AEF835008BB230 /* metallicLight2.png in Resources */,
 				9E17DD9616AEF937008BB230 /* icon-jira.png in Resources */,
-				9E17DD9B16AEF9B9008BB230 /* icon-jiraLarge.png in Resources */,
 				9E17DD9C16AEF9B9008BB230 /* icon-onespark.png in Resources */,
-				9E17DD9D16AEF9B9008BB230 /* icon-onesparkLarge.png in Resources */,
 				9E92007316B00E43002E42AD /* TC-icon.png in Resources */,
 				9E92007416B00E43002E42AD /* TC-icon@2.png in Resources */,
 				9E92007916B00EB1002E42AD /* nav-background-mini.png in Resources */,
