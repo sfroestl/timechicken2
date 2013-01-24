@@ -85,6 +85,10 @@
 		9E92007C16B00EB1002E42AD /* nav-background@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9E92007816B00EB1002E42AD /* nav-background@2x.png */; };
 		9E92007F16B012D4002E42AD /* UIFont+TimeChickenAddons.m in Sources */ = {isa = PBXBuildFile; fileRef = 9E92007E16B012D4002E42AD /* UIFont+TimeChickenAddons.m */; };
 		9E92008216B02F3F002E42AD /* TimeSessionListVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 9E92008116B02F3E002E42AD /* TimeSessionListVC.m */; };
+		9E9C394716B1E9B1000BB2BB /* icon-jira@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9E9C394516B1E9B1000BB2BB /* icon-jira@2x.png */; };
+		9E9C394816B1E9B1000BB2BB /* icon-onespark@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9E9C394616B1E9B1000BB2BB /* icon-onespark@2x.png */; };
+		9E9C394C16B1EB3B000BB2BB /* icon-tc.png in Resources */ = {isa = PBXBuildFile; fileRef = 9E9C394A16B1EB3B000BB2BB /* icon-tc.png */; };
+		9E9C394D16B1EB3B000BB2BB /* icon-tc@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9E9C394B16B1EB3B000BB2BB /* icon-tc@2x.png */; };
 		9ECBD0E616A94FD900C412FC /* TaskCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 9ECBD0E116A94FD900C412FC /* TaskCell.m */; };
 		9ECBD0E716A94FD900C412FC /* TaskCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9ECBD0E216A94FD900C412FC /* TaskCell.xib */; };
 		9ECBD0E816A94FD900C412FC /* TaskDetailEditCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 9ECBD0E416A94FD900C412FC /* TaskDetailEditCell.m */; };
@@ -213,6 +217,10 @@
 		9E92007E16B012D4002E42AD /* UIFont+TimeChickenAddons.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIFont+TimeChickenAddons.m"; path = "Categories/UIFont+TimeChickenAddons.m"; sourceTree = "<group>"; };
 		9E92008016B02F3D002E42AD /* TimeSessionListVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TimeSessionListVC.h; sourceTree = "<group>"; };
 		9E92008116B02F3E002E42AD /* TimeSessionListVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TimeSessionListVC.m; sourceTree = "<group>"; };
+		9E9C394516B1E9B1000BB2BB /* icon-jira@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon-jira@2x.png"; sourceTree = "<group>"; };
+		9E9C394616B1E9B1000BB2BB /* icon-onespark@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon-onespark@2x.png"; sourceTree = "<group>"; };
+		9E9C394A16B1EB3B000BB2BB /* icon-tc.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon-tc.png"; sourceTree = "<group>"; };
+		9E9C394B16B1EB3B000BB2BB /* icon-tc@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon-tc@2x.png"; sourceTree = "<group>"; };
 		9ECBD0E016A94FD900C412FC /* TaskCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TaskCell.h; sourceTree = "<group>"; };
 		9ECBD0E116A94FD900C412FC /* TaskCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TaskCell.m; sourceTree = "<group>"; };
 		9ECBD0E216A94FD900C412FC /* TaskCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TaskCell.xib; sourceTree = "<group>"; };
@@ -372,7 +380,11 @@
 				9E92007216B00E43002E42AD /* TC-icon@2.png */,
 				9E17DD4D16AEF835008BB230 /* Buttons */,
 				9E17DD9416AEF937008BB230 /* icon-jira.png */,
+				9E9C394516B1E9B1000BB2BB /* icon-jira@2x.png */,
+				9E9C394616B1E9B1000BB2BB /* icon-onespark@2x.png */,
 				9E17DD9916AEF9B9008BB230 /* icon-onespark.png */,
+				9E9C394A16B1EB3B000BB2BB /* icon-tc.png */,
+				9E9C394B16B1EB3B000BB2BB /* icon-tc@2x.png */,
 				9E17DD6416AEF835008BB230 /* Default-568h@2x.png */,
 				9E17DD6516AEF835008BB230 /* Default.png */,
 				9E17DD6616AEF835008BB230 /* Default@2x.png */,
@@ -598,6 +610,10 @@
 				9E71A2F016B1563300106B57 /* cloud-icon@2x.png in Resources */,
 				9E71A2F116B1563300106B57 /* tasks-icon.png in Resources */,
 				9E71A2F216B1563300106B57 /* tasks-icon@2x.png in Resources */,
+				9E9C394716B1E9B1000BB2BB /* icon-jira@2x.png in Resources */,
+				9E9C394816B1E9B1000BB2BB /* icon-onespark@2x.png in Resources */,
+				9E9C394C16B1EB3B000BB2BB /* icon-tc.png in Resources */,
+				9E9C394D16B1EB3B000BB2BB /* icon-tc@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
