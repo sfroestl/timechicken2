@@ -29,10 +29,10 @@
 - (id)init {
     self = [super initWithStyle:UITableViewStyleGrouped];
     if (self) {
-        UIBarButtonItem *editButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemEdit target:self action:@selector(editButtonPressed:)];
+//        UIBarButtonItem *editButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemEdit target:self action:@selector(editButtonPressed:)];
         
         // Set this bar button item as the right item in navigation
-        [[self navigationItem] setRightBarButtonItem:editButton];
+//        [[self navigationItem] setRightBarButtonItem:editButton];
     }
     return self;
 }

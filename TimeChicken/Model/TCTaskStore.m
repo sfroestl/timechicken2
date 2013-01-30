@@ -30,65 +30,65 @@
         NSString *path = [self taskArchivePath];
         tasks = [NSKeyedUnarchiver unarchiveObjectWithFile:path];
         
-        //if the array hadn't be saved previously, creae a new empty one
         if(!tasks){
             tasks = [[NSMutableArray alloc] init];
-//            TCTask *firstTask = [[TCTask alloc] initWithTitle:@"Nerdy coding" desc:@"Heloooo asdjasdjh asdo aosdhj iashdo as" projectTitle:@"Wuppi" dueDate:[NSDate date]];
-//
-//            TCTimeSession *session1 = [[TCTimeSession alloc] initWithStart:[NSDate dateWithTimeIntervalSince1970:1358755421000]];
-//            session1.end = [NSDate dateWithTimeIntervalSince1970:1358780400000];
-//            TCTimeSession *session2 = [[TCTimeSession alloc] initWithStart:[NSDate dateWithTimeIntervalSince1970:1358924400000]];
-//            session2.end = [NSDate dateWithTimeIntervalSince1970:1358953221000];
-//            
-//            [firstTask.timeSessions addObject:session1];
-//            [firstTask.timeSessions addObject:session2];
-            
-//            [tasks addObject:firstTask];
-            
         }
-        archivedTasks = [[NSMutableArray alloc] init];
+        if(!completedTasks) {
+            completedTasks = [[NSMutableArray alloc] init];
+        }
+        if(!archivedTasks) {
+            archivedTasks = [[NSMutableArray alloc] init];
+        }
     }
     return self;
 }
 
-- (NSArray *) getOpenTasks {
-    NSPredicate *condition = [NSPredicate predicateWithFormat:@"(completed == NO) OR (completed == nil)"];
-    NSArray *openTasks = [[[TCTaskStore taskStore] tasks] filteredArrayUsingPredicate:condition];
-    return openTasks;
-}
-
-- (NSArray *) getCompletedTasks {
-    NSPredicate *condition = [NSPredicate predicateWithFormat:@"(completed == YES)"];
-    NSArray *openTasks = [[[TCTaskStore taskStore] tasks] filteredArrayUsingPredicate:condition];
-    return openTasks;    
-}
+//- (NSArray *) getOpenTasks {
+//    NSPredicate *condition = [NSPredicate predicateWithFormat:@"(completed == NO) OR (completed == nil)"];
+//    NSArray *openTasks = [[[TCTaskStore taskStore] tasks] filteredArrayUsingPredicate:condition];
+//    return tasks;
+//}
+//
+//- (NSArray *) getCompletedTasks {
+//    NSPredicate *condition = [NSPredicate predicateWithFormat:@"(completed == YES)"];
+//    NSArray *completedTasks = [[[TCTaskStore taskStore] tasks] filteredArrayUsingPredicate:condition];
+//    for (TCTask *task in completedTasks) {
+//        NSLog(@"## Completed Task %@ index: %u", task.title, [tasks indexOfObjectIdenticalTo:task]);
+//    }
+//    return completedTasks;
+//}
 
 - (NSArray *) tasks {
-//    NSLog(@"%@", tasks);
     return tasks;
 }
 - (NSArray *) archivedTasks {
     return archivedTasks;
 }
+- (NSArray *) completedTasks {
+    return completedTasks;
+}
 
 - (TCTask *) createNewTask {
     TCTask *newTask = [[TCTask alloc] initWithTitle:@"New Task"];
-    [tasks addObject:newTask];
+    [tasks insertObject: newTask atIndex:0];
     return newTask;
 }
 
-- (void) addTask:(TCTask *)task {    
-    [tasks addObject:task];
+- (void) addTask:(TCTask *)task {
+    if ([task isCompleted]) {
+        [completedTasks addObject:task];
+    } else {
+        [tasks addObject:task];
+    }
+
 }
 
-- (void) addTask:(TCTask *)task fromURL: (NSString *)URLString {
-    task.url = URLString;
-    [tasks addObject:task];
-}
 
 - (void) addTasks:(NSArray *)listOfTasks {
     //extend with check, if task is in other arrays and remove it there, if it is added to completedTasks
-    [tasks addObjectsFromArray:listOfTasks];
+    for (TCTask *task in listOfTasks) {
+        [self addTask: task];
+    }
 }
 
 - (void) addTaskToArchivedTasks:(TCTask *)task {
@@ -102,11 +102,15 @@
 - (void) completeTask:(TCTask *)task {
     task.completed = YES;
     task.completedAt = [NSDate date];
+    [tasks removeObject:task];
+    [completedTasks addObject:task];
 }
 
 - (void) reopenTask:(TCTask *)task {
     task.completed = NO;
     task.completedAt = nil;
+    [completedTasks removeObject:task];
+    [tasks addObject:task];
 }
 
 - (void) removeTask:(TCTask *)task {
@@ -114,6 +118,9 @@
 }
 - (void) removeTaskFromArchivedTasks:(TCTask *)task {
     [archivedTasks removeObjectIdenticalTo:task];
+}
+- (void) removeTaskFromCompletedTasks:(TCTask *)task {
+    [completedTasks removeObjectIdenticalTo:task];
 }
 
 - (void) moveTaskAtIndex:(int)from toIndex:(int)to {
@@ -128,6 +135,18 @@
     [tasks insertObject:task atIndex:to];
 }
 
+- (void) moveTaskAtIndexInCompletedTasks:(int)from toIndex:(int)to {
+    if (from == to){
+        return;
+    }
+    // Get pointer to object being moved so we can re-insert it
+    TCTask *task = [completedTasks objectAtIndex:from];
+    // Remove item from array
+    [completedTasks removeObjectAtIndex:from];
+    // Insert item in array at new location
+    [completedTasks insertObject:task atIndex:to];
+}
+
 - (void) moveTaskAtIndexInArchivedTasks:(int)from toIndex:(int)to{
     if (from == to) {
         return;
@@ -139,13 +158,23 @@
 
 - (NSArray *) findByWsId:(int) wsId {
     NSPredicate *condition = [NSPredicate predicateWithFormat:@"wsID == %i", wsId];
-    NSArray *foundTasks = [[[TCTaskStore taskStore] tasks] filteredArrayUsingPredicate:condition];
+    NSMutableArray *allTasks = [[NSMutableArray alloc] initWithArray: [[TCTaskStore taskStore] tasks]];
+                                [allTasks arrayByAddingObjectsFromArray:[[TCTaskStore taskStore] completedTasks]];
+    NSArray *foundTasks = [allTasks filteredArrayUsingPredicate:condition];
     return foundTasks;
 }
 - (NSArray *) findByWsType:(int) wsType {
     NSPredicate *condition = [NSPredicate predicateWithFormat:@"(wsType == %i)", wsType];
-    NSArray *foundTasks = [[[TCTaskStore taskStore] tasks] filteredArrayUsingPredicate:condition];
+    NSMutableArray *allTasks = [[NSMutableArray alloc] initWithArray: [[TCTaskStore taskStore] tasks]];
+    [allTasks arrayByAddingObjectsFromArray:[[TCTaskStore taskStore] completedTasks]];
+    NSArray *foundTasks = [allTasks filteredArrayUsingPredicate:condition];
     return foundTasks;
+}
+
+-(NSArray * )getRunningTasks{
+    NSPredicate *condition = [NSPredicate predicateWithFormat:@"timeTrackerStart != nil"];
+    NSArray *runningTasks = [[[TCTaskStore taskStore] tasks] filteredArrayUsingPredicate:condition];
+    return runningTasks;
 }
 
 -(NSString *)taskArchivePath{
@@ -162,12 +191,6 @@
     NSString *path = [self taskArchivePath];
     
     return [NSKeyedArchiver archiveRootObject:tasks toFile:path];
-}
-
--(NSArray * )getRunningTasks{
-    NSPredicate *condition = [NSPredicate predicateWithFormat:@"timeTrackerStart != nil"];
-    NSArray *runningTasks = [[[TCTaskStore taskStore] tasks] filteredArrayUsingPredicate:condition];
-    return runningTasks;
 }
 
 

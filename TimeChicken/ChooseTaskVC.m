@@ -61,7 +61,6 @@
     [super viewWillAppear:animated];
     self.alreadyImportedTasks = [[TCTaskStore taskStore] findByWsType:1];
     NSLog(@"Already Imported %@", self.alreadyImportedTasks);
-    [[self tableView] reloadData];
 }
 
 - (void)didReceiveMemoryWarning

@@ -27,6 +27,7 @@
 + (int)generateWsId {
     static int wsId = 0;
     wsId = wsId + 1;
+    NSLog(@"-->New WS ID is : %i", wsId);
     return wsId;
 }
 

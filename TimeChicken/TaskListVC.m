@@ -71,7 +71,7 @@
 -(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
     int count = 0;
     
-    if(section == 1 && ([[[TCTaskStore taskStore] getCompletedTasks] count] != 0)){
+    if(section == 1 && ([[[TCTaskStore taskStore] completedTasks] count] != 0)){
         count = 35;
     }
     return count;
@@ -80,7 +80,7 @@
 -(UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
     UIView *customTitleView = nil;
     
-    if(section == 1 && ([[[TCTaskStore taskStore] getCompletedTasks] count] != 0)){
+    if(section == 1 && ([[[TCTaskStore taskStore] completedTasks] count] != 0)){
         NSString *title = @"Completed Tasks";    
         customTitleView = [ [UIView alloc] initWithFrame:CGRectMake(0, 0, 300, 35)];
         UILabel *titleLabel = [ [UILabel alloc] initWithFrame:CGRectMake(0, 0, 300, 35)];
@@ -109,79 +109,50 @@
     switch(section)
     {
         case 0:{
-            return [[[TCTaskStore taskStore] getOpenTasks] count];
+            return [[[TCTaskStore taskStore] tasks] count];
         }
         case 1:{
-            return [[[TCTaskStore taskStore] getCompletedTasks] count];
+            return [[[TCTaskStore taskStore] completedTasks] count];
         }
     }
     
     return -1;
 }
+- (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath {
+    if (indexPath.section == 1) // Don't move completed tasks
+        return NO;
+    
+    return YES;
+}
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    TaskCell *cell = [tableView dequeueReusableCellWithIdentifier:@"TaskCell"];
+    static NSString *const cellIdentifier = @"TaskCell";
     
-    TCTask *currentTask;
+    TaskCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
+	
+	[self configureCell:cell atIndexPath:indexPath];
     
-    if(indexPath.section == 0){
-        NSArray *openTasks = [[TCTaskStore taskStore] getOpenTasks];
-        currentTask = [openTasks objectAtIndex:indexPath.row];
-    } else if (indexPath.section == 1) {
-        NSArray *completedTasks = [[TCTaskStore taskStore] getCompletedTasks];
-        currentTask = [completedTasks objectAtIndex:indexPath.row];
-    }
-    cell.backgroundColor = [UIColor whiteColor];
-    //set Webservice-Thumbnails
-    [cell.thumbnailView setImage: [UIImage imageNamed:[[TCWebserviceStore wsStore] wsImageOfType:currentTask.wsType]]];
-    
-    //set title
-    [[cell titleLabel] setText:[currentTask title]];
-    
-    //set subtitle
-    if (currentTask.dueDate) {
-        NSDateFormatter *dateFormat = [[NSDateFormatter alloc] init];
-        [cell.subtitleLabel setTextColor:[UIColor tcDueDateColor]];
-        [dateFormat setDateFormat:@"dd.MM.YYYY"];
-        cell.subtitleLabel.text = [NSString stringWithFormat:@"%@", [dateFormat stringFromDate:[currentTask dueDate]]];
-    } else {
-        [cell.subtitleLabel setTextColor:[UIColor darkGrayColor]];
-        cell.subtitleLabel.text = [NSString stringWithFormat:@"no due date"];
-    }
-    int workedTimeInseconds = [currentTask calculateWorkedTimeInSeconds];
-    if (workedTimeInseconds != 0) {
-        cell.workedTimeLabel.text = [currentTask workedTimeAsString2];
-    } else {
-        cell.workedTimeLabel.text = @"0 h";
-    }
-    if ([currentTask isWorking]) {
-        [cell.workedLabel setTextColor:[UIColor tcGreenColor]];
-        cell.workedLabel.text = @"working";
-        cell.workedTimeLabel.text = @"";
-    } else {
-        [cell.workedLabel setTextColor:[UIColor grayColor]];
-         cell.workedLabel.text = @"worked:";
-    }
-
     return cell;
 }
 
 
-- (void) tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+- (void) tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     TCTask *selectedTask = nil;
     
-    NSArray *completedTasks = [[TCTaskStore taskStore] getCompletedTasks];
-    NSArray *openTasks = [[TCTaskStore taskStore] getOpenTasks];
+    NSArray *completedTasks = [[TCTaskStore taskStore] completedTasks];
+    NSArray *tasks = [[TCTaskStore taskStore] tasks];
     
     switch (indexPath.section) {
         case 0:{
-            selectedTask = [openTasks objectAtIndex:indexPath.row];
+            selectedTask = [tasks objectAtIndex:indexPath.row];
+            NSLog(@"-->> Task at index %i", [[[TCTaskStore taskStore] tasks] indexOfObject:selectedTask]);
             break;
         }
             
         case 1:{
             selectedTask = [completedTasks objectAtIndex:indexPath.row];
+            NSLog(@"-->> Task at index %i", [[[TCTaskStore taskStore] tasks] indexOfObject:selectedTask]);
             break;
         }
         default: selectedTask = nil;
@@ -192,9 +163,13 @@
     [self.navigationController pushViewController:detailVC animated:YES];
 }
 
+
 - (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath {
-    [[TCTaskStore taskStore] moveTaskAtIndex:[fromIndexPath row] toIndex:[toIndexPath row]];
+    NSLog(@"## Move task from %i to %i", fromIndexPath.row, toIndexPath.row);
+    [[TCTaskStore taskStore] moveTaskAtIndex:fromIndexPath.row toIndex:toIndexPath.row];
+    [self.tableView reloadData];
 }
+
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     return 55.0;
@@ -207,10 +182,10 @@
     // Create a new Task and add it to the store
     TCTask *newTask = [[TCTaskStore taskStore] createNewTask];
     
-    // Figure out where that item is in the opentasks array
-    NSArray *openTasks = [[TCTaskStore taskStore] getOpenTasks];
+    // Figure out where that item is in the tasks array
+    NSArray *tasks = [[TCTaskStore taskStore] tasks];
     
-    int lastRow = [openTasks indexOfObject:newTask];
+    int lastRow = [tasks indexOfObject:newTask];
     
     NSIndexPath *ip = [NSIndexPath indexPathForRow:lastRow inSection:0];
     
@@ -224,9 +199,9 @@
         TCTaskStore *taskStore = [TCTaskStore  taskStore];
         NSArray *taskList;
         if (indexPath.section == 0) {
-            taskList = [taskStore getOpenTasks];
+            taskList = [taskStore tasks];
         } else if (indexPath.section == 1) {
-            taskList = [taskStore getCompletedTasks];
+            taskList = [taskStore completedTasks];
         }
         
         TCTask *task = [taskList objectAtIndex:[indexPath row]];
@@ -236,6 +211,69 @@
         
         [tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationFade];
     }
+}
+
+# pragma mark Void
+
+- (void)configureCell:(TaskCell *)cell atIndexPath:(NSIndexPath *)indexPath {
+    
+    TCTask *currentTask;
+    
+    if(indexPath.section == 0){
+        NSArray *tasks = [[TCTaskStore taskStore] tasks];
+        currentTask = [tasks objectAtIndex:indexPath.row];
+    } else if (indexPath.section == 1) {
+        NSArray *completedTasks = [[TCTaskStore taskStore] completedTasks];
+        currentTask = [completedTasks objectAtIndex:indexPath.row];
+    }
+    cell.backgroundColor = [UIColor whiteColor];
+    
+    // if completed color is lightgray
+    if ([currentTask isCompleted]) {
+        [cell.titleLabel setTextColor:[UIColor lightGrayColor]];
+        [cell.subtitleLabel setTextColor:[UIColor lightGrayColor]];        
+        [cell.workedLabel setTextColor:[UIColor lightGrayColor]];
+        [cell.workedTimeLabel setTextColor:[UIColor lightGrayColor]];        
+        [cell.subtitleLabel setTextColor:[UIColor lightGrayColor]];
+        //set Webservice-Thumbnails
+        [cell.thumbnailView setImage: [UIImage imageNamed:[NSString stringWithFormat:@"%@-disabled", [[TCWebserviceStore wsStore] wsImageOfType:currentTask.wsType]]]];        
+        
+    } else {
+        [cell.titleLabel setTextColor:[UIColor blackColor]];
+        [cell.subtitleLabel setTextColor:[UIColor blackColor]];
+        [cell.workedTimeLabel setTextColor:[UIColor blackColor]];
+        [cell.workedLabel setTextColor:[UIColor blackColor]];        
+        [cell.subtitleLabel setTextColor:[UIColor tcDueDateColor]];
+        //set Webservice-Thumbnails
+        [cell.thumbnailView setImage: [UIImage imageNamed:[[TCWebserviceStore wsStore] wsImageOfType:currentTask.wsType]]];
+    }
+    
+    //set title
+    [[cell titleLabel] setText:[currentTask title]];
+    
+    //set subtitle
+    if (currentTask.dueDate) {
+        NSDateFormatter *dateFormat = [[NSDateFormatter alloc] init];
+        [dateFormat setDateFormat:@"dd.MM.YYYY"];
+        cell.subtitleLabel.text = [NSString stringWithFormat:@"%@", [dateFormat stringFromDate:[currentTask dueDate]]];
+    } else {
+        cell.subtitleLabel.text = [NSString stringWithFormat:@"no due date"];
+        [cell.subtitleLabel setTextColor:[UIColor blackColor]];
+    }
+    int workedTimeInseconds = [currentTask calculateWorkedTimeInSeconds];
+    if (workedTimeInseconds != 0) {
+        cell.workedTimeLabel.text = [currentTask workedTimeAsString2];
+    } else {
+        cell.workedTimeLabel.text = @"0 h";
+    }
+    if ([currentTask isWorking]) {
+        [cell.workedLabel setTextColor:[UIColor tcGreenColor]];
+        cell.workedLabel.text = @"working";
+        cell.workedTimeLabel.text = @"";
+    } else {
+        cell.workedLabel.text = @"worked:";
+    }
+
 }
 
 

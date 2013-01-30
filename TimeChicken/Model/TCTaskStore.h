@@ -12,6 +12,7 @@
 
 @interface TCTaskStore : NSObject {
     NSMutableArray *tasks;
+    NSMutableArray *completedTasks;
     NSMutableArray *archivedTasks;
 }
 
@@ -22,11 +23,11 @@
 
 - (NSArray *) tasks;
 - (NSArray *) archivedTasks;
+- (NSArray *) completedTasks;
 
 - (TCTask *) createNewTask;
 
 - (void) addTask:(TCTask *)task;
-- (void) addTask:(TCTask *)task fromURL: (NSString *)URLString;
 - (void) addTasks:(NSArray *)listOfTasks;
 
 - (void) addTaskToArchivedTasks:(TCTask *)task;
@@ -37,16 +38,18 @@
 
 - (void) removeTask:(TCTask *)task;
 - (void) removeTaskFromArchivedTasks:(TCTask *)task;
+- (void) removeTaskFromCompletedTasks:(TCTask *)task;
 
 - (void) moveTaskAtIndex:(int)from toIndex:(int)to;
+- (void) moveTaskAtIndexInCompletedTasks:(int)from toIndex:(int)to;
 - (void) moveTaskAtIndexInArchivedTasks:(int)from toIndex:(int)to;
 
-- (NSArray *) getOpenTasks;
-- (NSArray *) getCompletedTasks;
+- (NSArray *) getRunningTasks;
+//- (NSArray *) getOpenTasks;
+//- (NSArray *) getCompletedTasks;
 
 - (NSArray *) findByWsType:(int) wsType;
 - (NSArray *) findByWsId:(int) wsId;
 
-- (NSArray *) getRunningTasks;
 
 @end
