@@ -248,7 +248,6 @@
                                                       selector:@selector(updateTimer)
                                                              userInfo:nil
                                                               repeats:YES];
-        t.working = YES;
         // TabBar Badge Value
         [[self.tabBarController.tabBar.items objectAtIndex:0] setBadgeValue:[NSString stringWithFormat:@"1"]];
     }
@@ -257,7 +256,6 @@
         NSLog(@"-->> Timer stopped!");
         [t.upTimer invalidate];
         t.upTimer = nil;
-        t.working = NO;
         TCTimeSession *ts = [[TCTimeSession alloc] initWithStart:t.timeTrackerStart];
         ts.end = [NSDate date];
         [t.timeSessions addObject:ts];
@@ -278,7 +276,6 @@
 
 - (void)completeTask {
     TCTask *t = self.detailItem;
-    t.working = NO;
     // Stop Timer and store Time Session
     if (t.timeTrackerStart) {
         TCTimeSession *ts = [[TCTimeSession alloc] initWithStart:t.timeTrackerStart];
