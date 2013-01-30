@@ -75,14 +75,14 @@
         UIButton *reopenButton = [UIButton tcBlackButton];
         [reopenButton setFrame:CGRectMake(10.0, 330.0, 300.0, 42.0)];
         [reopenButton addTarget:self action:@selector(closeTaskButtonPressed:) forControlEvents:UIControlEventTouchUpInside];
-        [reopenButton setTitle:@"Reopen Task" forState:UIControlStateNormal];
+        [reopenButton setTitle:@"Reopen task" forState:UIControlStateNormal];
         
         [self.view addSubview:reopenButton];
     } else {
         UIButton *completeButton = [UIButton tcBlackButton];
         [completeButton setFrame:CGRectMake(10.0, 330.0, 300.0, 42.0)];
         [completeButton addTarget:self action:@selector(closeTaskButtonPressed:) forControlEvents:UIControlEventTouchUpInside];
-        [completeButton setTitle:@"Finish Task" forState:UIControlStateNormal];
+        [completeButton setTitle:@"Finish task" forState:UIControlStateNormal];
         
         [self.view addSubview:completeButton];
     }
