@@ -159,14 +159,14 @@
 - (NSArray *) findByWsId:(int) wsId {
     NSPredicate *condition = [NSPredicate predicateWithFormat:@"wsID == %i", wsId];
     NSMutableArray *allTasks = [[NSMutableArray alloc] initWithArray: [[TCTaskStore taskStore] tasks]];
-                                [allTasks arrayByAddingObjectsFromArray:[[TCTaskStore taskStore] completedTasks]];
+    [allTasks addObjectsFromArray:[[TCTaskStore taskStore] completedTasks]];
     NSArray *foundTasks = [allTasks filteredArrayUsingPredicate:condition];
     return foundTasks;
 }
 - (NSArray *) findByWsType:(int) wsType {
     NSPredicate *condition = [NSPredicate predicateWithFormat:@"(wsType == %i)", wsType];
     NSMutableArray *allTasks = [[NSMutableArray alloc] initWithArray: [[TCTaskStore taskStore] tasks]];
-    [allTasks arrayByAddingObjectsFromArray:[[TCTaskStore taskStore] completedTasks]];
+    [allTasks addObjectsFromArray:[[TCTaskStore taskStore] completedTasks]];
     NSArray *foundTasks = [allTasks filteredArrayUsingPredicate:condition];
     return foundTasks;
 }

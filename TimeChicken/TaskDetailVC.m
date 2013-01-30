@@ -50,48 +50,69 @@
     
     //Register this NIB which contains the cell
     [[self tableView] registerNib:nibTaskDetailEditCell forCellReuseIdentifier:@"TaskDetailEditCell"];
-
-    if(([[[TCTaskStore taskStore] getRunningTasks] count]==0)||(self.detailItem.timeTrackerStart!=nil)){
-        if(![self.detailItem completed]){
-            self.timerButton = [UIButton tcOrangeButton];
-            [self.timerButton setFrame:CGRectMake(10.0, 270.0, 300.0, 42.0)];
-            [self.timerButton addTarget:self action:@selector(timerButtonPressed:) forControlEvents:UIControlEventTouchUpInside];
-            if(self.detailItem.timeTrackerStart==nil){
-                [self.timerButton setTitle:@"Start Time Tracker" forState:UIControlStateNormal];
-            }
-            else{
-                self.detailItem.upTimer = [NSTimer scheduledTimerWithTimeInterval:1.0/10.0
-                                                                           target:self
-                                                                         selector:@selector(updateTimer)
-                                                                         userInfo:nil
-                                                                          repeats:YES];
-            }
-            
-            [self.view addSubview:self.timerButton];
-        }
-    }
-
-    if ([self.detailItem isCompleted]) {
-        UIButton *reopenButton = [UIButton tcBlackButton];
-        [reopenButton setFrame:CGRectMake(10.0, 330.0, 300.0, 42.0)];
-        [reopenButton addTarget:self action:@selector(closeTaskButtonPressed:) forControlEvents:UIControlEventTouchUpInside];
-        [reopenButton setTitle:@"Reopen task" forState:UIControlStateNormal];
-        
-        [self.view addSubview:reopenButton];
-    } else {
-        UIButton *completeButton = [UIButton tcBlackButton];
-        [completeButton setFrame:CGRectMake(10.0, 330.0, 300.0, 42.0)];
-        [completeButton addTarget:self action:@selector(closeTaskButtonPressed:) forControlEvents:UIControlEventTouchUpInside];
-        [completeButton setTitle:@"Finish task" forState:UIControlStateNormal];
-        
-        [self.view addSubview:completeButton];
-    }
-
+  
+}
+- (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section {
+    int width = tableView.frame.size.width - 20;
     
+    if (section == 1) {
+        if(([[[TCTaskStore taskStore] getRunningTasks] count]==0)||(self.detailItem.timeTrackerStart!=nil)){
+            if(![self.detailItem completed]){
+                self.timerButton = [UIButton tcOrangeButton];
+                [self.timerButton setFrame:CGRectMake(10.0, 15.0, width, 42.0)];
+                [self.timerButton addTarget:self action:@selector(timerButtonPressed:) forControlEvents:UIControlEventTouchUpInside];
+                if(self.detailItem.timeTrackerStart==nil){
+                    [self.timerButton setTitle:@"Start Time Tracker" forState:UIControlStateNormal];
+                }
+                else{
+                    self.detailItem.upTimer = [NSTimer scheduledTimerWithTimeInterval:1.0/10.0
+                                                                               target:self
+                                                                             selector:@selector(updateTimer)
+                                                                             userInfo:nil
+                                                                              repeats:YES];
+                }
+                
+                //            [self.view addSubview:self.timerButton];
+            }
+        }
+        
+        UIButton *reopenButton;
+        if ([self.detailItem isCompleted]) {
+            reopenButton = [UIButton tcBlackButton];
+            [reopenButton setFrame:CGRectMake(10.0, 65.0, width, 42.0)];
+            [reopenButton addTarget:self action:@selector(closeTaskButtonPressed:) forControlEvents:UIControlEventTouchUpInside];
+            [reopenButton setTitle:@"Reopen task" forState:UIControlStateNormal];
+            
+            //        [self.view addSubview:reopenButton];
+        } else {
+            reopenButton = [UIButton tcBlackButton];
+            [reopenButton setFrame:CGRectMake(10.0, 65.0, width, 42.0)];
+            [reopenButton addTarget:self action:@selector(closeTaskButtonPressed:) forControlEvents:UIControlEventTouchUpInside];
+            [reopenButton setTitle:@"Finish task" forState:UIControlStateNormal];
+            
+            //        [self.view addSubview:completeButton];
+        }
+        //create a footer view on the bottom of the tabeview
+        UIView *footerView = [[UIView alloc] initWithFrame:CGRectMake(20, 0, 280, 100)];
+        [footerView addSubview: self.timerButton];
+        [footerView addSubview:reopenButton];
+        return footerView;
+    }
+    return nil;
+}
+- (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section {
+    if (section == 1) {
+        return 150.0;
+    }
+    return 0;
 }
 
-- (void)viewWillAppear:(BOOL)animated{
 
+- (void)viewWillAppear:(BOOL)animated{
+}
+
+- (void)willRotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation duration:(NSTimeInterval)duration {
+    [self.tableView reloadData];
 }
 
 - (void)didReceiveMemoryWarning
@@ -119,10 +140,9 @@
 
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
-{
-   
+{   
     // Cells for atributes
-    if (indexPath.section==0) {
+    if (indexPath.section == 0) {
         TaskDetailEditCell *cell = [tableView dequeueReusableCellWithIdentifier:@"TaskDetailEditCell"];
         [cell.keyLabel setFont:[UIFont systemFontOfSize:14.f]];
         [cell.keyLabel setFrame:CGRectMake(10.0, 15.0, 100.0, 15.0)];
@@ -221,17 +241,13 @@
 }
 
 -(IBAction)closeTaskButtonPressed:(UIButton*)sender{
-//    [sender setSelected:YES];
     if ([self.detailItem isCompleted]) {
         [self reopenTask];
-        [[self tableView] reloadInputViews];
-//        [self.view setNeedsDisplay];
-//        [[super view]setNeedsLayout];
-        [[self navigationController] popToRootViewControllerAnimated:YES];
-//        [self.tableView reloadData];
+        [[self tableView] reloadData];
+//        [[self navigationController] popToRootViewControllerAnimated:YES];
     } else {
         [self completeTask];        
-        [[self tableView] reloadInputViews];        
+        [[self tableView] reloadData];    
         [[self navigationController] popToRootViewControllerAnimated:YES];
     }
 }
