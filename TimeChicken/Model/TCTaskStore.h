@@ -39,6 +39,7 @@
 - (void) removeTask:(TCTask *)task;
 - (void) removeTaskFromArchivedTasks:(TCTask *)task;
 - (void) removeTaskFromCompletedTasks:(TCTask *)task;
+- (void) removeTasksOfWsId:(int) wsId;
 
 - (void) moveTaskAtIndex:(int)from toIndex:(int)to;
 - (void) moveTaskAtIndexInCompletedTasks:(int)from toIndex:(int)to;

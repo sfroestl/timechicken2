@@ -187,8 +187,8 @@
 
 
 - (IBAction)removeWSButtonPressed:(id)sender {
-    NSString *message = [NSString stringWithFormat:@"Remove Connection to %@?", self.detailItemWebService.title];
-    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:message message:nil delegate:self cancelButtonTitle:@"Cancel" otherButtonTitles:@"Yes", nil];
+    NSString *message = [NSString stringWithFormat:@"Remove %@?", self.detailItemWebService.title];
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:message message:@"This will also delete imported tasks!" delegate:self cancelButtonTitle:@"Cancel" otherButtonTitles:@"Yes", nil];
     [alert show];
 }
 
@@ -245,6 +245,7 @@
 - (void) removeWebservice {
     NSLog(@"-->> remove WS!");
     TCWebservice *ws = [self detailItemWebService];
+    [[TCTaskStore taskStore] removeTasksOfWsId: ws.wsID];
     [[TCWebserviceStore wsStore] removeWebservice:ws];
 }
 

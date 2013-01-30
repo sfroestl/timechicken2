@@ -122,6 +122,13 @@
 - (void) removeTaskFromCompletedTasks:(TCTask *)task {
     [completedTasks removeObjectIdenticalTo:task];
 }
+- (void) removeTasksOfWsId:(int) wsId {
+    NSArray * wsTasks = [self findByWsId:wsId];
+    for (TCTask *task in wsTasks) {
+        [tasks removeObject:task];
+        [completedTasks removeObject:task];
+    }
+}
 
 - (void) moveTaskAtIndex:(int)from toIndex:(int)to {
     if (from == to){
