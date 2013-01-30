@@ -90,50 +90,47 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    NSString *wsCellIdentifier = @"EditCell";
+    int width = self.tableView.frame.size.width - 140;
+    UITableViewCell *cell = [[UITableViewCell alloc] init];
+    cell.accessoryType = UITableViewCellAccessoryNone;
+    cell.selectionStyle = UITableViewCellSelectionStyleNone;
     
-    UITableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:wsCellIdentifier];
-    if (!cell) {
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:wsCellIdentifier];
-        cell.accessoryType = UITableViewCellAccessoryNone;
-        cell.selectionStyle = UITableViewCellSelectionStyleNone;
-        
-        if ([indexPath section] == 0) {
-            UITextField *txtField = [[UITextField alloc] initWithFrame:CGRectMake(120, 10, 185, 30)];
-            txtField.tag = 121;
-            txtField.adjustsFontSizeToFitWidth = YES;
-            txtField.textColor = [UIColor blackColor];
-            txtField.backgroundColor = [UIColor groupTableViewBackgroundColor];
-            if ([indexPath row] == 0) {
-                txtField.text = self.detailItem.title;
-                txtField.placeholder = self.detailItem.title;
-                txtField.keyboardType = UIKeyboardTypeDefault;
-            } else if([indexPath row] == 1){
-                txtField.tag = 122;
-                txtField.placeholder = @"your username";
-                txtField.keyboardType = UIKeyboardTypeEmailAddress;
-            }
-            else if ([indexPath row] == 2){
-                txtField.tag = 123;
-                txtField.placeholder = @"your password";
-                txtField.keyboardType = UIKeyboardTypeDefault;
-                txtField.secureTextEntry = YES;
-            }
-            else if ([indexPath row] == 3){
-                txtField.tag = 124;
-                txtField.placeholder = @"http://jira.myserver.de";
-                txtField.keyboardType = UIKeyboardTypeURL;
-            }
-            
-            
-            txtField.autocorrectionType = UITextAutocorrectionTypeNo; // no auto correction support
-            txtField.autocapitalizationType = UITextAutocapitalizationTypeNone; // no auto capitalization support;
-            
-            txtField.clearButtonMode = UITextFieldViewModeNever; // no clear 'x' button to the right
-            [txtField setEnabled: YES];
-            
-            [cell addSubview:txtField];
+    if ([indexPath section] == 0) {
+        UITextField *txtField = [[UITextField alloc] initWithFrame:CGRectMake(120, 10, width, 30)];
+        txtField.autoresizingMask = UIViewAutoresizingFlexibleRightMargin;
+        txtField.tag = 121;
+        txtField.adjustsFontSizeToFitWidth = YES;
+        txtField.textColor = [UIColor blackColor];
+        txtField.backgroundColor = [UIColor groupTableViewBackgroundColor];
+        if ([indexPath row] == 0) {
+            txtField.text = self.detailItem.title;
+            txtField.placeholder = self.detailItem.title;
+            txtField.keyboardType = UIKeyboardTypeDefault;
+        } else if([indexPath row] == 1){
+            txtField.tag = 122;
+            txtField.placeholder = @"your username";
+            txtField.keyboardType = UIKeyboardTypeEmailAddress;
         }
+        else if ([indexPath row] == 2){
+            txtField.tag = 123;
+            txtField.placeholder = @"your password";
+            txtField.keyboardType = UIKeyboardTypeDefault;
+            txtField.secureTextEntry = YES;
+        }
+        else if ([indexPath row] == 3){
+            txtField.tag = 124;
+            txtField.placeholder = @"http://jira.myserver.de";
+            txtField.keyboardType = UIKeyboardTypeURL;
+        }
+        
+        
+        txtField.autocorrectionType = UITextAutocorrectionTypeNo; // no auto correction support
+        txtField.autocapitalizationType = UITextAutocapitalizationTypeNone; // no auto capitalization support;
+        
+        txtField.clearButtonMode = UITextFieldViewModeWhileEditing; 
+        [txtField setEnabled: YES];
+        
+        [cell addSubview:txtField];
     }
     if ([indexPath section] == 0) {
         switch ([indexPath row]) {
@@ -159,13 +156,19 @@
 - (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section {
     return 220.0f;
 }
+- (void)willRotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation duration:(NSTimeInterval)duration {
+    [self.tableView reloadData];
+    [self.tableView reloadInputViews];
+}
+
+
 
 - (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section {
     UIView *customFooterView = [[UIView alloc] init];
-    
+    int width = self.tableView.frame.size.width - 20;
     NSString *desc = [[TCWebserviceStore wsStore] wsDescriptionOfType: self.detailItem.type];
-    customFooterView = [ [UIView alloc] initWithFrame:CGRectMake(20, 10, 280, 170)];
-    UILabel *titleLabel = [ [UILabel alloc] initWithFrame:CGRectMake(20, 10, 280, 170)];
+    customFooterView = [ [UIView alloc] initWithFrame:CGRectMake(20, 10, width, 150)];
+    UILabel *titleLabel = [ [UILabel alloc] initWithFrame:CGRectMake(20, 10, width, 150)];
     [titleLabel setTextAlignment:NSTextAlignmentLeft];
     [titleLabel setFont:[UIFont systemFontOfSize:14.0f]];
     titleLabel.text = desc;

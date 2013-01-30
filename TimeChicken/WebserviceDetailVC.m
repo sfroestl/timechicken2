@@ -115,7 +115,7 @@
             [cell addSubview:textLabel];
         }
     else {
-        UILabel *textLabel = [[UILabel alloc] initWithFrame:CGRectMake(285, 7, 50, 30)];
+        UILabel *textLabel = [[UILabel alloc] initWithFrame:CGRectMake(165, 7, 50, 30)];
         textLabel.textColor = [UIColor blackColor];
         textLabel.backgroundColor = [UIColor groupTableViewBackgroundColor];
         
