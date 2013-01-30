@@ -53,23 +53,7 @@
 {
     [super viewDidLoad];
     self.tableView.backgroundView = nil;
-    self.tableView.backgroundColor = [UIColor tcMetallicColor];    
-    
-    
-    UIButton *importButton = [UIButton tcOrangeButton];
-    [importButton addTarget:self action:@selector(fetchTaskButtonPressed:) forControlEvents:UIControlEventTouchUpInside];
-    [importButton setTitle:@"Import Tasks" forState:UIControlStateNormal];
-    [importButton setFrame:CGRectMake(10.0, 250.0, 300.0, 42.0)];
-    
-    [self.view addSubview:importButton];
-    
-    UIButton *deleteButton = [UIButton tcBlackButton];    
-    [deleteButton addTarget:self action:@selector(removeWSButtonPressed:) forControlEvents:UIControlEventTouchUpInside];
-    [deleteButton setTitle:@"Remove" forState:UIControlStateNormal];
-    [deleteButton setFrame:CGRectMake(10.0, 310.0, 300.0, 42.0)];
-    
-    [self.view addSubview:deleteButton];
-    
+    self.tableView.backgroundColor = [UIColor tcMetallicColor];        
 }
 
 - (void)didReceiveMemoryWarning
@@ -87,7 +71,7 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    int count;
+    int count = 0;
     if (section == 0) {
         if (self.detailItemWebService.type == ONESPARK) {
             count = 2;
@@ -144,6 +128,44 @@
     return cell;
 }
 
+- (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section {
+    int width = tableView.frame.size.width - 20;
+    
+    if (section == 1) {
+        
+        UIButton *importButton = [UIButton tcOrangeButton];
+        [importButton addTarget:self action:@selector(fetchTaskButtonPressed:) forControlEvents:UIControlEventTouchUpInside];
+        [importButton setTitle:@"Import Tasks" forState:UIControlStateNormal];
+        [importButton setFrame:CGRectMake(10.0, 20.0, width, 42.0)];
+        
+        [self.view addSubview:importButton];
+        
+        UIButton *deleteButton = [UIButton tcBlackButton];
+        [deleteButton addTarget:self action:@selector(removeWSButtonPressed:) forControlEvents:UIControlEventTouchUpInside];
+        [deleteButton setTitle:@"Remove" forState:UIControlStateNormal];
+        [deleteButton setFrame:CGRectMake(10.0, 72.0, width, 42.0)];
+        
+        [self.view addSubview:deleteButton];
+        
+        //create a footer view on the bottom of the tabeview
+        UIView *footerView = [[UIView alloc] initWithFrame:CGRectMake(20, 0, 280, 100)];
+        [footerView addSubview: importButton];
+        [footerView addSubview: deleteButton];
+        return footerView;
+    }
+    return nil;
+}
+- (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section {
+    if (section == 1) {
+        return 150.0;
+    }
+    return 0;
+}
+
+
+- (void)willRotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation duration:(NSTimeInterval)duration {
+    [self.tableView reloadData];
+}
 
 # pragma mark Actions
 - (IBAction)fetchTaskButtonPressed:(id)sender {

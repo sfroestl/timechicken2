@@ -59,7 +59,7 @@
         if(([[[TCTaskStore taskStore] getRunningTasks] count]==0)||(self.detailItem.timeTrackerStart!=nil)){
             if(![self.detailItem completed]){
                 self.timerButton = [UIButton tcOrangeButton];
-                [self.timerButton setFrame:CGRectMake(10.0, 15.0, width, 42.0)];
+                [self.timerButton setFrame:CGRectMake(10.0, 20.0, width, 42.0)];
                 [self.timerButton addTarget:self action:@selector(timerButtonPressed:) forControlEvents:UIControlEventTouchUpInside];
                 if(self.detailItem.timeTrackerStart==nil){
                     [self.timerButton setTitle:@"Start Time Tracker" forState:UIControlStateNormal];
@@ -79,14 +79,14 @@
         UIButton *reopenButton;
         if ([self.detailItem isCompleted]) {
             reopenButton = [UIButton tcBlackButton];
-            [reopenButton setFrame:CGRectMake(10.0, 65.0, width, 42.0)];
+            [reopenButton setFrame:CGRectMake(10.0, 72.0, width, 42.0)];
             [reopenButton addTarget:self action:@selector(closeTaskButtonPressed:) forControlEvents:UIControlEventTouchUpInside];
             [reopenButton setTitle:@"Reopen task" forState:UIControlStateNormal];
             
             //        [self.view addSubview:reopenButton];
         } else {
             reopenButton = [UIButton tcBlackButton];
-            [reopenButton setFrame:CGRectMake(10.0, 65.0, width, 42.0)];
+            [reopenButton setFrame:CGRectMake(10.0, 72.0, width, 42.0)];
             [reopenButton addTarget:self action:@selector(closeTaskButtonPressed:) forControlEvents:UIControlEventTouchUpInside];
             [reopenButton setTitle:@"Finish task" forState:UIControlStateNormal];
             
