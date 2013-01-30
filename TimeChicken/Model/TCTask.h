@@ -22,7 +22,6 @@
 @property (strong, nonatomic) NSString *project;
 
 @property (assign, nonatomic) BOOL completed;
-@property (assign, nonatomic) BOOL working;
 @property (strong, nonatomic) NSMutableArray *timeSessions;
 @property (strong, nonatomic) NSDate *completedAt;
 
@@ -43,7 +42,6 @@
 
 - (int) calculateWorkedTimeInSeconds;
 
-//- (NSString*) workedTimeAsString;
 - (NSString*) workedTimeAsString2;
 - (BOOL) isCompleted;
 - (BOOL) isWorking;

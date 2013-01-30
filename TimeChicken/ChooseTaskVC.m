@@ -148,6 +148,7 @@
     }
     // Import tasks to TCTaskStore
     [[TCTaskStore taskStore] addTasks:self.chosedTasksForImport];
+
     [self.chosedTasksForImport removeAllObjects];
     wsTasks = nil;
 //    TaskListVC *taskVC = [self.tabBarController.viewControllers objectAtIndex:0];

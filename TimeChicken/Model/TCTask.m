@@ -18,7 +18,6 @@
 @synthesize dueDate = _dueDate;
 @synthesize completed = _completed;
 @synthesize completedAt = _completedAt;
-@synthesize working = _working;
 
 @synthesize timeSessions = _timeSessions;
 
@@ -151,7 +150,8 @@
 }
 
 - (BOOL) isWorking {
-    return _working;
+    if(self.timeTrackerStart!=nil) return true;
+    return false;
 }
 
 - (int) calculateWorkedTimeInSeconds {
@@ -193,9 +193,6 @@
     [aCoder encodeObject:self.wsProjectId forKey:@"wsProjectId"];
     [aCoder encodeInt:self.wsType forKey:@"wsType"];
     [aCoder encodeInt:self.wsID forKey:@"wsID"];
-    [aCoder encodeBool:self.working forKey:@"working"];
-//    [aCoder encodeObject:self.timeTrackerStart forKey:@"timeTrackerStart"];
-//    [aCoder encodeObject:self.upTimer forKey:@"upTimer"];
 }
 
 # pragma mark Decode to reload data
@@ -216,9 +213,6 @@
         [self setWsProjectId:[aDecoder decodeObjectForKey:@"wsProjectId"]];
         [self setWsType:[aDecoder decodeIntForKey:@"wsType"]];
         [self setWsID:[aDecoder decodeIntForKey:@"wsID"]];
-        [self setWorking:[aDecoder decodeBoolForKey:@"working"]];
-//        [self setTimeTrackerStart:[aDecoder decodeObjectForKey:@"timeTrackerStart"]];
-//        [self setUpTimer:[aDecoder decodeObjectForKey:@"upTimer"]];
     }
     return self;
 }
