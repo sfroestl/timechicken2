@@ -85,7 +85,7 @@ static NSString *tsCellIdentifier = @"TimeSessionCell";
     [cell setSelectionStyle:UITableViewCellSelectionStyleNone];
 
     NSDateFormatter *dateFormat = [[NSDateFormatter alloc] init];
-    [dateFormat setDateFormat:@"E, DD.MM.YY - HH:mm"];
+    [dateFormat setDateFormat:@"E, dd.MM.YY - HH:mm"];
 //    [cell.durationLabel setText:[NSString stringWithFormat:@"%@", [timeSession durationAsString]]];
     [cell.durationLabel setText:[timeSession durationAsString2]];
     cell.endDateLabel.text = [dateFormat stringFromDate:timeSession.end];
