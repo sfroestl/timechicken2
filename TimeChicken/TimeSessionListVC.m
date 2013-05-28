@@ -7,6 +7,7 @@
 //
 
 #import "TimeSessionListVC.h"
+#import "TimeSessionDetailVC.h"
 #import "TCTimeSession.h"
 #import "TCTask.h"
 #import "UIColor+TimeChickenAdditions.h"
@@ -52,7 +53,11 @@ static NSString *tsCellIdentifier = @"TimeSessionCell";
 {
     //call the superclass's designated initializer
     self = [super initWithStyle:UITableViewStyleGrouped];
-    if(self){
+    if (self) {
+        UIBarButtonItem *addButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(addNewTimeSession:)];
+        
+        // Set this bar button item as the right item in navigation
+        [[self navigationItem] setRightBarButtonItem:addButton];
     }
     return self;
 }
@@ -87,7 +92,7 @@ static NSString *tsCellIdentifier = @"TimeSessionCell";
     NSDateFormatter *dateFormat = [[NSDateFormatter alloc] init];
     [dateFormat setDateFormat:@"E, dd.MM.YY - HH:mm"];
 //    [cell.durationLabel setText:[NSString stringWithFormat:@"%@", [timeSession durationAsString]]];
-    [cell.durationLabel setText:[timeSession durationAsString2]];
+    [cell.durationLabel setText:[timeSession durationAsString]];
     cell.endDateLabel.text = [dateFormat stringFromDate:timeSession.end];
     cell.startDateLabel.text = [dateFormat stringFromDate:timeSession.start];
     
@@ -110,6 +115,18 @@ static NSString *tsCellIdentifier = @"TimeSessionCell";
 
 #pragma mark - Table view delegate
 
+// Override to support editing the table view.
+- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    if (editingStyle == UITableViewCellEditingStyleDelete) {
+        // Delete the row from the data source
+        TCTimeSession *deletedTS = [self.task.timeSessions objectAtIndex:indexPath.row];
+        [self.task.timeSessions removeObject:deletedTS];
+        [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
+    }
+}
+
+
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     // Navigation logic may go here. Create and push another view controller.
@@ -119,6 +136,24 @@ static NSString *tsCellIdentifier = @"TimeSessionCell";
      // Pass the selected object to the new view controller.
      [self.navigationController pushViewController:detailViewController animated:YES];
      */
+    TCTimeSession *selectedTimeSession = [self.task.timeSessions objectAtIndex:indexPath.row];
+    TimeSessionDetailVC *timeSessionDetailVC = [[TimeSessionDetailVC alloc] init];
+    [timeSessionDetailVC setIsNewTimeSession:false];
+    
+    timeSessionDetailVC.timeSession = selectedTimeSession;
+    [self.navigationController pushViewController:timeSessionDetailVC animated:YES];
+}
+
+#pragma mark - IBActions
+
+-(IBAction)addNewTimeSession: (id)sender {
+    TCTimeSession *newTimeSession = [[TCTimeSession alloc] init];
+    TimeSessionDetailVC *timeSessionDetailVC = [[TimeSessionDetailVC alloc] init];
+    
+    timeSessionDetailVC.timeSession = newTimeSession;
+    timeSessionDetailVC.task = self.task;
+    [timeSessionDetailVC setIsNewTimeSession:true];
+    [self.navigationController pushViewController:timeSessionDetailVC animated:YES];
 }
 
 @end

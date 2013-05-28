@@ -262,7 +262,7 @@
     }
     int workedTimeInseconds = [currentTask calculateWorkedTimeInSeconds];
     if (workedTimeInseconds != 0) {
-        cell.workedTimeLabel.text = [currentTask workedTimeAsString2];
+        cell.workedTimeLabel.text = [currentTask summarizeWorkedTimeAsString];
     } else {
         cell.workedTimeLabel.text = @"0 h";
     }

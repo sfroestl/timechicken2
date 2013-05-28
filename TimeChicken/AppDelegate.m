@@ -12,9 +12,8 @@
 #import "TCWebserviceStore.h"
 #import "UIColor+TimeChickenAdditions.h"
 #import "UIImage+TimeChickenAdditions.h"
-
-
 #import "WebserviceListVC.h"
+#import "TimeSessionListVC.h"
 
 @implementation AppDelegate
 
@@ -26,16 +25,18 @@
     UIViewController *taskListViewController = [[TaskListVC alloc] init];
     UIViewController *webserviceVC = [[WebserviceListVC alloc] init];
     
+    // TaskList Navigation Controller    
     UINavigationController *taskListNavC = [[UINavigationController alloc] initWithRootViewController:taskListViewController];
     UITabBarItem *tab1 = [[UITabBarItem alloc] initWithTitle:@"Tasks" image:[UIImage imageNamed:@"tasks-icon"] tag:1];    
     [tab1 setFinishedSelectedImage:[UIImage imageNamed:@"tasks-icon"] withFinishedUnselectedImage:nil];
     [taskListNavC setTabBarItem:tab1];
     
+    // Webservices Navigation Controller
     UINavigationController *webserviceNavC = [[UINavigationController alloc] initWithRootViewController:webserviceVC];
     UITabBarItem *tab2 = [[UITabBarItem alloc] initWithTitle:@"Import Tasks" image:[UIImage imageNamed:@"cloud-icon.png"] tag:2];
     [tab2 setFinishedSelectedImage:[UIImage imageNamed:@"cloud-icon"] withFinishedUnselectedImage:nil];
-    [webserviceNavC setTabBarItem:tab2];
-    
+    [webserviceNavC setTabBarItem:tab2];    
+        
 //    UINavigationBar *navigationBar = [UINavigationBar appearance];
 //	[navigationBar setBackgroundImage:[UIImage imageNamed:@"nav-background"] forBarMetrics:UIBarMetricsDefault];
 

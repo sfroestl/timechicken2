@@ -114,12 +114,11 @@
     return [self calculateWorkedTimeInSeconds];
 }
 
-- (NSString*)workedTimeAsString2{
+- (NSString*)summarizeWorkedTimeAsString{
     int sec = [self calculateWorkedTimeInSeconds];
     int seconds = sec;
     int minutes = 0;
     int hours = 0;
-    int days = 0;
     
     if (seconds >= 60)
     {
@@ -129,20 +128,12 @@
         {
             hours = minutes / 60;
             minutes = minutes % 60;
-            if(hours>=24)
-            {
-                days = hours / 24;
-                hours = hours % 24;
-            }
         }
     };
-    
-    if (sec>89999) return [NSString stringWithFormat:@"%d d %d h",days, hours];
-    if(sec>86399) return [NSString stringWithFormat:@"%d days",days];
     if(sec>3599) return [NSString stringWithFormat:@"%d h %d min",hours, minutes];
-    if(sec>59) return [NSString stringWithFormat:@"%d min",minutes];
+    if(sec>59) return [NSString stringWithFormat:@"%d min", minutes];
 
-    return [NSString stringWithFormat:@"%d sek",sec];
+    return [NSString stringWithFormat:@"%d s",sec];
 }
 
 - (BOOL) isCompleted {

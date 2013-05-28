@@ -43,7 +43,7 @@
     self.tableView.backgroundView = nil;
     self.tableView.backgroundColor = [UIColor tcMetallicColor];
     
-    self.title = @"TaskDetails";
+    self.title = @"Task Details";
     
     //Load the NIB-File for Custom Task-TableCell
     UINib *nibTaskDetailEditCell = [UINib nibWithNibName:@"TaskDetailEditCell" bundle:nil];
@@ -109,6 +109,7 @@
 
 
 - (void)viewWillAppear:(BOOL)animated{
+    [self.tableView reloadData];
 }
 
 - (void)willRotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation duration:(NSTimeInterval)duration {
@@ -198,7 +199,7 @@
         cell.textLabel.textColor = [UIColor lightGrayColor];
         cell.detailTextLabel.textColor = [UIColor darkGrayColor];
         [cell.textLabel setText:@"Worked Time:"];
-        [cell.detailTextLabel setText:[self.detailItem workedTimeAsString2]];
+        [cell.detailTextLabel setText:[self.detailItem summarizeWorkedTimeAsString]];
 
         return cell;
     }
